@@ -478,6 +478,7 @@ void set_color()
 }
 void correct(unsigned int go)
 {
+	lcd_print(1,2,go,4);
 	motion_set(go);
 	if(go==0x02)
 		velocity(100,150);
@@ -491,6 +492,7 @@ void correct(unsigned int go)
 
 void gadbad()
 {
+	lcd_print(1,1,3,1);
 	correct(0x04); //soft left
 	set_color();
 	if(Center_white_line>=40 && Left_white_line<40 && Right_white_line<40)
@@ -498,13 +500,11 @@ void gadbad()
 	buzzer_on();
 	correct(0x02); //soft right
 	correct(0x02); //soft right
-	
 }
 //Main Function
 int main()
 {
 	int f1=0;
-	int i=0;
 	init_devices();
 	lcd_set_4bit();
 	lcd_init();
@@ -518,28 +518,41 @@ int main()
 		print_sensor(2,5,2);	//Prints Value of White Line Sensor2
 		print_sensor(2,9,1);	//Prints Value of White Line Sensor3
 		
+		//good to go
 		if(Center_white_line>40)
 		{
-			lcd_print (1, 4,0,1);
+			lcd_print (1,1,0,1);
 			flag=1;
 			forward();
 			velocity(150,150);
 			f1=0;
 		}
-
-		if(Center_white_line<40 && Left_white_line<40 && Right_white_line<40 && f1==0)
+		
+		//all white
+	/*	if(Center_white_line<40 && Left_white_line<40 && Right_white_line<40 && f1==0)
 		{
 			//right if white black white return
 			//left  if white black white return
-			lcd_print (1,4,1,1);
+			lcd_print (1,1,1,1);
 			buzzer_on();
 			gadbad();
 				
 			//while(1);
 			f1=1;
-			lcd_print (1,1,i,2);
-			i++;
+			//lcd_print (1,1,i,2);
 		}
-			
+		
+		*/
+		//left black
+		if(Center_white_line<40 && Left_white_line>40 && Right_white_line<40)	
+		{
+			buzzer_on();
+			correct(0x02);
+		}
+		if(Center_white_line<40 && Left_white_line<40 && Right_white_line>40)
+		{
+			buzzer_on();
+			correct(0x04);
+		}
 	}
 }
