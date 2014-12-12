@@ -232,11 +232,28 @@ void init_devices (void)
 {
  	cli(); //Clears the global interrupts
 	port_init();
+	DDRC = DDRC | 0x08;		//Setting PORTC 3 as output
+	PORTC = PORTC & 0xF7;
 	adc_init();
 	timer5_init();
 	sei();   //Enables the global interrupts
 }
 
+void buzzer_on (void)
+{
+	unsigned char port_restore = 0;
+	port_restore = PINC;
+	port_restore = port_restore | 0x08;
+	PORTC = port_restore;
+}
+
+void buzzer_off (void)
+{
+	unsigned char port_restore = 0;
+	port_restore = PINC;
+	port_restore = port_restore & 0xF7;
+	PORTC = port_restore;
+}
 /*
 void turn()
 {
@@ -324,34 +341,52 @@ int main()
 		print_sensor(1,9,1);	//Prints Value of White Line Sensor3
 		
 		//turn if all black
-		if(Center_white_line>0x28 && Left_white_line>0x28 && Right_white_line>0x28)
+	/*	if(Center_white_line>0x28 && Left_white_line>0x28 && Right_white_line>0x28)
 		{
+			lcd_print(2,1,0,1);	
 			flag=1;
 			left();
 			_delay_ms(6000);
 		}
-		
+		*/
 		if(Center_white_line>0x28 && Left_white_line<0x28 && Right_white_line<0x28)
 		{
+			lcd_print(2,1,1,1);
 			flag=1;
 			forward();
 			velocity(150,150);
 		}
-		
-		
-
 		if((Left_white_line<0x28) && (flag==0))
 		{
+			buzzer_on();
+			lcd_print(2,1,2,1);
 			flag=1;
 			forward();
-			velocity(130,50);
+			velocity(150,30);
+			while (Center_white_line>0x28 && Left_white_line<0x28 && Right_white_line<0x28)
+			{
+				Left_white_line = ADC_Conversion(3);	//Getting data of Left WL Sensor
+				Center_white_line = ADC_Conversion(2);	//Getting data of Center WL Sensor
+				Right_white_line = ADC_Conversion(1);	//Getting data of Right WL Sensor
+
+			}
 		}
 
-		if((Right_white_line<0x28) && (flag==0))
+	else if((Right_white_line<0x28) && (flag==0))
 		{
+			buzzer_off();
+			lcd_print(2,1,3,1);
 			flag=1;
 			forward();
-			velocity(50,130);
+			velocity(30,150);
+			
+			while (Center_white_line>0x28 && Left_white_line<0x28 && Right_white_line<0x28)
+			{
+				Left_white_line = ADC_Conversion(3);	//Getting data of Left WL Sensor
+				Center_white_line = ADC_Conversion(2);	//Getting data of Center WL Sensor
+				Right_white_line = ADC_Conversion(1);	//Getting data of Right WL Sensor
+
+			}
 		}
 
 		

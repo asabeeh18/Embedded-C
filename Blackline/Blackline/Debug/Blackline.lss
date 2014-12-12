@@ -3,27 +3,27 @@ Blackline.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         00000748  00000000  00000000  00000074  2**1
+  0 .text         00000786  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .bss          0000001d  00800200  00800200  000007bc  2**0
+  1 .bss          0000001d  00800200  00800200  000007fa  2**0
                   ALLOC
-  2 .comment      00000030  00000000  00000000  000007bc  2**0
+  2 .comment      00000030  00000000  00000000  000007fa  2**0
                   CONTENTS, READONLY
-  3 .debug_aranges 00000140  00000000  00000000  000007ec  2**0
+  3 .debug_aranges 00000158  00000000  00000000  0000082a  2**0
                   CONTENTS, READONLY, DEBUGGING
-  4 .debug_info   00000ecb  00000000  00000000  0000092c  2**0
+  4 .debug_info   00000f80  00000000  00000000  00000982  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_abbrev 00000340  00000000  00000000  000017f7  2**0
+  5 .debug_abbrev 00000340  00000000  00000000  00001902  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_line   0000097d  00000000  00000000  00001b37  2**0
+  6 .debug_line   000009f8  00000000  00000000  00001c42  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_frame  000002d0  00000000  00000000  000024b4  2**2
+  7 .debug_frame  0000030c  00000000  00000000  0000263c  2**2
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_str    00000417  00000000  00000000  00002784  2**0
+  8 .debug_str    00000430  00000000  00000000  00002948  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_loc    0000080c  00000000  00000000  00002b9b  2**0
+  9 .debug_loc    00000843  00000000  00000000  00002d78  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_ranges 00000160  00000000  00000000  000033a7  2**0
+ 10 .debug_ranges 00000160  00000000  00000000  000035bb  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -39,9 +39,9 @@ Disassembly of section .text:
    e:	00 00       	nop
   10:	7b c0       	rjmp	.+246    	; 0x108 <__bad_interrupt>
   12:	00 00       	nop
-  14:	d4 c2       	rjmp	.+1448   	; 0x5be <__vector_5>
+  14:	d1 c2       	rjmp	.+1442   	; 0x5b8 <__vector_5>
   16:	00 00       	nop
-  18:	ad c2       	rjmp	.+1370   	; 0x574 <__vector_6>
+  18:	aa c2       	rjmp	.+1364   	; 0x56e <__vector_6>
   1a:	00 00       	nop
   1c:	75 c0       	rjmp	.+234    	; 0x108 <__bad_interrupt>
   1e:	00 00       	nop
@@ -167,8 +167,8 @@ Disassembly of section .text:
   fe:	ad 31       	cpi	r26, 0x1D	; 29
  100:	b2 07       	cpc	r27, r18
  102:	e1 f7       	brne	.-8      	; 0xfc <.do_clear_bss_loop>
- 104:	91 d2       	rcall	.+1314   	; 0x628 <main>
- 106:	1e c3       	rjmp	.+1596   	; 0x744 <_exit>
+ 104:	d5 d2       	rcall	.+1450   	; 0x6b0 <main>
+ 106:	3d c3       	rjmp	.+1658   	; 0x782 <_exit>
 
 00000108 <__bad_interrupt>:
  108:	7b cf       	rjmp	.-266    	; 0x0 <__vectors>
@@ -412,7 +412,7 @@ void back_mm(unsigned int DistanceInMM)
  2bc:	23 27       	eor	r18, r19
  2be:	a7 e4       	ldi	r26, 0x47	; 71
  2c0:	b3 e0       	ldi	r27, 0x03	; 3
- 2c2:	31 d2       	rcall	.+1122   	; 0x726 <__umulhisi3>
+ 2c2:	50 d2       	rcall	.+1184   	; 0x764 <__umulhisi3>
  2c4:	96 95       	lsr	r25
  2c6:	87 95       	ror	r24
  2c8:	96 95       	lsr	r25
@@ -432,7 +432,7 @@ void back_mm(unsigned int DistanceInMM)
  2e8:	27 95       	ror	r18
  2ea:	a5 ec       	ldi	r26, 0xC5	; 197
  2ec:	b0 e2       	ldi	r27, 0x20	; 32
- 2ee:	1b d2       	rcall	.+1078   	; 0x726 <__umulhisi3>
+ 2ee:	3a d2       	rcall	.+1140   	; 0x764 <__umulhisi3>
  2f0:	ac 01       	movw	r20, r24
  2f2:	52 95       	swap	r21
  2f4:	42 95       	swap	r20
@@ -445,7 +445,7 @@ void back_mm(unsigned int DistanceInMM)
  306:	9a 01       	movw	r18, r20
  308:	ad ec       	ldi	r26, 0xCD	; 205
  30a:	bc ec       	ldi	r27, 0xCC	; 204
- 30c:	0c d2       	rcall	.+1048   	; 0x726 <__umulhisi3>
+ 30c:	2b d2       	rcall	.+1110   	; 0x764 <__umulhisi3>
  30e:	96 95       	lsr	r25
  310:	87 95       	ror	r24
  312:	96 95       	lsr	r25
@@ -482,7 +482,7 @@ void back_mm(unsigned int DistanceInMM)
  354:	27 95       	ror	r18
  356:	ab e7       	ldi	r26, 0x7B	; 123
  358:	b4 e1       	ldi	r27, 0x14	; 20
- 35a:	e5 d1       	rcall	.+970    	; 0x726 <__umulhisi3>
+ 35a:	04 d2       	rcall	.+1032   	; 0x764 <__umulhisi3>
  35c:	ac 01       	movw	r20, r24
  35e:	56 95       	lsr	r21
  360:	47 95       	ror	r20
@@ -491,7 +491,7 @@ void back_mm(unsigned int DistanceInMM)
  36a:	9a 01       	movw	r18, r20
  36c:	ad ec       	ldi	r26, 0xCD	; 205
  36e:	bc ec       	ldi	r27, 0xCC	; 204
- 370:	da d1       	rcall	.+948    	; 0x726 <__umulhisi3>
+ 370:	f9 d1       	rcall	.+1010   	; 0x764 <__umulhisi3>
  372:	96 95       	lsr	r25
  374:	87 95       	ror	r24
  376:	96 95       	lsr	r25
@@ -519,7 +519,7 @@ void back_mm(unsigned int DistanceInMM)
  3a6:	98 01       	movw	r18, r16
  3a8:	ad ec       	ldi	r26, 0xCD	; 205
  3aa:	bc ec       	ldi	r27, 0xCC	; 204
- 3ac:	bc d1       	rcall	.+888    	; 0x726 <__umulhisi3>
+ 3ac:	db d1       	rcall	.+950    	; 0x764 <__umulhisi3>
  3ae:	ac 01       	movw	r20, r24
  3b0:	56 95       	lsr	r21
  3b2:	47 95       	ror	r20
@@ -530,7 +530,7 @@ void back_mm(unsigned int DistanceInMM)
  3bc:	50 93 11 02 	sts	0x0211, r21
  3c0:	40 93 10 02 	sts	0x0210, r20
  3c4:	9a 01       	movw	r18, r20
- 3c6:	af d1       	rcall	.+862    	; 0x726 <__umulhisi3>
+ 3c6:	ce d1       	rcall	.+924    	; 0x764 <__umulhisi3>
  3c8:	96 95       	lsr	r25
  3ca:	87 95       	ror	r24
  3cc:	96 95       	lsr	r25
@@ -562,7 +562,7 @@ void back_mm(unsigned int DistanceInMM)
  404:	98 01       	movw	r18, r16
  406:	ad ec       	ldi	r26, 0xCD	; 205
  408:	bc ec       	ldi	r27, 0xCC	; 204
- 40a:	8d d1       	rcall	.+794    	; 0x726 <__umulhisi3>
+ 40a:	ac d1       	rcall	.+856    	; 0x764 <__umulhisi3>
  40c:	96 95       	lsr	r25
  40e:	87 95       	ror	r24
  410:	96 95       	lsr	r25
@@ -738,377 +738,425 @@ void back_mm(unsigned int DistanceInMM)
  564:	f8 cf       	rjmp	.-16     	; 0x556 <motion_set>
  566:	08 95       	ret
 
-00000568 <soft_left>:
- 568:	84 e0       	ldi	r24, 0x04	; 4
+00000568 <stop>:
+ 568:	80 e0       	ldi	r24, 0x00	; 0
  56a:	f5 cf       	rjmp	.-22     	; 0x556 <motion_set>
  56c:	08 95       	ret
 
-0000056e <stop>:
- 56e:	80 e0       	ldi	r24, 0x00	; 0
- 570:	f2 cf       	rjmp	.-28     	; 0x556 <motion_set>
- 572:	08 95       	ret
+0000056e <__vector_6>:
+ 56e:	1f 92       	push	r1
+ 570:	0f 92       	push	r0
+ 572:	0f b6       	in	r0, 0x3f	; 63
+ 574:	0f 92       	push	r0
+ 576:	11 24       	eor	r1, r1
+ 578:	8f 93       	push	r24
+ 57a:	9f 93       	push	r25
+ 57c:	af 93       	push	r26
+ 57e:	bf 93       	push	r27
+ 580:	80 91 00 02 	lds	r24, 0x0200
+ 584:	90 91 01 02 	lds	r25, 0x0201
+ 588:	a0 91 02 02 	lds	r26, 0x0202
+ 58c:	b0 91 03 02 	lds	r27, 0x0203
+ 590:	01 96       	adiw	r24, 0x01	; 1
+ 592:	a1 1d       	adc	r26, r1
+ 594:	b1 1d       	adc	r27, r1
+ 596:	80 93 00 02 	sts	0x0200, r24
+ 59a:	90 93 01 02 	sts	0x0201, r25
+ 59e:	a0 93 02 02 	sts	0x0202, r26
+ 5a2:	b0 93 03 02 	sts	0x0203, r27
+ 5a6:	bf 91       	pop	r27
+ 5a8:	af 91       	pop	r26
+ 5aa:	9f 91       	pop	r25
+ 5ac:	8f 91       	pop	r24
+ 5ae:	0f 90       	pop	r0
+ 5b0:	0f be       	out	0x3f, r0	; 63
+ 5b2:	0f 90       	pop	r0
+ 5b4:	1f 90       	pop	r1
+ 5b6:	18 95       	reti
 
-00000574 <__vector_6>:
- 574:	1f 92       	push	r1
- 576:	0f 92       	push	r0
- 578:	0f b6       	in	r0, 0x3f	; 63
- 57a:	0f 92       	push	r0
- 57c:	11 24       	eor	r1, r1
- 57e:	8f 93       	push	r24
- 580:	9f 93       	push	r25
- 582:	af 93       	push	r26
- 584:	bf 93       	push	r27
- 586:	80 91 00 02 	lds	r24, 0x0200
- 58a:	90 91 01 02 	lds	r25, 0x0201
- 58e:	a0 91 02 02 	lds	r26, 0x0202
- 592:	b0 91 03 02 	lds	r27, 0x0203
- 596:	01 96       	adiw	r24, 0x01	; 1
- 598:	a1 1d       	adc	r26, r1
- 59a:	b1 1d       	adc	r27, r1
- 59c:	80 93 00 02 	sts	0x0200, r24
- 5a0:	90 93 01 02 	sts	0x0201, r25
- 5a4:	a0 93 02 02 	sts	0x0202, r26
- 5a8:	b0 93 03 02 	sts	0x0203, r27
- 5ac:	bf 91       	pop	r27
- 5ae:	af 91       	pop	r26
- 5b0:	9f 91       	pop	r25
- 5b2:	8f 91       	pop	r24
- 5b4:	0f 90       	pop	r0
- 5b6:	0f be       	out	0x3f, r0	; 63
- 5b8:	0f 90       	pop	r0
- 5ba:	1f 90       	pop	r1
- 5bc:	18 95       	reti
+000005b8 <__vector_5>:
+ 5b8:	1f 92       	push	r1
+ 5ba:	0f 92       	push	r0
+ 5bc:	0f b6       	in	r0, 0x3f	; 63
+ 5be:	0f 92       	push	r0
+ 5c0:	11 24       	eor	r1, r1
+ 5c2:	8f 93       	push	r24
+ 5c4:	9f 93       	push	r25
+ 5c6:	af 93       	push	r26
+ 5c8:	bf 93       	push	r27
+ 5ca:	80 91 04 02 	lds	r24, 0x0204
+ 5ce:	90 91 05 02 	lds	r25, 0x0205
+ 5d2:	a0 91 06 02 	lds	r26, 0x0206
+ 5d6:	b0 91 07 02 	lds	r27, 0x0207
+ 5da:	01 96       	adiw	r24, 0x01	; 1
+ 5dc:	a1 1d       	adc	r26, r1
+ 5de:	b1 1d       	adc	r27, r1
+ 5e0:	80 93 04 02 	sts	0x0204, r24
+ 5e4:	90 93 05 02 	sts	0x0205, r25
+ 5e8:	a0 93 06 02 	sts	0x0206, r26
+ 5ec:	b0 93 07 02 	sts	0x0207, r27
+ 5f0:	bf 91       	pop	r27
+ 5f2:	af 91       	pop	r26
+ 5f4:	9f 91       	pop	r25
+ 5f6:	8f 91       	pop	r24
+ 5f8:	0f 90       	pop	r0
+ 5fa:	0f be       	out	0x3f, r0	; 63
+ 5fc:	0f 90       	pop	r0
+ 5fe:	1f 90       	pop	r1
+ 600:	18 95       	reti
 
-000005be <__vector_5>:
- 5be:	1f 92       	push	r1
- 5c0:	0f 92       	push	r0
- 5c2:	0f b6       	in	r0, 0x3f	; 63
- 5c4:	0f 92       	push	r0
- 5c6:	11 24       	eor	r1, r1
- 5c8:	8f 93       	push	r24
- 5ca:	9f 93       	push	r25
- 5cc:	af 93       	push	r26
- 5ce:	bf 93       	push	r27
- 5d0:	80 91 04 02 	lds	r24, 0x0204
- 5d4:	90 91 05 02 	lds	r25, 0x0205
- 5d8:	a0 91 06 02 	lds	r26, 0x0206
- 5dc:	b0 91 07 02 	lds	r27, 0x0207
- 5e0:	01 96       	adiw	r24, 0x01	; 1
- 5e2:	a1 1d       	adc	r26, r1
- 5e4:	b1 1d       	adc	r27, r1
- 5e6:	80 93 04 02 	sts	0x0204, r24
- 5ea:	90 93 05 02 	sts	0x0205, r25
- 5ee:	a0 93 06 02 	sts	0x0206, r26
- 5f2:	b0 93 07 02 	sts	0x0207, r27
- 5f6:	bf 91       	pop	r27
- 5f8:	af 91       	pop	r26
- 5fa:	9f 91       	pop	r25
- 5fc:	8f 91       	pop	r24
- 5fe:	0f 90       	pop	r0
- 600:	0f be       	out	0x3f, r0	; 63
- 602:	0f 90       	pop	r0
- 604:	1f 90       	pop	r1
- 606:	18 95       	reti
-
-00000608 <buzzer_on>:
+00000602 <buzzer_on>:
 }
 
 void buzzer_on (void)
 {
 	unsigned char port_restore = 0;
 	port_restore = PINC;
- 608:	86 b1       	in	r24, 0x06	; 6
+ 602:	86 b1       	in	r24, 0x06	; 6
 	port_restore = port_restore | 0x08;
- 60a:	88 60       	ori	r24, 0x08	; 8
+ 604:	88 60       	ori	r24, 0x08	; 8
 	PORTC = port_restore;
- 60c:	88 b9       	out	0x08, r24	; 8
- 60e:	08 95       	ret
+ 606:	88 b9       	out	0x08, r24	; 8
+ 608:	08 95       	ret
 
-00000610 <buzzer_off>:
+0000060a <buzzer_off>:
 }
 
 void buzzer_off (void)
 {
 	unsigned char port_restore = 0;
 	port_restore = PINC;
- 610:	86 b1       	in	r24, 0x06	; 6
+ 60a:	86 b1       	in	r24, 0x06	; 6
 	port_restore = port_restore & 0xF7;
- 612:	87 7f       	andi	r24, 0xF7	; 247
+ 60c:	87 7f       	andi	r24, 0xF7	; 247
 	PORTC = port_restore;
- 614:	88 b9       	out	0x08, r24	; 8
- 616:	08 95       	ret
+ 60e:	88 b9       	out	0x08, r24	; 8
+ 610:	08 95       	ret
 
-00000618 <init_devices>:
+00000612 <init_devices>:
 }
 
 void init_devices (void)
 {
  	cli(); //Clears the global interrupts
- 618:	f8 94       	cli
+ 612:	f8 94       	cli
 	port_init();	
- 61a:	44 df       	rcall	.-376    	; 0x4a4 <port_init>
+ 614:	47 df       	rcall	.-370    	; 0x4a4 <port_init>
 	
 	DDRC = DDRC | 0x08;		//Setting PORTC 3 as output
- 61c:	3b 9a       	sbi	0x07, 3	; 7
+ 616:	3b 9a       	sbi	0x07, 3	; 7
 	PORTC = PORTC & 0xF7;
- 61e:	43 98       	cbi	0x08, 3	; 8
+ 618:	43 98       	cbi	0x08, 3	; 8
 	adc_init();
- 620:	60 df       	rcall	.-320    	; 0x4e2 <adc_init>
+ 61a:	63 df       	rcall	.-314    	; 0x4e2 <adc_init>
 	timer5_init();
- 622:	44 df       	rcall	.-376    	; 0x4ac <timer5_init>
+ 61c:	47 df       	rcall	.-370    	; 0x4ac <timer5_init>
 	sei();   //Enables the global interrupts
- 624:	78 94       	sei
- 626:	08 95       	ret
+ 61e:	78 94       	sei
+ 620:	08 95       	ret
 
-00000628 <main>:
-//Main Function
-int main()
-{
-	int f1=0;
-	int i=0;
-	init_devices();
- 628:	f7 df       	rcall	.-18     	; 0x618 <init_devices>
-	lcd_set_4bit();
- 62a:	6f dd       	rcall	.-1314   	; 0x10a <lcd_set_4bit>
-	lcd_init();
- 62c:	dc dd       	rcall	.-1096   	; 0x1e6 <lcd_init>
-
-//Main Function
-int main()
-{
-	int f1=0;
-	int i=0;
- 62e:	c1 2c       	mov	r12, r1
- 630:	d1 2c       	mov	r13, r1
-}
-
-//Main Function
-int main()
-{
-	int f1=0;
- 632:	e1 2c       	mov	r14, r1
- 634:	f1 2c       	mov	r15, r1
-}
-
-//Function for velocity control
-void velocity (unsigned char left_motor, unsigned char right_motor)
-{
-	OCR5AL = (unsigned char)left_motor;
- 636:	08 e2       	ldi	r16, 0x28	; 40
- 638:	11 e0       	ldi	r17, 0x01	; 1
- 63a:	0f 2e       	mov	r0, r31
- 63c:	f6 e9       	ldi	r31, 0x96	; 150
- 63e:	bf 2e       	mov	r11, r31
- 640:	f0 2d       	mov	r31, r0
-	OCR5BL = (unsigned char)right_motor;
- 642:	ca e2       	ldi	r28, 0x2A	; 42
- 644:	d1 e0       	ldi	r29, 0x01	; 1
- 646:	0f 2e       	mov	r0, r31
- 648:	f4 e6       	ldi	r31, 0x64	; 100
- 64a:	af 2e       	mov	r10, r31
- 64c:	f0 2d       	mov	r31, r0
-	lcd_init();
+00000622 <set_color>:
 	
-	while(1)
-	{
+}
+void set_color()
+{
+	Left_white_line = ADC_Conversion(3);	//Getting data of Left WL Sensor
+ 622:	83 e0       	ldi	r24, 0x03	; 3
+ 624:	6b df       	rcall	.-298    	; 0x4fc <ADC_Conversion>
+ 626:	80 93 0a 02 	sts	0x020A, r24
+	Center_white_line = ADC_Conversion(2);	//Getting data of Center WL Sensor
+ 62a:	82 e0       	ldi	r24, 0x02	; 2
+ 62c:	67 df       	rcall	.-306    	; 0x4fc <ADC_Conversion>
+ 62e:	80 93 09 02 	sts	0x0209, r24
+	Right_white_line = ADC_Conversion(1);	//Getting data of Right WL Sensor
+ 632:	81 e0       	ldi	r24, 0x01	; 1
+ 634:	63 df       	rcall	.-314    	; 0x4fc <ADC_Conversion>
+ 636:	80 93 08 02 	sts	0x0208, r24
+ 63a:	08 95       	ret
 
-		Left_white_line = ADC_Conversion(3);	//Getting data of Left WL Sensor
- 64e:	83 e0       	ldi	r24, 0x03	; 3
- 650:	55 df       	rcall	.-342    	; 0x4fc <ADC_Conversion>
- 652:	80 93 0a 02 	sts	0x020A, r24
-		Center_white_line = ADC_Conversion(2);	//Getting data of Center WL Sensor
- 656:	82 e0       	ldi	r24, 0x02	; 2
- 658:	51 df       	rcall	.-350    	; 0x4fc <ADC_Conversion>
- 65a:	80 93 09 02 	sts	0x0209, r24
-		Right_white_line = ADC_Conversion(1);	//Getting data of Right WL Sensor
- 65e:	81 e0       	ldi	r24, 0x01	; 1
- 660:	4d df       	rcall	.-358    	; 0x4fc <ADC_Conversion>
- 662:	80 93 08 02 	sts	0x0208, r24
-
-		flag=0;
- 666:	10 92 0b 02 	sts	0x020B, r1
-
-		print_sensor(2,1,3);	//Prints value of White Line Sensor1
- 66a:	43 e0       	ldi	r20, 0x03	; 3
- 66c:	61 e0       	ldi	r22, 0x01	; 1
- 66e:	82 e0       	ldi	r24, 0x02	; 2
- 670:	60 df       	rcall	.-320    	; 0x532 <print_sensor>
-		print_sensor(2,5,2);	//Prints Value of White Line Sensor2
- 672:	42 e0       	ldi	r20, 0x02	; 2
- 674:	65 e0       	ldi	r22, 0x05	; 5
- 676:	82 e0       	ldi	r24, 0x02	; 2
- 678:	5c df       	rcall	.-328    	; 0x532 <print_sensor>
-		print_sensor(2,9,1);	//Prints Value of White Line Sensor3
- 67a:	41 e0       	ldi	r20, 0x01	; 1
- 67c:	69 e0       	ldi	r22, 0x09	; 9
- 67e:	82 e0       	ldi	r24, 0x02	; 2
- 680:	58 df       	rcall	.-336    	; 0x532 <print_sensor>
-			//lcd_print (1, 1,i,6);
-			//lcd_print (1,4,9,1);
-			//forward_mm(100); //Moves robot forward 100mm
-			//stop();
-			//_delay_ms(500);
-			if(Center_white_line>40)
- 682:	80 91 09 02 	lds	r24, 0x0209
- 686:	89 32       	cpi	r24, 0x29	; 41
- 688:	70 f0       	brcs	.+28     	; 0x6a6 <main+0x7e>
-			{
-				lcd_print (1, 4,0,1);
- 68a:	21 e0       	ldi	r18, 0x01	; 1
- 68c:	30 e0       	ldi	r19, 0x00	; 0
- 68e:	40 e0       	ldi	r20, 0x00	; 0
- 690:	50 e0       	ldi	r21, 0x00	; 0
- 692:	64 e0       	ldi	r22, 0x04	; 4
- 694:	81 e0       	ldi	r24, 0x01	; 1
- 696:	fb dd       	rcall	.-1034   	; 0x28e <lcd_print>
-				flag=1;
- 698:	81 e0       	ldi	r24, 0x01	; 1
- 69a:	80 93 0b 02 	sts	0x020B, r24
-				forward();
- 69e:	61 df       	rcall	.-318    	; 0x562 <forward>
+0000063c <correct>:
+	
+}
+void correct(unsigned int go)
+{
+ 63c:	cf 93       	push	r28
+ 63e:	df 93       	push	r29
+ 640:	ec 01       	movw	r28, r24
+	motion_set(go);
+ 642:	89 df       	rcall	.-238    	; 0x556 <motion_set>
+	if(go==0x02)
+ 644:	22 97       	sbiw	r28, 0x02	; 2
+ 646:	39 f4       	brne	.+14     	; 0x656 <correct+0x1a>
 }
 
 //Function for velocity control
 void velocity (unsigned char left_motor, unsigned char right_motor)
 {
 	OCR5AL = (unsigned char)left_motor;
- 6a0:	f8 01       	movw	r30, r16
- 6a2:	b0 82       	st	Z, r11
+ 648:	84 e6       	ldi	r24, 0x64	; 100
+ 64a:	80 93 28 01 	sts	0x0128, r24
 	OCR5BL = (unsigned char)right_motor;
- 6a4:	b8 82       	st	Y, r11
-				forward();
-				velocity(150,150);
-				//f1=0;
-			}
-
-			if(Center_white_line<0x28 && Left_white_line<0x28 && Right_white_line<0x28 && f1==0)
- 6a6:	80 91 09 02 	lds	r24, 0x0209
- 6aa:	88 32       	cpi	r24, 0x28	; 40
- 6ac:	70 f5       	brcc	.+92     	; 0x70a <main+0xe2>
- 6ae:	80 91 0a 02 	lds	r24, 0x020A
- 6b2:	88 32       	cpi	r24, 0x28	; 40
- 6b4:	50 f5       	brcc	.+84     	; 0x70a <main+0xe2>
- 6b6:	80 91 08 02 	lds	r24, 0x0208
- 6ba:	88 32       	cpi	r24, 0x28	; 40
- 6bc:	30 f5       	brcc	.+76     	; 0x70a <main+0xe2>
- 6be:	e1 14       	cp	r14, r1
- 6c0:	f1 04       	cpc	r15, r1
- 6c2:	19 f5       	brne	.+70     	; 0x70a <main+0xe2>
-			{
-					lcd_print (1,4,1,1);
- 6c4:	21 e0       	ldi	r18, 0x01	; 1
- 6c6:	30 e0       	ldi	r19, 0x00	; 0
- 6c8:	41 e0       	ldi	r20, 0x01	; 1
- 6ca:	50 e0       	ldi	r21, 0x00	; 0
- 6cc:	64 e0       	ldi	r22, 0x04	; 4
- 6ce:	81 e0       	ldi	r24, 0x01	; 1
- 6d0:	de dd       	rcall	.-1092   	; 0x28e <lcd_print>
-				buzzer_on();
- 6d2:	9a df       	rcall	.-204    	; 0x608 <buzzer_on>
-				soft_left();   //Moves robot backward 100mm	
- 6d4:	49 df       	rcall	.-366    	; 0x568 <soft_left>
+ 64e:	86 e9       	ldi	r24, 0x96	; 150
+ 650:	80 93 2a 01 	sts	0x012A, r24
+ 654:	06 c0       	rjmp	.+12     	; 0x662 <correct+0x26>
 }
 
 //Function for velocity control
 void velocity (unsigned char left_motor, unsigned char right_motor)
 {
 	OCR5AL = (unsigned char)left_motor;
- 6d6:	f8 01       	movw	r30, r16
- 6d8:	b0 82       	st	Z, r11
+ 656:	86 e9       	ldi	r24, 0x96	; 150
+ 658:	80 93 28 01 	sts	0x0128, r24
 	OCR5BL = (unsigned char)right_motor;
- 6da:	a8 82       	st	Y, r10
-			{
-					lcd_print (1,4,1,1);
-				buzzer_on();
-				soft_left();   //Moves robot backward 100mm	
-				velocity(150,100);
-				forward();
- 6dc:	42 df       	rcall	.-380    	; 0x562 <forward>
+ 65c:	84 e6       	ldi	r24, 0x64	; 100
+ 65e:	80 93 2a 01 	sts	0x012A, r24
+	motion_set(go);
+	if(go==0x02)
+		velocity(100,150);
+	else
+		velocity(150,100);
+	forward();
+ 662:	7f df       	rcall	.-258    	; 0x562 <forward>
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
- 6de:	ff e7       	ldi	r31, 0x7F	; 127
- 6e0:	24 e8       	ldi	r18, 0x84	; 132
- 6e2:	8e e1       	ldi	r24, 0x1E	; 30
- 6e4:	f1 50       	subi	r31, 0x01	; 1
- 6e6:	20 40       	sbci	r18, 0x00	; 0
- 6e8:	80 40       	sbci	r24, 0x00	; 0
- 6ea:	e1 f7       	brne	.-8      	; 0x6e4 <main+0xbc>
- 6ec:	00 c0       	rjmp	.+0      	; 0x6ee <main+0xc6>
- 6ee:	00 00       	nop
-				_delay_ms(10000);
-				stop();
- 6f0:	3e df       	rcall	.-388    	; 0x56e <stop>
-				f1=1;
-				lcd_print (1,1,i,2);
- 6f2:	22 e0       	ldi	r18, 0x02	; 2
- 6f4:	30 e0       	ldi	r19, 0x00	; 0
- 6f6:	a6 01       	movw	r20, r12
- 6f8:	61 e0       	ldi	r22, 0x01	; 1
- 6fa:	81 e0       	ldi	r24, 0x01	; 1
- 6fc:	c8 dd       	rcall	.-1136   	; 0x28e <lcd_print>
-				i++;
- 6fe:	9f ef       	ldi	r25, 0xFF	; 255
- 700:	c9 1a       	sub	r12, r25
- 702:	d9 0a       	sbc	r13, r25
-				soft_left();   //Moves robot backward 100mm	
-				velocity(150,100);
-				forward();
-				_delay_ms(10000);
-				stop();
-				f1=1;
- 704:	ee 24       	eor	r14, r14
- 706:	e3 94       	inc	r14
- 708:	f1 2c       	mov	r15, r1
-				lcd_print (1,1,i,2);
-				i++;
-				
-			}
-			buzzer_off();
- 70a:	82 df       	rcall	.-252    	; 0x610 <buzzer_off>
-			//stop();
-		//	_delay_ms(500);
-			
-			
-					Left_white_line = ADC_Conversion(3);	//Getting data of Left WL Sensor
- 70c:	83 e0       	ldi	r24, 0x03	; 3
- 70e:	f6 de       	rcall	.-532    	; 0x4fc <ADC_Conversion>
- 710:	80 93 0a 02 	sts	0x020A, r24
-					Center_white_line = ADC_Conversion(2);	//Getting data of Center WL Sensor
- 714:	82 e0       	ldi	r24, 0x02	; 2
- 716:	f2 de       	rcall	.-540    	; 0x4fc <ADC_Conversion>
- 718:	80 93 09 02 	sts	0x0209, r24
-					Right_white_line = ADC_Conversion(1);	//Getting data of Right WL Sensor
- 71c:	81 e0       	ldi	r24, 0x01	; 1
- 71e:	ee de       	rcall	.-548    	; 0x4fc <ADC_Conversion>
- 720:	80 93 08 02 	sts	0x0208, r24
+ 664:	2f e7       	ldi	r18, 0x7F	; 127
+ 666:	84 e8       	ldi	r24, 0x84	; 132
+ 668:	9e e1       	ldi	r25, 0x1E	; 30
+ 66a:	21 50       	subi	r18, 0x01	; 1
+ 66c:	80 40       	sbci	r24, 0x00	; 0
+ 66e:	90 40       	sbci	r25, 0x00	; 0
+ 670:	e1 f7       	brne	.-8      	; 0x66a <correct+0x2e>
+ 672:	00 c0       	rjmp	.+0      	; 0x674 <correct+0x38>
+ 674:	00 00       	nop
+	_delay_ms(10000);
+	stop();
+ 676:	78 df       	rcall	.-272    	; 0x568 <stop>
+	buzzer_off();
+ 678:	c8 df       	rcall	.-112    	; 0x60a <buzzer_off>
+}
+ 67a:	df 91       	pop	r29
+ 67c:	cf 91       	pop	r28
+ 67e:	08 95       	ret
+
+00000680 <gadbad>:
+
+void gadbad()
+{
+	correct(0x04); //soft left
+ 680:	84 e0       	ldi	r24, 0x04	; 4
+ 682:	90 e0       	ldi	r25, 0x00	; 0
+ 684:	db df       	rcall	.-74     	; 0x63c <correct>
+	set_color();
+ 686:	cd df       	rcall	.-102    	; 0x622 <set_color>
+	if(Center_white_line>=40 && Left_white_line<40 && Right_white_line<40)
+ 688:	80 91 09 02 	lds	r24, 0x0209
+ 68c:	88 32       	cpi	r24, 0x28	; 40
+ 68e:	40 f0       	brcs	.+16     	; 0x6a0 <gadbad+0x20>
+ 690:	80 91 0a 02 	lds	r24, 0x020A
+ 694:	88 32       	cpi	r24, 0x28	; 40
+ 696:	20 f4       	brcc	.+8      	; 0x6a0 <gadbad+0x20>
+ 698:	80 91 08 02 	lds	r24, 0x0208
+ 69c:	88 32       	cpi	r24, 0x28	; 40
+ 69e:	38 f0       	brcs	.+14     	; 0x6ae <gadbad+0x2e>
+		return;
+	buzzer_on();
+ 6a0:	b0 df       	rcall	.-160    	; 0x602 <buzzer_on>
+	correct(0x02); //soft right
+ 6a2:	82 e0       	ldi	r24, 0x02	; 2
+ 6a4:	90 e0       	ldi	r25, 0x00	; 0
+ 6a6:	ca df       	rcall	.-108    	; 0x63c <correct>
+	correct(0x02); //soft right
+ 6a8:	82 e0       	ldi	r24, 0x02	; 2
+ 6aa:	90 e0       	ldi	r25, 0x00	; 0
+ 6ac:	c7 cf       	rjmp	.-114    	; 0x63c <correct>
+ 6ae:	08 95       	ret
+
+000006b0 <main>:
+//Main Function
+int main()
+{
+	int f1=0;
+	int i=0;
+	init_devices();
+ 6b0:	b0 df       	rcall	.-160    	; 0x612 <init_devices>
+	lcd_set_4bit();
+ 6b2:	2b dd       	rcall	.-1450   	; 0x10a <lcd_set_4bit>
+	lcd_init();
+ 6b4:	98 dd       	rcall	.-1232   	; 0x1e6 <lcd_init>
+}
+//Main Function
+int main()
+{
+	int f1=0;
+	int i=0;
+ 6b6:	c1 2c       	mov	r12, r1
+ 6b8:	d1 2c       	mov	r13, r1
+	
+}
+//Main Function
+int main()
+{
+	int f1=0;
+ 6ba:	c0 e0       	ldi	r28, 0x00	; 0
+ 6bc:	d0 e0       	ldi	r29, 0x00	; 0
+}
+
+//Function for velocity control
+void velocity (unsigned char left_motor, unsigned char right_motor)
+{
+	OCR5AL = (unsigned char)left_motor;
+ 6be:	0f 2e       	mov	r0, r31
+ 6c0:	f8 e2       	ldi	r31, 0x28	; 40
+ 6c2:	ef 2e       	mov	r14, r31
+ 6c4:	ff 24       	eor	r15, r15
+ 6c6:	f3 94       	inc	r15
+ 6c8:	f0 2d       	mov	r31, r0
+ 6ca:	0f 2e       	mov	r0, r31
+ 6cc:	f6 e9       	ldi	r31, 0x96	; 150
+ 6ce:	bf 2e       	mov	r11, r31
+ 6d0:	f0 2d       	mov	r31, r0
+	OCR5BL = (unsigned char)right_motor;
+ 6d2:	0a e2       	ldi	r16, 0x2A	; 42
+ 6d4:	11 e0       	ldi	r17, 0x01	; 1
+	lcd_set_4bit();
+	lcd_init();
+	
+	while(1)
+	{
+		set_color();
+ 6d6:	a5 df       	rcall	.-182    	; 0x622 <set_color>
+		flag=0;
+ 6d8:	10 92 0b 02 	sts	0x020B, r1
+
+		print_sensor(2,1,3);	//Prints value of White Line Sensor1
+ 6dc:	43 e0       	ldi	r20, 0x03	; 3
+ 6de:	61 e0       	ldi	r22, 0x01	; 1
+ 6e0:	82 e0       	ldi	r24, 0x02	; 2
+ 6e2:	27 df       	rcall	.-434    	; 0x532 <print_sensor>
+		print_sensor(2,5,2);	//Prints Value of White Line Sensor2
+ 6e4:	42 e0       	ldi	r20, 0x02	; 2
+ 6e6:	65 e0       	ldi	r22, 0x05	; 5
+ 6e8:	82 e0       	ldi	r24, 0x02	; 2
+ 6ea:	23 df       	rcall	.-442    	; 0x532 <print_sensor>
+		print_sensor(2,9,1);	//Prints Value of White Line Sensor3
+ 6ec:	41 e0       	ldi	r20, 0x01	; 1
+ 6ee:	69 e0       	ldi	r22, 0x09	; 9
+ 6f0:	82 e0       	ldi	r24, 0x02	; 2
+ 6f2:	1f df       	rcall	.-450    	; 0x532 <print_sensor>
 		
-			//i++;
-	}
- 724:	94 cf       	rjmp	.-216    	; 0x64e <main+0x26>
+		if(Center_white_line>40)
+ 6f4:	80 91 09 02 	lds	r24, 0x0209
+ 6f8:	89 32       	cpi	r24, 0x29	; 41
+ 6fa:	88 f0       	brcs	.+34     	; 0x71e <main+0x6e>
+		{
+			lcd_print (1, 4,0,1);
+ 6fc:	21 e0       	ldi	r18, 0x01	; 1
+ 6fe:	30 e0       	ldi	r19, 0x00	; 0
+ 700:	40 e0       	ldi	r20, 0x00	; 0
+ 702:	50 e0       	ldi	r21, 0x00	; 0
+ 704:	64 e0       	ldi	r22, 0x04	; 4
+ 706:	81 e0       	ldi	r24, 0x01	; 1
+ 708:	c2 dd       	rcall	.-1148   	; 0x28e <lcd_print>
+			flag=1;
+ 70a:	81 e0       	ldi	r24, 0x01	; 1
+ 70c:	80 93 0b 02 	sts	0x020B, r24
+			forward();
+ 710:	28 df       	rcall	.-432    	; 0x562 <forward>
+}
 
-00000726 <__umulhisi3>:
- 726:	a2 9f       	mul	r26, r18
- 728:	b0 01       	movw	r22, r0
- 72a:	b3 9f       	mul	r27, r19
- 72c:	c0 01       	movw	r24, r0
- 72e:	a3 9f       	mul	r26, r19
- 730:	70 0d       	add	r23, r0
- 732:	81 1d       	adc	r24, r1
- 734:	11 24       	eor	r1, r1
- 736:	91 1d       	adc	r25, r1
- 738:	b2 9f       	mul	r27, r18
- 73a:	70 0d       	add	r23, r0
- 73c:	81 1d       	adc	r24, r1
- 73e:	11 24       	eor	r1, r1
- 740:	91 1d       	adc	r25, r1
- 742:	08 95       	ret
+//Function for velocity control
+void velocity (unsigned char left_motor, unsigned char right_motor)
+{
+	OCR5AL = (unsigned char)left_motor;
+ 712:	f7 01       	movw	r30, r14
+ 714:	b0 82       	st	Z, r11
+	OCR5BL = (unsigned char)right_motor;
+ 716:	f8 01       	movw	r30, r16
+ 718:	b0 82       	st	Z, r11
+		{
+			lcd_print (1, 4,0,1);
+			flag=1;
+			forward();
+			velocity(150,150);
+			f1=0;
+ 71a:	c0 e0       	ldi	r28, 0x00	; 0
+ 71c:	d0 e0       	ldi	r29, 0x00	; 0
+		}
 
-00000744 <_exit>:
- 744:	f8 94       	cli
+		if(Center_white_line<40 && Left_white_line<40 && Right_white_line<40 && f1==0)
+ 71e:	80 91 09 02 	lds	r24, 0x0209
+ 722:	88 32       	cpi	r24, 0x28	; 40
+ 724:	c0 f6       	brcc	.-80     	; 0x6d6 <main+0x26>
+ 726:	80 91 0a 02 	lds	r24, 0x020A
+ 72a:	88 32       	cpi	r24, 0x28	; 40
+ 72c:	a0 f6       	brcc	.-88     	; 0x6d6 <main+0x26>
+ 72e:	80 91 08 02 	lds	r24, 0x0208
+ 732:	88 32       	cpi	r24, 0x28	; 40
+ 734:	80 f6       	brcc	.-96     	; 0x6d6 <main+0x26>
+ 736:	20 97       	sbiw	r28, 0x00	; 0
+ 738:	71 f6       	brne	.-100    	; 0x6d6 <main+0x26>
+		{
+			//right if white black white return
+			//left  if white black white return
+			lcd_print (1,4,1,1);
+ 73a:	21 e0       	ldi	r18, 0x01	; 1
+ 73c:	30 e0       	ldi	r19, 0x00	; 0
+ 73e:	41 e0       	ldi	r20, 0x01	; 1
+ 740:	50 e0       	ldi	r21, 0x00	; 0
+ 742:	64 e0       	ldi	r22, 0x04	; 4
+ 744:	81 e0       	ldi	r24, 0x01	; 1
+ 746:	a3 dd       	rcall	.-1210   	; 0x28e <lcd_print>
+			buzzer_on();
+ 748:	5c df       	rcall	.-328    	; 0x602 <buzzer_on>
+			gadbad();
+ 74a:	9a df       	rcall	.-204    	; 0x680 <gadbad>
+				
+			//while(1);
+			f1=1;
+			lcd_print (1,1,i,2);
+ 74c:	22 e0       	ldi	r18, 0x02	; 2
+ 74e:	30 e0       	ldi	r19, 0x00	; 0
+ 750:	a6 01       	movw	r20, r12
+ 752:	61 e0       	ldi	r22, 0x01	; 1
+ 754:	81 e0       	ldi	r24, 0x01	; 1
+ 756:	9b dd       	rcall	.-1226   	; 0x28e <lcd_print>
+			i++;
+ 758:	ff ef       	ldi	r31, 0xFF	; 255
+ 75a:	cf 1a       	sub	r12, r31
+ 75c:	df 0a       	sbc	r13, r31
+			lcd_print (1,4,1,1);
+			buzzer_on();
+			gadbad();
+				
+			//while(1);
+			f1=1;
+ 75e:	c1 e0       	ldi	r28, 0x01	; 1
+ 760:	d0 e0       	ldi	r29, 0x00	; 0
+ 762:	b9 cf       	rjmp	.-142    	; 0x6d6 <main+0x26>
 
-00000746 <__stop_program>:
- 746:	ff cf       	rjmp	.-2      	; 0x746 <__stop_program>
+00000764 <__umulhisi3>:
+ 764:	a2 9f       	mul	r26, r18
+ 766:	b0 01       	movw	r22, r0
+ 768:	b3 9f       	mul	r27, r19
+ 76a:	c0 01       	movw	r24, r0
+ 76c:	a3 9f       	mul	r26, r19
+ 76e:	70 0d       	add	r23, r0
+ 770:	81 1d       	adc	r24, r1
+ 772:	11 24       	eor	r1, r1
+ 774:	91 1d       	adc	r25, r1
+ 776:	b2 9f       	mul	r27, r18
+ 778:	70 0d       	add	r23, r0
+ 77a:	81 1d       	adc	r24, r1
+ 77c:	11 24       	eor	r1, r1
+ 77e:	91 1d       	adc	r25, r1
+ 780:	08 95       	ret
+
+00000782 <_exit>:
+ 782:	f8 94       	cli
+
+00000784 <__stop_program>:
+ 784:	ff cf       	rjmp	.-2      	; 0x784 <__stop_program>

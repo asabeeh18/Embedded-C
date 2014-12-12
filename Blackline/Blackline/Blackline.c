@@ -469,7 +469,37 @@ void init_devices (void)
 	sei();   //Enables the global interrupts
 	
 }
+void set_color()
+{
+	Left_white_line = ADC_Conversion(3);	//Getting data of Left WL Sensor
+	Center_white_line = ADC_Conversion(2);	//Getting data of Center WL Sensor
+	Right_white_line = ADC_Conversion(1);	//Getting data of Right WL Sensor
+	
+}
+void correct(unsigned int go)
+{
+	motion_set(go);
+	if(go==0x02)
+		velocity(100,150);
+	else
+		velocity(150,100);
+	forward();
+	_delay_ms(10000);
+	stop();
+	buzzer_off();
+}
 
+void gadbad()
+{
+	correct(0x04); //soft left
+	set_color();
+	if(Center_white_line>=40 && Left_white_line<40 && Right_white_line<40)
+		return;
+	buzzer_on();
+	correct(0x02); //soft right
+	correct(0x02); //soft right
+	
+}
 //Main Function
 int main()
 {
@@ -481,57 +511,35 @@ int main()
 	
 	while(1)
 	{
-
-		Left_white_line = ADC_Conversion(3);	//Getting data of Left WL Sensor
-		Center_white_line = ADC_Conversion(2);	//Getting data of Center WL Sensor
-		Right_white_line = ADC_Conversion(1);	//Getting data of Right WL Sensor
-
+		set_color();
 		flag=0;
 
 		print_sensor(2,1,3);	//Prints value of White Line Sensor1
 		print_sensor(2,5,2);	//Prints Value of White Line Sensor2
 		print_sensor(2,9,1);	//Prints Value of White Line Sensor3
 		
-		//lcd_print(1,3,PORTA,8);
-		//centre 0 left 1 right 2 stop 3
-		
-			//lcd_print (1, 1,i,6);
-			//lcd_print (1,4,9,1);
-			//forward_mm(100); //Moves robot forward 100mm
-			//stop();
-			//_delay_ms(500);
-			if(Center_white_line>40)
-			{
-				lcd_print (1, 4,0,1);
-				flag=1;
-				forward();
-				velocity(150,150);
-				//f1=0;
-			}
+		if(Center_white_line>40)
+		{
+			lcd_print (1, 4,0,1);
+			flag=1;
+			forward();
+			velocity(150,150);
+			f1=0;
+		}
 
-			if(Center_white_line<0x28 && Left_white_line<0x28 && Right_white_line<0x28 && f1==0)
-			{
-					lcd_print (1,4,1,1);
-				buzzer_on();
-				soft_left();   //Moves robot backward 100mm	
-				velocity(150,100);
-				forward();
-				_delay_ms(10000);
-				stop();
-				f1=1;
-				lcd_print (1,1,i,2);
-				i++;
+		if(Center_white_line<40 && Left_white_line<40 && Right_white_line<40 && f1==0)
+		{
+			//right if white black white return
+			//left  if white black white return
+			lcd_print (1,4,1,1);
+			buzzer_on();
+			gadbad();
 				
-			}
-			buzzer_off();
-			//stop();
-		//	_delay_ms(500);
+			//while(1);
+			f1=1;
+			lcd_print (1,1,i,2);
+			i++;
+		}
 			
-			
-					Left_white_line = ADC_Conversion(3);	//Getting data of Left WL Sensor
-					Center_white_line = ADC_Conversion(2);	//Getting data of Center WL Sensor
-					Right_white_line = ADC_Conversion(1);	//Getting data of Right WL Sensor
-		
-			//i++;
 	}
 }
