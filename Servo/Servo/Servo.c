@@ -121,13 +121,15 @@ int main(void)
 {
  unsigned char i = 0;
  init_devices();
+ while(1)
+ {
  servo_1(0);
  	 _delay_ms(100000);
   servo_1(90);
   _delay_ms(3000);
   lcd_print(2,1,i,2);
   i++;
-while(1);
  _delay_ms(2000);
+}
  return 1;
 }

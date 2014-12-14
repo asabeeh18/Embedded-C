@@ -3,27 +3,27 @@ Servo.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         0000048a  00000000  00000000  00000074  2**1
+  0 .text         000004b0  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .bss          0000000e  00800200  00800200  000004fe  2**0
+  1 .bss          0000000e  00800200  00800200  00000524  2**0
                   ALLOC
-  2 .comment      00000030  00000000  00000000  000004fe  2**0
+  2 .comment      00000030  00000000  00000000  00000524  2**0
                   CONTENTS, READONLY
-  3 .debug_aranges 000000c8  00000000  00000000  0000052e  2**0
+  3 .debug_aranges 000000c8  00000000  00000000  00000554  2**0
                   CONTENTS, READONLY, DEBUGGING
-  4 .debug_info   000009df  00000000  00000000  000005f6  2**0
+  4 .debug_info   00000a08  00000000  00000000  0000061c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_abbrev 00000232  00000000  00000000  00000fd5  2**0
+  5 .debug_abbrev 0000024a  00000000  00000000  00001024  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_line   0000069f  00000000  00000000  00001207  2**0
+  6 .debug_line   000006e3  00000000  00000000  0000126e  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_frame  00000194  00000000  00000000  000018a8  2**2
+  7 .debug_frame  00000194  00000000  00000000  00001954  2**2
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_str    000002ef  00000000  00000000  00001a3c  2**0
+  8 .debug_str    000002ef  00000000  00000000  00001ae8  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_loc    00000592  00000000  00000000  00001d2b  2**0
+  9 .debug_loc    00000591  00000000  00000000  00001dd7  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_ranges 000000b8  00000000  00000000  000022bd  2**0
+ 10 .debug_ranges 000000e8  00000000  00000000  00002368  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -168,7 +168,7 @@ Disassembly of section .text:
  100:	b2 07       	cpc	r27, r18
  102:	e1 f7       	brne	.-8      	; 0xfc <.do_clear_bss_loop>
  104:	8b d1       	rcall	.+790    	; 0x41c <main>
- 106:	bf c1       	rjmp	.+894    	; 0x486 <_exit>
+ 106:	d2 c1       	rjmp	.+932    	; 0x4ac <_exit>
 
 00000108 <__bad_interrupt>:
  108:	7b cf       	rjmp	.-266    	; 0x0 <__vectors>
@@ -318,7 +318,7 @@ void servo_3_free (void) //makes servo 3 free rotating
  208:	23 27       	eor	r18, r19
  20a:	a7 e4       	ldi	r26, 0x47	; 71
  20c:	b3 e0       	ldi	r27, 0x03	; 3
- 20e:	2c d1       	rcall	.+600    	; 0x468 <__umulhisi3>
+ 20e:	3f d1       	rcall	.+638    	; 0x48e <__umulhisi3>
  210:	96 95       	lsr	r25
  212:	87 95       	ror	r24
  214:	96 95       	lsr	r25
@@ -338,7 +338,7 @@ void servo_3_free (void) //makes servo 3 free rotating
  234:	27 95       	ror	r18
  236:	a5 ec       	ldi	r26, 0xC5	; 197
  238:	b0 e2       	ldi	r27, 0x20	; 32
- 23a:	16 d1       	rcall	.+556    	; 0x468 <__umulhisi3>
+ 23a:	29 d1       	rcall	.+594    	; 0x48e <__umulhisi3>
  23c:	ac 01       	movw	r20, r24
  23e:	52 95       	swap	r21
  240:	42 95       	swap	r20
@@ -351,7 +351,7 @@ void servo_3_free (void) //makes servo 3 free rotating
  252:	9a 01       	movw	r18, r20
  254:	ad ec       	ldi	r26, 0xCD	; 205
  256:	bc ec       	ldi	r27, 0xCC	; 204
- 258:	07 d1       	rcall	.+526    	; 0x468 <__umulhisi3>
+ 258:	1a d1       	rcall	.+564    	; 0x48e <__umulhisi3>
  25a:	96 95       	lsr	r25
  25c:	87 95       	ror	r24
  25e:	96 95       	lsr	r25
@@ -388,7 +388,7 @@ void servo_3_free (void) //makes servo 3 free rotating
  2a0:	27 95       	ror	r18
  2a2:	ab e7       	ldi	r26, 0x7B	; 123
  2a4:	b4 e1       	ldi	r27, 0x14	; 20
- 2a6:	e0 d0       	rcall	.+448    	; 0x468 <__umulhisi3>
+ 2a6:	f3 d0       	rcall	.+486    	; 0x48e <__umulhisi3>
  2a8:	ac 01       	movw	r20, r24
  2aa:	56 95       	lsr	r21
  2ac:	47 95       	ror	r20
@@ -397,7 +397,7 @@ void servo_3_free (void) //makes servo 3 free rotating
  2b6:	9a 01       	movw	r18, r20
  2b8:	ad ec       	ldi	r26, 0xCD	; 205
  2ba:	bc ec       	ldi	r27, 0xCC	; 204
- 2bc:	d5 d0       	rcall	.+426    	; 0x468 <__umulhisi3>
+ 2bc:	e8 d0       	rcall	.+464    	; 0x48e <__umulhisi3>
  2be:	96 95       	lsr	r25
  2c0:	87 95       	ror	r24
  2c2:	96 95       	lsr	r25
@@ -425,7 +425,7 @@ void servo_3_free (void) //makes servo 3 free rotating
  2f2:	98 01       	movw	r18, r16
  2f4:	ad ec       	ldi	r26, 0xCD	; 205
  2f6:	bc ec       	ldi	r27, 0xCC	; 204
- 2f8:	b7 d0       	rcall	.+366    	; 0x468 <__umulhisi3>
+ 2f8:	ca d0       	rcall	.+404    	; 0x48e <__umulhisi3>
  2fa:	ac 01       	movw	r20, r24
  2fc:	56 95       	lsr	r21
  2fe:	47 95       	ror	r20
@@ -436,7 +436,7 @@ void servo_3_free (void) //makes servo 3 free rotating
  308:	50 93 03 02 	sts	0x0203, r21
  30c:	40 93 02 02 	sts	0x0202, r20
  310:	9a 01       	movw	r18, r20
- 312:	aa d0       	rcall	.+340    	; 0x468 <__umulhisi3>
+ 312:	bd d0       	rcall	.+378    	; 0x48e <__umulhisi3>
  314:	96 95       	lsr	r25
  316:	87 95       	ror	r24
  318:	96 95       	lsr	r25
@@ -468,7 +468,7 @@ void servo_3_free (void) //makes servo 3 free rotating
  350:	98 01       	movw	r18, r16
  352:	ad ec       	ldi	r26, 0xCD	; 205
  354:	bc ec       	ldi	r27, 0xCC	; 204
- 356:	88 d0       	rcall	.+272    	; 0x468 <__umulhisi3>
+ 356:	9b d0       	rcall	.+310    	; 0x48e <__umulhisi3>
  358:	96 95       	lsr	r25
  35a:	87 95       	ror	r24
  35c:	96 95       	lsr	r25
@@ -574,85 +574,122 @@ int main(void)
  unsigned char i = 0;
  init_devices();
  41c:	fa df       	rcall	.-12     	; 0x412 <init_devices>
+} 
+
+//Main function
+int main(void)
+{
+ unsigned char i = 0;
+ 41e:	f1 2c       	mov	r15, r1
 //Function to rotate Servo 1 by a specified angle in the multiples of 1.86 degrees
 void servo_1(unsigned char degrees)  
 {
  float PositionPanServo = 0;
   PositionPanServo = ((float)degrees / 1.86) + 35.0;
  OCR1AH = 0x00;
- 41e:	10 92 89 00 	sts	0x0089, r1
+ 420:	09 e8       	ldi	r16, 0x89	; 137
+ 422:	10 e0       	ldi	r17, 0x00	; 0
  OCR1AL = (unsigned char) PositionPanServo;
- 422:	83 e2       	ldi	r24, 0x23	; 35
- 424:	80 93 88 00 	sts	0x0088, r24
+ 424:	c8 e8       	ldi	r28, 0x88	; 136
+ 426:	d0 e0       	ldi	r29, 0x00	; 0
+ 428:	0f 2e       	mov	r0, r31
+ 42a:	f3 e2       	ldi	r31, 0x23	; 35
+ 42c:	df 2e       	mov	r13, r31
+ 42e:	f0 2d       	mov	r31, r0
+ 430:	0f 2e       	mov	r0, r31
+ 432:	f3 e5       	ldi	r31, 0x53	; 83
+ 434:	ef 2e       	mov	r14, r31
+ 436:	f0 2d       	mov	r31, r0
+//Function to rotate Servo 1 by a specified angle in the multiples of 1.86 degrees
+void servo_1(unsigned char degrees)  
+{
+ float PositionPanServo = 0;
+  PositionPanServo = ((float)degrees / 1.86) + 35.0;
+ OCR1AH = 0x00;
+ 438:	f8 01       	movw	r30, r16
+ 43a:	10 82       	st	Z, r1
+ OCR1AL = (unsigned char) PositionPanServo;
+ 43c:	d8 82       	st	Y, r13
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
- 428:	2a e2       	ldi	r18, 0x2A	; 42
- 42a:	30 e5       	ldi	r19, 0x50	; 80
- 42c:	8e ef       	ldi	r24, 0xFE	; 254
- 42e:	90 e0       	ldi	r25, 0x00	; 0
- 430:	21 50       	subi	r18, 0x01	; 1
- 432:	30 40       	sbci	r19, 0x00	; 0
- 434:	80 40       	sbci	r24, 0x00	; 0
- 436:	90 40       	sbci	r25, 0x00	; 0
- 438:	d9 f7       	brne	.-10     	; 0x430 <main+0x14>
- 43a:	00 00       	nop
+ 43e:	fa e2       	ldi	r31, 0x2A	; 42
+ 440:	20 e5       	ldi	r18, 0x50	; 80
+ 442:	3e ef       	ldi	r19, 0xFE	; 254
+ 444:	80 e0       	ldi	r24, 0x00	; 0
+ 446:	f1 50       	subi	r31, 0x01	; 1
+ 448:	20 40       	sbci	r18, 0x00	; 0
+ 44a:	30 40       	sbci	r19, 0x00	; 0
+ 44c:	80 40       	sbci	r24, 0x00	; 0
+ 44e:	d9 f7       	brne	.-10     	; 0x446 <main+0x2a>
+ 450:	00 00       	nop
 //Function to rotate Servo 1 by a specified angle in the multiples of 1.86 degrees
 void servo_1(unsigned char degrees)  
 {
  float PositionPanServo = 0;
   PositionPanServo = ((float)degrees / 1.86) + 35.0;
  OCR1AH = 0x00;
- 43c:	10 92 89 00 	sts	0x0089, r1
+ 452:	f8 01       	movw	r30, r16
+ 454:	10 82       	st	Z, r1
  OCR1AL = (unsigned char) PositionPanServo;
- 440:	83 e5       	ldi	r24, 0x53	; 83
- 442:	80 93 88 00 	sts	0x0088, r24
- 446:	2f eb       	ldi	r18, 0xBF	; 191
- 448:	37 e2       	ldi	r19, 0x27	; 39
- 44a:	89 e0       	ldi	r24, 0x09	; 9
- 44c:	21 50       	subi	r18, 0x01	; 1
- 44e:	30 40       	sbci	r19, 0x00	; 0
- 450:	80 40       	sbci	r24, 0x00	; 0
- 452:	e1 f7       	brne	.-8      	; 0x44c <main+0x30>
- 454:	00 c0       	rjmp	.+0      	; 0x456 <main+0x3a>
- 456:	00 00       	nop
- init_devices();
+ 456:	e8 82       	st	Y, r14
+ 458:	ff eb       	ldi	r31, 0xBF	; 191
+ 45a:	27 e2       	ldi	r18, 0x27	; 39
+ 45c:	39 e0       	ldi	r19, 0x09	; 9
+ 45e:	f1 50       	subi	r31, 0x01	; 1
+ 460:	20 40       	sbci	r18, 0x00	; 0
+ 462:	30 40       	sbci	r19, 0x00	; 0
+ 464:	e1 f7       	brne	.-8      	; 0x45e <main+0x42>
+ 466:	00 c0       	rjmp	.+0      	; 0x468 <main+0x4c>
+ 468:	00 00       	nop
+ {
  servo_1(0);
  	 _delay_ms(100000);
   servo_1(90);
   _delay_ms(3000);
   lcd_print(2,1,i,2);
- 458:	22 e0       	ldi	r18, 0x02	; 2
- 45a:	30 e0       	ldi	r19, 0x00	; 0
- 45c:	40 e0       	ldi	r20, 0x00	; 0
- 45e:	50 e0       	ldi	r21, 0x00	; 0
- 460:	61 e0       	ldi	r22, 0x01	; 1
- 462:	82 e0       	ldi	r24, 0x02	; 2
- 464:	ba de       	rcall	.-652    	; 0x1da <lcd_print>
- 466:	ff cf       	rjmp	.-2      	; 0x466 <main+0x4a>
+ 46a:	4f 2d       	mov	r20, r15
+ 46c:	50 e0       	ldi	r21, 0x00	; 0
+ 46e:	22 e0       	ldi	r18, 0x02	; 2
+ 470:	30 e0       	ldi	r19, 0x00	; 0
+ 472:	61 e0       	ldi	r22, 0x01	; 1
+ 474:	82 e0       	ldi	r24, 0x02	; 2
+ 476:	b1 de       	rcall	.-670    	; 0x1da <lcd_print>
+  i++;
+ 478:	f3 94       	inc	r15
+ 47a:	8f e7       	ldi	r24, 0x7F	; 127
+ 47c:	9a e1       	ldi	r25, 0x1A	; 26
+ 47e:	e6 e0       	ldi	r30, 0x06	; 6
+ 480:	81 50       	subi	r24, 0x01	; 1
+ 482:	90 40       	sbci	r25, 0x00	; 0
+ 484:	e0 40       	sbci	r30, 0x00	; 0
+ 486:	e1 f7       	brne	.-8      	; 0x480 <main+0x64>
+ 488:	00 c0       	rjmp	.+0      	; 0x48a <main+0x6e>
+ 48a:	00 00       	nop
+ 48c:	d5 cf       	rjmp	.-86     	; 0x438 <main+0x1c>
 
-00000468 <__umulhisi3>:
- 468:	a2 9f       	mul	r26, r18
- 46a:	b0 01       	movw	r22, r0
- 46c:	b3 9f       	mul	r27, r19
- 46e:	c0 01       	movw	r24, r0
- 470:	a3 9f       	mul	r26, r19
- 472:	70 0d       	add	r23, r0
- 474:	81 1d       	adc	r24, r1
- 476:	11 24       	eor	r1, r1
- 478:	91 1d       	adc	r25, r1
- 47a:	b2 9f       	mul	r27, r18
- 47c:	70 0d       	add	r23, r0
- 47e:	81 1d       	adc	r24, r1
- 480:	11 24       	eor	r1, r1
- 482:	91 1d       	adc	r25, r1
- 484:	08 95       	ret
+0000048e <__umulhisi3>:
+ 48e:	a2 9f       	mul	r26, r18
+ 490:	b0 01       	movw	r22, r0
+ 492:	b3 9f       	mul	r27, r19
+ 494:	c0 01       	movw	r24, r0
+ 496:	a3 9f       	mul	r26, r19
+ 498:	70 0d       	add	r23, r0
+ 49a:	81 1d       	adc	r24, r1
+ 49c:	11 24       	eor	r1, r1
+ 49e:	91 1d       	adc	r25, r1
+ 4a0:	b2 9f       	mul	r27, r18
+ 4a2:	70 0d       	add	r23, r0
+ 4a4:	81 1d       	adc	r24, r1
+ 4a6:	11 24       	eor	r1, r1
+ 4a8:	91 1d       	adc	r25, r1
+ 4aa:	08 95       	ret
 
-00000486 <_exit>:
- 486:	f8 94       	cli
+000004ac <_exit>:
+ 4ac:	f8 94       	cli
 
-00000488 <__stop_program>:
- 488:	ff cf       	rjmp	.-2      	; 0x488 <__stop_program>
+000004ae <__stop_program>:
+ 4ae:	ff cf       	rjmp	.-2      	; 0x4ae <__stop_program>
