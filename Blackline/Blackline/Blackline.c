@@ -272,7 +272,7 @@ void init_devices (void)
 	sei();   //Enables the global interrupts
 	
 }
-void set_color()
+void set_sensor()
 {
 	Left_white_line = ADC_Conversion(3);	//Getting data of Left WL Sensor
 	Center_white_line = ADC_Conversion(2);	//Getting data of Center WL Sensor
@@ -298,7 +298,7 @@ void gadbad()
 {
 	lcd_print(1,1,3,1);
 	correct(0x04); //soft left
-	set_color();
+	set_sensor();
 	if(Center_white_line>=40 && Left_white_line<40 && Right_white_line<40)
 		return;
 	buzzer_on();
@@ -334,9 +334,9 @@ int main()
 	
 	while(1)
 	{
-		set_color();
+		set_sensor();
 		flag=0;
-		print_sensor(1,4,11);
+		print_sensor(1,4,11);   //SHARP sensor
 		print_sensor(2,1,3);	//Prints value of White Line Sensor1
 		print_sensor(2,5,2);	//Prints Value of White Line Sensor2
 		print_sensor(2,9,1);	//Prints Value of White Line Sensor3
@@ -366,11 +366,15 @@ int main()
 		}
 		
 		*/
-		
+		//object detected in front
 		if(Sharp_Sensor>110)
 		{
 			stop();
+		
 			pickup();
+		
+			right();
+			right();
 		}
 		//left black
 		if(Center_white_line<40 && Left_white_line>40 && Right_white_line<40)	
@@ -384,5 +388,13 @@ int main()
 			buzzer_on();
 			correct(0x04);
 		}
+		//all black 
+		if(Center_white_line>40 && Left_white_line>40 && Right_white_line>40)
+		{
+			stop();
+			right();
+			right();
+		}
+			
 	}
 }
