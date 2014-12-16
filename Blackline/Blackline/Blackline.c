@@ -240,13 +240,12 @@ void angle_rotate(unsigned int Degrees)
 
 	while (1)
 	{
+		lcd_print(2,1,5,1);
 		if((ShaftCountRight >= ReqdShaftCountInt) | (ShaftCountLeft >= ReqdShaftCountInt))
 		{
-			lcd_print(2,2,0,1);
+			
 				break;
 		}
-		lcd_print(2,2,ShaftCountLeft,3);
-		lcd_print(2,5,ShaftCountRight,3);
 		
 	}
 	stop(); //Stop robot
@@ -376,18 +375,39 @@ void set_color()
 	Right_white_line = ADC_Conversion(1);	//Getting data of Right WL Sensor
 
 }
+
+void correct()
+{
+	unsigned int i=0;
+	Degrees=5;
+	for(;i<3;i++)
+	{
+			left(); //Left wheel backward, Right wheel forward
+			lcd_print(2,1,i,1);
+			angle_rotate(Degrees);
+			stop();
+			set_color();
+			if(Center_white_line>40)
+				return;
+	}
+	//normal
+	right();
+	while(Center_white_line<40)
+	{
+		lcd_print(2,1,7,1);
+		set_color();
+	}
+	return;
+}
 void noNatak()
 {
-	buzzer_on();
-	Degrees=4;
-	left(); //Left wheel backward, Right wheel forward
-	angle_rotate(Degrees);
-	
-	lcd_print(2,1,7,1);
-	_delay_ms(1000);
+	//buzzer_on();
+	//lcd_print(2,1,7,1);
+	correct();
+		
 	stop();
-	lcd_print(2,1,6,1);
-	buzzer_off();
+	//lcd_print(2,1,6,1);
+	//buzzer_off();
 	return;
 }
 
@@ -397,12 +417,18 @@ void forwardJaa()
 	do
 	{
 		set_color();
+		if(Center_white_line>80)
+		{
+			right();
+			angle_rotate(90);
+			stop();
+		}	
 		print_sensor(1,1,3);	//Prints value of White Line Sensor1
 		print_sensor(1,5,2);	//Prints Value of White Line Sensor2
 		print_sensor(1,9,1);	//Prints Value of White Line Sensor3
 	
 		forward();
-		velocity(150,150);
+		velocity(200,200);
 	
 	}
 	while(Center_white_line>0x28);
@@ -417,9 +443,9 @@ int main()
 	init_devices();
 	lcd_set_4bit();
 	lcd_init();
-	forwardJaa();	
+	
 	while(1)
 	{
-		set_color();
+		forwardJaa();	
 	}	
 }
