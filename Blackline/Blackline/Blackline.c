@@ -417,11 +417,15 @@ void forwardJaa()
 	do
 	{
 		set_color();
-		if(Center_white_line>80)
+		if(Center_white_line>40 && (Left_white_line>40 || Right_white_line>40) )
 		{
+			buzzer_on();
+			forward();
+			_delay_ms(10000);
 			right();
 			angle_rotate(90);
 			stop();
+			buzzer_off();
 		}	
 		print_sensor(1,1,3);	//Prints value of White Line Sensor1
 		print_sensor(1,5,2);	//Prints Value of White Line Sensor2
