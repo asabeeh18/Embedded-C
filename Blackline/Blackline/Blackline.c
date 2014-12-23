@@ -434,19 +434,28 @@ void forwardJaa()
 	return;
 }
 
+void turnDelay()
+{	
+	forward();
+	_delay_ms(10000);
+
+}
+
 void nodeFront()
 {
 	forwardJaa();
 }
 void nodeRight()
 {
+	turnDelay();
 	right();
 	angle_rotate(90);
 }
 void nodeLeft()
 {
+	turnDelay();
 	left();
-	angle_rotate(90);
+	angle_rotate(100);
 }
 
 void buzzer()
@@ -460,8 +469,7 @@ void nodeInd()
 {
 	lcd_print(2,1,0,1);
 	
-	forward();
-	_delay_ms(10000);
+	turnDelay();
 	noNatak();
 	
 	right();
@@ -476,7 +484,7 @@ void nodeInd()
 	buzzer();
 	
 	right();
-	angle_rotate(90);
+	angle_rotate(80);
 	buzzer();
 	forward();
 	_delay_ms(5000);
@@ -495,6 +503,20 @@ void onNode()
 	{
 		lcd_print(2,1,4,1);
 		nodeInd();
+	}
+	else if(nodeCount==4)
+	{
+		nodeLeft();
+	}
+	else if(nodeCount==5)
+	{
+		nodeRight();
+	}
+	else if(nodeCount==6)
+	{
+		stop();
+		buzzer_on();
+		while(1);
 	}
 }
 

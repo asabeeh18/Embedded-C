@@ -81,10 +81,6 @@ Discarded input sections
                 0x00000000       0x1a Blackline.o
  .text.soft_right_2_degrees
                 0x00000000       0x1a Blackline.o
- .text.nodeRight
-                0x00000000        0xe Blackline.o
- .text.nodeLeft
-                0x00000000        0xe Blackline.o
  .text.nodeFront
                 0x00000000        0x6 Blackline.o
  .bss.flag      0x00000000        0x1 Blackline.o
@@ -284,7 +280,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0xb5c
+.text           0x00000000      0xb9a
  *(.vectors)
  .vectors       0x00000000       0xe4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6/crtm2560.o
                 0x00000000                __vector_default
@@ -489,62 +485,71 @@ END GROUP
                 0x00000726                correct
  .text.noNatak  0x0000078e        0x6 Blackline.o
                 0x0000078e                noNatak
- .text.buzzer   0x00000794       0x18 Blackline.o
-                0x00000794                buzzer
- .text.nodeInd  0x000007ac       0x7c Blackline.o
-                0x000007ac                nodeInd
- .text.onNode   0x00000828       0x58 Blackline.o
-                0x00000828                onNode
+ .text.turnDelay
+                0x00000794       0x16 Blackline.o
+                0x00000794                turnDelay
+ .text.nodeRight
+                0x000007aa        0xc Blackline.o
+                0x000007aa                nodeRight
+ .text.nodeLeft
+                0x000007b6        0xc Blackline.o
+                0x000007b6                nodeLeft
+ .text.buzzer   0x000007c2       0x18 Blackline.o
+                0x000007c2                buzzer
+ .text.nodeInd  0x000007da       0x6a Blackline.o
+                0x000007da                nodeInd
+ .text.onNode   0x00000844       0x7a Blackline.o
+                0x00000844                onNode
  .text.forwardJaa
-                0x00000880       0x6c Blackline.o
-                0x00000880                forwardJaa
- .text.main     0x000008ec        0xa Blackline.o
-                0x000008ec                main
+                0x000008be       0x6c Blackline.o
+                0x000008be                forwardJaa
+ .text.main     0x0000092a        0xa Blackline.o
+                0x0000092a                main
  .text.avr-libc.fplib
-                0x000008f6        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(divsf3.o)
-                0x000008f6                __divsf3
+                0x00000934        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(divsf3.o)
+                0x00000934                __divsf3
  .text.avr-libc.fplib
-                0x000008fa       0xcc c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(divsf3x.o)
-                0x00000910                __divsf3x
-                0x00000914                __divsf3_pse
+                0x00000938       0xcc c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(divsf3x.o)
+                0x0000094e                __divsf3x
+                0x00000952                __divsf3_pse
  .text.avr-libc.fplib
-                0x000009c6       0x58 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fixunssfsi.o)
-                0x000009c6                __fixunssfsi
+                0x00000a04       0x58 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fixunssfsi.o)
+                0x00000a04                __fixunssfsi
  .text.avr-libc.fplib
-                0x00000a1e       0x7a c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(floatsisf.o)
-                0x00000a1e                __floatunsisf
-                0x00000a22                __floatsisf
+                0x00000a5c       0x7a c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(floatsisf.o)
+                0x00000a5c                __floatunsisf
+                0x00000a60                __floatsisf
  .text.avr-libc.fplib
-                0x00000a98        0xc c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_inf.o)
-                0x00000a98                __fp_inf
+                0x00000ad6        0xc c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_inf.o)
+                0x00000ad6                __fp_inf
  .text.avr-libc.fplib
-                0x00000aa4        0x6 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_nan.o)
-                0x00000aa4                __fp_nan
+                0x00000ae2        0x6 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_nan.o)
+                0x00000ae2                __fp_nan
  .text.avr-libc.fplib
-                0x00000aaa        0xe c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_pscA.o)
-                0x00000aaa                __fp_pscA
+                0x00000ae8        0xe c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_pscA.o)
+                0x00000ae8                __fp_pscA
  .text.avr-libc.fplib
-                0x00000ab8        0xe c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_pscB.o)
-                0x00000ab8                __fp_pscB
+                0x00000af6        0xe c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_pscB.o)
+                0x00000af6                __fp_pscB
  .text.avr-libc.fplib
-                0x00000ac6       0x22 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_round.o)
-                0x00000ac6                __fp_round
+                0x00000b04       0x22 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_round.o)
+                0x00000b04                __fp_round
  .text.avr-libc.fplib
-                0x00000ae8       0x44 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_split3.o)
-                0x00000ae8                __fp_split3
-                0x00000af8                __fp_splitA
+                0x00000b26       0x44 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_split3.o)
+                0x00000b26                __fp_split3
+                0x00000b36                __fp_splitA
  .text.avr-libc.fplib
-                0x00000b2c        0xe c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_zero.o)
-                0x00000b2c                __fp_zero
-                0x00000b2e                __fp_szero
+                0x00000b6a        0xe c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_zero.o)
+                0x00000b6a                __fp_zero
+                0x00000b6c                __fp_szero
  .text.libgcc.mul
-                0x00000b3a       0x1e c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_umulhisi3.o)
-                0x00000b3a                __umulhisi3
-                0x00000b58                . = ALIGN (0x2)
+                0x00000b78       0x1e c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_umulhisi3.o)
+                0x00000b78                __umulhisi3
+                0x00000b96                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000b58        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
-                0x00000b58                _exit
-                0x00000b58                exit
+ .fini9         0x00000b96        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
+                0x00000b96                _exit
+                0x00000b96                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -563,11 +568,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000b58        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
+ .fini0         0x00000b96        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000b5c                _etext = .
+                0x00000b9a                _etext = .
 
-.data           0x00800200        0x0 load address 0x00000b5c
+.data           0x00800200        0x0 load address 0x00000b9a
                 0x00800200                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -582,7 +587,7 @@ END GROUP
                 0x00800200                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
- .bss.nodeCount.1835
+ .bss.nodeCount.1837
                 0x00800200        0x2 Blackline.o
  .bss.ShaftCountRight
                 0x00800202        0x4 Blackline.o
@@ -611,8 +616,8 @@ END GROUP
                 0x0080021a                unit
                 0x0080021c                thousand
                 0x0080021e                PROVIDE (__bss_end, .)
-                0x00000b5c                __data_load_start = LOADADDR (.data)
-                0x00000b5c                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00000b9a                __data_load_start = LOADADDR (.data)
+                0x00000b9a                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x0080021e        0x0
                 0x0080021e                PROVIDE (__noinit_start, .)
@@ -678,34 +683,34 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x1e8
+.debug_aranges  0x00000000      0x1f0
  *(.debug_aranges)
  .debug_aranges
-                0x00000000      0x1e8 Blackline.o
+                0x00000000      0x1f0 Blackline.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x1573
+.debug_info     0x00000000     0x15cd
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x00000000     0x1573 Blackline.o
+ .debug_info    0x00000000     0x15cd Blackline.o
 
 .debug_abbrev   0x00000000      0x382
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x382 Blackline.o
 
-.debug_line     0x00000000      0xce0
+.debug_line     0x00000000      0xd2c
  *(.debug_line .debug_line.* .debug_line_end)
- .debug_line    0x00000000      0xce0 Blackline.o
+ .debug_line    0x00000000      0xd2c Blackline.o
 
-.debug_frame    0x00000000      0x4ac
+.debug_frame    0x00000000      0x4bc
  *(.debug_frame)
- .debug_frame   0x00000000      0x4ac Blackline.o
+ .debug_frame   0x00000000      0x4bc Blackline.o
 
-.debug_str      0x00000000      0x556
+.debug_str      0x00000000      0x560
  *(.debug_str)
- .debug_str     0x00000000      0x556 Blackline.o
-                                0x5b5 (size before relaxing)
+ .debug_str     0x00000000      0x560 Blackline.o
+                                0x5bf (size before relaxing)
 
 .debug_loc      0x00000000      0xb44
  *(.debug_loc)
@@ -729,9 +734,9 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000      0x1f0
+.debug_ranges   0x00000000      0x1f8
  *(.debug_ranges)
- .debug_ranges  0x00000000      0x1f0 Blackline.o
+ .debug_ranges  0x00000000      0x1f8 Blackline.o
 
 .debug_macro
  *(.debug_macro)
