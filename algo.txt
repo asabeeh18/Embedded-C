@@ -1,0 +1,83 @@
+//Algo for main code
+/*
+pick up if it is for the adjacent Term
+pick up if its for far term and swap is empty
+pick up if its for far term and its d last node chk of the side
+r g 
+b bk
+
+bk r
+g b
+*/
+
+@initialise
+//1=R 2=G 3=B 4=Bk 
+visited[4]={0};
+swap1=0,swap2=0
+term[4][2]={0,0};
+indi[4]={0};
+schedPlaceAtswap=2
+schAdjDrop=0 1 2 //arm 0 1 none:2
+
+function TermAct : nxTerm,CT
+if term not visited
+	mark visited
+	
+	nodeRight
+	takeColor
+	
+	node Uturn
+	take color
+
+//if at 1 adj is 2 vice versa
+//if at 3 adj is 4 vice versa
+if(CT=1)
+	adj=2
+if(CT=2)
+	adj=1
+if(CT=3)
+	adj=4
+if(CT=4)
+	adj=3
+	
+if indi[CT]==term[adj][0]
+	pickup(0) //pickup returns success or failed pickup
+	schAdjDrop=0;
+	nxTerm=adj
+	
+if indi[CT]==term[adj][1]
+	pickup(1)
+	nxTerm=adj
+	
+else if ! indi[CT]==term[CT][0 || 1]  && nxTerm=adj
+	pickup(0 || 1)
+	if(swapSpace(CT)==0
+		schedPlaceAtswap= 0 | 1 //2 for nothing
+	//increasing program complexity level GOD	
+else if ! indi[CT]==term[CT][0 || 1]  && nxTerm=far //box belongs to far terminal and its the last term of the section
+	pickup(0 || 1 can be both)
+	if(BOTH)
+		if(swapSpace(CT)==0
+			schedPlaceAtswap= 0 | 1 //2 for nothing
+	
+END function
+
+//bot will always face towards the inside of arena or away
+//inside for now
+function  GO : CT,nxTerm
+	if(forwardJaa until node encountered)
+		//swapEncounterdAction
+		
+	if(CT==1 | 4 && nxTerm= 3,4 | 1,2)
+		nodeLeft()
+	if(CT==2 | 3 && nxTerm= 3,4 | 1,2)
+		node Right()
+	forwardJaa
+	ignoreNextNode
+		//swapEncounterdAction
+		
+	else if(CT=2 | 3 && nxTerm=);
+	else :/ dont think so	
+	forwardJaa until node
+		return reached;		
+		

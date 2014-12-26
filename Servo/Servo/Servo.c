@@ -124,9 +124,9 @@ int main(void)
  while(1)
  {
  servo_1(0);
- 	 _delay_ms(100000);
-  servo_1(90);
-  _delay_ms(3000);
+ 	 _delay_ms(30000);
+  servo_1(50);
+  _delay_ms(10000);
   lcd_print(2,1,i,2);
   i++;
  _delay_ms(2000);
