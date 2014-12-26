@@ -419,7 +419,7 @@ void forwardJaa()
 		set_color();
 		if(Center_white_line>40 && (Left_white_line>40 || Right_white_line>40) )
 		{
-			return;
+			onNode();
 		}
 		print_sensor(1,1,3);	//Prints value of White Line Sensor1
 		print_sensor(1,5,2);	//Prints Value of White Line Sensor2
@@ -520,55 +520,47 @@ void onNode()
 	}
 }
 
-//bot will always face towards the inside of arena or away
-//inside for now
-
-char adjC(unsigned char CT)
-{
-	
-	if(CT=1)
-	return 2;
-	if(CT=2)
-	return 1;
-	if(CT=3)
-	return 4;
-	if(CT=4)
-	return 3;
-}
-void travel(unsigned char CT,unsigned char nxTerm)
-{
-	forwardJaa();
-	//swapEncounterdAction
-	if((CT==1 && nxTerm = 3 || 4) || (CT=4 && nxTerm = 1 || 2)
-	{
-		nodeLeft();
-		forwardJaa();
-		forwardJaa();
-		//swapEncounterdAction
-		if(nxTerm==1 || nxTerm==4)
-			nodeRight();
-	}
-	else if((CT==2 && nxTerm = 3 || 4) || (CT=3 && nxTerm = 1 || 2)
-	{
-		nodeRight();
-		forwardJaa();
-		forwardJaa();
-		//swapEncounterdAction
-		if(nxTerm==2 || nxTerm==3)
-			nodeLeft();
-	}
-	forwardJaa();	
-}
-
-
 //Main Function
 int main()
 {
 	init_devices();
 	lcd_set_4bit();
 	lcd_init();
-	travel(1,4);
+	
 	while(1)
 	{
+		while(ADC_Conversion(4)>150 && ADC_Conversion(5)>150 && ADC_Conversion(6)>150 && ADC_Conversion(7)>150 && ADC_Conversion(8)>150 )
+		{
+			forward();
+			print_sensor(1,1,4);
+			print_sensor(1,5,5);
+			print_sensor(1,9,6);
+		}
+		stop();
+		buzzer();
+		while(((ADC_Conversion(7)<150 || ADC_Conversion(8)<150) && ADC_Conversion(6)<150 && ADC_Conversion(4)>150 && ADC_Conversion(5)>150)||(ADC_Conversion(7)<150 || ADC_Conversion(8)<150))
+		{
+			left();
+		}
+		stop();
+		while(((ADC_Conversion(4)<150 || ADC_Conversion(5)<150) && ADC_Conversion(6)<150 && ADC_Conversion(7)>150 && ADC_Conversion(8)>150)||(ADC_Conversion(4)<150 || ADC_Conversion(5)<150))
+		{
+			right();
+		}
+		stop();
+		if(ADC_Conversion(5)>150 && ADC_Conversion(6)<150 && ADC_Conversion(7)>150 )
+		{
+			right();
+			angle_rotate(180);
+		}
+		stop();
+		print_sensor(1,1,4);
+		print_sensor(1,5,5);
+		print_sensor(1,9,6);
+		print_sensor(2,1,7);
+		print_sensor(2,5,8);
+		print_sensor(2,9,9);
+		print_sensor(2,13,10);
+		print_sensor(1,13,11);
 	}	
 }

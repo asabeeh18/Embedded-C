@@ -383,7 +383,7 @@ void correct()
 	for(;i<3;i++)
 	{
 			left(); //Left wheel backward, Right wheel forward
-			lcd_print(2,1,i,1);
+			lcd_print(2,7,777,3);
 			angle_rotate(Degrees);
 			stop();
 			set_color();
@@ -394,7 +394,7 @@ void correct()
 	right();
 	while(Center_white_line<40)
 	{
-		lcd_print(2,1,7,1);
+	//	lcd_print(2,1,7,1);
 		set_color();
 		
 	}
@@ -409,7 +409,7 @@ void noNatak()
 	stop();
 	//lcd_print(2,1,6,1);
 	//buzzer_off();
-	return;
+	
 }
 
 void forwardJaa()
@@ -419,25 +419,28 @@ void forwardJaa()
 		set_color();
 		if(Center_white_line>40 && (Left_white_line>40 || Right_white_line>40) )
 		{
+			forward();
+			_delay_ms(4000);
 			return;
 		}
+		/*
 		print_sensor(1,1,3);	//Prints value of White Line Sensor1
 		print_sensor(1,5,2);	//Prints Value of White Line Sensor2
 		print_sensor(1,9,1);	//Prints Value of White Line Sensor3
-		
+		*/
 		forward();
 		velocity(200,200);
 		
 	}while(Center_white_line>0x28);
 	
 	noNatak();
-	return;
+	forwardJaa();
 }
 
 void turnDelay()
 {	
 	forward();
-	_delay_ms(10000);
+	_delay_ms(6000);
 
 }
 
@@ -526,38 +529,60 @@ void onNode()
 char adjC(unsigned char CT)
 {
 	
-	if(CT=1)
+	if(CT==1)
 	return 2;
-	if(CT=2)
+	if(CT==2)
 	return 1;
-	if(CT=3)
+	if(CT==3)
 	return 4;
-	if(CT=4)
+	if(CT==4)
 	return 3;
+	else return 0;
 }
-void travel(unsigned char CT,unsigned char nxTerm)
+void travel(int CT,int nxTerm)
 {
+	
 	forwardJaa();
 	//swapEncounterdAction
-	if((CT==1 && nxTerm = 3 || 4) || (CT=4 && nxTerm = 1 || 2)
+	lcd_print(1,11,(CT==1 && (nxTerm == 3 || nxTerm== 4)),1);// ||
+	lcd_print(1,12,(CT==4 && (nxTerm == 1 || nxTerm== 2)),1);
+	lcd_print(1,13,(CT==2 && (nxTerm == 3 || nxTerm== 4)),1); // ||
+	lcd_print(1,14,(CT==3 && (nxTerm == 1 || nxTerm== 2)),1);
+	if((CT==1 && (nxTerm == 3 || nxTerm== 4)) || (CT==4 && (nxTerm == 1 || nxTerm== 2)))
 	{
 		nodeLeft();
 		forwardJaa();
+		_delay_ms(1000);
 		forwardJaa();
-		//swapEncounterdAction
 		if(nxTerm==1 || nxTerm==4)
 			nodeRight();
+		else
+			nodeLeft();
 	}
-	else if((CT==2 && nxTerm = 3 || 4) || (CT=3 && nxTerm = 1 || 2)
+	else if((CT==2 && (nxTerm == 3 || nxTerm== 4)) || (CT==3 && (nxTerm == 1 || nxTerm== 2)))
 	{
 		nodeRight();
 		forwardJaa();
+		_delay_ms(500);
 		forwardJaa();
 		//swapEncounterdAction
 		if(nxTerm==2 || nxTerm==3)
 			nodeLeft();
+		else
+			nodeRight();
+	}
+	else
+	{
+		_delay_ms(1000);
 	}
 	forwardJaa();	
+	stop();
+	buzzer();
+	right();
+	angle_rotate(190);
+	_delay_ms(1000);
+	stop();
+	buzzer();
 }
 
 
@@ -567,7 +592,12 @@ int main()
 	init_devices();
 	lcd_set_4bit();
 	lcd_init();
-	travel(1,4);
+	travel(2,1);
+	travel(1,3);
+	travel(3,4);
+	travel(4,1);
+	//travel(1,3);
+	//buzzer();
 	while(1)
 	{
 	}	
