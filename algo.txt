@@ -15,7 +15,7 @@ g b
 visited[4]={0};
 swap1=0,swap2=0
 term[4][2]={0,0};
-indi[4]={0};
+indi[4]={0};  //index is color value is terminal 
 schedPlaceAtswap=2
 schAdjDrop=0 1 2 //arm 0 1 none:2
 
@@ -40,19 +40,29 @@ if(CT=3)
 if(CT=4)
 	adj=3
 	
-if indi[CT]==term[adj][0]
-	pickup(0) //pickup returns success or failed pickup
-	schAdjDrop=0;
-	nxTerm=adj
+nxTerm=0; //not yet defined	
+SchdDrpEvent[2]=0 1 2 3 //0 nthin 1 drop at sortS 2 drop at adjTerm 3 Drop Far
+SchdPickEvent[2]=0 1 //0 nthin 1 pick from swap 2 pick from Term 1, 3 from 2...so on
+//for adj
+if indi[CT]==term[adj][0] & arm free
+	if(SchdPickEvent[arm]==0)
+		pickup(0) //pickup returns success or failed pickup ..HOW??
+		nxTerm=adj;
+		SchdDrpEvent[free arm]=2;
 	
-if indi[CT]==term[adj][1]
-	pickup(1)
-	nxTerm=adj
-	
-else if ! indi[CT]==term[CT][0 || 1]  && nxTerm=adj
-	pickup(0 || 1)
-	if(swapSpace(CT)==0
-		schedPlaceAtswap= 0 | 1 //2 for nothing
+if indi[CT]==term[adj][1] & arm free 
+	if(SchdPickEvent[arm]==0)
+		pickup(1)
+		nxTerm=adj;
+		if(both arm xfull & SchDrpEvent==0)
+			SchDrpEvent[far box arm]=1
+
+//for far
+if(box belongs to far && arm free)
+	if(SchdPickEvent=0)
+		pick
+		
+
 	//increasing program complexity level GOD	
 else if ! indi[CT]==term[CT][0 || 1]  && nxTerm=far //box belongs to far terminal and its the last term of the section
 	pickup(0 || 1 can be both)
@@ -62,22 +72,3 @@ else if ! indi[CT]==term[CT][0 || 1]  && nxTerm=far //box belongs to far termina
 	
 END function
 
-//bot will always face towards the inside of arena or away
-//inside for now
-function  GO : CT,nxTerm
-	if(forwardJaa until node encountered)
-		//swapEncounterdAction
-		
-	if(CT==1 | 4 && nxTerm= 3,4 | 1,2)
-		nodeLeft()
-	if(CT==2 | 3 && nxTerm= 3,4 | 1,2)
-		node Right()
-	forwardJaa
-	ignoreNextNode
-		//swapEncounterdAction
-		
-	else if(CT=2 | 3 && nxTerm=);
-	else :/ dont think so	
-	forwardJaa until node
-		return reached;		
-		
