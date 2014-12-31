@@ -1,4 +1,6 @@
-if both diff 
+//MOST IDIOTIC AND REPETITIVE TYPE of code ever written
+
+/*if both diff 
 	pick both
 	place 1 at swap
 	check adj
@@ -17,8 +19,23 @@ if both diff
 		get out
 			check if box at swap's term has a free node
 				pick
+*/
+	
+Basically
+	check the 1st  Term and follow through keeping its boxing at specific terminals
+	
+	box found ..keep it at its Term...loop and done
+	
+Features
+-Cross the bridge only with 2 hands full  60% probab
+-empty nodes
+-AT MAX 4 times crossing the bridge 20% probab
 
-				
+
+
+
+
+
 node Check
 //belongs to near
 if indi[CT]==term[adj][0] & arm free
@@ -95,21 +112,47 @@ if(Sort[CT]==indi[CT])
 	if(farCount==2)
 		if(term[CT][0]==term[CT][1]) //lil chalaki 
 			nxTerm=far; //the common terminal
-			//SchDropAtSort
 		else
 			//both diff of far
 			nxTerm=far
+		pickup
+		drop
+		goto sort
+		pickup 
+		drop
+		goto CT
+		pickup 
+		drop
+		//SchPickupAtSort	//CT
+		//SchDropAtSort		//far
+	
 	if(farCount==1)
 		if(adjCount==1)
 			nxTerm=adj
+			pickup	far
+			drop
+			goto sort
+			pickup 
+			drop
+			goto CT
+			pickup 
+			drop
+			//nothing to schedule
 		else
 			//empty node
 			//:O :O
 			if adj is not visited or not yet completed(has a far box)
 				nxTerm=adj
-				//SchDropAtSort
+				
 			else
 				nxTerm=far
+			pickup
+			drop
+			goto Sort
+			pickup
+			goto CT
+			drop
+			
 	if(adjCount==1)
 		if(farCount==1)
 			nxTerm=adj
@@ -119,15 +162,15 @@ if(Sort[CT]==indi[CT])
 	
 	if(adjCount==2)
 		nxTerm=adj
-	pickup //preferably far box or one NOT belonging to nxTerm
-	drop
-	goto sort
-	pickup
-	drop
-	goto node
-	pickup
-	drop
-	
+		pickup 
+		drop
+		goto sort
+		pickup
+		drop
+		goto CT
+		pickup
+		drop
+		
 
 else if(Sort[CT]!=indi[CT])
 {
@@ -184,7 +227,7 @@ else if(Sort[CT]!=indi[CT])
 
 
 
-/* logic flaw
+/* logic flaw  ..solved
 	1				X
   0  0			x		x
   
