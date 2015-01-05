@@ -175,7 +175,7 @@ if(Sort[CT]==indi[CT])
 else if(Sort[CT]!=indi[CT])
 {
 	if(farCount==2)
-		if(term[CT][0]==term[CT][1]):
+		if(term[CT][0]==term[CT][1] && sort[CT] not empty):
 			nxTerm=far; //the common terminal
 			//SchPickupAtSort
 			//SchDropAtSort
@@ -197,7 +197,7 @@ else if(Sort[CT]!=indi[CT])
 			pickup 1
 			drop
 			//SchPickupAtSort
-		else sort belongs to adj
+		else sort belongs to adj or is empty
 				pickup // the box which belongs to term with empty node
 				drop
 				//SchPickupAtSort
@@ -225,16 +225,33 @@ else if(Sort[CT]!=indi[CT])
 			nxTerm=adj //for Sort
 }
 
+SchPickupAtSort()
+{
+	schP[CT]=1;
+}
+SchDropAtSort()
+{
+	schD[CT]=1;
+}
 
 
 /* logic flaw  ..solved
-	1				X
+1.	1		2.		X
   0  0			x		x
   
-    0  				x
+3.    0  	4.			x
   1   1        x        x
   
   wont go to X term's
   sort 1 and 0 and stops
  */
  
+ 
+ 
+ /*
+ lcd_cursor(1,1);  //set the cursor on row 1, column 1
+	lcd_string("Blue Pulses"); // Display "Blue Pulses" on LCD
+	lcd_print(2,1,blue,5);  //Print the count on second row
+	_delay_ms(1000);	// Display for 1000ms or 1 second
+	lcd_wr_command(0x01); //Clear the LCD
+*/
