@@ -1,0 +1,32 @@
+indi[4]={0};  //index is color value is terminal 
+
+senseTerm	//term to which box belongs
+T%2==senseTerm%2	
+
+dropManager
+	SwapDrop();
+	TermDrop()
+	dropDecide()
+pickManager(CT,
+	SwapPick()
+	TermPick()
+	pickDecide()
+sortManager
+	swapContents..
+	
+dropFromArm(R|L,CT)
+
+DecidePriorities
+	Here Near Far
+	Pick
+		Free Arms
+		boxStatus
+		
+	DropAt
+		Swap
+		Here
+		
+pickUP()
+{
+	if(free==2)
+		if(

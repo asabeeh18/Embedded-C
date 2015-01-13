@@ -544,7 +544,7 @@ void uTurn()
 }
 //bot will always face towards the inside of arena or away
 //inside for now
-
+//change it to facing outside
 char adjC(unsigned char CT)
 {
 	
@@ -622,6 +622,7 @@ void pick_color(unsigned char node)	//0 or 1
 	{
 		term[CT][node]=EMPTY;
 	}
+	visited[CT]=1;
 	
 }
 void termPick()
@@ -653,14 +654,258 @@ void counter()
 		farCount++;
 
 }
+//SORTMAN
+//MAIN SORTING FUNCTION
+//R-0 L-1
+void sortMan()
+{
+	
+	int pSwap=((CT==2||CT==3)?1:0);
+	int pFar=(term[CT][0]==indi[adj]);		//wont work for empty node
+	if(Sort[CT]==indi[CT])
+	{
+		if(farCount==2)
+		{
+			if(term[CT][0]==term[CT][1])
+				nxTerm=indi[term[CT][0]]; //the common terminal
+			else	//both diff of far
+				nxTerm=indi[term[CT][0]];
+			pickup(0);
+			drop(0);
+			gotoSort(CT);
+			pickup(pSwap);
+			drop(pSwap);
+			goBack(CT);
+			pickup(1); 
+			drop(1);
+			//SchPickupAtSort	//CT
+			//SchDropAtSort		//far
+		}
+		if(farCount==1)
+		{
+			if(adjCount==1)
+			{	
+				nxTerm=adj;
+				pickup(pFar)
+				drop(pFar);
+				gotoSort(CT);
+				pickup(pSwap);
+				drop(pSwap);
+				goBack(CT);
+				pickup(!pFar)
+				drop(!pFar);
+				//nothing to schedule
+			}
+			else
+			{	//empty node
+				//:O :O
+				if(vis[adj]==0 || term[adj][0] || term[adj][1]==or not yet completed(has a far box)
+					nxTerm=adj;
+				
+				else	//seq also usable for both empty
+					nxTerm=far;
+				pickup(pFar);
+				drop(pFar);
+				gotoSort(CT);
+				pickup(pSwap);
+				goBack(CT);
+				drop(!pFar);
+			}
+		}
+		if(adjCount==1)
+		{	
+			if(farCount==1)
+			{
+					nxTerm=adj;
+					pickup(pFar)
+					drop(pFar);
+					gotoSort(CT);
+					pickup(pSwap);
+					drop(pSwap);
+					goBack(CT);
+					pickup(!pFar)
+					drop(!pFar);
+					//nothing to schedule
+			}
+			else
+			{
+					//empty node
+					drop(pFar);
+					gotoSOrt(CT);
+					pickup(pSwap);
+					goBack(CT);
+					pickup(!pFar);
+					drop(!pFar);
+					nxTerm=adj;
+			}
+		}
+		if(adjCount==2)
+		{
+			nxTerm=adj;
+			pickup(0); 
+			drop(0);
+			gotoSort(CT);
+			pickup(pSwap);
+			drop(pSwap);
+			goBack(CT);
+			pickup(1);
+			drop(1);
+		}
+	}
+
+		
+		
+
+else if(Sort[CT]!=indi[CT])	//Sort can be empty
+{
+	if(farCount==2)
+	{	if(term[CT][0]==term[CT][1] && sort[CT] not empty):
+		{
+			nxTerm=far; //the common terminal
+			//SchPickupAtSort
+			//SchDropAtSort
+			pickup(0);
+			drop(0);
+			if(arm[0] and arm[1] not empty)
+			{
+				goto sort
+				pickup 
+				drop
+				goto CT
+			}
+			pickup
+			drop
+		}
+		
+		else if(term[CT][0]==Sort[CT])
+		{	nxTerm=To wherever it belongs
+			pickup 0
+			drop
+			//SchPickupAtSort
+		}
+		else if(term[CT][1]==Sort[CT])
+		{	nxTerm=To wherever it belongs
+			pickup 1
+			drop
+			//SchPickupAtSort
+		}
+		else sort belongs to adj or is empty
+		{		pickup // the box which belongs to term with empty node
+				drop
+				pickup
+				//SchPickupAtSort
+				
+		/* at this point adj will atleast hav one far box and atmost 1 adj box 
+		and 1 box not belonging to it*/
+		}
+	if(farCount==1)
+		if(adjCount==1)
+			if(Sort[CT]==indi[adj])
+				pickup adjwala
+				drop
+				//SchPickupAtSort
+			else
+				//Sort of far and CT has 1 far a adj
+				if(Sort[CT]==
+		else  //====
+			//one node is empty
+			pickup 
+			drop
+			//SchDropAtSort
+			nxTerm=far //for Sort
+	else if(adjCount==2)
+		if(Sort[CT]==indi[CT])
+			pickup 0
+			pickup 1
+			SchDropAtSort();
+			nxTerm=adj;
+		else //===
+			pikcup
+			drop
+			pickup
+			nxTerm=adj;
+			
+	if(adjCount==1)
+		if(farCount==1)
+			pickUp adj
+			drop
+			pickup
+		else	//1 empty 1 adj
+			pickup
+			drop
+		nxTerm=adj; 
+		//one node is empty
+			pickup
+			drop
+			nxTerm=adj //for Sort
+	else		//empty
+	{
+		drop();
+		nxTerm=unvisited();
+}
+
+void sortNoSwap()
+{
+	if(farCount==2)
+	{
+		nxTerm=indi[arm[0]];
+		SchDropAtSort(nxTerm);
+	}
+	else if(adjCount==1)
+	{
+		if(farCount==1)
+		{
+			nxTerm=adj;
+			SchDropAtSort(nxTerm);
+		}
+		else	//1 empty block
+		{
+			pickup;
+			nxTerm=adj;	
+		}
+	}
+	else if(farCount==1)
+	{
+		if(adjCount==1)
+		{
+			nxTerm=adj;
+			SchDropAtSort(nxTerm);
+		}
+		else	//1 empty block
+		{
+			if(visited[adj]==0)
+				nxTerm=adj;
+				SchDropAtSort(nxTerm);
+			else
+				nxTerm=arm[0];
+				
+		}
+	}
+	else if(adjCount==2)
+	{
+		nxTerm=adj;
+		SchDropAtSort(nxTerm);
+	}
+	else	//empty term
+	{
+		if(visited[adj]==0)
+			nxTerm=adj;
+		else
+			unvisited();
+	}
+}
+
 void sorter()
 {
 	counter();
-	
+	pickUp(0);
+	pickUp(1);
+	sortNoSwap();
+	travel(CT,nxTerm);
+	sortMan();
 }
 void init_sort()
 {
-	visited[CT]=1;
 	sorter();
 }
 

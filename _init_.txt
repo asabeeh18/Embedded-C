@@ -1,0 +1,73 @@
+//++++++===Servo Control========++++++++
+void servo1_pin_config (void)
+{
+ DDRB  = DDRB | 0x20;  //making PORTB 5 pin output
+ PORTB = PORTB | 0x20; //setting PORTB 5 pin to logic 1
+}
+
+//Configure PORTB 6 pin for servo motor 2 operation
+void servo2_pin_config (void)
+{
+ DDRB  = DDRB | 0x40;  //making PORTB 6 pin output
+ PORTB = PORTB | 0x40; //setting PORTB 6 pin to logic 1
+}
+
+//Configure PORTB 7 pin for servo motor 3 operation
+void servo3_pin_config (void)
+{
+ DDRB  = DDRB | 0x80;  //making PORTB 7 pin output
+ PORTB = PORTB | 0x80; //setting PORTB 7 pin to logic 1
+}
+void timer1_init(void)
+{
+ TCCR1B = 0x00; //stop
+ TCNT1H = 0xFC; //Counter high value to which OCR1xH value is to be compared with
+ TCNT1L = 0x01;	//Counter low value to which OCR1xH value is to be compared with
+ OCR1AH = 0x03;	//Output compare Register high value for servo 1
+ OCR1AL = 0xFF;	//Output Compare Register low Value For servo 1
+ OCR1BH = 0x03;	//Output compare Register high value for servo 2
+ OCR1BL = 0xFF;	//Output Compare Register low Value For servo 2
+ OCR1CH = 0x03;	//Output compare Register high value for servo 3
+ OCR1CL = 0xFF;	//Output Compare Register low Value For servo 3
+ ICR1H  = 0x03;	
+ ICR1L  = 0xFF;
+ TCCR1A = 0xAB; /*{COM1A1=1, COM1A0=0; COM1B1=1, COM1B0=0; COM1C1=1 COM1C0=0}
+ 					For Overriding normal port functionality to OCRnA outputs.
+				  {WGM11=1, WGM10=1} Along With WGM12 in TCCR1B for Selecting FAST PWM Mode*/
+ TCCR1C = 0x00;
+ TCCR1B = 0x0C; //WGM12=1; CS12=1, CS11=0, CS10=0 (Prescaler=256)
+}
+
+
+//++++++====Motion Control==+++++
+void motion_pin_config (void)
+{
+ DDRA = DDRA | 0x0F; //set direction of the PORTA 3 to PORTA 0 pins as output
+ PORTA = PORTA & 0xF0; // set initial value of the PORTA 3 to PORTA 0 pins to logic 0
+ DDRL = DDRL | 0x18;   //Setting PL3 and PL4 pins as output for PWM generation
+ PORTL = PORTL | 0x18; //PL3 and PL4 pins are for velocity control using PWM
+}
+
+
+//+++===Sensors
+void MOSFET_switch_config (void)
+{
+ DDRH = DDRH | 0x0C; //make PORTH 3 and PORTH 1 pins as output
+ PORTH = PORTH & 0xF3; //set PORTH 3 and PORTH 1 pins to 0
+
+ DDRG = DDRG | 0x04; //make PORTG 2 pin as output
+ PORTG = PORTG & 0xFB; //set PORTG 2 pin to 0
+}
+
+void turn_on_all_proxy_sensors (void) // turn on Sharp 2, 3, 4, red LED of the white line sensors
+									  // Sharp 1, 5 and IR proximity sensor
+{
+ PORTH = PORTH & 0xF3; //set PORTH 3 and PORTH 1 pins to 0
+ PORTG = PORTG & 0xFB; //set PORTG 2 pin to 0
+}//make it efficient
+
+
+//++++====LCD
+init_devices();
+lcd_set_4bit();
+lcd_init();

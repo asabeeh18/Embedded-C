@@ -246,7 +246,7 @@ SchDropAtSort()
   sort 1 and 0 and stops
  */
  
- 
+ update:indi stores the term(value) of corres color(index)
  
  /*
  lcd_cursor(1,1);  //set the cursor on row 1, column 1
