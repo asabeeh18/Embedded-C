@@ -37,26 +37,26 @@ unsigned int Degrees; //to accept angle in degrees for turning
 //Function to configure LCD port
 void lcd_port_config (void)
 {
- DDRC = DDRC | 0xF7; //all the LCD pin's direction set as output
- PORTC = PORTC & 0x80; // all the LCD pins are set to logic 0 except PORTC 7
+	DDRC = DDRC | 0xF7; //all the LCD pin's direction set as output
+	PORTC = PORTC & 0x80; // all the LCD pins are set to logic 0 except PORTC 7
 }
 
 //ADC pin configuration
 void adc_pin_config (void)
 {
- DDRF = 0x00; 
- PORTF = 0x00;
- DDRK = 0x00;
- PORTK = 0x00;
+	DDRF = 0x00;
+	PORTF = 0x00;
+	DDRK = 0x00;
+	PORTK = 0x00;
 }
 
 //Function to configure ports to enable robot's motion
-void motion_pin_config (void) 
+void motion_pin_config (void)
 {
- DDRA = DDRA | 0x0F;
- PORTA = PORTA & 0xF0;
- DDRL = DDRL | 0x18;   //Setting PL3 and PL4 pins as output for PWM generation
- PORTL = PORTL | 0x18; //PL3 and PL4 pins are for velocity control using PWM.
+	DDRA = DDRA | 0x0F;
+	PORTA = PORTA & 0xF0;
+	DDRL = DDRL | 0x18;   //Setting PL3 and PL4 pins as output for PWM generation
+	PORTL = PORTL | 0x18; //PL3 and PL4 pins are for velocity control using PWM.
 }
 //
 
@@ -79,7 +79,7 @@ void port_init()
 {
 	lcd_port_config();
 	adc_pin_config();
-	motion_pin_config();	
+	motion_pin_config();
 	//
 	left_encoder_pin_config(); //left encoder pin config
 	right_encoder_pin_config(); //right encoder pin config
@@ -102,8 +102,8 @@ void timer5_init()
 	OCR5CH = 0x00;	//Output compare register high value for Motor C1
 	OCR5CL = 0xFF;	//Output compare register low value for Motor C1
 	TCCR5A = 0xA9;	/*{COM5A1=1, COM5A0=0; COM5B1=1, COM5B0=0; COM5C1=1 COM5C0=0}
- 					  For Overriding normal port functionality to OCRnA outputs.
-				  	  {WGM51=0, WGM50=1} Along With WGM52 in TCCR5B for Selecting FAST PWM 8-bit Mode*/
+	For Overriding normal port functionality to OCRnA outputs.
+	{WGM51=0, WGM50=1} Along With WGM52 in TCCR5B for Selecting FAST PWM 8-bit Mode*/
 	
 	TCCR5B = 0x0B;	//WGM12=1; CS12=0, CS11=1, CS10=1 (Prescaler=64)
 }
@@ -118,7 +118,7 @@ void adc_init()
 }
 
 //Function For ADC Conversion
-unsigned char ADC_Conversion(unsigned char Ch) 
+unsigned char ADC_Conversion(unsigned char Ch)
 {
 	unsigned char a;
 	if(Ch>7)
@@ -184,23 +184,23 @@ ISR(INT4_vect)
 //Function used for setting motor's direction
 void motion_set (unsigned char Direction)
 {
- unsigned char PortARestore = 0;
+	unsigned char PortARestore = 0;
 
- Direction &= 0x0F; 		// removing upper nibbel for the protection
- PortARestore = PORTA; 		// reading the PORTA original status
- PortARestore &= 0xF0; 		// making lower direction nibbel to 0
- PortARestore |= Direction; // adding lower nibbel for forward command and restoring the PORTA status
- PORTA = PortARestore; 		// executing the command
+	Direction &= 0x0F; 		// removing upper nibbel for the protection
+	PortARestore = PORTA; 		// reading the PORTA original status
+	PortARestore &= 0xF0; 		// making lower direction nibbel to 0
+	PortARestore |= Direction; // adding lower nibbel for forward command and restoring the PORTA status
+	PORTA = PortARestore; 		// executing the command
 }
 
-void forward (void) 
+void forward (void)
 {
-  motion_set (0x06);
+	motion_set (0x06);
 }
 
 void stop (void)
 {
-  motion_set (0x00);
+	motion_set (0x00);
 }
 
 void back (void) //both wheels backward
@@ -256,7 +256,7 @@ void angle_rotate(unsigned int Degrees)
 		if((ShaftCountRight >= ReqdShaftCountInt) | (ShaftCountLeft >= ReqdShaftCountInt))
 		{
 			
-				break;
+			break;
 		}
 		
 	}
@@ -366,7 +366,7 @@ void buzzer_off (void)
 
 void init_devices (void)
 {
- 	cli(); //Clears the global interrupts
+	cli(); //Clears the global interrupts
 	port_init();
 	_init_color();
 	adc_init();
@@ -395,19 +395,19 @@ void correct()
 	Degrees=5;
 	for(;i<3;i++)
 	{
-			left(); //Left wheel backward, Right wheel forward
-			lcd_print(2,7,777,3);
-			angle_rotate(Degrees);
-			stop();
-			set_color();
-			if(Center_white_line>40)
-				return;
+		left(); //Left wheel backward, Right wheel forward
+		lcd_print(2,7,777,3);
+		angle_rotate(Degrees);
+		stop();
+		set_color();
+		if(Center_white_line>40)
+		return;
 	}
 	//normal
 	right();
 	while(Center_white_line<40)
 	{
-	//	lcd_print(2,1,7,1);
+		//	lcd_print(2,1,7,1);
 		set_color();
 		
 	}
@@ -418,7 +418,7 @@ void noNatak()
 	//buzzer_on();
 	//lcd_print(2,1,7,1);
 	correct();
-		
+	
 	stop();
 	//lcd_print(2,1,6,1);
 	//buzzer_off();
@@ -451,7 +451,7 @@ void forwardJaa()
 }
 
 void turnDelay()
-{	
+{
 	forward();
 	_delay_ms(6000);
 
@@ -574,9 +574,9 @@ void travel(int CT,int nxTerm)
 		_delay_ms(1000);
 		forwardJaa();
 		if(nxTerm==1 || nxTerm==4)
-			nodeRight();
+		nodeRight();
 		else
-			nodeLeft();
+		nodeLeft();
 	}
 	else if((CT==2 && (nxTerm == 3 || nxTerm== 4)) || (CT==3 && (nxTerm == 1 || nxTerm== 2)))
 	{
@@ -586,15 +586,15 @@ void travel(int CT,int nxTerm)
 		forwardJaa();
 		//swapEncounterdAction
 		if(nxTerm==2 || nxTerm==3)
-			nodeLeft();
+		nodeLeft();
 		else
-			nodeRight();
+		nodeRight();
 	}
 	else
 	{
 		_delay_ms(1000);
 	}
-	forwardJaa();	
+	forwardJaa();
 	stop();
 	stop();
 	buzzer();
@@ -641,24 +641,52 @@ void counter()
 
 	//belongs to near
 	if indi[CT]==term[adj][0])
-		adjCount++;
+	adjCount++;
 	
 	if indi[CT]==term[adj][1]
-		adjCount++;
+	adjCount++;
 
 	//belongs to far
 	if !(indi[CT]==term[CT][0] && indi[adj]==term[CT][0] )
-		farCount++;
+	farCount++;
 	
 	if !(indi[CT]==term[CT][1] && indi[adj]==term[CT][1])
-		farCount++;
-
+	farCount++;
 }
+int unvisited()
+{
+	for(i=1;i<=4;i++)
+		if(visited[i]==0)
+			return i;
+	return 0;
+}
+
+int pickup(int side)
+{
+	
+}
+
+void gotoSort(unsigned char CT)
+{
+	assert(!"The method or operation is not implemented.");
+}
+
+void goBack(unsigned char CT)
+{
+	assert(!"The method or operation is not implemented.");
+}
+
+void drop(int side)
+{
+	assert(!"The method or operation is not implemented.");
+}
+
 //SORTMAN
 //MAIN SORTING FUNCTION
 //R-0 L-1
 void sortMan()
 {
+unsigned char nxTerm;
 	
 	int pSwap=((CT==2||CT==3)?1:0);
 	int pFar=(term[CT][0]==indi[adj]);		//wont work for empty node
@@ -667,24 +695,24 @@ void sortMan()
 		if(farCount==2)
 		{
 			if(term[CT][0]==term[CT][1])
-				nxTerm=indi[term[CT][0]]; //the common terminal
+			nxTerm=indi[term[CT][0]]; //the common terminal
 			else	//both diff of far
-				nxTerm=indi[term[CT][0]];
+			nxTerm=indi[term[CT][0]];
 			pickup(0);
 			drop(0);
 			gotoSort(CT);
 			pickup(pSwap);
 			drop(pSwap);
 			goBack(CT);
-			pickup(1); 
+			pickup(1);
 			drop(1);
 			//SchPickupAtSort	//CT
 			//SchDropAtSort		//far
 		}
-		if(farCount==1)
+		else if(farCount==1)
 		{
 			if(adjCount==1)
-			{	
+			{
 				nxTerm=adj;
 				pickup(pFar)
 				drop(pFar);
@@ -700,10 +728,10 @@ void sortMan()
 			{	//empty node
 				//:O :O
 				if(vis[adj]==0 || term[adj][0] || term[adj][1]==or not yet completed(has a far box)
-					nxTerm=adj;
+				nxTerm=adj;
 				
 				else	//seq also usable for both empty
-					nxTerm=far;
+				nxTerm=far;
 				pickup(pFar);
 				drop(pFar);
 				gotoSort(CT);
@@ -712,37 +740,37 @@ void sortMan()
 				drop(!pFar);
 			}
 		}
-		if(adjCount==1)
-		{	
+		else if(adjCount==1)
+		{
 			if(farCount==1)
 			{
-					nxTerm=adj;
-					pickup(pFar)
-					drop(pFar);
-					gotoSort(CT);
-					pickup(pSwap);
-					drop(pSwap);
-					goBack(CT);
-					pickup(!pFar)
-					drop(!pFar);
-					//nothing to schedule
+				nxTerm=adj;
+				pickup(pFar)
+				drop(pFar);
+				gotoSort(CT);
+				pickup(pSwap);
+				drop(pSwap);
+				goBack(CT);
+				pickup(!pFar)
+				drop(!pFar);
+				//nothing to schedule
 			}
 			else
 			{
-					//empty node
-					drop(pFar);
-					gotoSOrt(CT);
-					pickup(pSwap);
-					goBack(CT);
-					pickup(!pFar);
-					drop(!pFar);
-					nxTerm=adj;
+				//empty node
+				drop(pFar);
+				gotoSOrt(CT);
+				pickup(pSwap);
+				goBack(CT);
+				pickup(!pFar);
+				drop(!pFar);
+				nxTerm=adj;
 			}
 		}
-		if(adjCount==2)
+		else if(adjCount==2)
 		{
 			nxTerm=adj;
-			pickup(0); 
+			pickup(0);
 			drop(0);
 			gotoSort(CT);
 			pickup(pSwap);
@@ -753,172 +781,196 @@ void sortMan()
 		}
 	}
 
-		
-		
-
-else if(Sort[CT]!=indi[CT])	//Sort can be empty
-{
-	if(farCount==2)
-	{	if(term[CT][0]==term[CT][1] && sort[CT] not empty):
+	
+	else if(Sort[CT]!=indi[CT])	//Sort can be empty
+	{
+		if(farCount==2)
 		{
-			nxTerm=far; //the common terminal
-			//SchPickupAtSort
-			//SchDropAtSort
-			pickup(0);
-			drop(0);
-			if(arm[0] and arm[1] not empty)
+			if(term[CT][0]==term[CT][1])	//and sort not empty why ?? :/
 			{
-				goto sort
-				pickup 
-				drop
-				goto CT
+				nxTerm=indi[term[CT][0]]; //the common terminal
+				//SchPickupAtSort
+				//SchDropAtSort
+				pickup(0);
+				drop(0);
+				pickup(1);
+				drop(1);
 			}
-			pickup
-			drop
+			else if(Sort[CT]==term[CT][0])
+			{
+				pickup(0);
+				drop(0);
+				nxTerm=indi[arm[0]];
+			}
+			else if(Sort[CT]==term[CT][1])
+			{
+				pickup(1);
+				drop(1);
+				nxTerm=indi[arm[1]];
+			}
+		}
+		else if(farCount==1)
+		{
+			if(adjCount==1)
+			{
+				if(Sort[CT]==0)
+				{
+					pickup(!pFar); //adjwala
+					drop(!pFar);
+					pickup(pFar);
+					nxTerm=adj;
+					//SchDropAtSort
+				}
+				else
+				{
+					//Sort of far and CT has 1 far a adj
+					pickup(!pFar);
+					drop(!pFar);
+					nxTerm=adj;
+				}
+			}
+			else  //====
+			{	//one node is empty
+				nxTerm=indi[term[CT][pFar]];
+				pickup(pFar);
+				drop(pFar);
+				//SchDropAtSort
+			}
 		}
 		
-		else if(term[CT][0]==Sort[CT])
-		{	nxTerm=To wherever it belongs
-			pickup 0
-			drop
-			//SchPickupAtSort
-		}
-		else if(term[CT][1]==Sort[CT])
-		{	nxTerm=To wherever it belongs
-			pickup 1
-			drop
-			//SchPickupAtSort
-		}
-		else sort belongs to adj or is empty
-		{		pickup // the box which belongs to term with empty node
-				drop
+		else if(adjCount==1)
+		{
+			if(farCount==1)
+			{
+				if(Sort[CT]==0)
+				{
+					pickup(!pFar); //adjwala
+					drop(!pFar);
+					pickup(pFar);
+					nxTerm=adj;
+					//SchDropAtSort
+				}
+				else
+				{
+					//Sort of far and CT has 1 far a adj
+					pickup(!pFar);
+					drop(!pFar);
+					nxTerm=adj;
+				}
+			}
+			else	//1 empty 1 adj
+			{
 				pickup
-				//SchPickupAtSort
-				
-		/* at this point adj will atleast hav one far box and atmost 1 adj box 
-		and 1 box not belonging to it*/
-		}
-	if(farCount==1)
-		if(adjCount==1)
-			if(Sort[CT]==indi[adj])
-				pickup adjwala
 				drop
-				//SchPickupAtSort
+				nxTerm=adj;
+			}
+		}
+		else if(adjCount==2)
+		{
+			if(Sort[CT]>0) //smthin is at Sort
+			{
+				pickup(0);
+				drop(0);
+			}
 			else
-				//Sort of far and CT has 1 far a adj
-				if(Sort[CT]==
-		else  //====
-			//one node is empty
-			pickup 
-			drop
-			//SchDropAtSort
-			nxTerm=far //for Sort
-	else if(adjCount==2)
-		if(Sort[CT]==indi[CT])
-			pickup 0
-			pickup 1
-			SchDropAtSort();
+			{
+				pickup(0);
+				drop(0);
+				pickup(1);
+			}
 			nxTerm=adj;
-		else //===
-			pikcup
-			drop
-			pickup
-			nxTerm=adj;
-			
-	if(adjCount==1)
-		if(farCount==1)
-			pickUp adj
-			drop
-			pickup
-		else	//1 empty 1 adj
-			pickup
-			drop
-		nxTerm=adj; 
-		//one node is empty
-			pickup
-			drop
-			nxTerm=adj //for Sort
-	else		//empty
-	{
-		drop();
-		nxTerm=unvisited();
+		}
+		else		//empty
+		{
+			drop(0);
+			drop(1);
+			nxTerm=unvisited();
+			if(nxTerm==0)
+			{
+				if(checkForCompletion())
+				{
+					//Exit Sequence
+				}
+			}
+		}
+	}
+	if(arm[0]==0 && arm[1]==0 && Sort[CT]==0 && Sort[CT&2]==0)
 }
-
 void sortNoSwap()
-{
-	if(farCount==2)
 	{
-		nxTerm=indi[arm[0]];
-		SchDropAtSort(nxTerm);
-	}
-	else if(adjCount==1)
-	{
-		if(farCount==1)
+		if(farCount==2)
 		{
-			nxTerm=adj;
+			nxTerm=indi[arm[0]];
 			SchDropAtSort(nxTerm);
 		}
-		else	//1 empty block
+		else if(adjCount==1)
 		{
-			pickup;
-			nxTerm=adj;	
-		}
-	}
-	else if(farCount==1)
-	{
-		if(adjCount==1)
-		{
-			nxTerm=adj;
-			SchDropAtSort(nxTerm);
-		}
-		else	//1 empty block
-		{
-			if(visited[adj]==0)
+			if(farCount==1)
+			{
 				nxTerm=adj;
 				SchDropAtSort(nxTerm);
-			else
+			}
+			else	//1 empty block
+			{
+				pickup;
+				nxTerm=adj;
+			}
+		}
+		else if(farCount==1)
+		{
+			if(adjCount==1)
+			{
+				nxTerm=adj;
+				SchDropAtSort(nxTerm);
+			}
+			else	//1 empty block
+			{
+				if(visited[adj]==0)
+				nxTerm=adj;
+				SchDropAtSort(nxTerm);
+				else
 				nxTerm=arm[0];
 				
+			}
+		}
+		else if(adjCount==2)
+		{
+			nxTerm=adj;
+			SchDropAtSort(nxTerm);
+		}
+		else	//empty term
+		{
+			if(visited[adj]==0)
+			nxTerm=adj;
+			else
+			unvisited();
 		}
 	}
-	else if(adjCount==2)
-	{
-		nxTerm=adj;
-		SchDropAtSort(nxTerm);
-	}
-	else	//empty term
-	{
-		if(visited[adj]==0)
-			nxTerm=adj;
-		else
-			unvisited();
-	}
-}
 
-void sorter()
-{
-	counter();
-	pickUp(0);
-	pickUp(1);
-	sortNoSwap();
-	travel(CT,nxTerm);
-	sortMan();
-}
-void init_sort()
-{
-	sorter();
-}
-
-//Main Function
-int main()
-{
-	init_devices();
-	lcd_set_4bit();
-	lcd_init();
-	init_sort();
-	//travel(1,3);
-	//buzzer();
-	while(1)
+	void sorter()
 	{
-	}	
-}
+		counter();
+		pickUp(0);
+		pickUp(1);
+		sortNoSwap();
+		travel(CT,nxTerm);
+		sortMan();
+	}
+	void init_sort()
+	{
+		sorter();
+	}
+
+	//Main Function
+	int main()
+	{
+		init_devices();
+		lcd_set_4bit();
+		lcd_init();
+		init_sort();
+		//travel(1,3);
+		//buzzer();
+		while(1)
+		{
+		}
+	}
