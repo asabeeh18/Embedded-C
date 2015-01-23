@@ -1,5 +1,9 @@
 //MOST IDIOTIC AND REPETITIVE TYPE of code ever written
 
+
+is the far box ALWAYS kicked out?
+
+
 /*if both diff 
 	pick both
 	place 1 at swap

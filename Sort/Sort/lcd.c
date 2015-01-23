@@ -29,7 +29,7 @@ unsigned int hundred;
 unsigned int thousand;
 unsigned int million;
 
-int i;
+//int i;
 
 
 /*****Function to Reset LCD*****/
