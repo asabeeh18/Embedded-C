@@ -1,26 +1,25 @@
-#include <avr/io.h>
-#include <avr/delay.h>
-#include <util/delay.h>
+/********************************************************************************
+ Written by: e-Yantra Team
+ AVR Studio Version 4.17, Build 666
+ Date: 10-oct-2012
+********************************************************************************/
 
-#define FCPU 14745600ul
 #define RS 0
 #define RW 1
 #define EN 2
 #define lcd_port PORTC
 
-#define sbit(reg,bit)	reg |= (1<<bit)
-#define cbit(reg,bit)	reg &= ~(1<<bit)
+#define sbit(reg,bit)	reg |= (1<<bit)			// Macro defined for Setting a bit of any register.
+#define cbit(reg,bit)	reg &= ~(1<<bit)		// Macro defined for Clearing a bit of any register.
 
 void init_ports();
-void lcd_reset_4bit();
+void lcd_reset();
 void lcd_init();
 void lcd_wr_command(unsigned char);
 void lcd_wr_char(char);
-void lcd_home();
-void lcd_cursor(char, char);
-void lcd_print(char, char, unsigned int, int);
+void lcd_line1();
+void lcd_line2();
 void lcd_string(char*);
-void display_clear(void);
 
 unsigned int temp;
 unsigned int unit;
@@ -29,10 +28,16 @@ unsigned int hundred;
 unsigned int thousand;
 unsigned int million;
 
-//int i;
+/*//Function to configure LCD port
+void lcd_port_config (void)
+{
+ DDRC = DDRC | 0xF7; //all the LCD pin's direction set as output
+ PORTC = PORTC & 0x80; // all the LCD pins are set to logic 0 except PORTC 7
+}*/
 
 
-/*****Function to Reset LCD*****/
+
+//Function to Reset LCD
 void lcd_set_4bit()
 {
 	_delay_ms(1);
@@ -74,26 +79,22 @@ void lcd_set_4bit()
 	
 }
 
-/*****Function to Initialize LCD*****/
+//Function to Initialize LCD
 void lcd_init()
 {
+	lcd_set_4bit();
 	_delay_ms(1);
 
-/*	lcd_wr_command(0x28);			//LCD 4-bit mode and 2 lines.
+	lcd_wr_command(0x28);			//LCD 4-bit mode and 2 lines.
 	lcd_wr_command(0x01);
 	lcd_wr_command(0x06);
 	lcd_wr_command(0x0E);
-	lcd_wr_command(0x80);*/
-	lcd_wr_command(0x28);			//LCD 4-bit mode and 2 lines.
-	lcd_wr_command(0x14);
-	lcd_wr_command(0x0c);
-	lcd_wr_command(0x06);
-	lcd_wr_command(0x01);
+	lcd_wr_command(0x80);
 		
 }
 
 	 
-/*****Function to Write Command on LCD*****/
+//Function to Write Command on LCD
 void lcd_wr_command(unsigned char cmd)
 {
 	unsigned char temp;
@@ -118,7 +119,7 @@ void lcd_wr_command(unsigned char cmd)
 	cbit(lcd_port,EN);
 }
 
-/*****Function to Write Data on LCD*****/
+//Function to Write Data on LCD
 void lcd_wr_char(char letter)
 {
 	char temp;
@@ -144,13 +145,14 @@ void lcd_wr_char(char letter)
 }
 
 
+//Function to bring cursor at home position
 void lcd_home()
 {
 	lcd_wr_command(0x80);
 }
 
 
-/*****Function to Print String on LCD*****/
+//Function to Print String on LCD
 void lcd_string(char *str)
 {
 	while(*str != '\0')
@@ -160,7 +162,7 @@ void lcd_string(char *str)
 	}
 }
 
-/*** Position the LCD cursor at "row", "column". ***/
+//Position the LCD cursor at "row", "column".
 
 void lcd_cursor (char row, char column)
 {
@@ -173,7 +175,7 @@ void lcd_cursor (char row, char column)
 	}
 }
 
-/***** Function To Print Any input value upto the desired digit on LCD *****/
+//Function To Print Any input value upto the desired digit on LCD
 void lcd_print (char row, char coloumn, unsigned int value, int digits)
 {
 	unsigned char flag=0;
@@ -223,9 +225,5 @@ void lcd_print (char row, char coloumn, unsigned int value, int digits)
 	}
 	
 }
-		
-void display_clear(void)
-{
-	lcd_wr_command(0x01);
-}
+
 

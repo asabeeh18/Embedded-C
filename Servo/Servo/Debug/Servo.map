@@ -575,13 +575,13 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000      0xa08
+.debug_info     0x00000000      0xa09
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x00000000      0xa08 Servo.o
+ .debug_info    0x00000000      0xa09 Servo.o
 
-.debug_abbrev   0x00000000      0x24a
+.debug_abbrev   0x00000000      0x253
  *(.debug_abbrev)
- .debug_abbrev  0x00000000      0x24a Servo.o
+ .debug_abbrev  0x00000000      0x253 Servo.o
 
 .debug_line     0x00000000      0x6e3
  *(.debug_line .debug_line.* .debug_line_end)
