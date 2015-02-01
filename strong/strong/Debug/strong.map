@@ -39,6 +39,7 @@ Allocating common symbols
 Common symbol       size              file
 
 blue                0x4               strong.o
+Degrees             0x2               strong.o
 million             0x2               strong.o
 temp                0x2               strong.o
 green               0x4               strong.o
@@ -58,11 +59,50 @@ Discarded input sections
  .bss           0x00000000        0x0 strong.o
  .text.velocity
                 0x00000000        0xa strong.o
+ .text.back     0x00000000        0x8 strong.o
+ .text.left     0x00000000        0x8 strong.o
+ .text.right    0x00000000        0x8 strong.o
+ .text.soft_left
+                0x00000000        0x8 strong.o
+ .text.soft_right
+                0x00000000        0x8 strong.o
+ .text.soft_left_2
+                0x00000000        0x8 strong.o
+ .text.soft_right_2
+                0x00000000        0x8 strong.o
+ .text.stop     0x00000000        0x8 strong.o
+ .text.left_encoder_pin_config
+                0x00000000        0x6 strong.o
+ .text.right_encoder_pin_config
+                0x00000000        0x6 strong.o
+ .text.angle_rotate
+                0x00000000       0x46 strong.o
+ .text.linear_distance_mm
+                0x00000000       0x12 strong.o
+ .text.forward_mm
+                0x00000000       0x16 strong.o
+ .text.back_mm  0x00000000       0x16 strong.o
+ .text.left_degrees
+                0x00000000       0x16 strong.o
+ .text.right_degrees
+                0x00000000       0x16 strong.o
+ .text.soft_left_degrees
+                0x00000000       0x1a strong.o
+ .text.soft_right_degrees
+                0x00000000       0x1a strong.o
+ .text.left_position_encoder_interrupt_init
+                0x00000000        0xe strong.o
+ .text.right_position_encoder_interrupt_init
+                0x00000000        0xe strong.o
  .text.servo_1  0x00000000       0x32 strong.o
  .text.servo_2  0x00000000       0x32 strong.o
  .text.servo_3  0x00000000       0x32 strong.o
  .text.filter_clear
                 0x00000000        0x6 strong.o
+ .bss.ShaftCountRight
+                0x00000000        0x4 strong.o
+ .bss.ShaftCountLeft
+                0x00000000        0x4 strong.o
  .text          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(addsf3.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(addsf3.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(addsf3.o)
@@ -479,17 +519,17 @@ END GROUP
                 0x00000536       0x46 strong.o
                 0x00000536                timer1_init
  .text.port_init
-                0x0000057c        0xe strong.o
+                0x0000057c       0x12 strong.o
                 0x0000057c                port_init
  .text.ADC_Conversion
-                0x0000058a       0x36 strong.o
-                0x0000058a                ADC_Conversion
+                0x0000058e       0x36 strong.o
+                0x0000058e                ADC_Conversion
  .text.print_sensor
-                0x000005c0       0x24 strong.o
-                0x000005c0                print_sensor
+                0x000005c4       0x24 strong.o
+                0x000005c4                print_sensor
  .text.color_sensor_pin_interrupt_init
-                0x000005e4       0x12 strong.o
-                0x000005e4                color_sensor_pin_interrupt_init
+                0x000005e8        0xe strong.o
+                0x000005e8                color_sensor_pin_interrupt_init
  .text.__vector_1
                 0x000005f6       0x4a strong.o
                 0x000005f6                __vector_1
@@ -565,34 +605,35 @@ END GROUP
                 0x00800224                _edata = .
                 0x00800224                PROVIDE (__data_end, .)
 
-.bss            0x00800224       0x1d
+.bss            0x00800224       0x1f
                 0x00800224                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
  .bss.pulse     0x00800224        0x4 strong.o
                 0x00800224                pulse
  *(COMMON)
- COMMON         0x00800228       0x19 strong.o
+ COMMON         0x00800228       0x1b strong.o
                 0x00800228                blue
-                0x0080022c                million
-                0x0080022e                temp
-                0x00800230                green
-                0x00800234                red
-                0x00800238                ADC_Value
-                0x00800239                tens
-                0x0080023b                hundred
-                0x0080023d                unit
-                0x0080023f                thousand
-                0x00800241                PROVIDE (__bss_end, .)
+                0x0080022c                Degrees
+                0x0080022e                million
+                0x00800230                temp
+                0x00800232                green
+                0x00800236                red
+                0x0080023a                ADC_Value
+                0x0080023b                tens
+                0x0080023d                hundred
+                0x0080023f                unit
+                0x00800241                thousand
+                0x00800243                PROVIDE (__bss_end, .)
                 0x00000926                __data_load_start = LOADADDR (.data)
                 0x0000094a                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800241        0x0
-                0x00800241                PROVIDE (__noinit_start, .)
+.noinit         0x00800243        0x0
+                0x00800243                PROVIDE (__noinit_start, .)
  *(.noinit*)
-                0x00800241                PROVIDE (__noinit_end, .)
-                0x00800241                _end = .
-                0x00800241                PROVIDE (__heap_start, .)
+                0x00800243                PROVIDE (__noinit_end, .)
+                0x00800243                _end = .
+                0x00800243                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
  *(.eeprom*)
@@ -651,38 +692,38 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x150
+.debug_aranges  0x00000000      0x1f0
  *(.debug_aranges)
  .debug_aranges
-                0x00000000      0x150 strong.o
+                0x00000000      0x1f0 strong.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x11b3
+.debug_info     0x00000000     0x1671
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x00000000     0x11b3 strong.o
+ .debug_info    0x00000000     0x1671 strong.o
 
-.debug_abbrev   0x00000000      0x32b
+.debug_abbrev   0x00000000      0x371
  *(.debug_abbrev)
- .debug_abbrev  0x00000000      0x32b strong.o
+ .debug_abbrev  0x00000000      0x371 strong.o
 
-.debug_line     0x00000000      0xb6f
+.debug_line     0x00000000      0xdd6
  *(.debug_line .debug_line.* .debug_line_end)
- .debug_line    0x00000000      0xb6f strong.o
+ .debug_line    0x00000000      0xdd6 strong.o
 
-.debug_frame    0x00000000      0x2d0
+.debug_frame    0x00000000      0x440
  *(.debug_frame)
- .debug_frame   0x00000000      0x2d0 strong.o
+ .debug_frame   0x00000000      0x440 strong.o
 
-.debug_str      0x00000000      0x428
+.debug_str      0x00000000      0x581
  *(.debug_str)
- .debug_str     0x00000000      0x428 strong.o
-                                0x46c (size before relaxing)
+ .debug_str     0x00000000      0x581 strong.o
+                                0x5f3 (size before relaxing)
 
-.debug_loc      0x00000000      0x706
+.debug_loc      0x00000000      0xa3c
  *(.debug_loc)
- .debug_loc     0x00000000      0x706 strong.o
+ .debug_loc     0x00000000      0xa3c strong.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -702,9 +743,9 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000      0x1a0
+.debug_ranges   0x00000000      0x240
  *(.debug_ranges)
- .debug_ranges  0x00000000      0x1a0 strong.o
+ .debug_ranges  0x00000000      0x240 strong.o
 
 .debug_macro
  *(.debug_macro)

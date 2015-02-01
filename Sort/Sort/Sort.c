@@ -1,3 +1,28 @@
+/*
+ 
+* Team Id: 		10000
+* Author List: 		Amiraj Dhawan, e-Yantra Team
+* Filename: 		fibonacci.c
+* Theme: 		Cargo Sorting – eYRC Specific
+* Functions: 		print_fibonacci_series(int) , main()
+* Global Variables:	NONE
+*
+*/
+
+#include<stdio.h>
+
+/*
+* Function Name:	print_fibonacci_series
+* Input:		num_elements -> integer which stores the number of elements of the fibonacci
+*			series to be printed
+* Output:		prints the first num_elements of the fibonacci series
+* Logic:		The next element of the Fibonacci series is given by 
+*			next = current_element + prev_element. The code loops for num_elements and 
+*			prints out the next element
+* Example Call:		print_fibonacci_series(10);
+*
+*/
+#define F_CPU 14745600
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <util/delay.h>
@@ -15,7 +40,7 @@ unsigned char Left_white_line;
 //SOrt
 unsigned char swap[2]={0};
 unsigned char visited[5]={0,0,0,0,0};
-unsigned char term[5][2]={{0,0},{1,1},{3,4},{4,3},{2,2}};
+unsigned char term[5][2]={{0,0},{2,2},{3,4},{4,3},{1,1}};
 unsigned char indi[5]={0,1,4,2,3};  //index is color value is terminal
 unsigned char schD[2];	//values: 0 1 or 2, access by CT%2
 unsigned char schP[2];
@@ -48,7 +73,7 @@ void correct()
 		stop();
 		set_color();
 		if(Center_white_line>40)
-		return;
+			return;
 	}
 	//normal
 	right();
@@ -244,97 +269,87 @@ void dropSeQ(unsigned char side)
 	close(side);
 }
 
-unsigned char pickup(unsigned char side,unsigned char mode)	//1=swap 0=term
+unsigned char pickup(unsigned char side) //1=swap 0=term
 {
-	if(mode==0)
+	if(arm[side]==0)
 	{
-		if(arm[side]==0)
+		if(indi[term[CT][side]]!=CT && term[CT][side]!=0)
 		{
-			if(indi[term[CT][side]]!=CT && term[CT][side]!=0)
-			{
-				arm[side]=term[CT][side];
-				term[CT][side]=0;
-				pickupSeQ(side);
-				return 1;
-			}
-		}
-		else if(arm[!side]==0)
-		{
-			if(indi[term[CT][!side]]!=CT && term[CT][!side]!=0)
-			{
-				arm[!side]=term[CT][side];
-				term[CT][side]=0;
-				uTurn();
-				pickupSeQ(!side);
-				uTurn();
-				return 1;
-			}
-		}
-	}
-	if(mode==1)
-	{
-		if(arm[side]==0)
-		{
-			arm[side]=swap[CT%2];
-			swap[CT%2]=0;
+			arm[side]=term[CT][side];
+			term[CT][side]=0;
 			pickupSeQ(side);
 			return 1;
 		}
-		else if(arm[!side]==0)
+	}
+	else if(arm[!side]==0)
+	{
+		if(indi[term[CT][!side]]!=CT && term[CT][!side]!=0)
 		{
-			arm[!side]=swap[CT%2];
-			swap[CT%2]=0;
+			arm[!side]=term[CT][side];
+			term[CT][side]=0;
+			uTurn();
 			pickupSeQ(!side);
+			uTurn();
 			return 1;
 		}
 	}
 	return 0;
 }
+
+int pickupS(unsigned char side)	//side is arm since arena side can b calculated from CT
+{
+	if(arm[side]==0)
+	{
+		arm[side]=swap[CT%2];
+		swap[CT%2]=0;
+		pickupSeQ(side);
+		return 1;
+	}
+	else if(arm[!side]==0)
+	{
+		arm[!side]=swap[CT%2];
+		swap[CT%2]=0;
+		pickupSeQ(!side);
+		return 1;
+	}
+	return 0;
+}
+
 unsigned char drop(unsigned char side,unsigned char mode)
 {
-	if(mode==0)
+	if (mode == 0)
 	{
-		if(arm[side]!=0)
-		{
-			if(term[CT][side]==0 && arm[side]==indi[CT])
+		if (term[CT][side] == 0)
+			if(indi[arm[side]] == CT)
 			{
-				term[CT][side]=arm[side];
-				arm[side]=0;
+				term[CT][side] = arm[side];
+				arm[side] = 0;
 				dropSeQ(side);
 				return 1;
 			}
-		}
-		else if(arm[!side]!=0)
-		{
-			if(term[CT][!side]==0 && arm[!side]==indi[CT])
+			else if (indi[arm[!side]] == CT)
 			{
-				term[CT][side]=arm[side];
-				arm[!side]=0;
+				term[CT][side] = arm[!side];
+				arm[!side] = 0;
 				uTurn();
 				dropSeQ(!side);
 				uTurn();
 				return 1;
 			}
-		}
 	}
 	if(mode==1)
 	{
 		if(swap[CT%2]!=0)
-		return 0;
-		if(arm[side]!=0)
-		{
-			swap[CT%2]=arm[side];
-			arm[side]=0;
-			pickupSeQ(side);
-			return 1;
-		}
-		else if(arm[!side]!=0)
-		{
-			swap[CT%2]=arm[!side];
-			arm[!side]=0;
-			pickupSeQ(!side);
-			return 1;
-		}
+			return 0;
+		if(indi[arm[0]]==nxTerm)
+			mode=0;
+		else
+			mode=1;
+			
+		swap[CT%2]=arm[mode];
+		arm[mode]=0;
+		dropSeQ(side);
+		return 1;
 	}
 	return 0;
 }
@@ -343,23 +358,25 @@ unsigned char drop(unsigned char side,unsigned char mode)
 void swapMan(unsigned char sw,unsigned char nxTerm)		//make efficient
 {
 	unsigned char pSwap=((CT==2||CT==3)?1:0);
-	if(nxTerm==indi[swap[sw]])
+	if(CT==nxTerm)	//reached farther end
 	{
-		if((arm[1]==0 && arm[0]==0) || ((arm[1]==0 || arm[0]==0) && (term[nxTerm][0]==0 || term[nxTerm][1]==1)) )
-			i=pickup(pSwap,(unsigned char)1);
-	}
-	if(nxTerm%2!=CT%2)
-	{
-		if(nxTerm%2==sw)
+		if(arm[0]>0 && arm[1]>0 && visited[CT]==0) //base on the fact that a visited term atleast had 1 box taken from it
 		{
-			if(arm[0]>0 && arm[1]>0)
+				drop(pSwap,1);
+		}
+		if(nxTerm%2!=CT%2)	//going to far
+		{
+			if(nxTerm%2==sw)	//reached the far swap
 			{
-				drop((arm[0]==indi[nxTerm]),1);
+				if(arm[0]>0 && arm[1]>0)
+				{
+				
+					drop((arm[0]==indi[nxTerm]),1);
+				}
 			}
 		}
-	}
 }
-void travel(unsigned char CT,unsigned char nxTerm)
+void travel(unsigned char nxTerm)
 {
 	
 	forwardJaa();
@@ -371,7 +388,7 @@ void travel(unsigned char CT,unsigned char nxTerm)
 	lcd_print(1,13,(CT==2 && (nxTerm == 3 || nxTerm== 4)),1); // ||
 	lcd_print(1,14,(CT==3 && (nxTerm == 1 || nxTerm== 2)),1);
 	*/
-	if((CT==1 && (nxTerm == 3 || nxTerm== 4)) || (CT==4 && (nxTerm == 1 || nxTerm== 2)))
+	if((CT==1 && (nxTerm == 2 || nxTerm== 4)) || (CT==4 && (nxTerm == 1 || nxTerm== 3)))
 	{
 		nodeLeft();
 		forwardJaa();
@@ -384,7 +401,7 @@ void travel(unsigned char CT,unsigned char nxTerm)
 		else
 			nodeLeft();
 	}
-	else if((CT==2 && (nxTerm == 3 || nxTerm== 4)) || (CT==3 && (nxTerm == 1 || nxTerm== 2)))
+	else if((CT==2 && (nxTerm == 3 || nxTerm== 1)) || (CT==3 && (nxTerm == 4 || nxTerm== 2)))
 	{
 		nodeRight();
 		forwardJaa();
@@ -401,6 +418,7 @@ void travel(unsigned char CT,unsigned char nxTerm)
 	{
 		//_delay_ms(1000);
 	}
+	CT=nxTerm;
 	forwardJaa();
 	stop();
 	stop();
@@ -470,23 +488,47 @@ unsigned char checkForCompletion()
 //SORTMAN
 //MAIN SORTING FUNCTION
 //R-0 L-1
-void clalcThresh()
+int colorCalc()
 {
-	int c[4];
-	
-	
+	red_read();
+	blue_read();
+	green_read();
+	if(!(red>threshold && green>threshold && blue>threshold))
+	return BLACK;
+	else
+	{
+		if(red>blue)
+		{
+			if(red>green)
+			return RED;
+			else
+			return GREEN;
+		}
+		else if(blue>green)
+		return BLUE;
+		else return GREEN;
+	}
 }
-void pick_color(unsigned char node)	//0 or 1
+
+int pick_color(unsigned char node)	//0 or 1
 {
 	//read_color();
-		
+	unsigned char color;
+	if(node=0)
+		nodeRight();
+	else
+		nodeLeft();
+	color=colorCalc();
+	if(node=1)
+		nodeRight();
+	else
+		nodeLeft();
+	return color;
 }
 void termPick()
 {
-	//un nodeRight();
 	pick_color(0);
 	lcd_print(2,1,term[CT][0],1);
-//un	uTurn();
 	pick_color(1);
 	visited[CT]=1;
 }
@@ -508,13 +550,13 @@ void sortMan()
 			else	//both diff of far
 			{
 				nxTerm=indi[term[CT][0]];
-				pickup(0,0);
+				pickup(0);
 				drop(0,0);
 				gotoSort();
-				pickup(pSwap,1);
+				pickup(pSwap);
 				drop(pSwap,1);
 				goBack();
-				pickup(1,0);
+				pickup(1);
 				drop(1,0);
 				//SchPickupAtSort	//CT
 				//SchDropAtSort		//far
@@ -525,13 +567,13 @@ void sortMan()
 			if(adjCount==1)
 			{
 				nxTerm=adj;
-				pickup(pFar,0);
+				pickup(pFar);
 				drop(pFar,0);
 				gotoSort();
-				pickup(pSwap,1);
+				pickupS(pSwap);
 				drop(pSwap,1);
 				goBack();
-				pickup(!pFar,0);
+				pickup(!pFar);
 				drop(!pFar,0);
 				//nothing to schedule
 			}
@@ -544,10 +586,10 @@ void sortMan()
 				else	//seq also usable for both empty
 				{
 					nxTerm=indi[term[CT][pFar]];
-					pickup(pFar,0);
+					pickup(pFar);
 					drop(pFar,0);
 					gotoSort();
-					pickup(pSwap,1);
+					pickupS(pSwap);
 					goBack();
 					drop(!pFar,0);
 				}
@@ -558,13 +600,13 @@ void sortMan()
 			if(farCount==1)
 			{
 				nxTerm=adj;
-				pickup(pFar,0);
+				pickup(pFar);
 				drop(pFar,0);
 				gotoSort();
-				pickup(pSwap,1);
+				pickupS(pSwap);
 				drop(pSwap,1);
 				goBack();
-				pickup(!pFar,0);
+				pickup(!pFar);
 				drop(!pFar,0);
 				//nothing to schedule
 			}
@@ -573,9 +615,9 @@ void sortMan()
 				//empty node
 				drop(pFar,0);
 				gotoSort();
-				pickup(pSwap,1);
+				pickupS(pSwap);
 				goBack();
-				pickup(!pFar,0);
+				pickup(!pFar);
 				drop(!pFar,0);
 				nxTerm=adj;
 			}
@@ -583,23 +625,23 @@ void sortMan()
 		else if(adjCount==2)
 		{
 			nxTerm=adj;
-			pickup(0,0);
+			pickup(0);
 			drop(0,0);
 			gotoSort();
-			pickup(pSwap,1);
+			pickupS(pSwap);
 			drop(pSwap,1);
 			goBack();
-			pickup(1,0);
+			pickup(1);
 			drop(1,0);
 	}
 	if(arm[0]==0 && arm[1]==0)
 	{
-		travel(CT,nxTerm);
+		travel(nxTerm);
 		sortFree();
 	}
 	else
 	{
-		travel(CT,nxTerm);
+		travel(nxTerm);
 		sortMan();
 	}
 		
@@ -615,20 +657,20 @@ void sortMan()
 				nxTerm=indi[term[CT][0]]; //the common terminal
 				//SchPickupAtSort
 				//SchDropAtSort
-				pickup(0,0);
+				pickup(0);
 				drop(0,0);
-				pickup(1,0);
+				pickup(1);
 				drop(1,0);
 			}
 			else if(swap[CT%2]==term[CT][0])
 			{
-				pickup(0,0);
+				pickup(0);
 				drop(0,0);
 				nxTerm=indi[arm[0]];
 			}
 			else if(swap[CT%2]==term[CT][1])
 			{
-				pickup(1,0);
+				pickup(1);
 				drop(1,0);
 				nxTerm=indi[arm[1]];
 			}
@@ -639,16 +681,16 @@ void sortMan()
 			{
 				if(swap[CT%2]==0)
 				{
-					pickup(!pFar,0); //adjwala
+					pickup(!pFar); //adjwala
 					drop(!pFar,0);
-					pickup(pFar,0);
+					pickup(pFar);
 					nxTerm=adj;
 					//SchDropAtSort
 				}
 				else
 				{
 					//Sort of far and CT has 1 far a adj
-					pickup(!pFar,0);
+					pickup(!pFar);
 					drop(!pFar,0);
 					nxTerm=adj;
 				}
@@ -656,7 +698,7 @@ void sortMan()
 			else  //====
 			{	//one node is empty
 				nxTerm=indi[term[CT][pFar]];
-				pickup(pFar,0);
+				pickup(pFar);
 				drop(pFar,0);
 				//SchDropAtSort
 			}
@@ -668,23 +710,23 @@ void sortMan()
 			{
 				if(swap[CT%2]==0)
 				{
-					pickup(!pFar,0); //adjwala
+					pickup(!pFar); //adjwala
 					drop(!pFar,0);
-					pickup(pFar,0);
+					pickup(pFar);
 					nxTerm=adj;
 					//SchDropAtSort
 				}
 				else
 				{
 					//Sort of far and CT has 1 far a adj
-					pickup(!pFar,0);
+					pickup(!pFar);
 					drop(!pFar,0);
 					nxTerm=adj;
 				}
 			}
 			else	//1 empty 1 adj
 			{
-				pickup(!pFar,0);
+				pickup(!pFar);
 				drop(!pFar,0);
 				nxTerm=adj;
 			}
@@ -693,14 +735,14 @@ void sortMan()
 		{
 			if(swap[CT%2]>0) //smthin is at Sort
 			{
-				pickup(0,0);
+				pickup(0);
 				drop(0,0);
 			}
 			else
 			{
-				pickup(0,0);
+				pickup(0);
 				drop(0,0);
-				pickup(1,0);
+				pickup(1);
 			}
 			nxTerm=adj;
 		}
@@ -708,14 +750,8 @@ void sortMan()
 		{
 			drop(0,0);
 			drop(1,0);
-			nxTerm=unvisited();
-			if(nxTerm==0)
-			{
-				if(checkForCompletion())
-				{
-					//Exit Sequence
-				}
-			}
+			if(nxTerm==0)	//panic or complete
+				return;
 		}
 	}
 }
@@ -725,8 +761,10 @@ void sortFree()
 	unsigned char pFar=(term[CT][0]==indi[adj]);		//wont work for empty node
 	unsigned char nxTerm=0;
 	if(visited[CT]==0)
-		termPick();
+		//termPick();
 	counter();
+	pickup(0);
+	pickupS(1);
 	if(farCount==2)
 	{
 		nxTerm=indi[arm[0]];
@@ -774,38 +812,58 @@ void sortFree()
 			nxTerm=adj;
 		else
 			nxTerm=unvisited();
+		if(nxTerm==0)	//panic or complete
+			return;
 	}
 	if(arm[0]==0 && arm[1]==0)
 	{
-		travel(CT,nxTerm);
-		pickup(0,0);
-		pickup(1,0);
+		travel(nxTerm);
 		sortFree();
 	}
 	else
 	{
-		travel(CT,nxTerm);
+		travel(nxTerm);
 		sortMan();
 	}
 }
 
 void init_sort()
 	{
-		pickup(0,0);
-		pickup(1,0);
 		sortFree();
 	}
 
 //Main Function
 int main()
 {
-	init_devices();
+	/*init_devices();
 	lcd_set_4bit();
 	lcd_init();
 	color_sensor_scaling();
+	buzzer_on();
+	servo_1(0);
+	servo_2(0);
+	servo_3(0);
+	forward();
+	red_read(); //display the pulse count when red filter is selected
+	_delay_ms(500);
+	green_read(); //display the pulse count when green filter is selected
+	_delay_ms(500);
+	blue_read(); //display the pulse count when blue filter is selected
+	_delay_ms(500);
+	lcd_wr_command(0x01);
+	print_sensor(1,1,3);	//Prints value of White Line Sensor1
+	print_sensor(1,5,2);	//Prints Value of White Line Sensor2
+	print_sensor(1,9,1);	//Prints Value of White Line Sensor3
+	print_sensor(2,1,11);
+	servo_1(100);
+	servo_2(100);
+	servo_3(100);
+	_delay_ms(7000);
+	lcd_wr_command(0x01);
+	buzzer();
+	*/
 	init_sort();
 	//travel(1,3);
-	//buzzer();
 	while(1)
 	{
 	}

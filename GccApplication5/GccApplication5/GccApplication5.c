@@ -380,23 +380,28 @@ void correct()
 {
 	unsigned int i=0;
 	Degrees=5;
+	lcd_print(2,1,3,1);
 	for(;i<3;i++)
 	{
-			left(); //Left wheel backward, Right wheel forward
+			right(); //Left wheel backward, Right wheel forward
+			_delay_ms(100);
 			lcd_print(2,7,777,3);
-			angle_rotate(Degrees);
 			stop();
 			set_color();
 			if(Center_white_line>40)
 				return;
 	}
 	//normal
-	right();
+	
+	left(); //Left wheel backward, Right wheel forward
+	_delay_ms(300);
+	lcd_print(2,7,666,3);
+	stop();
+	left();
 	while(Center_white_line<40)
 	{
 	//	lcd_print(2,1,7,1);
 		set_color();
-		
 	}
 	return;
 }
@@ -404,8 +409,28 @@ void noNatak()
 {
 	//buzzer_on();
 	//lcd_print(2,1,7,1);
-	correct();
-		
+	set_color();
+	lcd_print(2,1,0,1);
+	if(Left_white_line>40)
+	{
+		lcd_print(2,1,4,1);
+		do
+		{
+			left();
+			set_color();
+		}while(Left_white_line<40);
+	}
+	else if(Right_white_line>40)
+	{
+		lcd_print(2,1,8,1);
+		do
+		{
+			right();
+			set_color();
+		}while(Right_white_line<40);
+	}
+	else
+	//	correct();
 	stop();
 	//lcd_print(2,1,6,1);
 	//buzzer_off();
@@ -417,21 +442,22 @@ void forwardJaa()
 	do
 	{
 		set_color();
-		if(Center_white_line>40 && (Left_white_line>40 || Right_white_line>40) )
-		{
-			forward();
-			_delay_ms(4000);
-			return;
-		}
+	//	if(Center_white_line>40 && Left_white_line>40 && Right_white_line>40)
+	//	{
+	//		forward();
+	//		velocity(160,160);
+	//		_delay_ms(4000);
+	//		return;
+	//	}
 		/*
 		print_sensor(1,1,3);	//Prints value of White Line Sensor1
 		print_sensor(1,5,2);	//Prints Value of White Line Sensor2
 		print_sensor(1,9,1);	//Prints Value of White Line Sensor3
 		*/
 		forward();
-		velocity(200,200);
+		velocity(160,160);
 		
-	}while(Center_white_line>0x28);
+	}while(Center_white_line>0x28 && Right_white_line<40 && Left_white_line<40);
 	
 	noNatak();
 	forwardJaa();
@@ -592,6 +618,7 @@ int main()
 	init_devices();
 	lcd_set_4bit();
 	lcd_init();
+	lcd_print(1,1,1,1);
 	travel(2,1);
 	travel(1,3);
 	travel(3,4);

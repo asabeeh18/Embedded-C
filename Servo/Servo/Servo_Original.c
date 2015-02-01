@@ -125,11 +125,7 @@ int main(void)
  {
 	 servo_1(0);
 	_delay_ms(1000);
-	servo_1(15);
-	_delay_ms(1000);
-	servo_1(30);
-	_delay_ms(1000);
-	servo_1(15);
+	servo_1(10);
 	_delay_ms(1000);
  }
  return 1;

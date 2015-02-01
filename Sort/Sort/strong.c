@@ -40,7 +40,7 @@ Connections:
  */ 
 
 
-#define F_CPU 14745600
+
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <util/delay.h>
@@ -236,8 +236,8 @@ void port_init(void)
 {
 	lcd_port_config();//lcd pin configuration
 	adc_pin_config();
-	left_encoder_pin_config(); //left encoder pin config
-	right_encoder_pin_config(); //right encoder pin config
+	//left_encoder_pin_config(); //left encoder pin config
+	//right_encoder_pin_config(); //right encoder pin config
  DDRC = DDRC | 0x08;		//Setting PORTC 3 as output
  PORTC = PORTC & 0xF7;		//Setting PORTC 3 logic low to turnoff buzzer
 
@@ -423,8 +423,8 @@ void init_devices(void)
 	cli(); //Clears the global interrupt
 	port_init();  //Initializes all the ports
 	color_sensor_pin_interrupt_init();
-	left_position_encoder_interrupt_init();
-	right_position_encoder_interrupt_init();
+	//left_position_encoder_interrupt_init();
+	//right_position_encoder_interrupt_init();
 	
 	adc_init();
 	motion_pin_config();

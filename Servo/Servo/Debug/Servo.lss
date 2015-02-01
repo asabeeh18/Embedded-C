@@ -3,27 +3,25 @@ Servo.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         000004ae  00000000  00000000  00000074  2**1
+  0 .text         000001e2  00000000  00000000  00000054  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .bss          0000000e  00800200  00800200  00000522  2**0
-                  ALLOC
-  2 .comment      00000030  00000000  00000000  00000522  2**0
+  1 .comment      00000030  00000000  00000000  00000236  2**0
                   CONTENTS, READONLY
-  3 .debug_aranges 000000c8  00000000  00000000  00000552  2**0
+  2 .debug_aranges 000000c8  00000000  00000000  00000266  2**0
                   CONTENTS, READONLY, DEBUGGING
-  4 .debug_info   00000a09  00000000  00000000  0000061a  2**0
+  3 .debug_info   00000a8a  00000000  00000000  0000032e  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_abbrev 00000253  00000000  00000000  00001023  2**0
+  4 .debug_abbrev 0000024a  00000000  00000000  00000db8  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_line   000006e3  00000000  00000000  00001276  2**0
+  5 .debug_line   00000703  00000000  00000000  00001002  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_frame  00000194  00000000  00000000  0000195c  2**2
+  6 .debug_frame  00000194  00000000  00000000  00001708  2**2
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_str    000002ef  00000000  00000000  00001af0  2**0
+  7 .debug_str    000002ef  00000000  00000000  0000189c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_loc    00000591  00000000  00000000  00001ddf  2**0
+  8 .debug_loc    00000572  00000000  00000000  00001b8b  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_ranges 000000e8  00000000  00000000  00002370  2**0
+  9 .debug_ranges 00000100  00000000  00000000  000020fd  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -164,531 +162,178 @@ Disassembly of section .text:
   fc:	1d 92       	st	X+, r1
 
 000000fe <.do_clear_bss_start>:
-  fe:	ae 30       	cpi	r26, 0x0E	; 14
+  fe:	a0 30       	cpi	r26, 0x00	; 0
  100:	b2 07       	cpc	r27, r18
  102:	e1 f7       	brne	.-8      	; 0xfc <.do_clear_bss_loop>
- 104:	8b d1       	rcall	.+790    	; 0x41c <main>
- 106:	d1 c1       	rjmp	.+930    	; 0x4aa <_exit>
+ 104:	37 d0       	rcall	.+110    	; 0x174 <main>
+ 106:	6b c0       	rjmp	.+214    	; 0x1de <_exit>
 
 00000108 <__bad_interrupt>:
  108:	7b cf       	rjmp	.-266    	; 0x0 <__vectors>
 
-0000010a <lcd_wr_command>:
+0000010a <servo1_pin_config>:
 }
 
 void servo_3_free (void) //makes servo 3 free rotating
 {
  OCR1CH = 0x03;
  OCR1CL = 0xFF; //Servo 3 off
- 10a:	98 b1       	in	r25, 0x08	; 8
- 10c:	9f 70       	andi	r25, 0x0F	; 15
- 10e:	98 b9       	out	0x08, r25	; 8
- 110:	98 b1       	in	r25, 0x08	; 8
- 112:	28 2f       	mov	r18, r24
- 114:	20 7f       	andi	r18, 0xF0	; 240
- 116:	92 2b       	or	r25, r18
- 118:	98 b9       	out	0x08, r25	; 8
- 11a:	40 98       	cbi	0x08, 0	; 8
- 11c:	41 98       	cbi	0x08, 1	; 8
- 11e:	42 9a       	sbi	0x08, 2	; 8
- 120:	e1 ee       	ldi	r30, 0xE1	; 225
- 122:	f4 e0       	ldi	r31, 0x04	; 4
- 124:	31 97       	sbiw	r30, 0x01	; 1
- 126:	f1 f7       	brne	.-4      	; 0x124 <lcd_wr_command+0x1a>
- 128:	00 c0       	rjmp	.+0      	; 0x12a <lcd_wr_command+0x20>
- 12a:	00 00       	nop
- 12c:	42 98       	cbi	0x08, 2	; 8
- 12e:	98 b1       	in	r25, 0x08	; 8
- 130:	9f 70       	andi	r25, 0x0F	; 15
- 132:	98 b9       	out	0x08, r25	; 8
- 134:	98 b1       	in	r25, 0x08	; 8
- 136:	82 95       	swap	r24
- 138:	80 7f       	andi	r24, 0xF0	; 240
- 13a:	89 2b       	or	r24, r25
- 13c:	88 b9       	out	0x08, r24	; 8
- 13e:	40 98       	cbi	0x08, 0	; 8
- 140:	41 98       	cbi	0x08, 1	; 8
- 142:	42 9a       	sbi	0x08, 2	; 8
- 144:	81 ee       	ldi	r24, 0xE1	; 225
- 146:	94 e0       	ldi	r25, 0x04	; 4
- 148:	01 97       	sbiw	r24, 0x01	; 1
- 14a:	f1 f7       	brne	.-4      	; 0x148 <lcd_wr_command+0x3e>
- 14c:	00 c0       	rjmp	.+0      	; 0x14e <lcd_wr_command+0x44>
- 14e:	00 00       	nop
- 150:	42 98       	cbi	0x08, 2	; 8
- 152:	08 95       	ret
+ 10a:	25 9a       	sbi	0x04, 5	; 4
+ 10c:	2d 9a       	sbi	0x05, 5	; 5
+ 10e:	08 95       	ret
 
-00000154 <lcd_wr_char>:
- 154:	98 b1       	in	r25, 0x08	; 8
- 156:	9f 70       	andi	r25, 0x0F	; 15
- 158:	98 b9       	out	0x08, r25	; 8
- 15a:	98 b1       	in	r25, 0x08	; 8
- 15c:	28 2f       	mov	r18, r24
- 15e:	20 7f       	andi	r18, 0xF0	; 240
- 160:	92 2b       	or	r25, r18
- 162:	98 b9       	out	0x08, r25	; 8
- 164:	40 9a       	sbi	0x08, 0	; 8
- 166:	41 98       	cbi	0x08, 1	; 8
- 168:	42 9a       	sbi	0x08, 2	; 8
- 16a:	e1 ee       	ldi	r30, 0xE1	; 225
- 16c:	f4 e0       	ldi	r31, 0x04	; 4
- 16e:	31 97       	sbiw	r30, 0x01	; 1
- 170:	f1 f7       	brne	.-4      	; 0x16e <lcd_wr_char+0x1a>
- 172:	00 c0       	rjmp	.+0      	; 0x174 <lcd_wr_char+0x20>
- 174:	00 00       	nop
- 176:	42 98       	cbi	0x08, 2	; 8
- 178:	98 b1       	in	r25, 0x08	; 8
- 17a:	9f 70       	andi	r25, 0x0F	; 15
- 17c:	98 b9       	out	0x08, r25	; 8
- 17e:	98 b1       	in	r25, 0x08	; 8
- 180:	82 95       	swap	r24
- 182:	80 7f       	andi	r24, 0xF0	; 240
- 184:	89 2b       	or	r24, r25
- 186:	88 b9       	out	0x08, r24	; 8
- 188:	40 9a       	sbi	0x08, 0	; 8
- 18a:	41 98       	cbi	0x08, 1	; 8
- 18c:	42 9a       	sbi	0x08, 2	; 8
- 18e:	81 ee       	ldi	r24, 0xE1	; 225
- 190:	94 e0       	ldi	r25, 0x04	; 4
- 192:	01 97       	sbiw	r24, 0x01	; 1
- 194:	f1 f7       	brne	.-4      	; 0x192 <lcd_wr_char+0x3e>
- 196:	00 c0       	rjmp	.+0      	; 0x198 <lcd_wr_char+0x44>
- 198:	00 00       	nop
- 19a:	42 98       	cbi	0x08, 2	; 8
- 19c:	08 95       	ret
+00000110 <servo2_pin_config>:
+ 110:	26 9a       	sbi	0x04, 6	; 4
+ 112:	2e 9a       	sbi	0x05, 6	; 5
+ 114:	08 95       	ret
 
-0000019e <lcd_home>:
- 19e:	80 e8       	ldi	r24, 0x80	; 128
- 1a0:	b4 cf       	rjmp	.-152    	; 0x10a <lcd_wr_command>
- 1a2:	08 95       	ret
+00000116 <servo3_pin_config>:
+ 116:	27 9a       	sbi	0x04, 7	; 4
+ 118:	2f 9a       	sbi	0x05, 7	; 5
+ 11a:	08 95       	ret
 
-000001a4 <lcd_cursor>:
- 1a4:	82 30       	cpi	r24, 0x02	; 2
- 1a6:	69 f0       	breq	.+26     	; 0x1c2 <lcd_cursor+0x1e>
- 1a8:	18 f4       	brcc	.+6      	; 0x1b0 <lcd_cursor+0xc>
- 1aa:	81 30       	cpi	r24, 0x01	; 1
- 1ac:	31 f0       	breq	.+12     	; 0x1ba <lcd_cursor+0x16>
- 1ae:	08 95       	ret
- 1b0:	83 30       	cpi	r24, 0x03	; 3
- 1b2:	59 f0       	breq	.+22     	; 0x1ca <lcd_cursor+0x26>
- 1b4:	84 30       	cpi	r24, 0x04	; 4
- 1b6:	69 f0       	breq	.+26     	; 0x1d2 <lcd_cursor+0x2e>
- 1b8:	08 95       	ret
- 1ba:	8f e7       	ldi	r24, 0x7F	; 127
- 1bc:	86 0f       	add	r24, r22
- 1be:	a5 cf       	rjmp	.-182    	; 0x10a <lcd_wr_command>
- 1c0:	08 95       	ret
- 1c2:	8f eb       	ldi	r24, 0xBF	; 191
- 1c4:	86 0f       	add	r24, r22
- 1c6:	a1 cf       	rjmp	.-190    	; 0x10a <lcd_wr_command>
- 1c8:	08 95       	ret
- 1ca:	83 e9       	ldi	r24, 0x93	; 147
- 1cc:	86 0f       	add	r24, r22
- 1ce:	9d cf       	rjmp	.-198    	; 0x10a <lcd_wr_command>
- 1d0:	08 95       	ret
- 1d2:	83 ed       	ldi	r24, 0xD3	; 211
- 1d4:	86 0f       	add	r24, r22
- 1d6:	99 cf       	rjmp	.-206    	; 0x10a <lcd_wr_command>
- 1d8:	08 95       	ret
+0000011c <port_init>:
+ 11c:	f6 df       	rcall	.-20     	; 0x10a <servo1_pin_config>
+ 11e:	f8 df       	rcall	.-16     	; 0x110 <servo2_pin_config>
+ 120:	fa cf       	rjmp	.-12     	; 0x116 <servo3_pin_config>
+ 122:	08 95       	ret
 
-000001da <lcd_print>:
- 1da:	0f 93       	push	r16
- 1dc:	1f 93       	push	r17
- 1de:	cf 93       	push	r28
- 1e0:	df 93       	push	r29
- 1e2:	8a 01       	movw	r16, r20
- 1e4:	e9 01       	movw	r28, r18
- 1e6:	88 23       	and	r24, r24
- 1e8:	11 f0       	breq	.+4      	; 0x1ee <lcd_print+0x14>
- 1ea:	61 11       	cpse	r22, r1
- 1ec:	02 c0       	rjmp	.+4      	; 0x1f2 <lcd_print+0x18>
- 1ee:	d7 df       	rcall	.-82     	; 0x19e <lcd_home>
- 1f0:	01 c0       	rjmp	.+2      	; 0x1f4 <lcd_print+0x1a>
- 1f2:	d8 df       	rcall	.-80     	; 0x1a4 <lcd_cursor>
- 1f4:	c5 30       	cpi	r28, 0x05	; 5
- 1f6:	d1 05       	cpc	r29, r1
- 1f8:	09 f0       	breq	.+2      	; 0x1fc <lcd_print+0x22>
- 1fa:	cd c0       	rjmp	.+410    	; 0x396 <lcd_print+0x1bc>
- 1fc:	98 01       	movw	r18, r16
- 1fe:	32 95       	swap	r19
- 200:	22 95       	swap	r18
- 202:	2f 70       	andi	r18, 0x0F	; 15
- 204:	23 27       	eor	r18, r19
- 206:	3f 70       	andi	r19, 0x0F	; 15
- 208:	23 27       	eor	r18, r19
- 20a:	a7 e4       	ldi	r26, 0x47	; 71
- 20c:	b3 e0       	ldi	r27, 0x03	; 3
- 20e:	3e d1       	rcall	.+636    	; 0x48c <__umulhisi3>
- 210:	96 95       	lsr	r25
- 212:	87 95       	ror	r24
- 214:	96 95       	lsr	r25
- 216:	87 95       	ror	r24
- 218:	96 95       	lsr	r25
- 21a:	87 95       	ror	r24
- 21c:	c0 96       	adiw	r24, 0x30	; 48
- 21e:	90 93 01 02 	sts	0x0201, r25
- 222:	80 93 00 02 	sts	0x0200, r24
- 226:	96 df       	rcall	.-212    	; 0x154 <lcd_wr_char>
- 228:	98 01       	movw	r18, r16
- 22a:	36 95       	lsr	r19
- 22c:	27 95       	ror	r18
- 22e:	36 95       	lsr	r19
- 230:	27 95       	ror	r18
- 232:	36 95       	lsr	r19
- 234:	27 95       	ror	r18
- 236:	a5 ec       	ldi	r26, 0xC5	; 197
- 238:	b0 e2       	ldi	r27, 0x20	; 32
- 23a:	28 d1       	rcall	.+592    	; 0x48c <__umulhisi3>
- 23c:	ac 01       	movw	r20, r24
- 23e:	52 95       	swap	r21
- 240:	42 95       	swap	r20
- 242:	4f 70       	andi	r20, 0x0F	; 15
- 244:	45 27       	eor	r20, r21
- 246:	5f 70       	andi	r21, 0x0F	; 15
- 248:	45 27       	eor	r20, r21
- 24a:	50 93 03 02 	sts	0x0203, r21
- 24e:	40 93 02 02 	sts	0x0202, r20
- 252:	9a 01       	movw	r18, r20
- 254:	ad ec       	ldi	r26, 0xCD	; 205
- 256:	bc ec       	ldi	r27, 0xCC	; 204
- 258:	19 d1       	rcall	.+562    	; 0x48c <__umulhisi3>
- 25a:	96 95       	lsr	r25
- 25c:	87 95       	ror	r24
- 25e:	96 95       	lsr	r25
- 260:	87 95       	ror	r24
- 262:	96 95       	lsr	r25
- 264:	87 95       	ror	r24
- 266:	9c 01       	movw	r18, r24
- 268:	22 0f       	add	r18, r18
- 26a:	33 1f       	adc	r19, r19
- 26c:	88 0f       	add	r24, r24
- 26e:	99 1f       	adc	r25, r25
- 270:	88 0f       	add	r24, r24
- 272:	99 1f       	adc	r25, r25
- 274:	88 0f       	add	r24, r24
- 276:	99 1f       	adc	r25, r25
- 278:	82 0f       	add	r24, r18
- 27a:	93 1f       	adc	r25, r19
- 27c:	48 1b       	sub	r20, r24
- 27e:	59 0b       	sbc	r21, r25
- 280:	ca 01       	movw	r24, r20
- 282:	c0 96       	adiw	r24, 0x30	; 48
- 284:	90 93 0d 02 	sts	0x020D, r25
- 288:	80 93 0c 02 	sts	0x020C, r24
- 28c:	63 df       	rcall	.-314    	; 0x154 <lcd_wr_char>
- 28e:	04 c0       	rjmp	.+8      	; 0x298 <lcd_print+0xbe>
- 290:	c3 30       	cpi	r28, 0x03	; 3
- 292:	d1 05       	cpc	r29, r1
- 294:	09 f0       	breq	.+2      	; 0x298 <lcd_print+0xbe>
- 296:	84 c0       	rjmp	.+264    	; 0x3a0 <lcd_print+0x1c6>
- 298:	98 01       	movw	r18, r16
- 29a:	36 95       	lsr	r19
- 29c:	27 95       	ror	r18
- 29e:	36 95       	lsr	r19
- 2a0:	27 95       	ror	r18
- 2a2:	ab e7       	ldi	r26, 0x7B	; 123
- 2a4:	b4 e1       	ldi	r27, 0x14	; 20
- 2a6:	f2 d0       	rcall	.+484    	; 0x48c <__umulhisi3>
- 2a8:	ac 01       	movw	r20, r24
- 2aa:	56 95       	lsr	r21
- 2ac:	47 95       	ror	r20
- 2ae:	50 93 03 02 	sts	0x0203, r21
- 2b2:	40 93 02 02 	sts	0x0202, r20
- 2b6:	9a 01       	movw	r18, r20
- 2b8:	ad ec       	ldi	r26, 0xCD	; 205
- 2ba:	bc ec       	ldi	r27, 0xCC	; 204
- 2bc:	e7 d0       	rcall	.+462    	; 0x48c <__umulhisi3>
- 2be:	96 95       	lsr	r25
- 2c0:	87 95       	ror	r24
- 2c2:	96 95       	lsr	r25
- 2c4:	87 95       	ror	r24
- 2c6:	96 95       	lsr	r25
- 2c8:	87 95       	ror	r24
- 2ca:	9c 01       	movw	r18, r24
- 2cc:	22 0f       	add	r18, r18
- 2ce:	33 1f       	adc	r19, r19
- 2d0:	88 0f       	add	r24, r24
- 2d2:	99 1f       	adc	r25, r25
- 2d4:	88 0f       	add	r24, r24
- 2d6:	99 1f       	adc	r25, r25
- 2d8:	88 0f       	add	r24, r24
- 2da:	99 1f       	adc	r25, r25
- 2dc:	82 0f       	add	r24, r18
- 2de:	93 1f       	adc	r25, r19
- 2e0:	48 1b       	sub	r20, r24
- 2e2:	59 0b       	sbc	r21, r25
- 2e4:	ca 01       	movw	r24, r20
- 2e6:	c0 96       	adiw	r24, 0x30	; 48
- 2e8:	90 93 09 02 	sts	0x0209, r25
- 2ec:	80 93 08 02 	sts	0x0208, r24
- 2f0:	31 df       	rcall	.-414    	; 0x154 <lcd_wr_char>
- 2f2:	98 01       	movw	r18, r16
- 2f4:	ad ec       	ldi	r26, 0xCD	; 205
- 2f6:	bc ec       	ldi	r27, 0xCC	; 204
- 2f8:	c9 d0       	rcall	.+402    	; 0x48c <__umulhisi3>
- 2fa:	ac 01       	movw	r20, r24
- 2fc:	56 95       	lsr	r21
- 2fe:	47 95       	ror	r20
- 300:	56 95       	lsr	r21
- 302:	47 95       	ror	r20
- 304:	56 95       	lsr	r21
- 306:	47 95       	ror	r20
- 308:	50 93 03 02 	sts	0x0203, r21
- 30c:	40 93 02 02 	sts	0x0202, r20
- 310:	9a 01       	movw	r18, r20
- 312:	bc d0       	rcall	.+376    	; 0x48c <__umulhisi3>
- 314:	96 95       	lsr	r25
- 316:	87 95       	ror	r24
- 318:	96 95       	lsr	r25
- 31a:	87 95       	ror	r24
- 31c:	96 95       	lsr	r25
- 31e:	87 95       	ror	r24
- 320:	9c 01       	movw	r18, r24
- 322:	22 0f       	add	r18, r18
- 324:	33 1f       	adc	r19, r19
- 326:	88 0f       	add	r24, r24
- 328:	99 1f       	adc	r25, r25
- 32a:	88 0f       	add	r24, r24
- 32c:	99 1f       	adc	r25, r25
- 32e:	88 0f       	add	r24, r24
- 330:	99 1f       	adc	r25, r25
- 332:	82 0f       	add	r24, r18
- 334:	93 1f       	adc	r25, r19
- 336:	48 1b       	sub	r20, r24
- 338:	59 0b       	sbc	r21, r25
- 33a:	ca 01       	movw	r24, r20
- 33c:	c0 96       	adiw	r24, 0x30	; 48
- 33e:	90 93 07 02 	sts	0x0207, r25
- 342:	80 93 06 02 	sts	0x0206, r24
- 346:	06 df       	rcall	.-500    	; 0x154 <lcd_wr_char>
- 348:	03 c0       	rjmp	.+6      	; 0x350 <lcd_print+0x176>
- 34a:	c1 30       	cpi	r28, 0x01	; 1
- 34c:	d1 05       	cpc	r29, r1
- 34e:	f1 f4       	brne	.+60     	; 0x38c <lcd_print+0x1b2>
- 350:	98 01       	movw	r18, r16
- 352:	ad ec       	ldi	r26, 0xCD	; 205
- 354:	bc ec       	ldi	r27, 0xCC	; 204
- 356:	9a d0       	rcall	.+308    	; 0x48c <__umulhisi3>
- 358:	96 95       	lsr	r25
- 35a:	87 95       	ror	r24
- 35c:	96 95       	lsr	r25
- 35e:	87 95       	ror	r24
- 360:	96 95       	lsr	r25
- 362:	87 95       	ror	r24
- 364:	9c 01       	movw	r18, r24
- 366:	22 0f       	add	r18, r18
- 368:	33 1f       	adc	r19, r19
- 36a:	88 0f       	add	r24, r24
- 36c:	99 1f       	adc	r25, r25
- 36e:	88 0f       	add	r24, r24
- 370:	99 1f       	adc	r25, r25
- 372:	88 0f       	add	r24, r24
- 374:	99 1f       	adc	r25, r25
- 376:	82 0f       	add	r24, r18
- 378:	93 1f       	adc	r25, r19
- 37a:	08 1b       	sub	r16, r24
- 37c:	19 0b       	sbc	r17, r25
- 37e:	c8 01       	movw	r24, r16
- 380:	c0 96       	adiw	r24, 0x30	; 48
- 382:	90 93 0b 02 	sts	0x020B, r25
- 386:	80 93 0a 02 	sts	0x020A, r24
- 38a:	e4 de       	rcall	.-568    	; 0x154 <lcd_wr_char>
- 38c:	26 97       	sbiw	r28, 0x06	; 6
- 38e:	64 f0       	brlt	.+24     	; 0x3a8 <lcd_print+0x1ce>
- 390:	85 e4       	ldi	r24, 0x45	; 69
- 392:	e0 de       	rcall	.-576    	; 0x154 <lcd_wr_char>
- 394:	09 c0       	rjmp	.+18     	; 0x3a8 <lcd_print+0x1ce>
- 396:	c4 30       	cpi	r28, 0x04	; 4
- 398:	d1 05       	cpc	r29, r1
- 39a:	09 f0       	breq	.+2      	; 0x39e <lcd_print+0x1c4>
- 39c:	79 cf       	rjmp	.-270    	; 0x290 <lcd_print+0xb6>
- 39e:	44 cf       	rjmp	.-376    	; 0x228 <lcd_print+0x4e>
- 3a0:	c2 30       	cpi	r28, 0x02	; 2
- 3a2:	d1 05       	cpc	r29, r1
- 3a4:	91 f6       	brne	.-92     	; 0x34a <lcd_print+0x170>
- 3a6:	a5 cf       	rjmp	.-182    	; 0x2f2 <lcd_print+0x118>
- 3a8:	df 91       	pop	r29
- 3aa:	cf 91       	pop	r28
- 3ac:	1f 91       	pop	r17
- 3ae:	0f 91       	pop	r16
- 3b0:	08 95       	ret
+00000124 <timer1_init>:
+ 124:	e1 e8       	ldi	r30, 0x81	; 129
+ 126:	f0 e0       	ldi	r31, 0x00	; 0
+ 128:	10 82       	st	Z, r1
+ 12a:	8c ef       	ldi	r24, 0xFC	; 252
+ 12c:	80 93 85 00 	sts	0x0085, r24
+ 130:	81 e0       	ldi	r24, 0x01	; 1
+ 132:	80 93 84 00 	sts	0x0084, r24
+ 136:	93 e0       	ldi	r25, 0x03	; 3
+ 138:	90 93 89 00 	sts	0x0089, r25
+ 13c:	8f ef       	ldi	r24, 0xFF	; 255
+ 13e:	80 93 88 00 	sts	0x0088, r24
+ 142:	90 93 8b 00 	sts	0x008B, r25
+ 146:	80 93 8a 00 	sts	0x008A, r24
+ 14a:	90 93 8d 00 	sts	0x008D, r25
+ 14e:	80 93 8c 00 	sts	0x008C, r24
+ 152:	90 93 87 00 	sts	0x0087, r25
+ 156:	80 93 86 00 	sts	0x0086, r24
+ 15a:	8b ea       	ldi	r24, 0xAB	; 171
+ 15c:	80 93 80 00 	sts	0x0080, r24
+ 160:	10 92 82 00 	sts	0x0082, r1
+ 164:	8c e0       	ldi	r24, 0x0C	; 12
+ 166:	80 83       	st	Z, r24
+ 168:	08 95       	ret
 
-000003b2 <servo1_pin_config>:
- 3b2:	25 9a       	sbi	0x04, 5	; 4
- 3b4:	2d 9a       	sbi	0x05, 5	; 5
- 3b6:	08 95       	ret
+0000016a <init_devices>:
+ 16a:	f8 94       	cli
+ 16c:	d7 df       	rcall	.-82     	; 0x11c <port_init>
+ 16e:	da df       	rcall	.-76     	; 0x124 <timer1_init>
+ 170:	78 94       	sei
+ 172:	08 95       	ret
 
-000003b8 <servo2_pin_config>:
- 3b8:	26 9a       	sbi	0x04, 6	; 4
- 3ba:	2e 9a       	sbi	0x05, 6	; 5
- 3bc:	08 95       	ret
-
-000003be <servo3_pin_config>:
- 3be:	27 9a       	sbi	0x04, 7	; 4
- 3c0:	2f 9a       	sbi	0x05, 7	; 5
- 3c2:	08 95       	ret
-
-000003c4 <port_init>:
- 3c4:	f6 df       	rcall	.-20     	; 0x3b2 <servo1_pin_config>
- 3c6:	f8 df       	rcall	.-16     	; 0x3b8 <servo2_pin_config>
- 3c8:	fa cf       	rjmp	.-12     	; 0x3be <servo3_pin_config>
- 3ca:	08 95       	ret
-
-000003cc <timer1_init>:
- 3cc:	e1 e8       	ldi	r30, 0x81	; 129
- 3ce:	f0 e0       	ldi	r31, 0x00	; 0
- 3d0:	10 82       	st	Z, r1
- 3d2:	8c ef       	ldi	r24, 0xFC	; 252
- 3d4:	80 93 85 00 	sts	0x0085, r24
- 3d8:	81 e0       	ldi	r24, 0x01	; 1
- 3da:	80 93 84 00 	sts	0x0084, r24
- 3de:	93 e0       	ldi	r25, 0x03	; 3
- 3e0:	90 93 89 00 	sts	0x0089, r25
- 3e4:	8f ef       	ldi	r24, 0xFF	; 255
- 3e6:	80 93 88 00 	sts	0x0088, r24
- 3ea:	90 93 8b 00 	sts	0x008B, r25
- 3ee:	80 93 8a 00 	sts	0x008A, r24
- 3f2:	90 93 8d 00 	sts	0x008D, r25
- 3f6:	80 93 8c 00 	sts	0x008C, r24
- 3fa:	90 93 87 00 	sts	0x0087, r25
- 3fe:	80 93 86 00 	sts	0x0086, r24
- 402:	8b ea       	ldi	r24, 0xAB	; 171
- 404:	80 93 80 00 	sts	0x0080, r24
- 408:	10 92 82 00 	sts	0x0082, r1
- 40c:	8c e0       	ldi	r24, 0x0C	; 12
- 40e:	80 83       	st	Z, r24
- 410:	08 95       	ret
-
-00000412 <init_devices>:
- 412:	f8 94       	cli
- 414:	d7 df       	rcall	.-82     	; 0x3c4 <port_init>
- 416:	da df       	rcall	.-76     	; 0x3cc <timer1_init>
- 418:	78 94       	sei
- 41a:	08 95       	ret
-
-0000041c <main>:
+00000174 <main>:
 
 //Main function
 int main(void)
 {
  unsigned char i = 0;
  init_devices();
- 41c:	fa df       	rcall	.-12     	; 0x412 <init_devices>
-} 
-
-//Main function
-int main(void)
-{
- unsigned char i = 0;
- 41e:	f1 2c       	mov	r15, r1
+ 174:	fa df       	rcall	.-12     	; 0x16a <init_devices>
 //Function to rotate Servo 1 by a specified angle in the multiples of 1.86 degrees
 void servo_1(unsigned char degrees)  
 {
  float PositionPanServo = 0;
   PositionPanServo = ((float)degrees / 1.86) + 35.0;
  OCR1AH = 0x00;
- 420:	09 e8       	ldi	r16, 0x89	; 137
- 422:	10 e0       	ldi	r17, 0x00	; 0
+ 176:	a9 e8       	ldi	r26, 0x89	; 137
+ 178:	b0 e0       	ldi	r27, 0x00	; 0
  OCR1AL = (unsigned char) PositionPanServo;
- 424:	c8 e8       	ldi	r28, 0x88	; 136
- 426:	d0 e0       	ldi	r29, 0x00	; 0
- 428:	0f 2e       	mov	r0, r31
- 42a:	f3 e2       	ldi	r31, 0x23	; 35
- 42c:	df 2e       	mov	r13, r31
- 42e:	f0 2d       	mov	r31, r0
- 430:	0f 2e       	mov	r0, r31
- 432:	f3 e8       	ldi	r31, 0x83	; 131
- 434:	ef 2e       	mov	r14, r31
- 436:	f0 2d       	mov	r31, r0
+ 17a:	e8 e8       	ldi	r30, 0x88	; 136
+ 17c:	f0 e0       	ldi	r31, 0x00	; 0
+ 17e:	23 e2       	ldi	r18, 0x23	; 35
+ 180:	8b e2       	ldi	r24, 0x2B	; 43
+ 182:	93 e3       	ldi	r25, 0x33	; 51
 //Function to rotate Servo 1 by a specified angle in the multiples of 1.86 degrees
 void servo_1(unsigned char degrees)  
 {
  float PositionPanServo = 0;
   PositionPanServo = ((float)degrees / 1.86) + 35.0;
  OCR1AH = 0x00;
- 438:	f8 01       	movw	r30, r16
- 43a:	10 82       	st	Z, r1
+ 184:	1c 92       	st	X, r1
  OCR1AL = (unsigned char) PositionPanServo;
- 43c:	d8 82       	st	Y, r13
+ 186:	20 83       	st	Z, r18
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
- 43e:	ff ef       	ldi	r31, 0xFF	; 255
- 440:	29 e6       	ldi	r18, 0x69	; 105
- 442:	88 e1       	ldi	r24, 0x18	; 24
- 444:	f1 50       	subi	r31, 0x01	; 1
- 446:	20 40       	sbci	r18, 0x00	; 0
- 448:	80 40       	sbci	r24, 0x00	; 0
- 44a:	e1 f7       	brne	.-8      	; 0x444 <main+0x28>
- 44c:	00 c0       	rjmp	.+0      	; 0x44e <main+0x32>
- 44e:	00 00       	nop
+ 188:	3f ef       	ldi	r19, 0xFF	; 255
+ 18a:	4f ef       	ldi	r20, 0xFF	; 255
+ 18c:	5c e2       	ldi	r21, 0x2C	; 44
+ 18e:	31 50       	subi	r19, 0x01	; 1
+ 190:	40 40       	sbci	r20, 0x00	; 0
+ 192:	50 40       	sbci	r21, 0x00	; 0
+ 194:	e1 f7       	brne	.-8      	; 0x18e <main+0x1a>
+ 196:	00 c0       	rjmp	.+0      	; 0x198 <main+0x24>
+ 198:	00 00       	nop
 //Function to rotate Servo 1 by a specified angle in the multiples of 1.86 degrees
 void servo_1(unsigned char degrees)  
 {
  float PositionPanServo = 0;
   PositionPanServo = ((float)degrees / 1.86) + 35.0;
  OCR1AH = 0x00;
- 450:	f8 01       	movw	r30, r16
- 452:	10 82       	st	Z, r1
+ 19a:	1c 92       	st	X, r1
  OCR1AL = (unsigned char) PositionPanServo;
- 454:	e8 82       	st	Y, r14
- 456:	ff ef       	ldi	r31, 0xFF	; 255
- 458:	29 e6       	ldi	r18, 0x69	; 105
- 45a:	88 e1       	ldi	r24, 0x18	; 24
- 45c:	f1 50       	subi	r31, 0x01	; 1
- 45e:	20 40       	sbci	r18, 0x00	; 0
- 460:	80 40       	sbci	r24, 0x00	; 0
- 462:	e1 f7       	brne	.-8      	; 0x45c <main+0x40>
- 464:	00 c0       	rjmp	.+0      	; 0x466 <main+0x4a>
- 466:	00 00       	nop
- {
- servo_1(0);
- 	 _delay_ms(8000);
-  servo_1(180);
-  _delay_ms(8000);
-  lcd_print(2,1,i,2);
- 468:	4f 2d       	mov	r20, r15
- 46a:	50 e0       	ldi	r21, 0x00	; 0
- 46c:	22 e0       	ldi	r18, 0x02	; 2
- 46e:	30 e0       	ldi	r19, 0x00	; 0
- 470:	61 e0       	ldi	r22, 0x01	; 1
- 472:	82 e0       	ldi	r24, 0x02	; 2
- 474:	b2 de       	rcall	.-668    	; 0x1da <lcd_print>
-  i++;
- 476:	f3 94       	inc	r15
- 478:	9f e7       	ldi	r25, 0x7F	; 127
- 47a:	ea e1       	ldi	r30, 0x1A	; 26
- 47c:	f6 e0       	ldi	r31, 0x06	; 6
- 47e:	91 50       	subi	r25, 0x01	; 1
- 480:	e0 40       	sbci	r30, 0x00	; 0
- 482:	f0 40       	sbci	r31, 0x00	; 0
- 484:	e1 f7       	brne	.-8      	; 0x47e <main+0x62>
- 486:	00 c0       	rjmp	.+0      	; 0x488 <main+0x6c>
- 488:	00 00       	nop
- 48a:	d6 cf       	rjmp	.-84     	; 0x438 <main+0x1c>
+ 19c:	80 83       	st	Z, r24
+ 19e:	3f ef       	ldi	r19, 0xFF	; 255
+ 1a0:	4f ef       	ldi	r20, 0xFF	; 255
+ 1a2:	5c e2       	ldi	r21, 0x2C	; 44
+ 1a4:	31 50       	subi	r19, 0x01	; 1
+ 1a6:	40 40       	sbci	r20, 0x00	; 0
+ 1a8:	50 40       	sbci	r21, 0x00	; 0
+ 1aa:	e1 f7       	brne	.-8      	; 0x1a4 <main+0x30>
+ 1ac:	00 c0       	rjmp	.+0      	; 0x1ae <main+0x3a>
+ 1ae:	00 00       	nop
+//Function to rotate Servo 1 by a specified angle in the multiples of 1.86 degrees
+void servo_1(unsigned char degrees)  
+{
+ float PositionPanServo = 0;
+  PositionPanServo = ((float)degrees / 1.86) + 35.0;
+ OCR1AH = 0x00;
+ 1b0:	1c 92       	st	X, r1
+ OCR1AL = (unsigned char) PositionPanServo;
+ 1b2:	90 83       	st	Z, r25
+ 1b4:	3f ef       	ldi	r19, 0xFF	; 255
+ 1b6:	4f ef       	ldi	r20, 0xFF	; 255
+ 1b8:	5c e2       	ldi	r21, 0x2C	; 44
+ 1ba:	31 50       	subi	r19, 0x01	; 1
+ 1bc:	40 40       	sbci	r20, 0x00	; 0
+ 1be:	50 40       	sbci	r21, 0x00	; 0
+ 1c0:	e1 f7       	brne	.-8      	; 0x1ba <main+0x46>
+ 1c2:	00 c0       	rjmp	.+0      	; 0x1c4 <main+0x50>
+ 1c4:	00 00       	nop
+//Function to rotate Servo 1 by a specified angle in the multiples of 1.86 degrees
+void servo_1(unsigned char degrees)  
+{
+ float PositionPanServo = 0;
+  PositionPanServo = ((float)degrees / 1.86) + 35.0;
+ OCR1AH = 0x00;
+ 1c6:	1c 92       	st	X, r1
+ OCR1AL = (unsigned char) PositionPanServo;
+ 1c8:	80 83       	st	Z, r24
+ 1ca:	3f ef       	ldi	r19, 0xFF	; 255
+ 1cc:	4f ef       	ldi	r20, 0xFF	; 255
+ 1ce:	5c e2       	ldi	r21, 0x2C	; 44
+ 1d0:	31 50       	subi	r19, 0x01	; 1
+ 1d2:	40 40       	sbci	r20, 0x00	; 0
+ 1d4:	50 40       	sbci	r21, 0x00	; 0
+ 1d6:	e1 f7       	brne	.-8      	; 0x1d0 <main+0x5c>
+ 1d8:	00 c0       	rjmp	.+0      	; 0x1da <main+0x66>
+ 1da:	00 00       	nop
+ 1dc:	d3 cf       	rjmp	.-90     	; 0x184 <main+0x10>
 
-0000048c <__umulhisi3>:
- 48c:	a2 9f       	mul	r26, r18
- 48e:	b0 01       	movw	r22, r0
- 490:	b3 9f       	mul	r27, r19
- 492:	c0 01       	movw	r24, r0
- 494:	a3 9f       	mul	r26, r19
- 496:	70 0d       	add	r23, r0
- 498:	81 1d       	adc	r24, r1
- 49a:	11 24       	eor	r1, r1
- 49c:	91 1d       	adc	r25, r1
- 49e:	b2 9f       	mul	r27, r18
- 4a0:	70 0d       	add	r23, r0
- 4a2:	81 1d       	adc	r24, r1
- 4a4:	11 24       	eor	r1, r1
- 4a6:	91 1d       	adc	r25, r1
- 4a8:	08 95       	ret
+000001de <_exit>:
+ 1de:	f8 94       	cli
 
-000004aa <_exit>:
- 4aa:	f8 94       	cli
-
-000004ac <__stop_program>:
- 4ac:	ff cf       	rjmp	.-2      	; 0x4ac <__stop_program>
+000001e0 <__stop_program>:
+ 1e0:	ff cf       	rjmp	.-2      	; 0x1e0 <__stop_program>
