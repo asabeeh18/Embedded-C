@@ -217,7 +217,7 @@ void uTurn()
 //bot will always face towards the inside of arena or away
 //inside for now
 //change it to facing outside
-char adjC()
+char adjC(unsigned char CT)
 {
 	
 	if(CT==1)
@@ -296,85 +296,103 @@ unsigned char pickup(unsigned char side) //1=swap 0=term
 	return 0;
 }
 
+unsigned char drop(unsigned char side)
+{
+	if (term[CT][side] == 0)
+		if(indi[arm[side]] == CT)
+		{
+			term[CT][side] = arm[side];
+			arm[side] = 0;
+			dropSeQ(side);
+			return 1;
+		}
+		else if (indi[arm[!side]] == CT)
+		{
+			term[CT][side] = arm[!side];
+			arm[!side] = 0;
+			uTurn();
+			dropSeQ(!side);
+			uTurn();
+			return 1;
+		}
+}
+
+int dropS(unsigned char side)	//side is arm since arena side can b calculated from CT
+{
+	if(swap[CT%2]!=0)
+		return 0;
+	if(indi[arm[0]]==nxTerm)
+		mode=0;
+	else
+		mode=1;
+			
+	swap[CT%2]=arm[mode];
+	arm[mode]=0;
+	dropSeQ(side);
+	return 1;
+
+	return 0;
+}
+
+
 int pickupS(unsigned char side)	//side is arm since arena side can b calculated from CT
 {
 	if(arm[side]==0)
 	{
-		arm[side]=swap[CT%2];
-		swap[CT%2]=0;
+		arm[side]=swap[side];
+		swap[side]=0;
 		pickupSeQ(side);
 		return 1;
 	}
-	else if(arm[!side]==0)
+	else if(arm[!side]==0)	//Uturn sequence follows
 	{
-		arm[!side]=swap[CT%2];
-		swap[CT%2]=0;
+		arm[!side]=swap[side];
+		swap[side]=0;
 		pickupSeQ(!side);
 		return 1;
 	}
 	return 0;
 }
 
-unsigned char drop(unsigned char side,unsigned char mode)
-{
-	if (mode == 0)
-	{
-		if (term[CT][side] == 0)
-			if(indi[arm[side]] == CT)
-			{
-				term[CT][side] = arm[side];
-				arm[side] = 0;
-				dropSeQ(side);
-				return 1;
-			}
-			else if (indi[arm[!side]] == CT)
-			{
-				term[CT][side] = arm[!side];
-				arm[!side] = 0;
-				uTurn();
-				dropSeQ(!side);
-				uTurn();
-				return 1;
-			}
-	}
-	if(mode==1)
-	{
-		if(swap[CT%2]!=0)
-			return 0;
-		if(indi[arm[0]]==nxTerm)
-			mode=0;
-		else
-			mode=1;
-			
-		swap[CT%2]=arm[mode];
-		arm[mode]=0;
-		dropSeQ(side);
-		return 1;
-	}
-	return 0;
-}
-
-
 void swapMan(unsigned char sw,unsigned char nxTerm)		//make efficient
 {
 	unsigned char pSwap=((CT==2||CT==3)?1:0);
 	if(CT==nxTerm)	//reached farther end
 	{
-		if(arm[0]>0 && arm[1]>0 && visited[CT]==0) //base on the fact that a visited term atleast had 1 box taken from it
+		if(arm[0]>0 && arm[1]>0 && visited[CT]==0) //based on the fact that a visited term atleast had 1 box taken from it
 		{
-				drop(pSwap,1);
+			if(arm[0]==arm[1] || indi[arm[1]]==CT)
+				dropS(0);
 		}
-		if(nxTerm%2!=CT%2)	//going to far
+	}
+	else if(CT%2!=nxTerm)	//going to far reached 1st swap
+	{
+		if(indi[swap[CT%2]]==nxTerm || indi[swap[CT%2]]==adjC(nxTerm))
 		{
-			if(nxTerm%2==sw)	//reached the far swap
+			pickupS(CT%2);
+		}
+	}
+	else if(CT%2==nxTerm%2)	//to adj
+	{
+		if(indi[swap[CT%2]]==nxTerm)
+		{
+			if(arm[1]==0 && arm[0]==0)
 			{
-				if(arm[0]>0 && arm[1]>0)
-				{
-				
-					drop((arm[0]==indi[nxTerm]),1);
-				}
+				pickupS(CT%2);
+			}
+			else if(arm[1]==0 || arm[0]==0)
+			{
+				if(visited[nxTerm]==1)
+					pickupS(CT%2);
+			}
+			else if(arm[1]>0 && arm[0]>0 && visited[nxTerm]=0)
+			{
+				if(indi[arm[0]]==nxTerm)
+					dropS(0);
+				else dropS(1);
 			}
 		}
+	}
 }
 void travel(unsigned char nxTerm)
 {
@@ -428,7 +446,7 @@ void travel(unsigned char nxTerm)
 
 void counter()
 {
-	char adj=adjC(); //v r inside d term wid one box of its color and an empty arm and MAYBE 1 box at sort
+	char adj=adjC(CT); //v r inside d term wid one box of its color and an empty arm and MAYBE 1 box at sort
 	adjCount=0;
 	farCount=0;
 
@@ -535,7 +553,7 @@ void termPick()
 void sortMan()
 {
 	unsigned char nxTerm=0;
-	unsigned char adj=adjC();
+	unsigned char adj=adjC(CT);
 	if(visited[CT]==0)
 		termPick();
 	counter();
@@ -551,13 +569,13 @@ void sortMan()
 			{
 				nxTerm=indi[term[CT][0]];
 				pickup(0);
-				drop(0,0);
+				drop(0);
 				gotoSort();
 				pickup(pSwap);
-				drop(pSwap,1);
+				dropS(pSwap);
 				goBack();
 				pickup(1);
-				drop(1,0);
+				drop(1);
 				//SchPickupAtSort	//CT
 				//SchDropAtSort		//far
 			}
@@ -568,13 +586,13 @@ void sortMan()
 			{
 				nxTerm=adj;
 				pickup(pFar);
-				drop(pFar,0);
+				drop(pFar);
 				gotoSort();
 				pickupS(pSwap);
-				drop(pSwap,1);
+				dropS(pSwap);
 				goBack();
 				pickup(!pFar);
-				drop(!pFar,0);
+				drop(!pFar);
 				//nothing to schedule
 			}
 			else
@@ -587,11 +605,11 @@ void sortMan()
 				{
 					nxTerm=indi[term[CT][pFar]];
 					pickup(pFar);
-					drop(pFar,0);
+					drop(pFar);
 					gotoSort();
 					pickupS(pSwap);
 					goBack();
-					drop(!pFar,0);
+					drop(!pFar);
 				}
 			}
 		}
@@ -601,24 +619,24 @@ void sortMan()
 			{
 				nxTerm=adj;
 				pickup(pFar);
-				drop(pFar,0);
+				drop(pFar);
 				gotoSort();
 				pickupS(pSwap);
-				drop(pSwap,1);
+				dropS(pSwap);
 				goBack();
 				pickup(!pFar);
-				drop(!pFar,0);
+				drop(!pFar);
 				//nothing to schedule
 			}
 			else
 			{
 				//empty node
-				drop(pFar,0);
+				drop(pFar);
 				gotoSort();
 				pickupS(pSwap);
 				goBack();
 				pickup(!pFar);
-				drop(!pFar,0);
+				drop(!pFar);
 				nxTerm=adj;
 			}
 		}
@@ -626,13 +644,13 @@ void sortMan()
 		{
 			nxTerm=adj;
 			pickup(0);
-			drop(0,0);
+			drop(0);
 			gotoSort();
 			pickupS(pSwap);
-			drop(pSwap,1);
+			dropS(pSwap);
 			goBack();
 			pickup(1);
-			drop(1,0);
+			drop(1);
 	}
 	if(arm[0]==0 && arm[1]==0)
 	{
@@ -658,20 +676,20 @@ void sortMan()
 				//SchPickupAtSort
 				//SchDropAtSort
 				pickup(0);
-				drop(0,0);
+				drop(0);
 				pickup(1);
-				drop(1,0);
+				drop(1);
 			}
 			else if(swap[CT%2]==term[CT][0])
 			{
 				pickup(0);
-				drop(0,0);
+				drop(0);
 				nxTerm=indi[arm[0]];
 			}
 			else if(swap[CT%2]==term[CT][1])
 			{
 				pickup(1);
-				drop(1,0);
+				drop(1);
 				nxTerm=indi[arm[1]];
 			}
 		}
@@ -682,7 +700,7 @@ void sortMan()
 				if(swap[CT%2]==0)
 				{
 					pickup(!pFar); //adjwala
-					drop(!pFar,0);
+					drop(!pFar);
 					pickup(pFar);
 					nxTerm=adj;
 					//SchDropAtSort
@@ -691,7 +709,7 @@ void sortMan()
 				{
 					//Sort of far and CT has 1 far a adj
 					pickup(!pFar);
-					drop(!pFar,0);
+					drop(!pFar);
 					nxTerm=adj;
 				}
 			}
@@ -699,7 +717,7 @@ void sortMan()
 			{	//one node is empty
 				nxTerm=indi[term[CT][pFar]];
 				pickup(pFar);
-				drop(pFar,0);
+				drop(pFar);
 				//SchDropAtSort
 			}
 		}
@@ -711,7 +729,7 @@ void sortMan()
 				if(swap[CT%2]==0)
 				{
 					pickup(!pFar); //adjwala
-					drop(!pFar,0);
+					drop(!pFar);
 					pickup(pFar);
 					nxTerm=adj;
 					//SchDropAtSort
@@ -720,14 +738,14 @@ void sortMan()
 				{
 					//Sort of far and CT has 1 far a adj
 					pickup(!pFar);
-					drop(!pFar,0);
+					drop(!pFar);
 					nxTerm=adj;
 				}
 			}
 			else	//1 empty 1 adj
 			{
 				pickup(!pFar);
-				drop(!pFar,0);
+				drop(!pFar);
 				nxTerm=adj;
 			}
 		}
@@ -736,20 +754,20 @@ void sortMan()
 			if(swap[CT%2]>0) //smthin is at Sort
 			{
 				pickup(0);
-				drop(0,0);
+				drop(0);
 			}
 			else
 			{
 				pickup(0);
-				drop(0,0);
+				drop(0);
 				pickup(1);
 			}
 			nxTerm=adj;
 		}
 		else		//empty
 		{
-			drop(0,0);
-			drop(1,0);
+			drop(0);
+			drop(1);
 			if(nxTerm==0)	//panic or complete
 				return;
 		}
@@ -757,7 +775,7 @@ void sortMan()
 }
 void sortFree()
 {
-	unsigned char adj=adjC();
+	unsigned char adj=adjC(CT);
 	unsigned char pFar=(term[CT][0]==indi[adj]);		//wont work for empty node
 	unsigned char nxTerm=0;
 	if(visited[CT]==0)
