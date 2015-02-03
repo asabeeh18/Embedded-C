@@ -321,17 +321,10 @@ int dropS(unsigned char side)	//side is arm since arena side can b calculated fr
 {
 	if(swap[CT%2]!=0)
 		return 0;
-	if(indi[arm[0]]==nxTerm)
-		mode=0;
-	else
-		mode=1;
-			
-	swap[CT%2]=arm[mode];
-	arm[mode]=0;
+	swap[CT%2]=arm[side];
+	arm[side]=0;
 	dropSeQ(side);
 	return 1;
-
-	return 0;
 }
 
 
