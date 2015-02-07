@@ -238,7 +238,7 @@ void uTurn()
 //bot will always face towards the inside of arena or away
 //inside for now
 //change it to facing outside
-char adjC()
+char adjC(unsigned int CT)
 {
 
 	if (CT == 1)
@@ -477,7 +477,7 @@ void travel(unsigned char nxTerm)
 
 void counter()
 {
-	char adj = adjC(); //v r inside d term wid one box of its color and an empty arm and MAYBE 1 box at sort
+	char adj = adjC(CT); //v r inside d term wid one box of its color and an empty arm and MAYBE 1 box at sort
 	adjCount = 0;
 	farCount = 0;
 
