@@ -240,7 +240,7 @@ void angle_rotate(unsigned int Degrees)
 
 	while (1)
 	{
-		lcd_print(2,1,5,1);
+		//..lcd_print(2,1,5,1);
 		if((ShaftCountRight >= ReqdShaftCountInt) | (ShaftCountLeft >= ReqdShaftCountInt))
 		{
 			
@@ -380,59 +380,83 @@ void correct()
 {
 	unsigned int i=0;
 	Degrees=5;
-	lcd_print(2,1,3,1);
 	for(;i<3;i++)
 	{
-			right(); //Left wheel backward, Right wheel forward
+			left(); //Left wheel backward, Right wheel forward
+			//..lcd_print(2,7,777,3);
 			_delay_ms(100);
-			lcd_print(2,7,777,3);
 			stop();
 			set_color();
 			if(Center_white_line>40)
 				return;
 	}
 	//normal
-	
-	left(); //Left wheel backward, Right wheel forward
-	_delay_ms(300);
-	lcd_print(2,7,666,3);
-	stop();
-	left();
+	right();
 	while(Center_white_line<40)
 	{
-	//	lcd_print(2,1,7,1);
+	//	//..lcd_print(2,1,7,1);
 		set_color();
+		
 	}
 	return;
 }
 void noNatak()
 {
+	unsigned int delay=150;
+	int i=1;
+	lcd_print(2,1,2,1);
 	//buzzer_on();
-	//lcd_print(2,1,7,1);
+	////..lcd_print(2,1,7,1);
+	//correct();
+	velocity(100,100);
 	set_color();
-	lcd_print(2,1,0,1);
-	if(Left_white_line>40)
-	{
-		lcd_print(2,1,4,1);
-		do
+	do{
+		set_color();
+		lcd_print(2,1,3,1);
+		if(Center_white_line<40 && Left_white_line<40 && Right_white_line<40)
 		{
-			left();
+			lcd_print(2,1,4,1);
+			left();	
+			_delay_ms(delay);	
 			set_color();
-		}while(Left_white_line<40);
-	}
-	else if(Right_white_line>40)
-	{
-		lcd_print(2,1,8,1);
-		do
-		{
+			if(Center_white_line>40 || Right_white_line>40)
+			{
+				return;
+			}
+			stop();
 			right();
+			_delay_ms(2*delay);
 			set_color();
-		}while(Right_white_line<40);
-	}
-	else
-	//	correct();
-	stop();
-	//lcd_print(2,1,6,1);
+			if(Center_white_line>40 || Left_white_line>40)
+			{
+				return;
+			}
+		}
+		else if(Right_white_line>40)
+		{
+			lcd_print(2,1,5,1);
+			left();
+			while(Center_white_line<40)
+			{
+				set_color();
+			}
+			stop();
+			return;
+		}
+		else if(Left_white_line>40)
+		{
+			lcd_print(2,1,6,1);
+			right();
+			while(Center_white_line<40)
+			{
+				set_color();
+			}
+			stop();
+			return;
+		}	
+		i++;
+	}while(1);
+	////..lcd_print(2,1,6,1);
 	//buzzer_off();
 	
 }
@@ -441,23 +465,22 @@ void forwardJaa()
 {
 	do
 	{
+		lcd_print(2,1,1,1);
 		set_color();
-	//	if(Center_white_line>40 && Left_white_line>40 && Right_white_line>40)
-	//	{
-	//		forward();
-	//		velocity(160,160);
-	//		_delay_ms(4000);
-	//		return;
-	//	}
+		if(Center_white_line>40 && (Left_white_line>40 || Right_white_line>40) )
+		{
+			stop();
+			return;
+		}
 		/*
 		print_sensor(1,1,3);	//Prints value of White Line Sensor1
 		print_sensor(1,5,2);	//Prints Value of White Line Sensor2
 		print_sensor(1,9,1);	//Prints Value of White Line Sensor3
 		*/
 		forward();
-		velocity(160,160);
+		velocity(255,255);
 		
-	}while(Center_white_line>0x28 && Right_white_line<40 && Left_white_line<40);
+	}while(Center_white_line>0x28);
 	
 	noNatak();
 	forwardJaa();
@@ -482,73 +505,18 @@ void nodeRight()
 }
 void nodeLeft()
 {
-	turnDelay();
 	left();
-	angle_rotate(100);
+	_delay_ms(750);
+	stop();
 }
 
 void buzzer()
 {
 	
 	buzzer_on();
-	_delay_ms(1000);
+	_delay_ms(100);
 	buzzer_off();
 }
-void nodeInd()
-{
-	lcd_print(2,1,0,1);
-	
-	turnDelay();
-	noNatak();
-	
-	right();
-	angle_rotate(90);
-	_delay_ms(1000);
-	buzzer();
-	
-	right();
-	
-	angle_rotate(190);
-	_delay_ms(1000);
-	buzzer();
-	
-	right();
-	angle_rotate(80);
-	buzzer();
-	forward();
-	_delay_ms(5000);
-}
-void onNode()
-{
-	static unsigned int nodeCount=0;
-	nodeCount++;
-	if(nodeCount==1)
-	{
-		lcd_print(2,1,3,1);
-		forward();
-		_delay_ms(5000);
-	}
-	else if(nodeCount==2 || nodeCount==3)
-	{
-		lcd_print(2,1,4,1);
-		nodeInd();
-	}
-	else if(nodeCount==4)
-	{
-		nodeLeft();
-	}
-	else if(nodeCount==5)
-	{
-		nodeRight();
-	}
-	else if(nodeCount==6)
-	{
-		stop();
-		buzzer_on();
-		while(1);
-	}
-}
-
 //bot will always face towards the inside of arena or away
 //inside for now
 
@@ -556,25 +524,29 @@ char adjC(unsigned char CT)
 {
 	
 	if(CT==1)
-	return 2;
-	if(CT==2)
-	return 1;
-	if(CT==3)
-	return 4;
-	if(CT==4)
 	return 3;
+	if(CT==2)
+	return 4;
+	if(CT==3)
+	return 1;
+	if(CT==4)
+	return 2;
 	else return 0;
 }
 void travel(int CT,int nxTerm)
 {
-	
+	buzzer();
+	lcd_print(1,1,1,1);
 	forwardJaa();
+	forward();
+	_delay_ms(1000);
+	buzzer();
 	//swapEncounterdAction
-	lcd_print(1,11,(CT==1 && (nxTerm == 3 || nxTerm== 4)),1);// ||
-	lcd_print(1,12,(CT==4 && (nxTerm == 1 || nxTerm== 2)),1);
-	lcd_print(1,13,(CT==2 && (nxTerm == 3 || nxTerm== 4)),1); // ||
-	lcd_print(1,14,(CT==3 && (nxTerm == 1 || nxTerm== 2)),1);
-	if((CT==1 && (nxTerm == 3 || nxTerm== 4)) || (CT==4 && (nxTerm == 1 || nxTerm== 2)))
+	//..lcd_print(1,11,(CT==1 && (nxTerm == 3 || nxTerm== 4)),1);// ||
+	//..lcd_print(1,12,(CT==4 && (nxTerm == 1 || nxTerm== 2)),1);
+	//..lcd_print(1,13,(CT==2 && (nxTerm == 3 || nxTerm== 4)),1); // ||
+	//..lcd_print(1,14,(CT==3 && (nxTerm == 1 || nxTerm== 2)),1);
+	if ((CT == 1 && (nxTerm == 2 || nxTerm == 4)) || (CT == 4 && (nxTerm == 1 || nxTerm == 3)))
 	{
 		nodeLeft();
 		forwardJaa();
@@ -585,7 +557,7 @@ void travel(int CT,int nxTerm)
 		else
 			nodeLeft();
 	}
-	else if((CT==2 && (nxTerm == 3 || nxTerm== 4)) || (CT==3 && (nxTerm == 1 || nxTerm== 2)))
+	else if ((CT == 2 && (nxTerm == 3 || nxTerm == 1)) || (CT == 3 && (nxTerm == 4 || nxTerm == 2)))
 	{
 		nodeRight();
 		forwardJaa();
@@ -602,11 +574,11 @@ void travel(int CT,int nxTerm)
 		_delay_ms(1000);
 	}
 	forwardJaa();	
+	lcd_print(1,1,2,1);
 	stop();
 	buzzer();
 	right();
-	angle_rotate(190);
-	_delay_ms(1000);
+	_delay_ms(2100);
 	stop();
 	buzzer();
 }
@@ -618,12 +590,9 @@ int main()
 	init_devices();
 	lcd_set_4bit();
 	lcd_init();
-	lcd_print(1,1,1,1);
-	travel(2,1);
+	buzzer();
+	travel(3,1);
 	travel(1,3);
-	travel(3,4);
-	travel(4,1);
-	//travel(1,3);
 	//buzzer();
 	while(1)
 	{

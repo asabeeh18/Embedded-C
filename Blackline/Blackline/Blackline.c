@@ -9,14 +9,13 @@ void port_init();
 void timer5_init();
 void velocity(unsigned char, unsigned char);
 void motors_delay();
-void onNode();
+
 unsigned char ADC_Conversion(unsigned char);
 unsigned char ADC_Value;
 unsigned char flag = 0;
 unsigned char Left_white_line = 0;
 unsigned char Center_white_line = 0;
 unsigned char Right_white_line = 0;
-unsigned char Front_Sharp_Sensor=0;
 //
 unsigned long int ShaftCountLeft = 0; //to keep track of left position encoder
 unsigned long int ShaftCountRight = 0; //to keep track of right position encoder
@@ -241,7 +240,7 @@ void angle_rotate(unsigned int Degrees)
 
 	while (1)
 	{
-		//lcd_print(2,1,5,1);
+		lcd_print(2,1,5,1);
 		if((ShaftCountRight >= ReqdShaftCountInt) | (ShaftCountLeft >= ReqdShaftCountInt))
 		{
 			
@@ -250,7 +249,7 @@ void angle_rotate(unsigned int Degrees)
 		
 	}
 	stop(); //Stop robot
-	return;
+	
 }
 
 //Function used for moving robot forward by specified distance
@@ -374,7 +373,7 @@ void set_color()
 	Left_white_line = ADC_Conversion(3);	//Getting data of Left WL Sensor
 	Center_white_line = ADC_Conversion(2);	//Getting data of Center WL Sensor
 	Right_white_line = ADC_Conversion(1);	//Getting data of Right WL Sensor
-	Front_Sharp_Sensor = ADC_Conversion(11);
+
 }
 
 void correct()
@@ -384,7 +383,7 @@ void correct()
 	for(;i<3;i++)
 	{
 			left(); //Left wheel backward, Right wheel forward
-			//lcd_print(2,1,i,1);
+			lcd_print(2,1,i,1);
 			angle_rotate(Degrees);
 			stop();
 			set_color();
@@ -395,9 +394,8 @@ void correct()
 	right();
 	while(Center_white_line<40)
 	{
-		//lcd_print(2,1,7,1);
+		lcd_print(2,1,7,1);
 		set_color();
-		
 	}
 	return;
 }
@@ -413,114 +411,34 @@ void noNatak()
 	return;
 }
 
+
 void forwardJaa()
 {
 	do
 	{
-		print_sensor(1,1,11);
 		set_color();
-		
 		if(Center_white_line>40 && (Left_white_line>40 || Right_white_line>40) )
 		{
-			onNode();
-		}
+			buzzer_on();
+			forward();
+			_delay_ms(10000);
+			right();
+			angle_rotate(90);
+			stop();
+			buzzer_off();
+		}	
 		print_sensor(1,1,3);	//Prints value of White Line Sensor1
 		print_sensor(1,5,2);	//Prints Value of White Line Sensor2
 		print_sensor(1,9,1);	//Prints Value of White Line Sensor3
-		
+	
 		forward();
 		velocity(200,200);
-		
-	}while(Center_white_line>0x28);
 	
-	noNatak();
+	}
+	while(Center_white_line>0x28);
+	
+	noNatak();	
 	return;
-}
-
-void turnDelay()
-{	
-	forward();
-	_delay_ms(10000);
-
-}
-
-void nodeFront()
-{
-	forwardJaa();
-}
-void nodeRight()
-{
-	turnDelay();
-	right();
-	angle_rotate(90);
-}
-void nodeLeft()
-{
-	turnDelay();
-	left();
-	angle_rotate(100);
-}
-
-void buzzer()
-{
-	
-	buzzer_on();
-	_delay_ms(1000);
-	buzzer_off();
-}
-void nodeInd()
-{
-	//lcd_print(2,1,0,1);
-	
-	turnDelay();
-	noNatak();
-	
-	right();
-	angle_rotate(90);
-	_delay_ms(1000);
-	buzzer();
-	
-	right();
-	
-	angle_rotate(190);
-	_delay_ms(1000);
-	buzzer();
-	
-	right();
-	angle_rotate(80);
-	buzzer();
-	forward();
-	_delay_ms(5000);
-}
-void onNode()
-{
-	static unsigned int nodeCount=0;
-	nodeCount++;
-	if(nodeCount==1)
-	{
-		//lcd_print(2,1,3,1);
-		forward();
-		_delay_ms(5000);
-	}
-	else if(nodeCount==2 || nodeCount==3)
-	{
-		//lcd_print(2,1,4,1);
-		nodeInd();
-	}
-	else if(nodeCount==4)
-	{
-		soft_left();
-	}
-	else if(nodeCount==5)
-	{
-		nodeRight();
-	}
-	else if(nodeCount==6)
-	{
-		stop();
-		buzzer_on();
-		while(1);
-	}
 }
 
 //Main Function
