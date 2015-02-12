@@ -379,10 +379,9 @@ void set_color()
 
 void correct()
 {
-	unsigned int delay=100;
-	do
+	if(Center_white_line<40 && Left_white_line<40 && Right_white_line<40)
 	{
-		lcd_print(2,15,4,1);
+		lcd_print(2,1,4,1);
 		left();
 		_delay_ms(delay);
 		set_color();
@@ -398,7 +397,7 @@ void correct()
 		{
 			return;
 		}
-	}while(Center_white_line<40 && Left_white_line<40 && Right_white_line<40);
+	}
 	
 }
 void noNatak()
