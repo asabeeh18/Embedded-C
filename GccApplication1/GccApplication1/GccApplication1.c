@@ -129,17 +129,29 @@ void fixPath()
 				left();
 				miss++;
 			}while(Center_white_line<40 && miss<20);
+			
 			stop();
-			if (miss>20)
+			buzzer_on();
+			_delay_ms(90);
+			buzzer_off();
+			
+			if (miss>=20)
 			{
+				miss=0;
 				lcd_print(2,1,3,1);
-				buzzer_on();
-				_delay_ms(1000);
+				//buzzer_on();
+				//_delay_ms(1000);
+				velocity(150,150);
 				do
 				{
 					set_color();
 					right();
-				} while (Center_white_line<40);
+				} while (Center_white_line<40 &&  miss<40);
+				stop();
+				if(miss>=40)
+				{
+					lcd_print(2,1,8,10);
+				}
 			}
 			stop();
 			lcd_print(2,1,9,1);
@@ -151,7 +163,7 @@ void fixPath()
 void goForward()
 {
 	set_color();
-	while(Center_white_line>0x28 && Left_white_line<0x28 && Right_white_line<0x28)
+	do
 	{
 		set_color();
 		forward();
@@ -161,7 +173,7 @@ void goForward()
 			set_color();
 			atNode();
 		}
-	}
+	}while(Center_white_line>0x28 && Left_white_line<0x28 && Right_white_line<0x28);
 	
 	set_color();
 	fixPath();
