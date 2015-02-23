@@ -539,13 +539,13 @@ int main(void)
 		servo_2(0);
 		servo_3(0);
 		forward();
-       red_read(); //display the pulse count when red filter is selected
-	   _delay_ms(500);
-	   green_read(); //display the pulse count when green filter is selected
-	   _delay_ms(500);
-	   blue_read(); //display the pulse count when blue filter is selected
-	   _delay_ms(500); 
-	   lcd_wr_command(0x01);
+   //    red_read(); //display the pulse count when red filter is selected
+	//   _delay_ms(500);
+	//   green_read(); //display the pulse count when green filter is selected
+//	   _delay_ms(500);
+	//   blue_read(); //display the pulse count when blue filter is selected
+	//   _delay_ms(500); 
+	//   lcd_wr_command(0x01);
 	   print_sensor(1,1,3);	//Prints value of White Line Sensor1
 	   print_sensor(1,5,2);	//Prints Value of White Line Sensor2
 	   print_sensor(1,9,1);	//Prints Value of White Line Sensor3
@@ -553,7 +553,7 @@ int main(void)
 	   servo_1(100);
 	   servo_2(100);
 	   servo_3(100);
-	   _delay_ms(7000);
+	//   _delay_ms(7000);
 	   
     }
 }

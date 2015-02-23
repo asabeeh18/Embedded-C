@@ -13,7 +13,7 @@ Sort1=5;//i.e 1+4;
 */
 /*--Variables--*/
 #include<stdio.h>
-#include "strong.c"
+//#include<conio.h>
 int indicator[4];//indicator[0] contains the terminal no. associated vid red color;this vil be used in scan();
 int color[4];//color[0] contains the color no. associated vid terminal 0;
 int term[4][2];//initialise to -2;
@@ -26,259 +26,50 @@ int arm[2];//initialise to -1;
 int total = 8;
 int sorted = 0;
 int count = 0;
-int cost;
+int cost = 0;
+int angle = 0;
 int visitedCount = 0;
 int ot = 0, dir = 0;
-const int RED=0,GREEN=1,BLUE=2,BLACK=3,EMPTY=-1;
-int threshold;
-unsigned char Left_white_line = 0;
-unsigned char Center_white_line = 0;
-unsigned char Right_white_line = 0;
-
-void goForward();
-
 //whenever v find a blank space or box belonging to dat space total dec by 1;and whenever v place box in terminal sort++;
 /*--functions--*/
-void set_color()
-{
-	Left_white_line = ADC_Conversion(3);	//Getting data of Left WL Sensor
-	Center_white_line = ADC_Conversion(2);	//Getting data of Center WL Sensor
-	Right_white_line = ADC_Conversion(1);	//Getting data of Right WL Sensor
-}
-
-void show_color()
-{
-	print_sensor(1,1,3);	//Prints value of White Line Sensor1
-	print_sensor(1,5,2);	//Prints Value of White Line Sensor2
-	print_sensor(1,9,1);	//Prints Value of White Line Sensor3
-}
-/*
-void turnLeft()
-{
-	do{
-		soft_right();
-	}while((Center_white_line<40) && (Left_white_line<40 || Right_white_line<40));
-	goForward();
-}
-*/
-/*************************GULLA CODE**Blackline Forward***********/
-
-void fidgit()
-{
-	set_color();
-	velocity(100,100);
-	right();
-	_delay_ms(70);
-	set_color();
-	if(Center_white_line>40){
-		goForward();
-	}
-	velocity(100,100);
-	left();
-	_delay_ms(140);
-	set_color();
-	if(Center_white_line>40){
-		goForward();
-	}
-	stop();
-}
-
-void fixLeft()
-{
-	do
-	{
-		forward();
-		velocity(200,240);
-		show_color();
-		set_color();
-		show_color();
-		
-		if(Center_white_line>40){
-			buzzer_on();
-			forward();
-			velocity(220,200);
-			_delay_ms(40);
-		}
-	}while(Center_white_line>40 && (Left_white_line<40 || Right_white_line<40));
-	buzzer_off();
-}
-
-void fixRight()
-{
-	do
-	{
-		forward();
-		velocity(240,200);
-		show_color();
-		set_color();
-		show_color();
-		if(Center_white_line>40){
-			buzzer_on();
-			forward();
-			velocity(200,220);
-			_delay_ms(40);
-		}
-	}while(Center_white_line>40 && (Left_white_line<40 || Right_white_line<40));
-	buzzer_off();
-}
-
-void fixPath()
-{
-	set_color();
-	if(Left_white_line>40)
-	{
-		do
-		{
-			fixLeft();
-			set_color();
-			show_color();
-			if(Left_white_line<40){
-				return;
-			}
-		}while(Left_white_line>40);
-	}
-	else if(Right_white_line>40)
-	{
-		do
-		{
-			fixRight();
-			set_color();
-			show_color();
-			if(Right_white_line<40){
-				return;
-			}
-		}while(Right_white_line>40);
-	}
-	else if(Left_white_line<40 && Right_white_line<40)
-	{
-		forward();
-		_delay_ms(40);
-		fixPath();
-
-	}
-}
-
-void goForward()
-{
-	set_color();
-	while(Center_white_line>40 && Right_white_line<40 && Left_white_line<40)
-	{
-		set_color();
-		show_color();
-		forward();
-		velocity(250,250);
-		if(Center_white_line>40 && (Left_white_line>40 || Right_white_line>40))
-			return;
-	}
-	
-	fixPath();
-	goForward();
-}
-/*************************END GULLA CODE*************/
-void lcd(char *str)
-{
-	lcd_wr_command(0x01);
-	lcd_cursor(1,1);
-	lcd_string(str);
-}
-int calcThresh()
-{
-	int c[4],i;
-	lcd("calcThresh");
-	red_read();
-	blue_read();
-	green_read();
-	for(i=0;i<4;i++)
-	c[i]=0;
-	for(i=0;i<4;i++)
-	{
-		//read();
-		if(red>green && red>blue)
-		if(c[0]>red)
-		{
-			if(c[3]<red)
-			c[3]=red;
-		}
-		else
-		{
-			if(c[3]<c[0])
-			c[3]=c[0];
-			c[0]=red;
-		}
-		else if(blue>green && red<blue)
-		if(c[1]>blue)
-		{
-			if(c[3]<blue)
-			c[3]=blue;
-		}
-		else
-		{
-			if(c[3]<c[1])
-			c[3]=c[1];
-			c[1]=blue;
-		}
-		else
-		if(c[2]>green)
-		{
-			if(c[3]<green)
-			c[3]=green;
-		}
-		else
-		{
-			if(c[3]<c[2])
-			c[3]=c[2];
-			c[2]=green;
-		}
-		
-	}
-	int t=c[3];
-	
-	
-	
-	lcd_cursor(1,1);  //set the cursor on row 1, column 1
-	lcd_string("Threshold"); // Display "Blue Pulses" on LCD
-	t+=200;
-	lcd_print(2,1,t,5);
-	_delay_ms(10000);
-	lcd_wr_command(0x01); //Clear the LCD
-	lcd((char*)t);
-	return t;
-}
-
-/*******MOVEMENT**********/
 void front()
 {
-	goForward();
 	cost++;
-	//..printf("Front\n");
+	printf("Front\n");
 }
-void backward()	//TODO
+void back()
 {
-	
 	cost++;
-	//..printf("Back\n");
+	printf("Back\n");
 }
 void turnRight()	//turns the robo right
 {
 	dir = (dir + 1) % 4;
-	//..printf("Turn Right \n");
+	printf("Turn Right \n");
+	angle += 90;
 }
 void turnLeft()	//turns the robo left
 {
 	dir = (dir + 3) % 4;
-	//..printf("Turn Left\n");
+	printf("Turn Left\n");
+	angle += 90;
 }
 void turn()	//turn robo by 180 degree
 {
 	dir = (dir + 2) % 4;
-	//..//..printf("Turn\n");
+	printf("Turn\n");
+	angle += 180;
 }
-/*********END MOVEMENT***********/
+
 void traverseToSort(int a, int b)
 {
+	if (dir == 3 || dir == 1)
+	{
+		turnLeft();
+	}
 	if (a == 4 || a == 5)
 	{
-		if ((a == 4 && dir == 0) || (a == 5 && dir == 2))
+		if ((ot == 4 && dir == 0) || (ot == 5 && dir == 2))
 			turnRight();
 		else turnLeft();
 		front();
@@ -290,35 +81,15 @@ void traverseToSort(int a, int b)
 	}
 	else{
 		if ((a <= 1 && dir == 0) || (a >= 2 && dir == 2))
-			backward();
+			back();
 		else front();
 		ot = ct % 2 + 4;
 	}
 }
-
-/*******COLOR******/
 int scan()//return the color no.
 {
-	
-	red_read();
-	blue_read();
-	green_read();
-	if (red<threshold && green < threshold && blue < threshold)
-		return BLACK;
-	else
-	{
-		if (red > blue)
-		{
-			if (red > green)
-			return RED;
-			else
-			return GREEN;
-		}
-		else if (blue > green)
-		return BLUE;
-		else return GREEN;
-	}
 }
+
 void setIndicatorAndColor()
 {
 	int i;
@@ -333,8 +104,8 @@ void setIndicatorAndColor()
 	sort[0] = sort[1] = -1;
 	arm[0] = arm[1] = -1;
 }
-/********END COLOR*******/
-int adjCount(int ct)
+
+int adjCount(ct)
 {
 	return (ct + 2) % 4;
 }
@@ -344,21 +115,20 @@ void terminalCheck1()
 	{
 		if (dir == 1 || dir == 3)
 		{
-			if (ct == 3 || ct == 0)
+			if (ot == 3 || ot == 0)
 				turnRight();
 			else turnLeft();
-			front();
 		}
 		if (((ct == 0 || ct == 1) && dir == 2) || ((ct == 2 || ct == 3) && dir == 0))
-			backward();
+			back();
+		else front();
 		ot = ct;
 	}
 	if (((ct == 0 || ct == 1) && dir == 0) || ((ct == 2 || ct == 3) && dir == 2))
 		turnRight();
 	else turnLeft();
-	//..printf("Enter term[%d][%d]\n", ct, 0);
-	//..scanf("%d", &term[ct][0]);
-	term[ct][0]=scan();
+	printf("Enter term[%d][%d]\n", ct, 0);
+	scanf("%d", &term[ct][0]);
 	if (term[ct][0] == -1 || term[ct][0] == color[ct])
 		total--;
 }
@@ -369,47 +139,22 @@ void terminalCheck2()
 	else if (((ct == 0 || ct == 1) && dir == 2) || ((ct == 2 || ct == 3) && dir == 0))
 		turnRight();
 	else turn();
-	//..printf("Enter term[%d][%d]\n", ct, 1);
-	//..scanf("%d", &term[ct][1]);
-	term[ct][1]=scan();
+	printf("Enter term[%d][%d]\n", ct, 1);
+	scanf("%d", &term[ct][1]);
 	if (term[ct][1] == -1 || term[ct][1] == color[ct])
 		total--;
 	visited[ct] = 1;
 	visitedCount++;
 }
-void elevate(unsigned char angle, unsigned char side)
+
+void pick(int armNo)
 {
-	if (side == 0)
-	servo_1(angle);
-	else if (side == 1)
-	servo_1((angle == 45) ? 0 : 45);
-}
-void open(unsigned char side)
-{
-	if (side == 0)
-	servo_2(180);
-	else if (side == 1)
-	servo_3(180);
-}
-void close(unsigned char side)
-{
-	if (side == 0)
-	servo_2(0);
-	else if (side == 1)
-	servo_3(0);
-}
-void pick(int side)	//TODO delay
-{
-	elevate(0, side);//lower
-	open(side);
-	close(side);
-	elevate(45, side);//mid
+
 	armCount--;
 }
 
 void pickNode(int armNo, int side)
 {
-	lcd(pickNode);
 	arm[armNo] = term[ct][side];
 	if (ct == ot)
 	{
@@ -427,22 +172,30 @@ void pickNode(int armNo, int side)
 		{
 			if (armNo != side)
 				turnRight();
+			else turnLeft();
 		}
 		else	if (((ct == 0 || ct == 1) && dir == 3) || ((ct == 2 || ct == 3) && dir == 1))
 			if (armNo == side)
 				turnRight();
-		pick(armNo);
-		term[ct][side] = -1;
+			else turnLeft();
+			pick(armNo);
+			term[ct][side] = -1;
 	}
 	else
 	{
-		ot = ct;
 		if (dir == 0 || dir == 2)
 		{
 			if ((dir == 0 && (ct == 0 || ct == 1)) || (dir == 2 && (ct == 2 || ct == 3)))
 			{
-				if (armNo == side)
+				if (ot != 4 && ot != 5)
+				{
+					turnLeft();
 					front();
+				}
+				if (armNo == side)
+				{
+					front();
+				}
 				else
 				{
 					front();
@@ -453,12 +206,22 @@ void pickNode(int armNo, int side)
 			{
 				if (armNo == side)
 				{
-					turn();
+					if (ot != 4 && ot != 5)
+					{
+						turnLeft();
+						front();
+					}
+					else turn();
 					front();
 				}
 				else
 				{
-					backward();
+					if (ot != 4 && ot != 5)
+					{
+						turnRight();
+						back();
+					}
+					back();
 				}
 			}
 		}
@@ -476,18 +239,18 @@ void pickNode(int armNo, int side)
 				if (ct == 0 || ct == 3)
 					turnLeft();
 				else turnRight();
-				backward();
+				back();
 			}
 		}
+		ot = ct;
 		pick(armNo);
 		term[ct][side] = -1;
 	}
-	//..printf("Arm %d picked %d from term[%d][%d]\n", armNo, arm[armNo], ct, side);
+	printf("Arm %d picked %d from term[%d][%d]\n", armNo, arm[armNo], ct, side);
 }
 
 void pickSort(int armNo, int sortNo)
 {
-	lcd("pickSort");
 	arm[armNo] = sort[sortNo];
 	if (((armNo == sortNo) && dir == 0) || ((armNo != sortNo) && dir == 2))
 		turn();
@@ -500,11 +263,10 @@ void pickSort(int armNo, int sortNo)
 	}
 	pick(armNo);
 	sort[sortNo] = -1;
-	//..printf("Arm %d picked %d from sort[%d]\n", armNo, arm[armNo], sortNo);
+	printf("Arm %d picked %d from sort[%d]\n", armNo, arm[armNo], sortNo);
 }
 void pickup()
 {
-	lcd("pickup");
 	int arm0 = 0, arm1 = 1;
 	if (((ct == 0 || ct == 1) && dir == 2) || ((ct == 2 || ct == 3) && dir == 0))
 	{
@@ -582,18 +344,12 @@ void pickup()
 		}
 }
 
-void drop(int side)	//TODO delay
+void drop(int armNo)
 {
-	lcd("drop");
-	elevate(0, side);//lower
-	open(side);
-	elevate(45, side);//mid
-	close(side);
 	armCount++;
 }
 void nodeDrop(int armNo, int side)
 {
-	lcd("nodeDrop");
 	term[ct][side] = arm[armNo];
 	if (ct == ot)
 	{
@@ -611,38 +367,59 @@ void nodeDrop(int armNo, int side)
 		{
 			if (armNo != side)
 				turnRight();
+			else turnLeft();
 		}
 		else	if (((ct == 0 || ct == 1) && dir == 3) || ((ct == 2 || ct == 3) && dir == 1))
 			if (armNo == side)
 				turnRight();
-		drop(armNo);
-		arm[armNo] = -1;
+			else turnLeft();
+			drop(armNo);
+			arm[armNo] = -1;
 	}
 	else
 	{
-		ot = ct;
 		if (dir == 0 || dir == 2)
-
-			if ((dir == 0 && (ct == 0 || ct == 2)) || (dir == 2 && (ct == 1 || ct == 3)))
-				if (armNo == side)
+		{
+			if ((dir == 0 && (ct == 0 || ct == 1)) || (dir == 2 && (ct == 2 || ct == 3)))
+			{
+				if (ot != 4 && ot != 5)
+				{
+					turnLeft();
 					front();
+				}
+				if (armNo == side)
+				{
+					front();
+				}
 				else
 				{
 					front();
 					turn();
 				}
+			}
 			else
 			{
 				if (armNo == side)
 				{
-					turn();
+					if (ot != 4 && ot != 5)
+					{
+						turnLeft();
+						front();
+					}
+					else turn();
 					front();
 				}
 				else
 				{
-					backward();
+					if (ot != 4 && ot != 5)
+					{
+						turnRight();
+						back();
+					}
+					back();
 				}
 			}
+		}
 		else
 		{
 			if (armNo == side)
@@ -657,15 +434,15 @@ void nodeDrop(int armNo, int side)
 				if (ct == 0 || ct == 3)
 					turnLeft();
 				else turnRight();
-				backward();
+				back();
 			}
 		}
+		ot = ct;
 		drop(armNo);
 		arm[armNo] = -1;
 	}
 
-	ot = ct;
-	//..printf("Arm %d dropped %d on term[%d][%d]\n", armNo, term[ct][side], ct, side);
+	printf("Arm %d dropped %d on term[%d][%d]\n", armNo, term[ct][side], ct, side);
 	sorted++;
 }
 void sortDrop(int armNo, int sortNo)
@@ -682,7 +459,7 @@ void sortDrop(int armNo, int sortNo)
 	}
 	drop(armNo);
 	arm[armNo] = -1;
-	//..printf("Arm %d dropped %d on sort[%d]\n", armNo, sort[sortNo], sortNo);
+	printf("Arm %d dropped %d on sort[%d]\n", armNo, sort[sortNo], sortNo);
 }
 
 void dropPickup(int a1)
@@ -697,7 +474,6 @@ void dropPickup(int a1)
 void canDrop()
 {
 	int arm0 = 0, arm1 = 1;
-	lcd("canDrop");
 	if (((ct == 0 || ct == 1) && dir == 2) || ((ct == 2 || ct == 3) && dir == 0))
 	{
 		arm0 = 1;
@@ -723,14 +499,16 @@ void canDrop()
 		}
 		if (arm[0] == color[ct] || arm[1] == color[ct])
 		{
-			if (visited[ct] == 0)
-				terminalCheck2();
+			if (term[ct][0] != -1 && term[ct][1] != -1)
+				if (visited[ct] == 0)
+					terminalCheck2();
 			if (term[ct][0] != -1 && term[ct][1] != -1)
 			{
 				if (arm[arm0] == color[ct])
 					dropPickup(arm0);
 				else dropPickup(arm1);
 			}
+
 			if (arm[arm0] == color[ct] && term[ct][0] == -1)
 				nodeDrop(arm0, 0);
 			else if (arm[arm0] == color[ct] && term[ct][1] == -1)
@@ -739,6 +517,7 @@ void canDrop()
 				nodeDrop(arm1, 0);
 			else if (arm[arm1] == color[ct] && term[ct][1] == -1)
 				nodeDrop(arm1, 1);
+
 		}
 	}
 }
@@ -802,7 +581,7 @@ void newSort()
 }
 void sortCheck()
 {
-	//int a1, a2;
+	int a1, a2;
 	int arm0 = 0, arm1 = 1;
 	if (((ct == 0 || ct == 1) && dir == 2) || ((ct == 2 || ct == 3) && dir == 0))
 	{
@@ -869,17 +648,11 @@ void predict()
 		sorted = total;
 
 }
-int main()
+void main()
 {
 	int i;
-	init_devices();
-	lcd_set_4bit();
-	lcd_init();
-	color_sensor_scaling();
-	threshold= calcThresh();
 	setIndicatorAndColor();
 	ct = 0; adj = 2;
-	lcd("Begin");
 	while (sorted<total)
 	{
 		canDrop();
@@ -888,13 +661,17 @@ int main()
 		if (sorted == total)
 			break;
 		pickup();
+		if (visitedCount == 3)
+			predict();
+		if (sorted == total)
+			break;
 		traverseToSort(ct, ct % 2 + 4);
 		sortCheck();
 	}
-	for (i = 0; i<4; i++);
-		//..printf("%d %d\n", term[i][0], term[i][1]);
-	//..printf("Sort 0=%dSort 1=%d\nArm 0=%dArm 1=%d\n", sort[0], sort[1], arm[0], arm[1]);
-	//..printf("Cost=%d\nSORTED!!!!!\n", cost + 7);
+	for (i = 0; i<4; i++)
+		printf("%d %d\n", term[i][0], term[i][1]);
+	printf("Sort 0=%dSort 1=%d\nArm 0=%dArm 1=%d\n", sort[0], sort[1], arm[0], arm[1]);
+	printf("Cost=%d\nAngle=%d\nSORTED!!!!!\n", cost + 7, angle);
+	scanf("%d", cost);
 	//getch();
-	return 1;
 }
