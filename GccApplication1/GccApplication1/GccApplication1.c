@@ -20,6 +20,8 @@ unsigned char Left_white_line = 0;
 unsigned char Center_white_line = 0;
 unsigned char Right_white_line = 0;
 unsigned char missR=0,missL=0,miss=0;
+const unsigned char mthresh=5;
+void buzzer();
 
 void set_color()
 {
@@ -34,18 +36,20 @@ void set_color()
 
 void atNode()
 {
-	buzzer_on();
-	forward();
-	velocity(0,0);
-	_delay_ms(1000);
-	buzzer_off();
+	buzzer();
 }
 
+void lcd(char *str)
+{
+	lcd_wr_command(0x01);
+	lcd_cursor(2,3);
+	lcd_string(str);
+}
 void fixLeft()
 {
 	missL++;
 	set_color();
-	velocity(100,100);
+	//velocity(100,100);
 	left();
 	set_color();
 	if(Center_white_line>0x28)
@@ -56,7 +60,7 @@ void fixRight()
 {
 	missR++;
 	set_color();
-	velocity(100,100);
+	//velocity(100,100);
 	right();
 	set_color();
 	if(Center_white_line>0x28)
@@ -65,57 +69,77 @@ void fixRight()
 
 void fixPath()
 {
+	velocity(100,100);
 	set_color();
 	if(Left_white_line>0x28 && Right_white_line>0x28)
 	{
+		lcd("fixPath.if.lcd");
 		set_color();
 		atNode();		
 	}
 	
 	else if(Left_white_line>0x28 && Right_white_line<0x28)
 	{
+		lcd("fixLEft");
 		set_color();
-		do 
+		while(1) 
 		{
 			fixLeft();
 			set_color();
-			
-		} while (Left_white_line>0x28);
+			if(Center_white_line>40 && Right_white_line<40 && Left_white_line<40)
+				break;
+		}
+		stop();
+		lcd("-");
 	}
 	
 	else if(Right_white_line>0x28 && Left_white_line<0x28)
 	{
+		lcd("fixRight");
 		set_color();
-		do
+		while(1)
 		{
+			
 			fixRight();
 			set_color();
-		}while(Right_white_line>0x28);
+			if(Center_white_line>40 && Right_white_line<40 && Left_white_line<40)
+				break;
+		}
+		stop();
+		lcd("-");
 	}
+	
 	else
 	{
+		lcd("xxDEATHxx");
 		miss=0;
-		velocity(100,100);
+		velocity(150,150);
 		set_color();
 		if(missR>missL)
 		{
 			lcd_print(2,1,0,1);
+			lcd("xxDEATH-right1");
 			do 
 			{
+				
 				set_color();
 				right();
 				miss++;
-			}while(Center_white_line<40 && miss<20);
+			}while(Center_white_line<40 && miss<mthresh);
+			lcd("--");
 			stop();
-			if(miss>20)
+			if(miss>mthresh)
 			{
 				lcd_print(2,1,1,1);
+				lcd("xxDEATH-left1");
 				miss=0;
 				do 
 				{
+					
 					set_color();
 					left();
-				} while (Center_white_line<40);	
+				} while (Center_white_line<(2*mthresh));	
+				lcd("--");
 			}
 			stop();
 		}
@@ -123,51 +147,60 @@ void fixPath()
 		{
 			miss=0;
 			lcd_print(2,1,2,1);
+			lcd("xxDEATH-left2");
 			do
 			{
+				
 				set_color();
 				left();
 				miss++;
-			}while(Center_white_line<40 && miss<20);
+			}while(Center_white_line<40 && miss<mthresh);
+			lcd("--");
 			
 			stop();
-			buzzer_on();
-			_delay_ms(90);
-			buzzer_off();
+			buzzer();
 			
-			if (miss>=20)
+			if (miss>=mthresh)
 			{
 				miss=0;
 				lcd_print(2,1,3,1);
 				//buzzer_on();
 				//_delay_ms(1000);
 				velocity(150,150);
+				lcd("xxDEATH-right2");
 				do
 				{
+					
 					set_color();
 					right();
-				} while (Center_white_line<40 &&  miss<40);
+				} while (Center_white_line<40 &&  miss<(2*mthresh));
+				lcd("--");
 				stop();
-				if(miss>=40)
+				if(miss>=30)
 				{
 					lcd_print(2,1,8,10);
 				}
 			}
 			stop();
+			lcd("--");
 			lcd_print(2,1,9,1);
 		}
+		stop();
 	
 	}
+	lcd("-");
 
 }
 void goForward()
 {
 	set_color();
+	if(!(Center_white_line>0x28 && Left_white_line<0x28 && Right_white_line<0x28))
+		fixPath();
 	do
 	{
 		set_color();
 		forward();
-		velocity(255,255);
+		velocity(240,240);
 		if(Left_white_line>0x28 && Right_white_line>0x28)
 		{
 			set_color();
@@ -176,10 +209,17 @@ void goForward()
 	}while(Center_white_line>0x28 && Left_white_line<0x28 && Right_white_line<0x28);
 	
 	set_color();
+	stop();
 	fixPath();
 	goForward();
 }
-
+void buzzer()
+{
+	
+	buzzer_on();
+	_delay_ms(90);
+	buzzer_off();
+}
 int main()
 {
 	init_devices();
