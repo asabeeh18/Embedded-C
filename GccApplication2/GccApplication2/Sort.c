@@ -30,7 +30,7 @@ int cost;
 int visitedCount = 0;
 int ot = 0, dir = 0;
 const int RED=0,GREEN=1,BLUE=2,BLACK=3,EMPTY=-1;
-int threshold,i=0;
+int threshold;
 unsigned char Left_white_line = 0;
 unsigned char Center_white_line = 0;
 unsigned char Right_white_line = 0;
@@ -44,9 +44,6 @@ void set_color()
 	Left_white_line = ADC_Conversion(3);	//Getting data of Left WL Sensor
 	Center_white_line = ADC_Conversion(2);	//Getting data of Center WL Sensor
 	Right_white_line = ADC_Conversion(1);	//Getting data of Right WL Sensor
-	print_sensor(1,1,3);	//Prints value of White Line Sensor1
-	print_sensor(1,5,2);	//Prints Value of White Line Sensor2
-	print_sensor(1,9,1);	//Prints Value of White Line Sensor3
 }
 
 void show_color()
@@ -64,130 +61,119 @@ void turnLeft()
 	goForward();
 }
 */
-/*************************GULLA CODE*******
-**********Blackline Forward***********------------
-------------------------------
-------------------------------------------------*/
-/*
-bbb node	
-bwb impossible
-wbb DO
-bbw DO
-bww DOne
-wwb DOne
-wbw OK!
-www Death 
-*/
-void correct()
+/*************************GULLA CODE**Blackline Forward***********/
+
+void fidgit()
 {
-	unsigned int i=0;
-	Degrees=5;
-	for(;i<20;i++)
-	{
-		lcd_print(2,3,0,1);
-		left(); //Left wheel backward, Right wheel forward
-		lcd_print(2,1,i,1);
-		
-		stop();
-		set_color();
-		if(Center_white_line>40 && Left_white_line<40 && Right_white_line<40)
-			return;
-	}
-	//normal
+	set_color();
+	velocity(100,100);
 	right();
-	while(Center_white_line<40)
-	{
-		lcd_print(2,3,1,1);
-		set_color();
-		
+	_delay_ms(70);
+	set_color();
+	if(Center_white_line>40){
+		goForward();
+	}
+	velocity(100,100);
+	left();
+	_delay_ms(140);
+	set_color();
+	if(Center_white_line>40){
+		goForward();
 	}
 	stop();
-	return;
-}
-void noNatak()
-{
-	int flag=0;
-	//buzzer_on();
-	//lcd_print(2,1,7,1);
-	if(Center_white_line<40)
-	{
-		if(Left_white_line>40 && Right_white_line<40) //bww
-		{
-			lcd("bww");
-			flag=1;
-			while(Center_white_line<40 && Left_white_line>40 && Right_white_line<40)
-			{
-				soft_left_2();
-				set_color();
-			}
-			lcd("-");
-		}
-		else if(Right_white_line>40 && Left_white_line<40)	//wwb
-		{
-			flag=1;
-			lcd("wwb");
-			while(Center_white_line<40 && Left_white_line<40 && Right_white_line>40)
-			{
-				soft_right_2();
-				set_color();
-			}
-			lcd("-");
-			
-		}
-	}
-	if(Center_white_line>40)
-	{
-		if(Left_white_line>40 && Right_white_line<40)	//bbw
-		{
-			lcd("bbw");
-			flag=1;
-			while(Center_white_line>40 && Left_white_line>40 && Right_white_line<40)
-			{
-				soft_right_2();
-				set_color();
-			}
-			lcd("-");
-		}
-		else if(Left_white_line<40 && Right_white_line>40)	//wbb
-		{
-			flag=1;
-			lcd("wbb");
-			while(Center_white_line>40 && Left_white_line<40 && Right_white_line>40)
-			{
-				soft_left_2();
-				set_color();
-			}
-			lcd("-");
-		}
-	}
-	if(flag==0)	
-		correct();
-	
-	stop();
-	//lcd_print(2,1,6,1);
-	//buzzer_off();
-	return;
 }
 
-void forwardJaa()
+void fixLeft()
 {
 	do
 	{
-		set_color();
-		if(Center_white_line>40 && (Left_white_line>40 || Right_white_line>40) ) //2
-		{
-			i=(i==0)?1:0;
-			lcd_print(2,15,i,1);
-		}
 		forward();
-		velocity(240,240);
+		velocity(200,240);
+		show_color();
+		set_color();
+		show_color();
 		
-	}while(Center_white_line>0x28 && Left_white_line<40 && Right_white_line<40);
-	
-	noNatak();
-	return;
+		if(Center_white_line>40){
+			buzzer_on();
+			forward();
+			velocity(220,200);
+			_delay_ms(40);
+		}
+	}while(Center_white_line>40 && (Left_white_line<40 || Right_white_line<40));
+	buzzer_off();
 }
 
+void fixRight()
+{
+	do
+	{
+		forward();
+		velocity(240,200);
+		show_color();
+		set_color();
+		show_color();
+		if(Center_white_line>40){
+			buzzer_on();
+			forward();
+			velocity(200,220);
+			_delay_ms(40);
+		}
+	}while(Center_white_line>40 && (Left_white_line<40 || Right_white_line<40));
+	buzzer_off();
+}
+
+void fixPath()
+{
+	set_color();
+	if(Left_white_line>40)
+	{
+		do
+		{
+			fixLeft();
+			set_color();
+			show_color();
+			if(Left_white_line<40){
+				return;
+			}
+		}while(Left_white_line>40);
+	}
+	else if(Right_white_line>40)
+	{
+		do
+		{
+			fixRight();
+			set_color();
+			show_color();
+			if(Right_white_line<40){
+				return;
+			}
+		}while(Right_white_line>40);
+	}
+	else if(Left_white_line<40 && Right_white_line<40)
+	{
+		forward();
+		_delay_ms(40);
+		fixPath();
+
+	}
+}
+
+void goForward()
+{
+	set_color();
+	while(Center_white_line>40 && Right_white_line<40 && Left_white_line<40)
+	{
+		set_color();
+		show_color();
+		forward();
+		velocity(250,250);
+		if(Center_white_line>40 && (Left_white_line>40 || Right_white_line>40))
+			return;
+	}
+	
+	fixPath();
+	goForward();
+}
 /*************************END GULLA CODE*************/
 void lcd(char *str)
 {
@@ -423,7 +409,7 @@ void pick(int side)	//TODO delay
 
 void pickNode(int armNo, int side)
 {
-	lcd("pickNode");
+	lcd(pickNode);
 	arm[armNo] = term[ct][side];
 	if (ct == ot)
 	{
@@ -889,7 +875,7 @@ int main()
 	init_devices();
 	lcd_set_4bit();
 	lcd_init();
-	color_sensor_scaling();/*
+	color_sensor_scaling();
 	threshold= calcThresh();
 	setIndicatorAndColor();
 	ct = 0; adj = 2;
@@ -910,12 +896,5 @@ int main()
 	//..printf("Sort 0=%dSort 1=%d\nArm 0=%dArm 1=%d\n", sort[0], sort[1], arm[0], arm[1]);
 	//..printf("Cost=%d\nSORTED!!!!!\n", cost + 7);
 	//getch();
-	*/
-	while(1)
-	{
-		
-		set_color();
-	}
-	forwardJaa();
 	return 1;
 }

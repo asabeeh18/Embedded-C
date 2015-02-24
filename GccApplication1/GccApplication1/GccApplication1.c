@@ -50,7 +50,7 @@ void fixLeft()
 	missL++;
 	set_color();
 	//velocity(100,100);
-	left();
+	soft_left();
 	set_color();
 	if(Center_white_line>0x28)
 		return;
@@ -61,7 +61,7 @@ void fixRight()
 	missR++;
 	set_color();
 	//velocity(100,100);
-	right();
+	soft_right();
 	set_color();
 	if(Center_white_line>0x28)
 		return;
@@ -99,7 +99,6 @@ void fixPath()
 		set_color();
 		while(1)
 		{
-			
 			fixRight();
 			set_color();
 			if(Center_white_line>40 && Right_white_line<40 && Left_white_line<40)
