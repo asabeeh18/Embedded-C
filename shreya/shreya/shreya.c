@@ -911,7 +911,11 @@ int main()
 	//..printf("Cost=%d\nSORTED!!!!!\n", cost + 7);
 	//getch();
 	*/
-	
+	while(1)
+	{
+		
+		set_color();
+	}
 	forwardJaa();
 	return 1;
 }

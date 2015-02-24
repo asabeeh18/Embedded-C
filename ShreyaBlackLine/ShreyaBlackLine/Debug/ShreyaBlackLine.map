@@ -1,17 +1,17 @@
 Archive member included because of file (symbol)
 
 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(addsf3.o)
-                              GccApplication2.o (__addsf3)
+                              ShreyaBlackLine.o (__addsf3)
 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(addsf3x.o)
                               c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(addsf3.o) (__addsf3x)
 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(divsf3.o)
-                              GccApplication2.o (__divsf3)
+                              ShreyaBlackLine.o (__divsf3)
 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(divsf3x.o)
                               c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(divsf3.o) (__divsf3x)
 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fixunssfsi.o)
-                              GccApplication2.o (__fixunssfsi)
+                              ShreyaBlackLine.o (__fixunssfsi)
 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(floatsisf.o)
-                              GccApplication2.o (__floatunsisf)
+                              ShreyaBlackLine.o (__floatunsisf)
 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_inf.o)
                               c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(addsf3x.o) (__fp_inf)
 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_nan.o)
@@ -26,168 +26,104 @@ c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-t
                               c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(addsf3x.o) (__fp_split3)
 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_zero.o)
                               c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(addsf3x.o) (__fp_zero)
-c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_divmodhi4.o)
-                              GccApplication2.o (__divmodhi4)
 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
                               c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6/crtm2560.o (exit)
-c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_copy_data.o)
-                              GccApplication2.o (__do_copy_data)
 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_clear_bss.o)
-                              GccApplication2.o (__do_clear_bss)
+                              ShreyaBlackLine.o (__do_clear_bss)
 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_umulhisi3.o)
-                              GccApplication2.o (__umulhisi3)
-c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_udivmodhi4.o)
-                              c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_divmodhi4.o) (__udivmodhi4)
+                              ShreyaBlackLine.o (__umulhisi3)
 
 Allocating common symbols
 Common symbol       size              file
 
-visited             0x8               GccApplication2.o
-threshold           0x2               GccApplication2.o
-blue                0x4               GccApplication2.o
-Degrees             0x2               GccApplication2.o
-million             0x2               GccApplication2.o
-cost                0x2               GccApplication2.o
-temp                0x2               GccApplication2.o
-green               0x4               GccApplication2.o
-red                 0x4               GccApplication2.o
-ADC_Value           0x1               GccApplication2.o
-sort                0x4               GccApplication2.o
-ct                  0x2               GccApplication2.o
-tens                0x2               GccApplication2.o
-term                0x10              GccApplication2.o
-color               0x8               GccApplication2.o
-indicator           0x8               GccApplication2.o
-adj                 0x2               GccApplication2.o
-hundred             0x2               GccApplication2.o
-arm                 0x4               GccApplication2.o
-nt                  0x2               GccApplication2.o
-unit                0x2               GccApplication2.o
-thousand            0x2               GccApplication2.o
+blue                0x4               ShreyaBlackLine.o
+Degrees             0x2               ShreyaBlackLine.o
+million             0x2               ShreyaBlackLine.o
+temp                0x2               ShreyaBlackLine.o
+curr                0x2               ShreyaBlackLine.o
+green               0x4               ShreyaBlackLine.o
+red                 0x4               ShreyaBlackLine.o
+ADC_Value           0x1               ShreyaBlackLine.o
+tens                0x2               ShreyaBlackLine.o
+prev                0x2               ShreyaBlackLine.o
+hundred             0x2               ShreyaBlackLine.o
+unit                0x2               ShreyaBlackLine.o
+thousand            0x2               ShreyaBlackLine.o
 
 Discarded input sections
 
  .data          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6/crtm2560.o
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6/crtm2560.o
- .text          0x00000000        0x0 GccApplication2.o
- .data          0x00000000        0x0 GccApplication2.o
- .bss           0x00000000        0x0 GccApplication2.o
+ .text          0x00000000        0x0 ShreyaBlackLine.o
+ .data          0x00000000        0x0 ShreyaBlackLine.o
+ .bss           0x00000000        0x0 ShreyaBlackLine.o
+ .text.lcd_string
+                0x00000000       0x1e ShreyaBlackLine.o
  .text.velocity
-                0x00000000        0xa GccApplication2.o
- .text.back     0x00000000        0x8 GccApplication2.o
+                0x00000000        0xa ShreyaBlackLine.o
+ .text.back     0x00000000        0x8 ShreyaBlackLine.o
+ .text.left     0x00000000        0x8 ShreyaBlackLine.o
+ .text.right    0x00000000        0x8 ShreyaBlackLine.o
  .text.soft_left
-                0x00000000        0x8 GccApplication2.o
+                0x00000000        0x8 ShreyaBlackLine.o
  .text.soft_right
-                0x00000000        0x8 GccApplication2.o
+                0x00000000        0x8 ShreyaBlackLine.o
+ .text.soft_left_2
+                0x00000000        0x8 ShreyaBlackLine.o
+ .text.soft_right_2
+                0x00000000        0x8 ShreyaBlackLine.o
+ .text.stop     0x00000000        0x8 ShreyaBlackLine.o
  .text.left_encoder_pin_config
-                0x00000000        0x6 GccApplication2.o
+                0x00000000        0x6 ShreyaBlackLine.o
  .text.right_encoder_pin_config
-                0x00000000        0x6 GccApplication2.o
+                0x00000000        0x6 ShreyaBlackLine.o
  .text.buzzer_on
-                0x00000000        0x8 GccApplication2.o
+                0x00000000        0x8 ShreyaBlackLine.o
  .text.buzzer_off
-                0x00000000        0x8 GccApplication2.o
+                0x00000000        0x8 ShreyaBlackLine.o
  .text.angle_rotate
-                0x00000000       0xac GccApplication2.o
+                0x00000000       0xac ShreyaBlackLine.o
  .text.linear_distance_mm
-                0x00000000       0x12 GccApplication2.o
+                0x00000000       0x12 ShreyaBlackLine.o
  .text.forward_mm
-                0x00000000       0x16 GccApplication2.o
- .text.back_mm  0x00000000       0x16 GccApplication2.o
+                0x00000000       0x16 ShreyaBlackLine.o
+ .text.back_mm  0x00000000       0x16 ShreyaBlackLine.o
  .text.left_degrees
-                0x00000000       0x16 GccApplication2.o
+                0x00000000       0x16 ShreyaBlackLine.o
  .text.right_degrees
-                0x00000000       0x16 GccApplication2.o
+                0x00000000       0x16 ShreyaBlackLine.o
  .text.soft_left_degrees
-                0x00000000       0x1a GccApplication2.o
+                0x00000000       0x1a ShreyaBlackLine.o
  .text.soft_right_degrees
-                0x00000000       0x1a GccApplication2.o
+                0x00000000       0x1a ShreyaBlackLine.o
  .text.left_position_encoder_interrupt_init
-                0x00000000       0x12 GccApplication2.o
+                0x00000000       0x12 ShreyaBlackLine.o
  .text.right_position_encoder_interrupt_init
-                0x00000000       0x12 GccApplication2.o
- .text.servo_1  0x00000000       0x32 GccApplication2.o
- .text.servo_2  0x00000000       0x32 GccApplication2.o
- .text.servo_3  0x00000000       0x32 GccApplication2.o
+                0x00000000       0x12 ShreyaBlackLine.o
+ .text.servo_1  0x00000000       0x32 ShreyaBlackLine.o
+ .text.servo_2  0x00000000       0x32 ShreyaBlackLine.o
+ .text.servo_3  0x00000000       0x32 ShreyaBlackLine.o
  .text.filter_red
-                0x00000000        0x6 GccApplication2.o
+                0x00000000        0x6 ShreyaBlackLine.o
  .text.filter_green
-                0x00000000        0x6 GccApplication2.o
+                0x00000000        0x6 ShreyaBlackLine.o
  .text.filter_blue
-                0x00000000        0x6 GccApplication2.o
+                0x00000000        0x6 ShreyaBlackLine.o
  .text.filter_clear
-                0x00000000        0x6 GccApplication2.o
+                0x00000000        0x6 ShreyaBlackLine.o
+ .text.color_sensor_scaling
+                0x00000000        0x6 ShreyaBlackLine.o
  .text.red_read
-                0x00000000       0x5a GccApplication2.o
+                0x00000000       0x5a ShreyaBlackLine.o
  .text.green_read
-                0x00000000       0x48 GccApplication2.o
+                0x00000000       0x48 ShreyaBlackLine.o
  .text.blue_read
-                0x00000000       0x48 GccApplication2.o
- .text.kkkk     0x00000000       0xee GccApplication2.o
- .text.show_color
-                0x00000000       0x20 GccApplication2.o
- .text.calcThresh
-                0x00000000      0x306 GccApplication2.o
- .text.front    0x00000000       0x18 GccApplication2.o
- .text.backward
-                0x00000000       0x14 GccApplication2.o
- .text.turnRight
-                0x00000000       0x24 GccApplication2.o
- .text.turnLeft
-                0x00000000       0x24 GccApplication2.o
- .text.turn     0x00000000       0x24 GccApplication2.o
- .text.traverseToSort
-                0x00000000       0xc6 GccApplication2.o
- .text.scan     0x00000000      0x10c GccApplication2.o
- .text.setIndicatorAndColor
-                0x00000000       0xb8 GccApplication2.o
- .text.adjCount
-                0x00000000       0x14 GccApplication2.o
- .text.terminalCheck1
-                0x00000000      0x124 GccApplication2.o
- .text.terminalCheck2
-                0x00000000       0xfa GccApplication2.o
- .text.elevate  0x00000000       0x1e GccApplication2.o
- .text.open     0x00000000       0x20 GccApplication2.o
- .text.close    0x00000000       0x20 GccApplication2.o
- .text.pick     0x00000000       0x36 GccApplication2.o
- .text.pickNode
-                0x00000000      0x208 GccApplication2.o
- .text.pickSort
-                0x00000000       0x94 GccApplication2.o
- .text.pickup   0x00000000      0x4f0 GccApplication2.o
- .text.drop     0x00000000       0x3e GccApplication2.o
- .text.nodeDrop
-                0x00000000      0x208 GccApplication2.o
- .text.sortDrop
-                0x00000000       0x80 GccApplication2.o
- .text.dropPickup
-                0x00000000       0xb6 GccApplication2.o
- .text.canDrop  0x00000000      0x2e2 GccApplication2.o
- .text.newSort  0x00000000      0x368 GccApplication2.o
- .text.sortCheck
-                0x00000000      0x476 GccApplication2.o
- .text.predict  0x00000000       0xd8 GccApplication2.o
- .rodata.EMPTY  0x00000000        0x2 GccApplication2.o
- .rodata.BLACK  0x00000000        0x2 GccApplication2.o
- .rodata.BLUE   0x00000000        0x2 GccApplication2.o
- .rodata.GREEN  0x00000000        0x2 GccApplication2.o
- .rodata.RED    0x00000000        0x2 GccApplication2.o
- .bss.dir       0x00000000        0x2 GccApplication2.o
- .bss.ot        0x00000000        0x2 GccApplication2.o
- .bss.visitedCount
-                0x00000000        0x2 GccApplication2.o
- .bss.count     0x00000000        0x2 GccApplication2.o
- .bss.sorted    0x00000000        0x2 GccApplication2.o
- .data.total    0x00000000        0x2 GccApplication2.o
- .data.sortCount
-                0x00000000        0x2 GccApplication2.o
- .data.armCount
-                0x00000000        0x2 GccApplication2.o
+                0x00000000       0x48 ShreyaBlackLine.o
+ .text.kkkk     0x00000000      0x106 ShreyaBlackLine.o
  .bss.ShaftCountRight
-                0x00000000        0x4 GccApplication2.o
+                0x00000000        0x4 ShreyaBlackLine.o
  .bss.ShaftCountLeft
-                0x00000000        0x4 GccApplication2.o
+                0x00000000        0x4 ShreyaBlackLine.o
  .text          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(addsf3.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(addsf3.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(addsf3.o)
@@ -253,22 +189,6 @@ Discarded input sections
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_zero.o)
  .text.avr-libc.fplib
                 0x00000000        0xe c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_zero.o)
- .text          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_divmodhi4.o)
- .data          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_divmodhi4.o)
- .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_divmodhi4.o)
- .text.libgcc.mul
-                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_divmodhi4.o)
- .text.libgcc.div
-                0x00000000       0x28 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_divmodhi4.o)
- .text.libgcc   0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_divmodhi4.o)
- .text.libgcc.prologue
-                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_divmodhi4.o)
- .text.libgcc.builtins
-                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_divmodhi4.o)
- .text.libgcc.fmul
-                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_divmodhi4.o)
- .text.libgcc.fixed
-                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_divmodhi4.o)
  .text          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
@@ -285,22 +205,6 @@ Discarded input sections
                 0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
  .text.libgcc.fixed
                 0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
- .text          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_copy_data.o)
- .data          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_copy_data.o)
- .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_copy_data.o)
- .text.libgcc.mul
-                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_copy_data.o)
- .text.libgcc.div
-                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_copy_data.o)
- .text.libgcc   0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_copy_data.o)
- .text.libgcc.prologue
-                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_copy_data.o)
- .text.libgcc.builtins
-                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_copy_data.o)
- .text.libgcc.fmul
-                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_copy_data.o)
- .text.libgcc.fixed
-                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_copy_data.o)
  .text          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_clear_bss.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_clear_bss.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_clear_bss.o)
@@ -331,22 +235,6 @@ Discarded input sections
                 0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_umulhisi3.o)
  .text.libgcc.fixed
                 0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_umulhisi3.o)
- .text          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_udivmodhi4.o)
- .data          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_udivmodhi4.o)
- .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_udivmodhi4.o)
- .text.libgcc.mul
-                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_udivmodhi4.o)
- .text.libgcc.div
-                0x00000000       0x28 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_udivmodhi4.o)
- .text.libgcc   0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_udivmodhi4.o)
- .text.libgcc.prologue
-                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_udivmodhi4.o)
- .text.libgcc.builtins
-                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_udivmodhi4.o)
- .text.libgcc.fmul
-                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_udivmodhi4.o)
- .text.libgcc.fixed
-                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_udivmodhi4.o)
 
 Memory Configuration
 
@@ -364,7 +252,7 @@ Linker script and memory map
 
 Address of section .data set to 0x800200
 LOAD c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6/crtm2560.o
-LOAD GccApplication2.o
+LOAD ShreyaBlackLine.o
 START GROUP
 LOAD c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a
 END GROUP
@@ -464,7 +352,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x99a
+.text           0x00000000      0x864
  *(.vectors)
  .vectors       0x00000000       0xe4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6/crtm2560.o
                 0x00000000                __vector_default
@@ -503,10 +391,8 @@ END GROUP
  *(.init3)
  *(.init3)
  *(.init4)
- .init4         0x000000f4       0x1a c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_copy_data.o)
-                0x000000f4                __do_copy_data
- .init4         0x0000010e       0x10 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_clear_bss.o)
-                0x0000010e                __do_clear_bss
+ .init4         0x000000f4       0x10 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_clear_bss.o)
+                0x000000f4                __do_clear_bss
  *(.init4)
  *(.init5)
  *(.init5)
@@ -517,182 +403,158 @@ END GROUP
  *(.init8)
  *(.init8)
  *(.init9)
- .init9         0x0000011e        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6/crtm2560.o
+ .init9         0x00000104        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6/crtm2560.o
  *(.init9)
  *(.text)
- .text          0x00000122        0x2 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6/crtm2560.o
-                0x00000122                __vector_38
-                0x00000122                __vector_22
-                0x00000122                __vector_28
-                0x00000122                __vector_32
-                0x00000122                __vector_34
-                0x00000122                __vector_24
-                0x00000122                __vector_12
-                0x00000122                __vector_55
-                0x00000122                __vector_46
-                0x00000122                __bad_interrupt
-                0x00000122                __vector_6
-                0x00000122                __vector_31
-                0x00000122                __vector_35
-                0x00000122                __vector_39
-                0x00000122                __vector_3
-                0x00000122                __vector_23
-                0x00000122                __vector_30
-                0x00000122                __vector_45
-                0x00000122                __vector_25
-                0x00000122                __vector_11
-                0x00000122                __vector_54
-                0x00000122                __vector_13
-                0x00000122                __vector_17
-                0x00000122                __vector_19
-                0x00000122                __vector_56
-                0x00000122                __vector_7
-                0x00000122                __vector_49
-                0x00000122                __vector_41
-                0x00000122                __vector_43
-                0x00000122                __vector_27
-                0x00000122                __vector_5
-                0x00000122                __vector_33
-                0x00000122                __vector_47
-                0x00000122                __vector_52
-                0x00000122                __vector_37
-                0x00000122                __vector_4
-                0x00000122                __vector_44
-                0x00000122                __vector_51
-                0x00000122                __vector_9
-                0x00000122                __vector_2
-                0x00000122                __vector_21
-                0x00000122                __vector_15
-                0x00000122                __vector_36
-                0x00000122                __vector_29
-                0x00000122                __vector_40
-                0x00000122                __vector_8
-                0x00000122                __vector_26
-                0x00000122                __vector_48
-                0x00000122                __vector_14
-                0x00000122                __vector_53
-                0x00000122                __vector_10
-                0x00000122                __vector_50
-                0x00000122                __vector_16
-                0x00000122                __vector_18
-                0x00000122                __vector_20
-                0x00000122                __vector_42
-                0x00000124                . = ALIGN (0x2)
+ .text          0x00000108        0x2 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6/crtm2560.o
+                0x00000108                __vector_38
+                0x00000108                __vector_22
+                0x00000108                __vector_28
+                0x00000108                __vector_32
+                0x00000108                __vector_34
+                0x00000108                __vector_24
+                0x00000108                __vector_12
+                0x00000108                __vector_55
+                0x00000108                __vector_46
+                0x00000108                __bad_interrupt
+                0x00000108                __vector_6
+                0x00000108                __vector_31
+                0x00000108                __vector_35
+                0x00000108                __vector_39
+                0x00000108                __vector_3
+                0x00000108                __vector_23
+                0x00000108                __vector_30
+                0x00000108                __vector_45
+                0x00000108                __vector_25
+                0x00000108                __vector_11
+                0x00000108                __vector_54
+                0x00000108                __vector_13
+                0x00000108                __vector_17
+                0x00000108                __vector_19
+                0x00000108                __vector_56
+                0x00000108                __vector_7
+                0x00000108                __vector_49
+                0x00000108                __vector_41
+                0x00000108                __vector_43
+                0x00000108                __vector_27
+                0x00000108                __vector_5
+                0x00000108                __vector_33
+                0x00000108                __vector_47
+                0x00000108                __vector_52
+                0x00000108                __vector_37
+                0x00000108                __vector_4
+                0x00000108                __vector_44
+                0x00000108                __vector_51
+                0x00000108                __vector_9
+                0x00000108                __vector_2
+                0x00000108                __vector_21
+                0x00000108                __vector_15
+                0x00000108                __vector_36
+                0x00000108                __vector_29
+                0x00000108                __vector_40
+                0x00000108                __vector_8
+                0x00000108                __vector_26
+                0x00000108                __vector_48
+                0x00000108                __vector_14
+                0x00000108                __vector_53
+                0x00000108                __vector_10
+                0x00000108                __vector_50
+                0x00000108                __vector_16
+                0x00000108                __vector_18
+                0x00000108                __vector_20
+                0x00000108                __vector_42
+                0x0000010a                . = ALIGN (0x2)
  *(.text.*)
  .text.lcd_set_4bit
-                0x00000124       0x8a GccApplication2.o
-                0x00000124                lcd_set_4bit
+                0x0000010a       0x8a ShreyaBlackLine.o
+                0x0000010a                lcd_set_4bit
  .text.lcd_wr_command
-                0x000001ae       0x4a GccApplication2.o
-                0x000001ae                lcd_wr_command
+                0x00000194       0x4a ShreyaBlackLine.o
+                0x00000194                lcd_wr_command
  .text.lcd_init
-                0x000001f8       0x22 GccApplication2.o
-                0x000001f8                lcd_init
+                0x000001de       0x22 ShreyaBlackLine.o
+                0x000001de                lcd_init
  .text.lcd_wr_char
-                0x0000021a       0x4a GccApplication2.o
-                0x0000021a                lcd_wr_char
+                0x00000200       0x4a ShreyaBlackLine.o
+                0x00000200                lcd_wr_char
  .text.lcd_home
-                0x00000264        0x6 GccApplication2.o
-                0x00000264                lcd_home
- .text.lcd_string
-                0x0000026a       0x1c GccApplication2.o
-                0x0000026a                lcd_string
+                0x0000024a        0x6 ShreyaBlackLine.o
+                0x0000024a                lcd_home
  .text.lcd_cursor
-                0x00000286       0x36 GccApplication2.o
-                0x00000286                lcd_cursor
+                0x00000250       0x36 ShreyaBlackLine.o
+                0x00000250                lcd_cursor
  .text.lcd_print
-                0x000002bc      0x1d8 GccApplication2.o
-                0x000002bc                lcd_print
+                0x00000286      0x1d8 ShreyaBlackLine.o
+                0x00000286                lcd_print
  .text.timer5_init
-                0x00000494       0x36 GccApplication2.o
-                0x00000494                timer5_init
+                0x0000045e       0x36 ShreyaBlackLine.o
+                0x0000045e                timer5_init
  .text.motion_pin_config
-                0x000004ca       0x22 GccApplication2.o
-                0x000004ca                motion_pin_config
+                0x00000494       0x22 ShreyaBlackLine.o
+                0x00000494                motion_pin_config
  .text.motion_set
-                0x000004ec        0xc GccApplication2.o
-                0x000004ec                motion_set
- .text.forward  0x000004f8        0x6 GccApplication2.o
-                0x000004f8                forward
- .text.left     0x000004fe        0x6 GccApplication2.o
-                0x000004fe                left
- .text.right    0x00000504        0x6 GccApplication2.o
-                0x00000504                right
- .text.soft_left_2
-                0x0000050a        0x6 GccApplication2.o
-                0x0000050a                soft_left_2
- .text.soft_right_2
-                0x00000510        0x6 GccApplication2.o
-                0x00000510                soft_right_2
- .text.stop     0x00000516        0x6 GccApplication2.o
-                0x00000516                stop
+                0x000004b6        0xc ShreyaBlackLine.o
+                0x000004b6                motion_set
+ .text.forward  0x000004c2        0x6 ShreyaBlackLine.o
+                0x000004c2                forward
  .text.lcd_port_config
-                0x0000051c        0xe GccApplication2.o
-                0x0000051c                lcd_port_config
+                0x000004c8        0xe ShreyaBlackLine.o
+                0x000004c8                lcd_port_config
  .text.color_sensor_pin_config
-                0x0000052a        0xa GccApplication2.o
-                0x0000052a                color_sensor_pin_config
+                0x000004d6        0xa ShreyaBlackLine.o
+                0x000004d6                color_sensor_pin_config
  .text.adc_pin_config
-                0x00000534        0xe GccApplication2.o
-                0x00000534                adc_pin_config
+                0x000004e0        0xe ShreyaBlackLine.o
+                0x000004e0                adc_pin_config
  .text.servo1_pin_config
-                0x00000542        0x6 GccApplication2.o
-                0x00000542                servo1_pin_config
+                0x000004ee        0x6 ShreyaBlackLine.o
+                0x000004ee                servo1_pin_config
  .text.servo2_pin_config
-                0x00000548        0x6 GccApplication2.o
-                0x00000548                servo2_pin_config
+                0x000004f4        0x6 ShreyaBlackLine.o
+                0x000004f4                servo2_pin_config
  .text.servo3_pin_config
-                0x0000054e        0x6 GccApplication2.o
-                0x0000054e                servo3_pin_config
+                0x000004fa        0x6 ShreyaBlackLine.o
+                0x000004fa                servo3_pin_config
  .text.timer1_init
-                0x00000554       0x46 GccApplication2.o
-                0x00000554                timer1_init
+                0x00000500       0x46 ShreyaBlackLine.o
+                0x00000500                timer1_init
  .text.port_init
-                0x0000059a       0x12 GccApplication2.o
-                0x0000059a                port_init
+                0x00000546       0x12 ShreyaBlackLine.o
+                0x00000546                port_init
  .text.ADC_Conversion
-                0x000005ac       0x36 GccApplication2.o
-                0x000005ac                ADC_Conversion
+                0x00000558       0x36 ShreyaBlackLine.o
+                0x00000558                ADC_Conversion
  .text.print_sensor
-                0x000005e2       0x24 GccApplication2.o
-                0x000005e2                print_sensor
+                0x0000058e       0x24 ShreyaBlackLine.o
+                0x0000058e                print_sensor
  .text.color_sensor_pin_interrupt_init
-                0x00000606       0x12 GccApplication2.o
-                0x00000606                color_sensor_pin_interrupt_init
+                0x000005b2       0x12 ShreyaBlackLine.o
+                0x000005b2                color_sensor_pin_interrupt_init
  .text.__vector_1
-                0x00000618       0x4a GccApplication2.o
-                0x00000618                __vector_1
+                0x000005c4       0x4a ShreyaBlackLine.o
+                0x000005c4                __vector_1
  .text.adc_init
-                0x00000662       0x1a GccApplication2.o
-                0x00000662                adc_init
+                0x0000060e       0x1a ShreyaBlackLine.o
+                0x0000060e                adc_init
  .text.init_devices
-                0x0000067c       0x12 GccApplication2.o
-                0x0000067c                init_devices
- .text.color_sensor_scaling
-                0x0000068e        0x6 GccApplication2.o
-                0x0000068e                color_sensor_scaling
+                0x00000628       0x12 ShreyaBlackLine.o
+                0x00000628                init_devices
  .text.set_color
-                0x00000694       0x32 GccApplication2.o
-                0x00000694                set_color
- .text.correct  0x000006c6       0x7e GccApplication2.o
-                0x000006c6                correct
- .text.lcd      0x00000744       0x1a GccApplication2.o
-                0x00000744                lcd
- .text.noNatak  0x0000075e      0x176 GccApplication2.o
-                0x0000075e                noNatak
- .text.forwardJaa
-                0x000008d4       0x94 GccApplication2.o
-                0x000008d4                forwardJaa
- .text.main     0x00000968       0x10 GccApplication2.o
-                0x00000968                main
+                0x0000063a       0x32 ShreyaBlackLine.o
+                0x0000063a                set_color
+ .text.goForward
+                0x0000066c      0x1c8 ShreyaBlackLine.o
+                0x0000066c                goForward
+ .text.main     0x00000834        0xe ShreyaBlackLine.o
+                0x00000834                main
  .text.libgcc.mul
-                0x00000978       0x1e c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_umulhisi3.o)
-                0x00000978                __umulhisi3
-                0x00000996                . = ALIGN (0x2)
+                0x00000842       0x1e c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_umulhisi3.o)
+                0x00000842                __umulhisi3
+                0x00000860                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000996        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
-                0x00000996                _exit
-                0x00000996                exit
+ .fini9         0x00000860        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
+                0x00000860                _exit
+                0x00000860                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -711,74 +573,61 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000996        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
+ .fini0         0x00000860        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
  *(.fini0)
-                0x0000099a                _etext = .
+                0x00000864                _etext = .
 
-.data           0x00800200       0x56 load address 0x0000099a
+.data           0x00800200        0x0 load address 0x00000864
                 0x00800200                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
  *(.rodata)
  *(.rodata*)
- .rodata.str1.1
-                0x00800200       0x56 GccApplication2.o
  *(.gnu.linkonce.d*)
-                0x00800256                . = ALIGN (0x2)
-                0x00800256                _edata = .
-                0x00800256                PROVIDE (__data_end, .)
+                0x00800200                . = ALIGN (0x2)
+                0x00800200                _edata = .
+                0x00800200                PROVIDE (__data_end, .)
 
-.bss            0x00800256       0x5e
-                0x00800256                PROVIDE (__bss_start, .)
+.bss            0x00800200       0x26
+                0x00800200                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
  .bss.Right_white_line
-                0x00800256        0x1 GccApplication2.o
-                0x00800256                Right_white_line
+                0x00800200        0x1 ShreyaBlackLine.o
+                0x00800200                Right_white_line
  .bss.Center_white_line
-                0x00800257        0x1 GccApplication2.o
-                0x00800257                Center_white_line
+                0x00800201        0x1 ShreyaBlackLine.o
+                0x00800201                Center_white_line
  .bss.Left_white_line
-                0x00800258        0x1 GccApplication2.o
-                0x00800258                Left_white_line
- .bss.i         0x00800259        0x2 GccApplication2.o
-                0x00800259                i
- .bss.pulse     0x0080025b        0x4 GccApplication2.o
-                0x0080025b                pulse
+                0x00800202        0x1 ShreyaBlackLine.o
+                0x00800202                Left_white_line
+ .bss.pulse     0x00800203        0x4 ShreyaBlackLine.o
+                0x00800203                pulse
  *(COMMON)
- COMMON         0x0080025f       0x55 GccApplication2.o
-                0x0080025f                visited
-                0x00800267                threshold
-                0x00800269                blue
-                0x0080026d                Degrees
-                0x0080026f                million
-                0x00800271                cost
-                0x00800273                temp
-                0x00800275                green
-                0x00800279                red
-                0x0080027d                ADC_Value
-                0x0080027e                sort
-                0x00800282                ct
-                0x00800284                tens
-                0x00800286                term
-                0x00800296                color
-                0x0080029e                indicator
-                0x008002a6                adj
-                0x008002a8                hundred
-                0x008002aa                arm
-                0x008002ae                nt
-                0x008002b0                unit
-                0x008002b2                thousand
-                0x008002b4                PROVIDE (__bss_end, .)
-                0x0000099a                __data_load_start = LOADADDR (.data)
-                0x000009f0                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x00800207       0x1f ShreyaBlackLine.o
+                0x00800207                blue
+                0x0080020b                Degrees
+                0x0080020d                million
+                0x0080020f                temp
+                0x00800211                curr
+                0x00800213                green
+                0x00800217                red
+                0x0080021b                ADC_Value
+                0x0080021c                tens
+                0x0080021e                prev
+                0x00800220                hundred
+                0x00800222                unit
+                0x00800224                thousand
+                0x00800226                PROVIDE (__bss_end, .)
+                0x00000864                __data_load_start = LOADADDR (.data)
+                0x00000864                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x008002b4        0x0
-                0x008002b4                PROVIDE (__noinit_start, .)
+.noinit         0x00800226        0x0
+                0x00800226                PROVIDE (__noinit_start, .)
  *(.noinit*)
-                0x008002b4                PROVIDE (__noinit_end, .)
-                0x008002b4                _end = .
-                0x008002b4                PROVIDE (__heap_start, .)
+                0x00800226                PROVIDE (__noinit_end, .)
+                0x00800226                _end = .
+                0x00800226                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
  *(.eeprom*)
@@ -819,7 +668,7 @@ END GROUP
 
 .comment        0x00000000       0x30
  *(.comment)
- .comment       0x00000000       0x30 GccApplication2.o
+ .comment       0x00000000       0x30 ShreyaBlackLine.o
                                  0x31 (size before relaxing)
 
 .note.gnu.build-id
@@ -837,38 +686,38 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x310
+.debug_aranges  0x00000000      0x218
  *(.debug_aranges)
  .debug_aranges
-                0x00000000      0x310 GccApplication2.o
+                0x00000000      0x218 ShreyaBlackLine.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x2be6
+.debug_info     0x00000000     0x198c
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x00000000     0x2be6 GccApplication2.o
+ .debug_info    0x00000000     0x198c ShreyaBlackLine.o
 
-.debug_abbrev   0x00000000      0x511
+.debug_abbrev   0x00000000      0x3c5
  *(.debug_abbrev)
- .debug_abbrev  0x00000000      0x511 GccApplication2.o
+ .debug_abbrev  0x00000000      0x3c5 ShreyaBlackLine.o
 
-.debug_line     0x00000000     0x21e4
+.debug_line     0x00000000     0x1036
  *(.debug_line .debug_line.* .debug_line_end)
- .debug_line    0x00000000     0x21e4 GccApplication2.o
+ .debug_line    0x00000000     0x1036 ShreyaBlackLine.o
 
-.debug_frame    0x00000000      0x844
+.debug_frame    0x00000000      0x4c4
  *(.debug_frame)
- .debug_frame   0x00000000      0x844 GccApplication2.o
+ .debug_frame   0x00000000      0x4c4 ShreyaBlackLine.o
 
-.debug_str      0x00000000      0x7c7
+.debug_str      0x00000000      0x614
  *(.debug_str)
- .debug_str     0x00000000      0x7c7 GccApplication2.o
-                                0x83f (size before relaxing)
+ .debug_str     0x00000000      0x614 ShreyaBlackLine.o
+                                0x686 (size before relaxing)
 
-.debug_loc      0x00000000     0x1aa8
+.debug_loc      0x00000000      0xd11
  *(.debug_loc)
- .debug_loc     0x00000000     0x1aa8 GccApplication2.o
+ .debug_loc     0x00000000      0xd11 ShreyaBlackLine.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -888,11 +737,11 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000      0x360
+.debug_ranges   0x00000000      0x2c8
  *(.debug_ranges)
- .debug_ranges  0x00000000      0x360 GccApplication2.o
+ .debug_ranges  0x00000000      0x2c8 ShreyaBlackLine.o
 
 .debug_macro
  *(.debug_macro)
-OUTPUT(GccApplication2.elf elf32-avr)
+OUTPUT(ShreyaBlackLine.elf elf32-avr)
 LOAD linker stubs
