@@ -72,6 +72,16 @@ Discarded input sections
  .text          0x00000000        0x0 improvDelay.o
  .data          0x00000000        0x0 improvDelay.o
  .bss           0x00000000        0x0 improvDelay.o
+ .text.lcd_wr_char
+                0x00000000       0x4a improvDelay.o
+ .text.lcd_home
+                0x00000000        0x8 improvDelay.o
+ .text.lcd_string
+                0x00000000       0x1e improvDelay.o
+ .text.lcd_cursor
+                0x00000000       0x3e improvDelay.o
+ .text.lcd_print
+                0x00000000      0x1f8 improvDelay.o
  .text.velocity
                 0x00000000        0xa improvDelay.o
  .text.back     0x00000000        0x8 improvDelay.o
@@ -79,14 +89,14 @@ Discarded input sections
                 0x00000000        0x8 improvDelay.o
  .text.soft_right
                 0x00000000        0x8 improvDelay.o
+ .text.soft_left_2
+                0x00000000        0x8 improvDelay.o
+ .text.soft_right_2
+                0x00000000        0x8 improvDelay.o
  .text.left_encoder_pin_config
                 0x00000000        0x6 improvDelay.o
  .text.right_encoder_pin_config
                 0x00000000        0x6 improvDelay.o
- .text.buzzer_on
-                0x00000000        0x8 improvDelay.o
- .text.buzzer_off
-                0x00000000        0x8 improvDelay.o
  .text.angle_rotate
                 0x00000000       0xac improvDelay.o
  .text.linear_distance_mm
@@ -128,8 +138,11 @@ Discarded input sections
  .text.kkkk     0x00000000       0xee improvDelay.o
  .text.show_color
                 0x00000000       0x20 improvDelay.o
+ .text.lcd      0x00000000        0x2 improvDelay.o
+ .rodata.str1.1
+                0x00000000        0xa improvDelay.o
  .text.calcThresh
-                0x00000000      0x306 improvDelay.o
+                0x00000000      0x2ee improvDelay.o
  .text.front    0x00000000       0x18 improvDelay.o
  .text.backward
                 0x00000000       0x14 improvDelay.o
@@ -154,23 +167,24 @@ Discarded input sections
  .text.close    0x00000000       0x20 improvDelay.o
  .text.pick     0x00000000       0x36 improvDelay.o
  .text.pickNode
-                0x00000000      0x208 improvDelay.o
+                0x00000000      0x200 improvDelay.o
  .text.pickSort
-                0x00000000       0x94 improvDelay.o
- .text.pickup   0x00000000      0x4f0 improvDelay.o
- .text.drop     0x00000000       0x3e improvDelay.o
+                0x00000000       0x8c improvDelay.o
+ .text.pickup   0x00000000      0x4e8 improvDelay.o
+ .text.drop     0x00000000       0x36 improvDelay.o
  .text.nodeDrop
-                0x00000000      0x208 improvDelay.o
+                0x00000000      0x1f6 improvDelay.o
  .text.sortDrop
                 0x00000000       0x80 improvDelay.o
  .text.dropPickup
                 0x00000000       0xb6 improvDelay.o
- .text.canDrop  0x00000000      0x2e2 improvDelay.o
+ .text.canDrop  0x00000000      0x2da improvDelay.o
  .text.newSort  0x00000000      0x368 improvDelay.o
  .text.sortCheck
                 0x00000000      0x476 improvDelay.o
  .text.predict  0x00000000       0xd8 improvDelay.o
  .data.v        0x00000000        0x2 improvDelay.o
+ .bss.i         0x00000000        0x2 improvDelay.o
  .rodata.EMPTY  0x00000000        0x2 improvDelay.o
  .rodata.BLACK  0x00000000        0x2 improvDelay.o
  .rodata.BLUE   0x00000000        0x2 improvDelay.o
@@ -323,6 +337,8 @@ Discarded input sections
  .text          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_umulhisi3.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_umulhisi3.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_umulhisi3.o)
+ .text.libgcc.mul
+                0x00000000       0x1e c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_umulhisi3.o)
  .text.libgcc.div
                 0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_umulhisi3.o)
  .text.libgcc   0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_umulhisi3.o)
@@ -467,7 +483,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x9b0
+.text           0x00000000      0x5e6
  *(.vectors)
  .vectors       0x00000000       0xe4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6/crtm2560.o
                 0x00000000                __vector_default
@@ -591,110 +607,92 @@ END GROUP
  .text.lcd_init
                 0x000001f8       0x22 improvDelay.o
                 0x000001f8                lcd_init
- .text.lcd_wr_char
-                0x0000021a       0x4a improvDelay.o
-                0x0000021a                lcd_wr_char
- .text.lcd_home
-                0x00000264        0x6 improvDelay.o
-                0x00000264                lcd_home
- .text.lcd_string
-                0x0000026a       0x1c improvDelay.o
-                0x0000026a                lcd_string
- .text.lcd_cursor
-                0x00000286       0x36 improvDelay.o
-                0x00000286                lcd_cursor
- .text.lcd_print
-                0x000002bc      0x1d8 improvDelay.o
-                0x000002bc                lcd_print
  .text.timer5_init
-                0x00000494       0x36 improvDelay.o
-                0x00000494                timer5_init
+                0x0000021a       0x36 improvDelay.o
+                0x0000021a                timer5_init
  .text.motion_pin_config
-                0x000004ca       0x22 improvDelay.o
-                0x000004ca                motion_pin_config
+                0x00000250       0x22 improvDelay.o
+                0x00000250                motion_pin_config
  .text.motion_set
-                0x000004ec        0xc improvDelay.o
-                0x000004ec                motion_set
- .text.forward  0x000004f8        0x6 improvDelay.o
-                0x000004f8                forward
- .text.left     0x000004fe        0x6 improvDelay.o
-                0x000004fe                left
- .text.right    0x00000504        0x6 improvDelay.o
-                0x00000504                right
- .text.soft_left_2
-                0x0000050a        0x6 improvDelay.o
-                0x0000050a                soft_left_2
- .text.soft_right_2
-                0x00000510        0x6 improvDelay.o
-                0x00000510                soft_right_2
- .text.stop     0x00000516        0x6 improvDelay.o
-                0x00000516                stop
+                0x00000272        0xc improvDelay.o
+                0x00000272                motion_set
+ .text.forward  0x0000027e        0x6 improvDelay.o
+                0x0000027e                forward
+ .text.left     0x00000284        0x6 improvDelay.o
+                0x00000284                left
+ .text.right    0x0000028a        0x6 improvDelay.o
+                0x0000028a                right
+ .text.stop     0x00000290        0x6 improvDelay.o
+                0x00000290                stop
  .text.lcd_port_config
-                0x0000051c        0xe improvDelay.o
-                0x0000051c                lcd_port_config
+                0x00000296        0xe improvDelay.o
+                0x00000296                lcd_port_config
  .text.color_sensor_pin_config
-                0x0000052a        0xa improvDelay.o
-                0x0000052a                color_sensor_pin_config
+                0x000002a4        0xa improvDelay.o
+                0x000002a4                color_sensor_pin_config
  .text.adc_pin_config
-                0x00000534        0xe improvDelay.o
-                0x00000534                adc_pin_config
+                0x000002ae        0xe improvDelay.o
+                0x000002ae                adc_pin_config
  .text.servo1_pin_config
-                0x00000542        0x6 improvDelay.o
-                0x00000542                servo1_pin_config
+                0x000002bc        0x6 improvDelay.o
+                0x000002bc                servo1_pin_config
  .text.servo2_pin_config
-                0x00000548        0x6 improvDelay.o
-                0x00000548                servo2_pin_config
+                0x000002c2        0x6 improvDelay.o
+                0x000002c2                servo2_pin_config
  .text.servo3_pin_config
-                0x0000054e        0x6 improvDelay.o
-                0x0000054e                servo3_pin_config
+                0x000002c8        0x6 improvDelay.o
+                0x000002c8                servo3_pin_config
  .text.timer1_init
-                0x00000554       0x46 improvDelay.o
-                0x00000554                timer1_init
+                0x000002ce       0x46 improvDelay.o
+                0x000002ce                timer1_init
  .text.port_init
-                0x0000059a       0x12 improvDelay.o
-                0x0000059a                port_init
+                0x00000314       0x12 improvDelay.o
+                0x00000314                port_init
+ .text.buzzer_on
+                0x00000326        0x8 improvDelay.o
+                0x00000326                buzzer_on
+ .text.buzzer_off
+                0x0000032e        0x8 improvDelay.o
+                0x0000032e                buzzer_off
  .text.ADC_Conversion
-                0x000005ac       0x36 improvDelay.o
-                0x000005ac                ADC_Conversion
+                0x00000336       0x36 improvDelay.o
+                0x00000336                ADC_Conversion
  .text.color_sensor_pin_interrupt_init
-                0x000005e2       0x12 improvDelay.o
-                0x000005e2                color_sensor_pin_interrupt_init
+                0x0000036c       0x12 improvDelay.o
+                0x0000036c                color_sensor_pin_interrupt_init
  .text.__vector_1
-                0x000005f4       0x4a improvDelay.o
-                0x000005f4                __vector_1
+                0x0000037e       0x4a improvDelay.o
+                0x0000037e                __vector_1
  .text.adc_init
-                0x0000063e       0x1a improvDelay.o
-                0x0000063e                adc_init
+                0x000003c8       0x1a improvDelay.o
+                0x000003c8                adc_init
  .text.init_devices
-                0x00000658       0x12 improvDelay.o
-                0x00000658                init_devices
+                0x000003e2       0x12 improvDelay.o
+                0x000003e2                init_devices
  .text.color_sensor_scaling
-                0x0000066a        0x6 improvDelay.o
-                0x0000066a                color_sensor_scaling
+                0x000003f4        0x6 improvDelay.o
+                0x000003f4                color_sensor_scaling
  .text.set_color
-                0x00000670       0x4a improvDelay.o
-                0x00000670                set_color
- .text.Delay    0x000006ba       0x48 improvDelay.o
-                0x000006ba                Delay
- .text.lcd      0x00000702       0x1a improvDelay.o
-                0x00000702                lcd
- .text.correct  0x0000071c       0x6e improvDelay.o
-                0x0000071c                correct
- .text.noNatak  0x0000078a      0x15e improvDelay.o
-                0x0000078a                noNatak
+                0x000003fa       0x1a improvDelay.o
+                0x000003fa                set_color
+ .text.node     0x00000414       0x18 improvDelay.o
+                0x00000414                node
+ .text.Delay    0x0000042c       0x3a improvDelay.o
+                0x0000042c                Delay
+ .text.correct  0x00000466       0x6e improvDelay.o
+                0x00000466                correct
+ .text.noNatak  0x000004d4       0x98 improvDelay.o
+                0x000004d4                noNatak
  .text.forwardJaa
-                0x000008e8       0x96 improvDelay.o
-                0x000008e8                forwardJaa
- .text.main     0x0000097e       0x10 improvDelay.o
-                0x0000097e                main
- .text.libgcc.mul
-                0x0000098e       0x1e c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_umulhisi3.o)
-                0x0000098e                __umulhisi3
-                0x000009ac                . = ALIGN (0x2)
+                0x0000056c       0x66 improvDelay.o
+                0x0000056c                forwardJaa
+ .text.main     0x000005d2       0x10 improvDelay.o
+                0x000005d2                main
+                0x000005e2                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x000009ac        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
-                0x000009ac                _exit
-                0x000009ac                exit
+ .fini9         0x000005e2        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
+                0x000005e2                _exit
+                0x000005e2                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -713,74 +711,70 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x000009ac        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
+ .fini0         0x000005e2        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
  *(.fini0)
-                0x000009b0                _etext = .
+                0x000005e6                _etext = .
 
-.data           0x00800200       0x5a load address 0x000009b0
+.data           0x00800200        0x0 load address 0x000005e6
                 0x00800200                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
  *(.rodata)
  *(.rodata*)
- .rodata.str1.1
-                0x00800200       0x5a improvDelay.o
  *(.gnu.linkonce.d*)
-                0x0080025a                . = ALIGN (0x2)
-                0x0080025a                _edata = .
-                0x0080025a                PROVIDE (__data_end, .)
+                0x00800200                . = ALIGN (0x2)
+                0x00800200                _edata = .
+                0x00800200                PROVIDE (__data_end, .)
 
-.bss            0x0080025a       0x5e
-                0x0080025a                PROVIDE (__bss_start, .)
+.bss            0x00800200       0x5c
+                0x00800200                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
  .bss.Right_white_line
-                0x0080025a        0x1 improvDelay.o
-                0x0080025a                Right_white_line
+                0x00800200        0x1 improvDelay.o
+                0x00800200                Right_white_line
  .bss.Center_white_line
-                0x0080025b        0x1 improvDelay.o
-                0x0080025b                Center_white_line
+                0x00800201        0x1 improvDelay.o
+                0x00800201                Center_white_line
  .bss.Left_white_line
-                0x0080025c        0x1 improvDelay.o
-                0x0080025c                Left_white_line
- .bss.i         0x0080025d        0x2 improvDelay.o
-                0x0080025d                i
- .bss.pulse     0x0080025f        0x4 improvDelay.o
-                0x0080025f                pulse
+                0x00800202        0x1 improvDelay.o
+                0x00800202                Left_white_line
+ .bss.pulse     0x00800203        0x4 improvDelay.o
+                0x00800203                pulse
  *(COMMON)
- COMMON         0x00800263       0x55 improvDelay.o
-                0x00800263                visited
-                0x0080026b                threshold
-                0x0080026d                blue
-                0x00800271                Degrees
-                0x00800273                million
-                0x00800275                cost
-                0x00800277                temp
-                0x00800279                green
-                0x0080027d                red
-                0x00800281                ADC_Value
-                0x00800282                sort
-                0x00800286                ct
-                0x00800288                tens
-                0x0080028a                term
-                0x0080029a                color
-                0x008002a2                indicator
-                0x008002aa                adj
-                0x008002ac                hundred
-                0x008002ae                arm
-                0x008002b2                nt
-                0x008002b4                unit
-                0x008002b6                thousand
-                0x008002b8                PROVIDE (__bss_end, .)
-                0x000009b0                __data_load_start = LOADADDR (.data)
-                0x00000a0a                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x00800207       0x55 improvDelay.o
+                0x00800207                visited
+                0x0080020f                threshold
+                0x00800211                blue
+                0x00800215                Degrees
+                0x00800217                million
+                0x00800219                cost
+                0x0080021b                temp
+                0x0080021d                green
+                0x00800221                red
+                0x00800225                ADC_Value
+                0x00800226                sort
+                0x0080022a                ct
+                0x0080022c                tens
+                0x0080022e                term
+                0x0080023e                color
+                0x00800246                indicator
+                0x0080024e                adj
+                0x00800250                hundred
+                0x00800252                arm
+                0x00800256                nt
+                0x00800258                unit
+                0x0080025a                thousand
+                0x0080025c                PROVIDE (__bss_end, .)
+                0x000005e6                __data_load_start = LOADADDR (.data)
+                0x000005e6                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x008002b8        0x0
-                0x008002b8                PROVIDE (__noinit_start, .)
+.noinit         0x0080025c        0x0
+                0x0080025c                PROVIDE (__noinit_start, .)
  *(.noinit*)
-                0x008002b8                PROVIDE (__noinit_end, .)
-                0x008002b8                _end = .
-                0x008002b8                PROVIDE (__heap_start, .)
+                0x0080025c                PROVIDE (__noinit_end, .)
+                0x0080025c                _end = .
+                0x0080025c                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
  *(.eeprom*)
@@ -839,38 +833,38 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x318
+.debug_aranges  0x00000000      0x320
  *(.debug_aranges)
  .debug_aranges
-                0x00000000      0x318 improvDelay.o
+                0x00000000      0x320 improvDelay.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x2c48
+.debug_info     0x00000000     0x2a30
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x00000000     0x2c48 improvDelay.o
+ .debug_info    0x00000000     0x2a30 improvDelay.o
 
-.debug_abbrev   0x00000000      0x500
+.debug_abbrev   0x00000000      0x50f
  *(.debug_abbrev)
- .debug_abbrev  0x00000000      0x500 improvDelay.o
+ .debug_abbrev  0x00000000      0x50f improvDelay.o
 
-.debug_line     0x00000000     0x2233
+.debug_line     0x00000000     0x215e
  *(.debug_line .debug_line.* .debug_line_end)
- .debug_line    0x00000000     0x2233 improvDelay.o
+ .debug_line    0x00000000     0x215e improvDelay.o
 
-.debug_frame    0x00000000      0x870
+.debug_frame    0x00000000      0x864
  *(.debug_frame)
- .debug_frame   0x00000000      0x870 improvDelay.o
+ .debug_frame   0x00000000      0x864 improvDelay.o
 
-.debug_str      0x00000000      0x7c1
+.debug_str      0x00000000      0x7c6
  *(.debug_str)
- .debug_str     0x00000000      0x7c1 improvDelay.o
-                                0x839 (size before relaxing)
+ .debug_str     0x00000000      0x7c6 improvDelay.o
+                                0x83e (size before relaxing)
 
-.debug_loc      0x00000000     0x1bbb
+.debug_loc      0x00000000     0x1d60
  *(.debug_loc)
- .debug_loc     0x00000000     0x1bbb improvDelay.o
+ .debug_loc     0x00000000     0x1d60 improvDelay.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -890,9 +884,9 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000      0x368
+.debug_ranges   0x00000000      0x370
  *(.debug_ranges)
- .debug_ranges  0x00000000      0x368 improvDelay.o
+ .debug_ranges  0x00000000      0x370 improvDelay.o
 
 .debug_macro
  *(.debug_macro)

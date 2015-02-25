@@ -46,9 +46,10 @@ void set_color()
 	Left_white_line = ADC_Conversion(3);	//Getting data of Left WL Sensor
 	Center_white_line = ADC_Conversion(2);	//Getting data of Center WL Sensor
 	Right_white_line = ADC_Conversion(1);	//Getting data of Right WL Sensor
-	lcd_print(1,1,Left_white_line,3);	//Prints value of White Line Sensor1
+	/*lcd_print(1,1,Left_white_line,3);	//Prints value of White Line Sensor1
 	lcd_print(1,5,Center_white_line,3);	//Prints Value of White Line Sensor2
 	lcd_print(1,9,Right_white_line,3);	//Prints Value of White Line Sensor3
+	*/
 }
 
 void show_color()
@@ -80,13 +81,17 @@ wwb DOne
 wbw OK!
 www Death 
 */
-
+void node()
+{
+	buzzer_on();
+	_delay_ms(100);
+	buzzer_off();
+}
 void Delay(int tim)
 {
 	int i;
-	for(i=0;i<tim && Center_white_line<40;i++)
+	for(i=0;i<tim && ADC_Conversion(2)<40;i++)
 	{
-		Center_white_line = ADC_Conversion(2);	//Getting data of Center WL Sensor
 		//set_color();
 		_delay_ms(1);
 	}
@@ -94,27 +99,33 @@ void Delay(int tim)
 
 void correct()
 {
-	unsigned int d=20;
-	unsigned int i=0;
+	unsigned int d=2;
+	unsigned int i=30;
 	Degrees=5;
 	lcd("cor");
 	stop();
-	while(Center_white_line<=40)
+	while(ADC_Conversion(2)<40)
 	{
 		
 		right();
-		Delay(d);
+		if(d==2)
+			Delay(i);
+		else
+			Delay(2*i+d);
 		stop();
-		set_color();
-		if(Center_white_line>40)
+		//set_color();
+		if(ADC_Conversion(2)>40)
 			break;
 		left();
-		Delay(2*d);
+		if(d==2)
+			Delay(2*i);
+		else
+			Delay(2*i+d);
 		stop();
-		d*=2;
-		set_color();
-		i+=10;
-		d+=i;
+		//d*=2;
+		//set_color();
+		//i+=2;
+		d+=10;
 	}
 	lcd("-");
 	stop();
@@ -125,7 +136,7 @@ void noNatak()
 	int flag=0;
 	//buzzer_on();
 	//lcd_print(2,1,7,1);
-	velocity(200,200);
+	velocity(150,150);
 	if(Center_white_line<40)
 	{
 		if(Left_white_line>40 && Right_white_line<40) //bww
@@ -134,7 +145,7 @@ void noNatak()
 			flag=1;
 			while(Center_white_line<40 && Left_white_line>40 && Right_white_line<40)
 			{
-				soft_left_2();
+				left();
 				set_color();
 			}
 			lcd("-");
@@ -145,7 +156,7 @@ void noNatak()
 			lcd("wwb");
 			while(Center_white_line<40 && Left_white_line<40 && Right_white_line>40)
 			{
-				soft_right_2();
+				right();
 				set_color();
 			}
 			lcd("-");
@@ -161,25 +172,30 @@ void noNatak()
 	{
 		if(Left_white_line>40 && Right_white_line<40)	//bbw
 		{
-			lcd("bbw");
 			flag=1;
+			node();
+			/*lcd("bbw");
+			
 			while(Center_white_line>40 && Left_white_line>40 && Right_white_line<40)
 			{
 				soft_right_2();
 				set_color();
 			}
-			lcd("-");
+			lcd("-");*/
 		}
 		else if(Left_white_line<40 && Right_white_line>40)	//wbb
 		{
 			flag=1;
+			node();
+			
+			/*flag=1;
 			lcd("wbb");
 			while(Center_white_line>40 && Left_white_line<40 && Right_white_line>40)
 			{
 				soft_left_2();
 				set_color();
 			}
-			lcd("-");
+			lcd("-");*/
 		}
 		else
 		{
@@ -201,13 +217,12 @@ void forwardJaa()
 	unsigned int vi=0;
 	do
 	{
-		set_color();
-		if(Center_white_line>40 && (Left_white_line>40 || Right_white_line>40) ) //2 bbw wbb
-		{
-			i=(i==0)?1:0;
-			lcd_print(2,15,i,1);
-		}
 		forward();
+		set_color();
+		if(Center_white_line>40 && (Left_white_line>40 || Right_white_line>40)) //2 bbw wbb
+		{
+			node();
+		}
 		velocity(240,240);
 		//velocity(v+vi,v+vi);
 		//i+=20;
@@ -220,9 +235,11 @@ void forwardJaa()
 
 void lcd(char *str)
 {
+	/*
 	lcd_wr_command(0x01);
 	lcd_cursor(2,11);
 	lcd_string(str);
+	*/
 }
 int calcThresh()
 {
