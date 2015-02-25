@@ -86,6 +86,16 @@ void node()
 	buzzer_on();
 	_delay_ms(100);
 	buzzer_off();
+	/*stop();
+	velocity(150,150);
+	soft_right();
+	_delay_ms(500);
+	do
+	{
+		Center_white_line = ADC_Conversion(2);	//Getting data of Center WL Sensor
+	}while(Center_white_line<40);
+	stop();
+	while(1);*/
 }
 char Delay(int tim)
 {
@@ -282,6 +292,184 @@ void forwardJaa()
 	noNatak();
 	forwardJaa();
 	return;
+}
+/********BACK**
+***********************/
+
+void BsemiCorrect()
+{
+	if(Center_white_line<40)
+	{
+		if(Left_white_line>40 && Right_white_line<40) //bww
+		{
+			lcd("bww");
+			
+			while(Center_white_line<40 && Left_white_line>40 && Right_white_line<40)
+			{
+				right();
+				set_color();
+			}
+			lcd("-");
+		}
+		else if(Right_white_line>40 && Left_white_line<40)	//wwb
+		{
+			
+			lcd("wwb");
+			while(Center_white_line<40 && Left_white_line<40 && Right_white_line>40)
+			{
+				left();
+				set_color();
+			}
+			lcd("-");
+			
+		}
+	}
+}
+void Bcorrect()
+{
+	unsigned int d=2;
+	unsigned int i=30;
+	Degrees=5;
+	lcd("cor");
+	stop();
+	while(1)
+	{
+		
+		left();
+		if(d==2)
+		{
+			if(Delay(i))
+				return;
+		}
+		else
+		{
+			if(Delay(2*i+d))
+				return;
+		}
+		stop();
+		
+		//set_color();
+		if(ADC_Conversion(2)>40)
+			break;
+		BsemiCorrect();
+		right();
+		if(d==2)
+		{
+			if(Delay(2*i))
+				return;
+		}
+		else
+		{
+			if(Delay(2*i+d))
+				return;
+		}
+		stop();
+		if(ADC_Conversion(2)<40)
+			break;
+		BsemiCorrect();
+		//d*=2;
+		//set_color();
+		//i+=2;
+		d=d+20;
+	}
+	lcd("-");
+	stop();
+	return;
+}
+void BnoNatak()
+{
+	int flag=0;
+	//buzzer_on();
+	//lcd_print(2,1,7,1);
+	velocity(150,150);
+	if(Center_white_line<40)
+	{
+		if(Left_white_line>40 && Right_white_line<40) //bww
+		{
+			lcd("bww");
+			flag=1;
+			while(Center_white_line<40 && Left_white_line>40 && Right_white_line<40)
+			{
+				right();
+				set_color();
+			}
+			lcd("-");
+		}
+		else if(Right_white_line>40 && Left_white_line<40)	//wwb
+		{
+			flag=1;
+			lcd("wwb");
+			while(Center_white_line<40 && Left_white_line<40 && Right_white_line>40)
+			{
+				left();
+				set_color();
+			}
+			lcd("-");
+			
+		}
+		else
+		{
+			flag=1;
+			Bcorrect();
+		}
+	}
+	else
+	{
+		if(Left_white_line>40 && Right_white_line<40)	//bbw
+		{
+			flag=1;
+			node();
+			/*lcd("bbw");
+			
+			while(Center_white_line>40 && Left_white_line>40 && Right_white_line<40)
+			{
+				soft_right_2();
+				set_color();
+			}
+			lcd("-");*/
+		}
+		else if(Left_white_line<40 && Right_white_line>40)	//wbb
+		{
+			flag=1;
+			node();
+			
+			/*flag=1;
+			lcd("wbb");
+			while(Center_white_line>40 && Left_white_line<40 && Right_white_line>40)
+			{
+				soft_left_2();
+				set_color();
+			}
+			lcd("-");*/
+		}
+		else
+		{
+			flag=1;
+			Bcorrect();
+		}
+	}
+	if(flag==0)	
+		Bcorrect();
+	
+	stop();
+	//lcd_print(2,1,6,1);
+	//buzzer_off();
+	return;
+}
+void backJaa()
+{
+	do
+	{
+		back();
+		//_delay_ms(200);
+		set_color();
+		if(Center_white_line>40 && (Left_white_line>40 || Right_white_line>40)) //2 bbw wbb
+		{
+			_delay_ms(1000);
+			node();
+			return;
+		}
+	}while(1);
 }
 
 void lcd(char *str)
@@ -1007,7 +1195,9 @@ int main()
 	//..printf("Cost=%d\nSORTED!!!!!\n", cost + 7);
 	//getch();
 	*/
-	
+	//while(1){back();}
+	backJaa();
+	backJaa();
 	forwardJaa();
 	return 1;
 }
