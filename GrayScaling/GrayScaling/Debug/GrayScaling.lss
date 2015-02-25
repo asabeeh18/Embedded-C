@@ -3,27 +3,27 @@ GrayScaling.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         00000846  00000000  00000000  00000074  2**1
+  0 .text         000007b8  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .bss          0000001e  00800200  00800200  000008ba  2**0
+  1 .bss          0000001e  00800200  00800200  0000082c  2**0
                   ALLOC
-  2 .comment      00000030  00000000  00000000  000008ba  2**0
+  2 .comment      00000030  00000000  00000000  0000082c  2**0
                   CONTENTS, READONLY
-  3 .debug_aranges 000001a0  00000000  00000000  000008ea  2**0
+  3 .debug_aranges 000001a0  00000000  00000000  0000085c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  4 .debug_info   00001464  00000000  00000000  00000a8a  2**0
+  4 .debug_info   00001279  00000000  00000000  000009fc  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_abbrev 00000364  00000000  00000000  00001eee  2**0
+  5 .debug_abbrev 0000033b  00000000  00000000  00001c75  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_line   00000c57  00000000  00000000  00002252  2**0
+  6 .debug_line   00000ba9  00000000  00000000  00001fb0  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_frame  0000041c  00000000  00000000  00002eac  2**2
+  7 .debug_frame  000003f4  00000000  00000000  00002b5c  2**2
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_str    00000501  00000000  00000000  000032c8  2**0
+  8 .debug_str    00000501  00000000  00000000  00002f50  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_loc    00000dca  00000000  00000000  000037c9  2**0
+  9 .debug_loc    00000b20  00000000  00000000  00003451  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_ranges 000001d8  00000000  00000000  00004593  2**0
+ 10 .debug_ranges 00000190  00000000  00000000  00003f71  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -158,8 +158,8 @@ Disassembly of section .text:
   f4:	12 e0       	ldi	r17, 0x02	; 2
   f6:	a0 e0       	ldi	r26, 0x00	; 0
   f8:	b2 e0       	ldi	r27, 0x02	; 2
-  fa:	e6 e4       	ldi	r30, 0x46	; 70
-  fc:	f8 e0       	ldi	r31, 0x08	; 8
+  fa:	e8 eb       	ldi	r30, 0xB8	; 184
+  fc:	f7 e0       	ldi	r31, 0x07	; 7
   fe:	00 e0       	ldi	r16, 0x00	; 0
  100:	0b bf       	out	0x3b, r16	; 59
  102:	02 c0       	rjmp	.+4      	; 0x108 <__do_copy_data+0x14>
@@ -182,19 +182,19 @@ Disassembly of section .text:
  118:	ae 31       	cpi	r26, 0x1E	; 30
  11a:	b2 07       	cpc	r27, r18
  11c:	e1 f7       	brne	.-8      	; 0x116 <.do_clear_bss_loop>
- 11e:	7c d3       	rcall	.+1784   	; 0x818 <main>
- 120:	90 c3       	rjmp	.+1824   	; 0x842 <_exit>
+ 11e:	35 d3       	rcall	.+1642   	; 0x78a <main>
+ 120:	49 c3       	rjmp	.+1682   	; 0x7b4 <_exit>
 
 00000122 <__bad_interrupt>:
  122:	6e cf       	rjmp	.-292    	; 0x0 <__vectors>
 
 00000124 <lcd_set_4bit>:
-void buzzer_off (void)
 {
-	unsigned char port_restore = 0;
-	port_restore = PINC;
-	port_restore = port_restore & 0xF7;
-	PORTC = port_restore;
+	// 176 pulses for 360 degrees rotation 2.045 degrees per count
+	soft_right_2();  //Turn reverse soft right
+	Degrees=Degrees*2;
+	angle_rotate(Degrees);
+}
  124:	86 e6       	ldi	r24, 0x66	; 102
  126:	9e e0       	ldi	r25, 0x0E	; 14
  128:	01 97       	sbiw	r24, 0x01	; 1
@@ -423,7 +423,7 @@ void buzzer_off (void)
  2ce:	23 27       	eor	r18, r19
  2d0:	a7 e4       	ldi	r26, 0x47	; 71
  2d2:	b3 e0       	ldi	r27, 0x03	; 3
- 2d4:	a7 d2       	rcall	.+1358   	; 0x824 <__umulhisi3>
+ 2d4:	60 d2       	rcall	.+1216   	; 0x796 <__umulhisi3>
  2d6:	96 95       	lsr	r25
  2d8:	87 95       	ror	r24
  2da:	96 95       	lsr	r25
@@ -443,7 +443,7 @@ void buzzer_off (void)
  2fa:	27 95       	ror	r18
  2fc:	a5 ec       	ldi	r26, 0xC5	; 197
  2fe:	b0 e2       	ldi	r27, 0x20	; 32
- 300:	91 d2       	rcall	.+1314   	; 0x824 <__umulhisi3>
+ 300:	4a d2       	rcall	.+1172   	; 0x796 <__umulhisi3>
  302:	ac 01       	movw	r20, r24
  304:	52 95       	swap	r21
  306:	42 95       	swap	r20
@@ -456,7 +456,7 @@ void buzzer_off (void)
  318:	9a 01       	movw	r18, r20
  31a:	ad ec       	ldi	r26, 0xCD	; 205
  31c:	bc ec       	ldi	r27, 0xCC	; 204
- 31e:	82 d2       	rcall	.+1284   	; 0x824 <__umulhisi3>
+ 31e:	3b d2       	rcall	.+1142   	; 0x796 <__umulhisi3>
  320:	96 95       	lsr	r25
  322:	87 95       	ror	r24
  324:	96 95       	lsr	r25
@@ -493,7 +493,7 @@ void buzzer_off (void)
  366:	27 95       	ror	r18
  368:	ab e7       	ldi	r26, 0x7B	; 123
  36a:	b4 e1       	ldi	r27, 0x14	; 20
- 36c:	5b d2       	rcall	.+1206   	; 0x824 <__umulhisi3>
+ 36c:	14 d2       	rcall	.+1064   	; 0x796 <__umulhisi3>
  36e:	ac 01       	movw	r20, r24
  370:	56 95       	lsr	r21
  372:	47 95       	ror	r20
@@ -502,7 +502,7 @@ void buzzer_off (void)
  37c:	9a 01       	movw	r18, r20
  37e:	ad ec       	ldi	r26, 0xCD	; 205
  380:	bc ec       	ldi	r27, 0xCC	; 204
- 382:	50 d2       	rcall	.+1184   	; 0x824 <__umulhisi3>
+ 382:	09 d2       	rcall	.+1042   	; 0x796 <__umulhisi3>
  384:	96 95       	lsr	r25
  386:	87 95       	ror	r24
  388:	96 95       	lsr	r25
@@ -530,7 +530,7 @@ void buzzer_off (void)
  3b8:	98 01       	movw	r18, r16
  3ba:	ad ec       	ldi	r26, 0xCD	; 205
  3bc:	bc ec       	ldi	r27, 0xCC	; 204
- 3be:	32 d2       	rcall	.+1124   	; 0x824 <__umulhisi3>
+ 3be:	eb d1       	rcall	.+982    	; 0x796 <__umulhisi3>
  3c0:	ac 01       	movw	r20, r24
  3c2:	56 95       	lsr	r21
  3c4:	47 95       	ror	r20
@@ -541,7 +541,7 @@ void buzzer_off (void)
  3ce:	50 93 10 02 	sts	0x0210, r21
  3d2:	40 93 0f 02 	sts	0x020F, r20
  3d6:	9a 01       	movw	r18, r20
- 3d8:	25 d2       	rcall	.+1098   	; 0x824 <__umulhisi3>
+ 3d8:	de d1       	rcall	.+956    	; 0x796 <__umulhisi3>
  3da:	96 95       	lsr	r25
  3dc:	87 95       	ror	r24
  3de:	96 95       	lsr	r25
@@ -573,7 +573,7 @@ void buzzer_off (void)
  416:	98 01       	movw	r18, r16
  418:	ad ec       	ldi	r26, 0xCD	; 205
  41a:	bc ec       	ldi	r27, 0xCC	; 204
- 41c:	03 d2       	rcall	.+1030   	; 0x824 <__umulhisi3>
+ 41c:	bc d1       	rcall	.+888    	; 0x796 <__umulhisi3>
  41e:	96 95       	lsr	r25
  420:	87 95       	ror	r24
  422:	96 95       	lsr	r25
@@ -850,490 +850,346 @@ void buzzer_off (void)
  644:	f5 cf       	rjmp	.-22     	; 0x630 <motion_set>
  646:	08 95       	ret
 
-00000648 <init_devices>:
+00000648 <right>:
+ 648:	8a e0       	ldi	r24, 0x0A	; 10
+ 64a:	f2 cf       	rjmp	.-28     	; 0x630 <motion_set>
+ 64c:	08 95       	ret
+
+0000064e <buzzer_on>:
+
+void buzzer_on (void)
+{
+	unsigned char port_restore = 0;
+	port_restore = PINC;
+ 64e:	86 b1       	in	r24, 0x06	; 6
+	port_restore = port_restore | 0x08;
+ 650:	88 60       	ori	r24, 0x08	; 8
+	PORTC = port_restore;
+ 652:	88 b9       	out	0x08, r24	; 8
+ 654:	08 95       	ret
+
+00000656 <buzzer_off>:
+}
+
+void buzzer_off (void)
+{
+	unsigned char port_restore = 0;
+	port_restore = PINC;
+ 656:	86 b1       	in	r24, 0x06	; 6
+	port_restore = port_restore & 0xF7;
+ 658:	87 7f       	andi	r24, 0xF7	; 247
+	PORTC = port_restore;
+ 65a:	88 b9       	out	0x08, r24	; 8
+ 65c:	08 95       	ret
+
+0000065e <init_devices>:
 }
 
 
 void init_devices (void)
 {
  	cli(); //Clears the global interrupts
- 648:	f8 94       	cli
+ 65e:	f8 94       	cli
 	port_init();
- 64a:	3b df       	rcall	.-394    	; 0x4c2 <port_init>
+ 660:	30 df       	rcall	.-416    	; 0x4c2 <port_init>
 	adc_init();
- 64c:	5b df       	rcall	.-330    	; 0x504 <adc_init>
+ 662:	50 df       	rcall	.-352    	; 0x504 <adc_init>
 	left_position_encoder_interrupt_init();
- 64e:	94 df       	rcall	.-216    	; 0x578 <left_position_encoder_interrupt_init>
+ 664:	89 df       	rcall	.-238    	; 0x578 <left_position_encoder_interrupt_init>
 	right_position_encoder_interrupt_init();
- 650:	9c df       	rcall	.-200    	; 0x58a <right_position_encoder_interrupt_init>
+ 666:	91 df       	rcall	.-222    	; 0x58a <right_position_encoder_interrupt_init>
 	DDRC = DDRC | 0x08;		//Setting PORTC 3 as output
- 652:	3b 9a       	sbi	0x07, 3	; 7
+ 668:	3b 9a       	sbi	0x07, 3	; 7
 	PORTC = PORTC & 0xF7;
- 654:	43 98       	cbi	0x08, 3	; 8
+ 66a:	43 98       	cbi	0x08, 3	; 8
 	timer5_init();
- 656:	3b df       	rcall	.-394    	; 0x4ce <timer5_init>
+ 66c:	30 df       	rcall	.-416    	; 0x4ce <timer5_init>
 	sei();   //Enables the global interrupts
- 658:	78 94       	sei
- 65a:	08 95       	ret
+ 66e:	78 94       	sei
+ 670:	08 95       	ret
 
-0000065c <set_color>:
+00000672 <set_color>:
 
 // forward jaa plz
 
 void set_color()
 {
 	Left_white_line = ADC_Conversion(3);	//Getting data of Left WL Sensor
- 65c:	83 e0       	ldi	r24, 0x03	; 3
- 65e:	5f df       	rcall	.-322    	; 0x51e <ADC_Conversion>
- 660:	80 93 0a 02 	sts	0x020A, r24
+ 672:	83 e0       	ldi	r24, 0x03	; 3
+ 674:	54 df       	rcall	.-344    	; 0x51e <ADC_Conversion>
+ 676:	80 93 0a 02 	sts	0x020A, r24
 	Center_white_line = ADC_Conversion(2);	//Getting data of Center WL Sensor
- 664:	82 e0       	ldi	r24, 0x02	; 2
- 666:	5b df       	rcall	.-330    	; 0x51e <ADC_Conversion>
- 668:	80 93 09 02 	sts	0x0209, r24
+ 67a:	82 e0       	ldi	r24, 0x02	; 2
+ 67c:	50 df       	rcall	.-352    	; 0x51e <ADC_Conversion>
+ 67e:	80 93 09 02 	sts	0x0209, r24
 	Right_white_line = ADC_Conversion(1);	//Getting data of Right WL Sensor
- 66c:	81 e0       	ldi	r24, 0x01	; 1
- 66e:	57 df       	rcall	.-338    	; 0x51e <ADC_Conversion>
- 670:	80 93 08 02 	sts	0x0208, r24
+ 682:	81 e0       	ldi	r24, 0x01	; 1
+ 684:	4c df       	rcall	.-360    	; 0x51e <ADC_Conversion>
+ 686:	80 93 08 02 	sts	0x0208, r24
 	
 	print_sensor(1,1,3);	//Prints value of White Line Sensor1
- 674:	43 e0       	ldi	r20, 0x03	; 3
- 676:	61 e0       	ldi	r22, 0x01	; 1
- 678:	81 e0       	ldi	r24, 0x01	; 1
- 67a:	6c df       	rcall	.-296    	; 0x554 <print_sensor>
+ 68a:	43 e0       	ldi	r20, 0x03	; 3
+ 68c:	61 e0       	ldi	r22, 0x01	; 1
+ 68e:	81 e0       	ldi	r24, 0x01	; 1
+ 690:	61 df       	rcall	.-318    	; 0x554 <print_sensor>
 	print_sensor(1,5,2);	//Prints Value of White Line Sensor2
- 67c:	42 e0       	ldi	r20, 0x02	; 2
- 67e:	65 e0       	ldi	r22, 0x05	; 5
- 680:	81 e0       	ldi	r24, 0x01	; 1
- 682:	68 df       	rcall	.-304    	; 0x554 <print_sensor>
+ 692:	42 e0       	ldi	r20, 0x02	; 2
+ 694:	65 e0       	ldi	r22, 0x05	; 5
+ 696:	81 e0       	ldi	r24, 0x01	; 1
+ 698:	5d df       	rcall	.-326    	; 0x554 <print_sensor>
 	print_sensor(1,9,1);	//Prints Value of White Line Sensor3
- 684:	41 e0       	ldi	r20, 0x01	; 1
- 686:	69 e0       	ldi	r22, 0x09	; 9
- 688:	81 e0       	ldi	r24, 0x01	; 1
- 68a:	64 cf       	rjmp	.-312    	; 0x554 <print_sensor>
- 68c:	08 95       	ret
+ 69a:	41 e0       	ldi	r20, 0x01	; 1
+ 69c:	69 e0       	ldi	r22, 0x09	; 9
+ 69e:	81 e0       	ldi	r24, 0x01	; 1
+ 6a0:	59 cf       	rjmp	.-334    	; 0x554 <print_sensor>
+ 6a2:	08 95       	ret
 
-0000068e <forwardJaa>:
-
-}
-void forwardJaa()
-{
- 68e:	cf 92       	push	r12
- 690:	df 92       	push	r13
- 692:	ef 92       	push	r14
- 694:	ff 92       	push	r15
- 696:	0f 93       	push	r16
- 698:	1f 93       	push	r17
- 69a:	cf 93       	push	r28
- 69c:	df 93       	push	r29
+000006a4 <forwardJaa>:
 }
 
 //Function for velocity control
 void velocity (unsigned char left_motor, unsigned char right_motor)
 {
 	OCR5AL = (unsigned char)left_motor;
- 69e:	8f ef       	ldi	r24, 0xFF	; 255
- 6a0:	80 93 28 01 	sts	0x0128, r24
+ 6a4:	8f ef       	ldi	r24, 0xFF	; 255
+ 6a6:	80 93 28 01 	sts	0x0128, r24
 	OCR5BL = (unsigned char)right_motor;
- 6a4:	80 93 2a 01 	sts	0x012A, r24
+ 6aa:	80 93 2a 01 	sts	0x012A, r24
 
 }
 void forwardJaa()
 {
 	velocity(255,255);
 	forward();
- 6a8:	c9 df       	rcall	.-110    	; 0x63c <forward>
+ 6ae:	c6 df       	rcall	.-116    	; 0x63c <forward>
 	set_color();
- 6aa:	d8 df       	rcall	.-80     	; 0x65c <set_color>
-}
-
-//Function for velocity control
-void velocity (unsigned char left_motor, unsigned char right_motor)
-{
-	OCR5AL = (unsigned char)left_motor;
- 6ac:	08 e2       	ldi	r16, 0x28	; 40
- 6ae:	11 e0       	ldi	r17, 0x01	; 1
- 6b0:	ff 24       	eor	r15, r15
- 6b2:	fa 94       	dec	r15
-	OCR5BL = (unsigned char)right_motor;
- 6b4:	ca e2       	ldi	r28, 0x2A	; 42
- 6b6:	d1 e0       	ldi	r29, 0x01	; 1
- 6b8:	0f 2e       	mov	r0, r31
- 6ba:	f7 ed       	ldi	r31, 0xD7	; 215
- 6bc:	ef 2e       	mov	r14, r31
- 6be:	f0 2d       	mov	r31, r0
-}
-
-//Function for velocity control
-void velocity (unsigned char left_motor, unsigned char right_motor)
-{
-	OCR5AL = (unsigned char)left_motor;
- 6c0:	0f 2e       	mov	r0, r31
- 6c2:	f2 e8       	ldi	r31, 0x82	; 130
- 6c4:	cf 2e       	mov	r12, r31
- 6c6:	f0 2d       	mov	r31, r0
- 6c8:	0f 2e       	mov	r0, r31
- 6ca:	f6 ee       	ldi	r31, 0xE6	; 230
- 6cc:	df 2e       	mov	r13, r31
- 6ce:	f0 2d       	mov	r31, r0
-	forward();
-	set_color();
+ 6b0:	e0 df       	rcall	.-64     	; 0x672 <set_color>
 			
 	while(1)
+	
 	{
-		if(Center_white_line<=50)
- 6d0:	80 91 09 02 	lds	r24, 0x0209
- 6d4:	83 33       	cpi	r24, 0x33	; 51
- 6d6:	08 f0       	brcs	.+2      	; 0x6da <forwardJaa+0x4c>
- 6d8:	84 c0       	rjmp	.+264    	; 0x7e2 <forwardJaa+0x154>
+		
+		set_color();
+ 6b2:	df df       	rcall	.-66     	; 0x672 <set_color>
+		if(Center_white_line<=50 && Left_white_line<=40 &&  Right_white_line<=40)
+ 6b4:	80 91 09 02 	lds	r24, 0x0209
+ 6b8:	83 33       	cpi	r24, 0x33	; 51
+ 6ba:	08 f0       	brcs	.+2      	; 0x6be <forwardJaa+0x1a>
+ 6bc:	3d c0       	rjmp	.+122    	; 0x738 <forwardJaa+0x94>
+ 6be:	90 91 0a 02 	lds	r25, 0x020A
+ 6c2:	99 32       	cpi	r25, 0x29	; 41
+ 6c4:	08 f0       	brcs	.+2      	; 0x6c8 <forwardJaa+0x24>
+ 6c6:	38 c0       	rjmp	.+112    	; 0x738 <forwardJaa+0x94>
+ 6c8:	90 91 08 02 	lds	r25, 0x0208
+ 6cc:	99 32       	cpi	r25, 0x29	; 41
+ 6ce:	a0 f5       	brcc	.+104    	; 0x738 <forwardJaa+0x94>
 		{
+			
+			set_color();
+ 6d0:	d0 df       	rcall	.-96     	; 0x672 <set_color>
 			//Alert Bhai Adjust kar
-					if(Left_white_line>=40 &&  Right_white_line<=40)
- 6da:	80 91 0a 02 	lds	r24, 0x020A
- 6de:	88 32       	cpi	r24, 0x28	; 40
- 6e0:	38 f1       	brcs	.+78     	; 0x730 <forwardJaa+0xa2>
- 6e2:	80 91 08 02 	lds	r24, 0x0208
- 6e6:	89 32       	cpi	r24, 0x29	; 41
- 6e8:	18 f5       	brcc	.+70     	; 0x730 <forwardJaa+0xa2>
+				
+					if(Center_white_line<=50)
+ 6d2:	80 91 09 02 	lds	r24, 0x0209
+ 6d6:	83 33       	cpi	r24, 0x33	; 51
+ 6d8:	08 f0       	brcs	.+2      	; 0x6dc <forwardJaa+0x38>
+ 6da:	4c c0       	rjmp	.+152    	; 0x774 <forwardJaa+0xd0>
 }
 
 //Function for velocity control
 void velocity (unsigned char left_motor, unsigned char right_motor)
 {
 	OCR5AL = (unsigned char)left_motor;
- 6ea:	f8 01       	movw	r30, r16
- 6ec:	e0 82       	st	Z, r14
+ 6dc:	84 e6       	ldi	r24, 0x64	; 100
+ 6de:	80 93 28 01 	sts	0x0128, r24
 	OCR5BL = (unsigned char)right_motor;
- 6ee:	f8 82       	st	Y, r15
-		{
+ 6e2:	80 ef       	ldi	r24, 0xF0	; 240
+ 6e4:	80 93 2a 01 	sts	0x012A, r24
 			//Alert Bhai Adjust kar
-					if(Left_white_line>=40 &&  Right_white_line<=40)
+				
+					if(Center_white_line<=50)
 					{
-						velocity(215,255);
+						velocity(100,240);
 						forward();
- 6f0:	a5 df       	rcall	.-182    	; 0x63c <forward>
+ 6e8:	a9 df       	rcall	.-174    	; 0x63c <forward>
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
- 6f2:	ff ef       	ldi	r31, 0xFF	; 255
- 6f4:	2f ef       	ldi	r18, 0xFF	; 255
- 6f6:	8c e2       	ldi	r24, 0x2C	; 44
- 6f8:	f1 50       	subi	r31, 0x01	; 1
- 6fa:	20 40       	sbci	r18, 0x00	; 0
- 6fc:	80 40       	sbci	r24, 0x00	; 0
- 6fe:	e1 f7       	brne	.-8      	; 0x6f8 <forwardJaa+0x6a>
- 700:	00 c0       	rjmp	.+0      	; 0x702 <forwardJaa+0x74>
- 702:	00 00       	nop
-}
-
-//Function for velocity control
-void velocity (unsigned char left_motor, unsigned char right_motor)
-{
-	OCR5AL = (unsigned char)left_motor;
- 704:	f8 01       	movw	r30, r16
- 706:	f0 82       	st	Z, r15
-	OCR5BL = (unsigned char)right_motor;
- 708:	d8 82       	st	Y, r13
-					{
-						velocity(215,255);
-						forward();
-						_delay_ms(1000);
-						velocity(255,230);
-						forward();
- 70a:	98 df       	rcall	.-208    	; 0x63c <forward>
- 70c:	ff ef       	ldi	r31, 0xFF	; 255
- 70e:	2f e7       	ldi	r18, 0x7F	; 127
- 710:	86 e1       	ldi	r24, 0x16	; 22
- 712:	f1 50       	subi	r31, 0x01	; 1
- 714:	20 40       	sbci	r18, 0x00	; 0
- 716:	80 40       	sbci	r24, 0x00	; 0
- 718:	e1 f7       	brne	.-8      	; 0x712 <forwardJaa+0x84>
- 71a:	00 c0       	rjmp	.+0      	; 0x71c <forwardJaa+0x8e>
- 71c:	00 00       	nop
-}
-
-//Function for velocity control
-void velocity (unsigned char left_motor, unsigned char right_motor)
-{
-	OCR5AL = (unsigned char)left_motor;
- 71e:	f8 01       	movw	r30, r16
- 720:	f0 82       	st	Z, r15
-	OCR5BL = (unsigned char)right_motor;
- 722:	f8 82       	st	Y, r15
-						_delay_ms(1000);
-						velocity(255,230);
-						forward();
-						_delay_ms(500);
-						velocity(255,255);
+ 6ea:	2f ef       	ldi	r18, 0xFF	; 255
+ 6ec:	8f e7       	ldi	r24, 0x7F	; 127
+ 6ee:	94 e0       	ldi	r25, 0x04	; 4
+ 6f0:	21 50       	subi	r18, 0x01	; 1
+ 6f2:	80 40       	sbci	r24, 0x00	; 0
+ 6f4:	90 40       	sbci	r25, 0x00	; 0
+ 6f6:	e1 f7       	brne	.-8      	; 0x6f0 <forwardJaa+0x4c>
+ 6f8:	00 c0       	rjmp	.+0      	; 0x6fa <forwardJaa+0x56>
+ 6fa:	00 00       	nop
+						_delay_ms(100);
 						set_color();
- 724:	9b df       	rcall	.-202    	; 0x65c <set_color>
+ 6fc:	ba df       	rcall	.-140    	; 0x672 <set_color>
 						if(Center_white_line>40)
- 726:	80 91 09 02 	lds	r24, 0x0209
- 72a:	89 32       	cpi	r24, 0x29	; 41
- 72c:	08 f0       	brcs	.+2      	; 0x730 <forwardJaa+0xa2>
- 72e:	69 c0       	rjmp	.+210    	; 0x802 <forwardJaa+0x174>
-						break;
-					}
-					if(Left_white_line<=40 &&  Right_white_line>=40)
- 730:	80 91 0a 02 	lds	r24, 0x020A
- 734:	89 32       	cpi	r24, 0x29	; 41
- 736:	38 f5       	brcc	.+78     	; 0x786 <forwardJaa+0xf8>
- 738:	80 91 08 02 	lds	r24, 0x0208
- 73c:	88 32       	cpi	r24, 0x28	; 40
- 73e:	18 f1       	brcs	.+70     	; 0x786 <forwardJaa+0xf8>
+ 6fe:	80 91 09 02 	lds	r24, 0x0209
+ 702:	89 32       	cpi	r24, 0x29	; 41
+ 704:	08 f0       	brcs	.+2      	; 0x708 <forwardJaa+0x64>
+ 706:	39 c0       	rjmp	.+114    	; 0x77a <forwardJaa+0xd6>
 }
 
 //Function for velocity control
 void velocity (unsigned char left_motor, unsigned char right_motor)
 {
 	OCR5AL = (unsigned char)left_motor;
- 740:	f8 01       	movw	r30, r16
- 742:	f0 82       	st	Z, r15
+ 708:	80 ef       	ldi	r24, 0xF0	; 240
+ 70a:	80 93 28 01 	sts	0x0128, r24
 	OCR5BL = (unsigned char)right_motor;
- 744:	e8 82       	st	Y, r14
-						break;
-					}
-					if(Left_white_line<=40 &&  Right_white_line>=40)
-					{
-						velocity(255,215);
-						forward();
- 746:	7a df       	rcall	.-268    	; 0x63c <forward>
- 748:	ff ef       	ldi	r31, 0xFF	; 255
- 74a:	2f ef       	ldi	r18, 0xFF	; 255
- 74c:	8c e2       	ldi	r24, 0x2C	; 44
- 74e:	f1 50       	subi	r31, 0x01	; 1
- 750:	20 40       	sbci	r18, 0x00	; 0
- 752:	80 40       	sbci	r24, 0x00	; 0
- 754:	e1 f7       	brne	.-8      	; 0x74e <forwardJaa+0xc0>
- 756:	00 c0       	rjmp	.+0      	; 0x758 <forwardJaa+0xca>
- 758:	00 00       	nop
-}
-
-//Function for velocity control
-void velocity (unsigned char left_motor, unsigned char right_motor)
-{
-	OCR5AL = (unsigned char)left_motor;
- 75a:	f8 01       	movw	r30, r16
- 75c:	d0 82       	st	Z, r13
-	OCR5BL = (unsigned char)right_motor;
- 75e:	f8 82       	st	Y, r15
-					{
-						velocity(255,215);
-						forward();
-						_delay_ms(1000);
-						velocity(230,255);
-						forward();
- 760:	6d df       	rcall	.-294    	; 0x63c <forward>
- 762:	ff ef       	ldi	r31, 0xFF	; 255
- 764:	2f e7       	ldi	r18, 0x7F	; 127
- 766:	86 e1       	ldi	r24, 0x16	; 22
- 768:	f1 50       	subi	r31, 0x01	; 1
- 76a:	20 40       	sbci	r18, 0x00	; 0
- 76c:	80 40       	sbci	r24, 0x00	; 0
- 76e:	e1 f7       	brne	.-8      	; 0x768 <forwardJaa+0xda>
- 770:	00 c0       	rjmp	.+0      	; 0x772 <forwardJaa+0xe4>
- 772:	00 00       	nop
-}
-
-//Function for velocity control
-void velocity (unsigned char left_motor, unsigned char right_motor)
-{
-	OCR5AL = (unsigned char)left_motor;
- 774:	f8 01       	movw	r30, r16
- 776:	f0 82       	st	Z, r15
-	OCR5BL = (unsigned char)right_motor;
- 778:	f8 82       	st	Y, r15
-						_delay_ms(1000);
-						velocity(230,255);
-						forward();
-						_delay_ms(500);
-						velocity(255,255);
-						set_color();
- 77a:	70 df       	rcall	.-288    	; 0x65c <set_color>
-						if(Center_white_line>40)
- 77c:	80 91 09 02 	lds	r24, 0x0209
- 780:	89 32       	cpi	r24, 0x29	; 41
- 782:	78 f1       	brcs	.+94     	; 0x7e2 <forwardJaa+0x154>
- 784:	3e c0       	rjmp	.+124    	; 0x802 <forwardJaa+0x174>
-						break;
-					}
-					else
-					if(Center_white_line<=50)
- 786:	80 91 09 02 	lds	r24, 0x0209
- 78a:	83 33       	cpi	r24, 0x33	; 51
- 78c:	50 f5       	brcc	.+84     	; 0x7e2 <forwardJaa+0x154>
-}
-
-//Function for velocity control
-void velocity (unsigned char left_motor, unsigned char right_motor)
-{
-	OCR5AL = (unsigned char)left_motor;
- 78e:	f8 01       	movw	r30, r16
- 790:	f0 82       	st	Z, r15
-	OCR5BL = (unsigned char)right_motor;
- 792:	e8 82       	st	Y, r14
-					}
-					else
-					if(Center_white_line<=50)
-					{
-						velocity(255,215);
-						forward();
- 794:	53 df       	rcall	.-346    	; 0x63c <forward>
- 796:	ff ef       	ldi	r31, 0xFF	; 255
- 798:	2f ef       	ldi	r18, 0xFF	; 255
- 79a:	8a e1       	ldi	r24, 0x1A	; 26
- 79c:	f1 50       	subi	r31, 0x01	; 1
- 79e:	20 40       	sbci	r18, 0x00	; 0
- 7a0:	80 40       	sbci	r24, 0x00	; 0
- 7a2:	e1 f7       	brne	.-8      	; 0x79c <forwardJaa+0x10e>
- 7a4:	00 c0       	rjmp	.+0      	; 0x7a6 <forwardJaa+0x118>
- 7a6:	00 00       	nop
-}
-
-//Function for velocity control
-void velocity (unsigned char left_motor, unsigned char right_motor)
-{
-	OCR5AL = (unsigned char)left_motor;
- 7a8:	f8 01       	movw	r30, r16
- 7aa:	f0 82       	st	Z, r15
-	OCR5BL = (unsigned char)right_motor;
- 7ac:	f8 82       	st	Y, r15
-					{
-						velocity(255,215);
-						forward();
-						_delay_ms(600);
-						velocity(255,255);
-						set_color();
- 7ae:	56 df       	rcall	.-340    	; 0x65c <set_color>
-						if(Center_white_line>40)
- 7b0:	80 91 09 02 	lds	r24, 0x0209
- 7b4:	89 32       	cpi	r24, 0x29	; 41
- 7b6:	28 f5       	brcc	.+74     	; 0x802 <forwardJaa+0x174>
-}
-
-//Function for velocity control
-void velocity (unsigned char left_motor, unsigned char right_motor)
-{
-	OCR5AL = (unsigned char)left_motor;
- 7b8:	f8 01       	movw	r30, r16
- 7ba:	c0 82       	st	Z, r12
-	OCR5BL = (unsigned char)right_motor;
- 7bc:	f8 82       	st	Y, r15
+ 70e:	80 93 2a 01 	sts	0x012A, r24
+						_delay_ms(100);
 						set_color();
 						if(Center_white_line>40)
 						break;
-						
-						velocity(130,255);
-						forward();
- 7be:	3e df       	rcall	.-388    	; 0x63c <forward>
- 7c0:	ff ef       	ldi	r31, 0xFF	; 255
- 7c2:	2f ef       	ldi	r18, 0xFF	; 255
- 7c4:	8a e1       	ldi	r24, 0x1A	; 26
- 7c6:	f1 50       	subi	r31, 0x01	; 1
- 7c8:	20 40       	sbci	r18, 0x00	; 0
- 7ca:	80 40       	sbci	r24, 0x00	; 0
- 7cc:	e1 f7       	brne	.-8      	; 0x7c6 <forwardJaa+0x138>
- 7ce:	00 c0       	rjmp	.+0      	; 0x7d0 <forwardJaa+0x142>
- 7d0:	00 00       	nop
-}
-
-//Function for velocity control
-void velocity (unsigned char left_motor, unsigned char right_motor)
-{
-	OCR5AL = (unsigned char)left_motor;
- 7d2:	f8 01       	movw	r30, r16
- 7d4:	f0 82       	st	Z, r15
-	OCR5BL = (unsigned char)right_motor;
- 7d6:	f8 82       	st	Y, r15
-						
-						velocity(130,255);
-						forward();
-						_delay_ms(600);
-						velocity(255,255);
+						velocity(240,240);
+						right();
+ 712:	9a df       	rcall	.-204    	; 0x648 <right>
+						while(Center_white_line<40)
+ 714:	80 91 09 02 	lds	r24, 0x0209
+ 718:	88 32       	cpi	r24, 0x28	; 40
+ 71a:	60 f4       	brcc	.+24     	; 0x734 <forwardJaa+0x90>
+						{
+							lcd_print(2,3,1,1);
+ 71c:	21 e0       	ldi	r18, 0x01	; 1
+ 71e:	30 e0       	ldi	r19, 0x00	; 0
+ 720:	41 e0       	ldi	r20, 0x01	; 1
+ 722:	50 e0       	ldi	r21, 0x00	; 0
+ 724:	63 e0       	ldi	r22, 0x03	; 3
+ 726:	82 e0       	ldi	r24, 0x02	; 2
+ 728:	bb dd       	rcall	.-1162   	; 0x2a0 <lcd_print>
+							set_color();
+ 72a:	a3 df       	rcall	.-186    	; 0x672 <set_color>
 						set_color();
- 7d8:	41 df       	rcall	.-382    	; 0x65c <set_color>
 						if(Center_white_line>40)
- 7da:	80 91 09 02 	lds	r24, 0x0209
- 7de:	89 32       	cpi	r24, 0x29	; 41
- 7e0:	80 f4       	brcc	.+32     	; 0x802 <forwardJaa+0x174>
 						break;
+						velocity(240,240);
+						right();
+						while(Center_white_line<40)
+ 72c:	80 91 09 02 	lds	r24, 0x0209
+ 730:	88 32       	cpi	r24, 0x28	; 40
+ 732:	a0 f3       	brcs	.-24     	; 0x71c <forwardJaa+0x78>
+						{
+							lcd_print(2,3,1,1);
+							set_color();
+							
+						}
+						stop();
+ 734:	86 df       	rcall	.-244    	; 0x642 <stop>
+						break;
+ 736:	21 c0       	rjmp	.+66     	; 0x77a <forwardJaa+0xd6>
 					}
 		}		
-		if(Center_white_line<40 && Left_white_line<40 && Right_white_line<40)
- 7e2:	80 91 09 02 	lds	r24, 0x0209
- 7e6:	88 32       	cpi	r24, 0x28	; 40
- 7e8:	50 f4       	brcc	.+20     	; 0x7fe <forwardJaa+0x170>
- 7ea:	80 91 0a 02 	lds	r24, 0x020A
- 7ee:	88 32       	cpi	r24, 0x28	; 40
- 7f0:	30 f4       	brcc	.+12     	; 0x7fe <forwardJaa+0x170>
- 7f2:	80 91 08 02 	lds	r24, 0x0208
- 7f6:	88 32       	cpi	r24, 0x28	; 40
- 7f8:	10 f4       	brcc	.+4      	; 0x7fe <forwardJaa+0x170>
+		else if(Center_white_line<40 && Left_white_line<40 && Right_white_line<40)
+ 738:	88 32       	cpi	r24, 0x28	; 40
+ 73a:	58 f4       	brcc	.+22     	; 0x752 <forwardJaa+0xae>
+ 73c:	80 91 0a 02 	lds	r24, 0x020A
+ 740:	88 32       	cpi	r24, 0x28	; 40
+ 742:	c0 f4       	brcc	.+48     	; 0x774 <forwardJaa+0xd0>
+ 744:	80 91 08 02 	lds	r24, 0x0208
+ 748:	88 32       	cpi	r24, 0x28	; 40
+ 74a:	a0 f4       	brcc	.+40     	; 0x774 <forwardJaa+0xd0>
 		{
+					set_color();
+ 74c:	92 df       	rcall	.-220    	; 0x672 <set_color>
 			stop();
- 7fa:	23 df       	rcall	.-442    	; 0x642 <stop>
+ 74e:	79 df       	rcall	.-270    	; 0x642 <stop>
 			break;
- 7fc:	02 c0       	rjmp	.+4      	; 0x802 <forwardJaa+0x174>
+ 750:	14 c0       	rjmp	.+40     	; 0x77a <forwardJaa+0xd6>
 		}
-				set_color();
- 7fe:	2e df       	rcall	.-420    	; 0x65c <set_color>
+		else if(Left_white_line>=40 &&  Right_white_line>=40 && Center_white_line>=40)
+ 752:	80 91 0a 02 	lds	r24, 0x020A
+ 756:	88 32       	cpi	r24, 0x28	; 40
+ 758:	68 f0       	brcs	.+26     	; 0x774 <forwardJaa+0xd0>
+ 75a:	12 c0       	rjmp	.+36     	; 0x780 <forwardJaa+0xdc>
+		{
+		   set_color();
+ 75c:	8a df       	rcall	.-236    	; 0x672 <set_color>
+			buzzer_on();
+ 75e:	77 df       	rcall	.-274    	; 0x64e <buzzer_on>
+ 760:	2f ef       	ldi	r18, 0xFF	; 255
+ 762:	8f ef       	ldi	r24, 0xFF	; 255
+ 764:	9c e2       	ldi	r25, 0x2C	; 44
+ 766:	21 50       	subi	r18, 0x01	; 1
+ 768:	80 40       	sbci	r24, 0x00	; 0
+ 76a:	90 40       	sbci	r25, 0x00	; 0
+ 76c:	e1 f7       	brne	.-8      	; 0x766 <forwardJaa+0xc2>
+ 76e:	00 c0       	rjmp	.+0      	; 0x770 <forwardJaa+0xcc>
+ 770:	00 00       	nop
+ 772:	03 c0       	rjmp	.+6      	; 0x77a <forwardJaa+0xd6>
+			_delay_ms(1000);
+			break;
+		}
+		
+		set_color();
+ 774:	7e df       	rcall	.-260    	; 0x672 <set_color>
+		buzzer_off();
+ 776:	6f df       	rcall	.-290    	; 0x656 <buzzer_off>
 				
 	}
- 800:	67 cf       	rjmp	.-306    	; 0x6d0 <forwardJaa+0x42>
+ 778:	9c cf       	rjmp	.-200    	; 0x6b2 <forwardJaa+0xe>
 			set_color();
- 802:	2c df       	rcall	.-424    	; 0x65c <set_color>
+ 77a:	7b df       	rcall	.-266    	; 0x672 <set_color>
 			
 	stop();
- 804:	1e df       	rcall	.-452    	; 0x642 <stop>
-}
- 806:	df 91       	pop	r29
- 808:	cf 91       	pop	r28
- 80a:	1f 91       	pop	r17
- 80c:	0f 91       	pop	r16
- 80e:	ff 90       	pop	r15
- 810:	ef 90       	pop	r14
- 812:	df 90       	pop	r13
- 814:	cf 90       	pop	r12
- 816:	08 95       	ret
+ 77c:	62 cf       	rjmp	.-316    	; 0x642 <stop>
+ 77e:	08 95       	ret
+		{
+					set_color();
+			stop();
+			break;
+		}
+		else if(Left_white_line>=40 &&  Right_white_line>=40 && Center_white_line>=40)
+ 780:	80 91 08 02 	lds	r24, 0x0208
+ 784:	88 32       	cpi	r24, 0x28	; 40
+ 786:	50 f7       	brcc	.-44     	; 0x75c <forwardJaa+0xb8>
+ 788:	f5 cf       	rjmp	.-22     	; 0x774 <forwardJaa+0xd0>
 
-00000818 <main>:
+0000078a <main>:
+	stop();
+}
 //Main Function
 int main()
 {
 	init_devices();
- 818:	17 df       	rcall	.-466    	; 0x648 <init_devices>
+ 78a:	69 df       	rcall	.-302    	; 0x65e <init_devices>
 	lcd_set_4bit();
- 81a:	84 dc       	rcall	.-1784   	; 0x124 <lcd_set_4bit>
+ 78c:	cb dc       	rcall	.-1642   	; 0x124 <lcd_set_4bit>
 	lcd_init();
- 81c:	ed dc       	rcall	.-1574   	; 0x1f8 <lcd_init>
+ 78e:	34 dd       	rcall	.-1432   	; 0x1f8 <lcd_init>
 	set_color();
- 81e:	1e df       	rcall	.-452    	; 0x65c <set_color>
+ 790:	70 df       	rcall	.-288    	; 0x672 <set_color>
 	while(1)
 	forwardJaa();	
- 820:	36 df       	rcall	.-404    	; 0x68e <forwardJaa>
- 822:	fe cf       	rjmp	.-4      	; 0x820 <main+0x8>
+ 792:	88 df       	rcall	.-240    	; 0x6a4 <forwardJaa>
+ 794:	fe cf       	rjmp	.-4      	; 0x792 <main+0x8>
 
-00000824 <__umulhisi3>:
- 824:	a2 9f       	mul	r26, r18
- 826:	b0 01       	movw	r22, r0
- 828:	b3 9f       	mul	r27, r19
- 82a:	c0 01       	movw	r24, r0
- 82c:	a3 9f       	mul	r26, r19
- 82e:	70 0d       	add	r23, r0
- 830:	81 1d       	adc	r24, r1
- 832:	11 24       	eor	r1, r1
- 834:	91 1d       	adc	r25, r1
- 836:	b2 9f       	mul	r27, r18
- 838:	70 0d       	add	r23, r0
- 83a:	81 1d       	adc	r24, r1
- 83c:	11 24       	eor	r1, r1
- 83e:	91 1d       	adc	r25, r1
- 840:	08 95       	ret
+00000796 <__umulhisi3>:
+ 796:	a2 9f       	mul	r26, r18
+ 798:	b0 01       	movw	r22, r0
+ 79a:	b3 9f       	mul	r27, r19
+ 79c:	c0 01       	movw	r24, r0
+ 79e:	a3 9f       	mul	r26, r19
+ 7a0:	70 0d       	add	r23, r0
+ 7a2:	81 1d       	adc	r24, r1
+ 7a4:	11 24       	eor	r1, r1
+ 7a6:	91 1d       	adc	r25, r1
+ 7a8:	b2 9f       	mul	r27, r18
+ 7aa:	70 0d       	add	r23, r0
+ 7ac:	81 1d       	adc	r24, r1
+ 7ae:	11 24       	eor	r1, r1
+ 7b0:	91 1d       	adc	r25, r1
+ 7b2:	08 95       	ret
 
-00000842 <_exit>:
- 842:	f8 94       	cli
+000007b4 <_exit>:
+ 7b4:	f8 94       	cli
 
-00000844 <__stop_program>:
- 844:	ff cf       	rjmp	.-2      	; 0x844 <__stop_program>
+000007b6 <__stop_program>:
+ 7b6:	ff cf       	rjmp	.-2      	; 0x7b6 <__stop_program>

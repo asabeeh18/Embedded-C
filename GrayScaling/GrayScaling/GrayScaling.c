@@ -395,62 +395,53 @@ void forwardJaa()
 	set_color();
 			
 	while(1)
+	
 	{
-		if(Center_white_line<=50)
+		
+		set_color();
+		if(Center_white_line<=50 && Left_white_line<=40 &&  Right_white_line<=40)
 		{
+			
+			set_color();
 			//Alert Bhai Adjust kar
-					if(Left_white_line>=40 &&  Right_white_line<=40)
-					{
-						velocity(215,255);
-						forward();
-						_delay_ms(1000);
-						velocity(255,230);
-						forward();
-						_delay_ms(500);
-						velocity(255,255);
-						set_color();
-						if(Center_white_line>40)
-						break;
-					}
-					if(Left_white_line<=40 &&  Right_white_line>=40)
-					{
-						velocity(255,215);
-						forward();
-						_delay_ms(1000);
-						velocity(230,255);
-						forward();
-						_delay_ms(500);
-						velocity(255,255);
-						set_color();
-						if(Center_white_line>40)
-						break;
-					}
-					else
+				
 					if(Center_white_line<=50)
 					{
-						velocity(255,215);
+						velocity(100,240);
 						forward();
-						_delay_ms(600);
-						velocity(255,255);
+						_delay_ms(100);
 						set_color();
 						if(Center_white_line>40)
 						break;
-						
-						velocity(130,255);
-						forward();
-						_delay_ms(600);
-						velocity(255,255);
-						set_color();
-						if(Center_white_line>40)
+						velocity(240,240);
+						right();
+						while(Center_white_line<40)
+						{
+							lcd_print(2,3,1,1);
+							set_color();
+							
+						}
+						stop();
 						break;
 					}
 		}		
-		if(Center_white_line<40 && Left_white_line<40 && Right_white_line<40)
+		else if(Center_white_line<40 && Left_white_line<40 && Right_white_line<40)
 		{
+					set_color();
 			stop();
 			break;
 		}
-				set_color();
+		else if(Left_white_line>=40 &&  Right_white_line>=40 && Center_white_line>=40)
+		{
+			//node
+		   set_color();
+			buzzer_on();
+			_delay_ms(1000);
+			break;
+		}
+		
+		set_color();
+		buzzer_off();
 				
 	}
 			set_color();

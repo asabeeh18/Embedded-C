@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Atmel Studio Solution File, Format Version 11.00
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "improvDelay", "improvDelay\improvDelay.cproj", "{D4D081D6-5B20-490F-A850-FA01DCEA681D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D4D081D6-5B20-490F-A850-FA01DCEA681D}.Debug|AVR.ActiveCfg = Debug|AVR
+		{D4D081D6-5B20-490F-A850-FA01DCEA681D}.Debug|AVR.Build.0 = Debug|AVR
+		{D4D081D6-5B20-490F-A850-FA01DCEA681D}.Release|AVR.ActiveCfg = Release|AVR
+		{D4D081D6-5B20-490F-A850-FA01DCEA681D}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

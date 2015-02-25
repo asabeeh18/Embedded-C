@@ -34,8 +34,8 @@ int threshold,i=0;
 unsigned char Left_white_line = 0;
 unsigned char Center_white_line = 0;
 unsigned char Right_white_line = 0;
-
 void goForward();
+void lcd(char*);
 
 //whenever v find a blank space or box belonging to dat space total dec by 1;and whenever v place box in terminal sort++;
 /*--functions--*/
@@ -78,16 +78,18 @@ wwb DOne
 wbw OK!
 www Death 
 */
+
+
 void correct()
 {
 	unsigned int i=0;
 	Degrees=5;
-	for(;i<20;i++)
+	lcd("lef");
+	for(;i<3;i++)
 	{
-		lcd_print(2,3,0,1);
-		left(); //Left wheel backward, Right wheel forward
-		lcd_print(2,1,i,1);
 		
+		left(); //Left wheel backward, Right wheel forward
+				
 		stop();
 		set_color();
 		if(Center_white_line>40 && Left_white_line<40 && Right_white_line<40)
@@ -95,9 +97,11 @@ void correct()
 	}
 	//normal
 	right();
+	lcd_print(2,3,1,1);
+	lcd("rig");
 	while(Center_white_line<40)
 	{
-		lcd_print(2,3,1,1);
+		
 		set_color();
 		
 	}
@@ -109,6 +113,7 @@ void noNatak()
 	int flag=0;
 	//buzzer_on();
 	//lcd_print(2,1,7,1);
+	velocity(100,100);
 	if(Center_white_line<40)
 	{
 		if(Left_white_line>40 && Right_white_line<40) //bww
@@ -134,8 +139,13 @@ void noNatak()
 			lcd("-");
 			
 		}
+		else
+		{
+			flag=1;
+			correct();
+		}
 	}
-	if(Center_white_line>40)
+	else
 	{
 		if(Left_white_line>40 && Right_white_line<40)	//bbw
 		{
@@ -158,6 +168,11 @@ void noNatak()
 				set_color();
 			}
 			lcd("-");
+		}
+		else
+		{
+			flag=1;
+			correct();
 		}
 	}
 	if(flag==0)	
@@ -185,14 +200,14 @@ void forwardJaa()
 	}while(Center_white_line>0x28 && Left_white_line<40 && Right_white_line<40);
 	
 	noNatak();
+	forwardJaa();
 	return;
 }
 
-/*************************END GULLA CODE*************/
 void lcd(char *str)
 {
 	lcd_wr_command(0x01);
-	lcd_cursor(1,1);
+	lcd_cursor(2,11);
 	lcd_string(str);
 }
 int calcThresh()
