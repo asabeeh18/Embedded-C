@@ -1312,9 +1312,6 @@ int main(void)
 	int t=c[3];
  994:	0f 81       	ldd	r16, Y+7	; 0x07
  996:	18 85       	ldd	r17, Y+8	; 0x08
-	
-	
-	
 	lcd_cursor(1,1);  //set the cursor on row 1, column 1
  998:	61 e0       	ldi	r22, 0x01	; 1
  99a:	81 e0       	ldi	r24, 0x01	; 1

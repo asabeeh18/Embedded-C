@@ -35,6 +35,27 @@ unsigned char Left_white_line = 0;
 unsigned char Center_white_line = 0;
 unsigned char Right_white_line = 0;
 
+/**************************************************
+******************MOVEMENT*************************
+**************************************************/
+
+/**************************************************
+******************BLACK*LINE***********************
+**************************************************/
+
+/**************************************************
+******************COLOR****************************
+**************************************************/
+
+/**************************************************
+******************SERVO****************************
+**************************************************/
+
+/**************************************************
+******************SORT*****************************
+**************************************************/
+
+
 void goForward();
 
 //whenever v find a blank space or box belonging to dat space total dec by 1;and whenever v place box in terminal sort++;
@@ -494,9 +515,11 @@ void pickSort(int armNo, int sortNo)
 	else
 	{
 		if (dir == 1 || dir == 3)
+		{
 			if (armNo == 0)
 				turnLeft();
 			else turnRight();
+		}
 	}
 	pick(armNo);
 	sort[sortNo] = -1;
@@ -512,20 +535,24 @@ void pickup()
 		arm1 = 0;
 	}
 	if (visited[ct] == 0)
+	{
 		if (term[ct][0] == -2)
 		{
-		terminalCheck1();
-		terminalCheck2();
+			terminalCheck1();
+			terminalCheck2();
 		}
-		else	terminalCheck2();
+		else
+			terminalCheck2();
 		if ((term[ct][0] != color[ct] && term[ct][0] != -1) || (term[ct][1] != color[ct] && term[ct][1] != -1))
 		{
 			if (armCount == 2)
 			{
 				if (term[ct][0] == color[adj] || term[ct][1] == color[adj])
+				{
 					if (term[ct][0] == color[adj])
 						pickNode(arm0, 0);
 					else	pickNode(arm1, 1);
+				}
 				else	if ((term[ct][1] != color[ct]) && term[ct][1] != -1)
 				{
 					if (term[ct][0] != color[ct] && term[ct][0] != -1)
@@ -565,17 +592,22 @@ void pickup()
 					if (term[ct][0] == color[adj] || term[ct][1] == color[adj])
 					{
 						if ((visited[adj] == 1 && (term[adj][0] == -1 || term[adj][1] == -1)))
+						{
 							if (term[ct][a1] == color[adj])
 								pickNode(a1, a1);
 							else pickNode(a1, a2);
+						}
 					}
 					else {
 						if (sort[ct % 2] != color[ct] && sort[ct % 2] != color[adj])
+						{
 							if ((visited[adj] == 1 && ((term[adj][0] != color[ct]) && (term[adj][1] != color[ct]))))
+							{
 								if (term[ct][a1] != -1 && term[ct][a1] != color[ct])
 									pickNode(a1, a1);
 								else	if (term[ct][a2] != -1 && term[ct][a2] != color[ct])
 									pickNode(a1, a2);
+						}
 					}
 				}
 			}
@@ -676,9 +708,11 @@ void sortDrop(int armNo, int sortNo)
 	else
 	{
 		if (dir == 1 || dir == 3)
+		{
 			if (armNo == 0)
 				turnLeft();
 			else turnRight();
+		}
 	}
 	drop(armNo);
 	arm[armNo] = -1;
@@ -713,13 +747,17 @@ void canDrop()
 		if (armCount == 0)
 		{
 			if (arm[arm0] == color[ct])
+			{
 				if (term[ct][0] == -1)
 					nodeDrop(arm0, 0);
 				else nodeDrop(arm0, 1);
+	
 			else if (arm[arm1] == color[ct])
+			{
 				if (term[ct][0] != -1)
 					nodeDrop(arm1, 1);
 				else nodeDrop(arm1, 0);
+			}
 		}
 		if (arm[0] == color[ct] || arm[1] == color[ct])
 		{

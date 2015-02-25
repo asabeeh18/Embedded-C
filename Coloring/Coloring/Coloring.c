@@ -83,19 +83,22 @@ www Death
 */
 void node()
 {
+	lcd_print(1,1,'a',1);
+	forward();
+	_delay_ms(1000);
 	buzzer_on();
 	_delay_ms(100);
 	buzzer_off();
-	/*stop();
-	velocity(150,150);
-	soft_right();
+	stop();
+	velocity(200,200);
+	right();
 	_delay_ms(500);
 	do
 	{
-		Center_white_line = ADC_Conversion(2);	//Getting data of Center WL Sensor
-	}while(Center_white_line<40);
+		set_color();
+	}while(!(Center_white_line>40 && Left_white_line<40 && Right_white_line<40));
 	stop();
-	while(1);*/
+	lcd_print(1,1,scan(),1);
 }
 char Delay(int tim)
 {
@@ -465,8 +468,8 @@ void backJaa()
 		set_color();
 		if(Center_white_line>40 && (Left_white_line>40 || Right_white_line>40)) //2 bbw wbb
 		{
-			//_delay_ms(1000);
-			//node();
+			_delay_ms(1000);
+			node();
 			return;
 		}
 	}while(1);
@@ -595,7 +598,7 @@ void traverseToSort(int a, int b)
 	}
 }
 
-/*******COLOR******/
+/*******COLOR=2500******/
 int scan()//return the color no.
 {
 	
@@ -1197,10 +1200,7 @@ int main()
 	*/
 	//while(1){back();}
 	//backJaa();
-	backJaa();
-	stop();
-	noNatak();
-	forward();
+	forwardJaa();
 	_delay_ms(1000);
 	//forwardJaa();
 	stop();

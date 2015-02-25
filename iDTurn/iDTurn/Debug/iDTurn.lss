@@ -3,27 +3,27 @@ iDTurn.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         000006a8  00000000  00000000  00000074  2**1
+  0 .text         00000644  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .bss          0000005c  00800200  00800200  0000071c  2**0
+  1 .bss          0000005c  00800200  00800200  000006b8  2**0
                   ALLOC
-  2 .comment      00000030  00000000  00000000  0000071c  2**0
+  2 .comment      00000030  00000000  00000000  000006b8  2**0
                   CONTENTS, READONLY
-  3 .debug_aranges 00000348  00000000  00000000  0000074c  2**0
+  3 .debug_aranges 00000348  00000000  00000000  000006e8  2**0
                   CONTENTS, READONLY, DEBUGGING
-  4 .debug_info   00002d00  00000000  00000000  00000a94  2**0
+  4 .debug_info   00002d09  00000000  00000000  00000a30  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_abbrev 00000500  00000000  00000000  00003794  2**0
+  5 .debug_abbrev 00000500  00000000  00000000  00003739  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_line   0000244c  00000000  00000000  00003c94  2**0
+  6 .debug_line   00002451  00000000  00000000  00003c39  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_frame  000008c8  00000000  00000000  000060e0  2**2
+  7 .debug_frame  000008c8  00000000  00000000  0000608c  2**2
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_str    000007ce  00000000  00000000  000069a8  2**0
+  8 .debug_str    000007ce  00000000  00000000  00006954  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_loc    00001e81  00000000  00000000  00007176  2**0
+  9 .debug_loc    00001e81  00000000  00000000  00007122  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_ranges 00000398  00000000  00000000  00008ff7  2**0
+ 10 .debug_ranges 00000398  00000000  00000000  00008fa3  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -158,7 +158,7 @@ Disassembly of section .text:
   f4:	12 e0       	ldi	r17, 0x02	; 2
   f6:	a0 e0       	ldi	r26, 0x00	; 0
   f8:	b2 e0       	ldi	r27, 0x02	; 2
-  fa:	e8 ea       	ldi	r30, 0xA8	; 168
+  fa:	e4 e4       	ldi	r30, 0x44	; 68
   fc:	f6 e0       	ldi	r31, 0x06	; 6
   fe:	00 e0       	ldi	r16, 0x00	; 0
  100:	0b bf       	out	0x3b, r16	; 59
@@ -182,8 +182,8 @@ Disassembly of section .text:
  118:	ac 35       	cpi	r26, 0x5C	; 92
  11a:	b2 07       	cpc	r27, r18
  11c:	e1 f7       	brne	.-8      	; 0x116 <.do_clear_bss_loop>
- 11e:	b8 d2       	rcall	.+1392   	; 0x690 <main>
- 120:	c1 c2       	rjmp	.+1410   	; 0x6a4 <_exit>
+ 11e:	7b d2       	rcall	.+1270   	; 0x616 <main>
+ 120:	8f c2       	rjmp	.+1310   	; 0x640 <_exit>
 
 00000122 <__bad_interrupt>:
  122:	6e cf       	rjmp	.-292    	; 0x0 <__vectors>
@@ -811,108 +811,72 @@ void predict()
  5f4:	50 ce       	rjmp	.-864    	; 0x296 <stop>
  5f6:	08 95       	ret
 
-000005f8 <forwardJaa>:
- 5f8:	ff 92       	push	r15
- 5fa:	0f 93       	push	r16
- 5fc:	1f 93       	push	r17
- 5fe:	cf 93       	push	r28
- 600:	df 93       	push	r29
- 602:	08 e2       	ldi	r16, 0x28	; 40
- 604:	11 e0       	ldi	r17, 0x01	; 1
- 606:	0f 2e       	mov	r0, r31
- 608:	f0 ef       	ldi	r31, 0xF0	; 240
- 60a:	ff 2e       	mov	r15, r31
- 60c:	f0 2d       	mov	r31, r0
- 60e:	ca e2       	ldi	r28, 0x2A	; 42
- 610:	d1 e0       	ldi	r29, 0x01	; 1
- 612:	35 de       	rcall	.-918    	; 0x27e <forward>
- 614:	f5 de       	rcall	.-534    	; 0x400 <set_color>
- 616:	80 91 01 02 	lds	r24, 0x0201
- 61a:	89 32       	cpi	r24, 0x29	; 41
- 61c:	48 f0       	brcs	.+18     	; 0x630 <forwardJaa+0x38>
- 61e:	80 91 02 02 	lds	r24, 0x0202
- 622:	89 32       	cpi	r24, 0x29	; 41
- 624:	20 f4       	brcc	.+8      	; 0x62e <forwardJaa+0x36>
- 626:	80 91 00 02 	lds	r24, 0x0200
- 62a:	89 32       	cpi	r24, 0x29	; 41
- 62c:	08 f0       	brcs	.+2      	; 0x630 <forwardJaa+0x38>
- 62e:	f5 de       	rcall	.-534    	; 0x41a <node>
- 630:	f8 01       	movw	r30, r16
- 632:	f0 82       	st	Z, r15
- 634:	f8 82       	st	Y, r15
- 636:	80 91 01 02 	lds	r24, 0x0201
- 63a:	89 32       	cpi	r24, 0x29	; 41
- 63c:	40 f0       	brcs	.+16     	; 0x64e <forwardJaa+0x56>
- 63e:	80 91 02 02 	lds	r24, 0x0202
- 642:	88 32       	cpi	r24, 0x28	; 40
- 644:	20 f4       	brcc	.+8      	; 0x64e <forwardJaa+0x56>
- 646:	80 91 00 02 	lds	r24, 0x0200
- 64a:	88 32       	cpi	r24, 0x28	; 40
- 64c:	10 f3       	brcs	.-60     	; 0x612 <forwardJaa+0x1a>
- 64e:	88 df       	rcall	.-240    	; 0x560 <noNatak>
- 650:	d3 df       	rcall	.-90     	; 0x5f8 <forwardJaa>
- 652:	df 91       	pop	r29
- 654:	cf 91       	pop	r28
- 656:	1f 91       	pop	r17
- 658:	0f 91       	pop	r16
- 65a:	ff 90       	pop	r15
- 65c:	08 95       	ret
+000005f8 <backJaa>:
+ 5f8:	45 de       	rcall	.-886    	; 0x284 <back>
+ 5fa:	02 df       	rcall	.-508    	; 0x400 <set_color>
+ 5fc:	80 91 01 02 	lds	r24, 0x0201
+ 600:	89 32       	cpi	r24, 0x29	; 41
+ 602:	d0 f3       	brcs	.-12     	; 0x5f8 <backJaa>
+ 604:	80 91 02 02 	lds	r24, 0x0202
+ 608:	89 32       	cpi	r24, 0x29	; 41
+ 60a:	20 f4       	brcc	.+8      	; 0x614 <backJaa+0x1c>
+ 60c:	80 91 00 02 	lds	r24, 0x0200
+ 610:	89 32       	cpi	r24, 0x29	; 41
+ 612:	90 f3       	brcs	.-28     	; 0x5f8 <backJaa>
+ 614:	08 95       	ret
 
-0000065e <backJaa>:
- 65e:	12 de       	rcall	.-988    	; 0x284 <back>
- 660:	cf de       	rcall	.-610    	; 0x400 <set_color>
- 662:	80 91 01 02 	lds	r24, 0x0201
- 666:	89 32       	cpi	r24, 0x29	; 41
- 668:	d0 f3       	brcs	.-12     	; 0x65e <backJaa>
- 66a:	80 91 02 02 	lds	r24, 0x0202
- 66e:	89 32       	cpi	r24, 0x29	; 41
- 670:	20 f4       	brcc	.+8      	; 0x67a <backJaa+0x1c>
- 672:	80 91 00 02 	lds	r24, 0x0200
- 676:	89 32       	cpi	r24, 0x29	; 41
- 678:	90 f3       	brcs	.-28     	; 0x65e <backJaa>
- 67a:	2f ef       	ldi	r18, 0xFF	; 255
- 67c:	8f ef       	ldi	r24, 0xFF	; 255
- 67e:	9c e2       	ldi	r25, 0x2C	; 44
- 680:	21 50       	subi	r18, 0x01	; 1
- 682:	80 40       	sbci	r24, 0x00	; 0
- 684:	90 40       	sbci	r25, 0x00	; 0
- 686:	e1 f7       	brne	.-8      	; 0x680 <backJaa+0x22>
- 688:	00 c0       	rjmp	.+0      	; 0x68a <backJaa+0x2c>
- 68a:	00 00       	nop
- 68c:	c6 ce       	rjmp	.-628    	; 0x41a <node>
- 68e:	08 95       	ret
-
-00000690 <main>:
+00000616 <main>:
 
 }
 int main()
 {
 	init_devices();
- 690:	ab de       	rcall	.-682    	; 0x3e8 <init_devices>
+ 616:	e8 de       	rcall	.-560    	; 0x3e8 <init_devices>
 	lcd_set_4bit();
- 692:	48 dd       	rcall	.-1392   	; 0x124 <lcd_set_4bit>
+ 618:	85 dd       	rcall	.-1270   	; 0x124 <lcd_set_4bit>
 	lcd_init();
- 694:	b1 dd       	rcall	.-1182   	; 0x1f8 <lcd_init>
+ 61a:	ee dd       	rcall	.-1060   	; 0x1f8 <lcd_init>
 	color_sensor_scaling();/*
- 696:	b1 de       	rcall	.-670    	; 0x3fa <color_sensor_scaling>
-	//..printf("Sort 0=%dSort 1=%d\nArm 0=%dArm 1=%d\n", sort[0], sort[1], arm[0], arm[1]);
+ 61c:	ee de       	rcall	.-548    	; 0x3fa <color_sensor_scaling>
 	//..printf("Cost=%d\nSORTED!!!!!\n", cost + 7);
 	//getch();
 	*/
 	//while(1){back();}
+	//backJaa();
 	backJaa();
- 698:	e2 df       	rcall	.-60     	; 0x65e <backJaa>
-	backJaa();
- 69a:	e1 df       	rcall	.-62     	; 0x65e <backJaa>
-	forwardJaa();
- 69c:	ad df       	rcall	.-166    	; 0x5f8 <forwardJaa>
+ 61e:	ec df       	rcall	.-40     	; 0x5f8 <backJaa>
+	stop();
+ 620:	3a de       	rcall	.-908    	; 0x296 <stop>
+	noNatak();
+ 622:	9e df       	rcall	.-196    	; 0x560 <noNatak>
+	forward();
+ 624:	2c de       	rcall	.-936    	; 0x27e <forward>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 626:	2f ef       	ldi	r18, 0xFF	; 255
+ 628:	8f ef       	ldi	r24, 0xFF	; 255
+ 62a:	9c e2       	ldi	r25, 0x2C	; 44
+ 62c:	21 50       	subi	r18, 0x01	; 1
+ 62e:	80 40       	sbci	r24, 0x00	; 0
+ 630:	90 40       	sbci	r25, 0x00	; 0
+ 632:	e1 f7       	brne	.-8      	; 0x62c <main+0x16>
+ 634:	00 c0       	rjmp	.+0      	; 0x636 <main+0x20>
+ 636:	00 00       	nop
+	_delay_ms(1000);
+	//forwardJaa();
+	stop();
+ 638:	2e de       	rcall	.-932    	; 0x296 <stop>
 	return 1;
- 69e:	81 e0       	ldi	r24, 0x01	; 1
- 6a0:	90 e0       	ldi	r25, 0x00	; 0
- 6a2:	08 95       	ret
+ 63a:	81 e0       	ldi	r24, 0x01	; 1
+ 63c:	90 e0       	ldi	r25, 0x00	; 0
+ 63e:	08 95       	ret
 
-000006a4 <_exit>:
- 6a4:	f8 94       	cli
+00000640 <_exit>:
+ 640:	f8 94       	cli
 
-000006a6 <__stop_program>:
- 6a6:	ff cf       	rjmp	.-2      	; 0x6a6 <__stop_program>
+00000642 <__stop_program>:
+ 642:	ff cf       	rjmp	.-2      	; 0x642 <__stop_program>

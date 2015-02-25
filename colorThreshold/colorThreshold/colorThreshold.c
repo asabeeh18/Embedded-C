@@ -57,9 +57,6 @@ int main(void)
 		
 	}
 	int t=c[3];
-	
-	
-	
 	lcd_cursor(1,1);  //set the cursor on row 1, column 1
 	lcd_string("Threshold"); // Display "Blue Pulses" on LCD
 	t+=200;
