@@ -46,9 +46,9 @@ void set_color()
 	Left_white_line = ADC_Conversion(3);	//Getting data of Left WL Sensor
 	Center_white_line = ADC_Conversion(2);	//Getting data of Center WL Sensor
 	Right_white_line = ADC_Conversion(1);	//Getting data of Right WL Sensor
-	print_sensor(1,1,3);	//Prints value of White Line Sensor1
-	print_sensor(1,5,2);	//Prints Value of White Line Sensor2
-	print_sensor(1,9,1);	//Prints Value of White Line Sensor3
+	lcd_print(1,1,Left_white_line,3);	//Prints value of White Line Sensor1
+	lcd_print(1,5,Center_white_line,3);	//Prints Value of White Line Sensor2
+	lcd_print(1,9,Right_white_line,3);	//Prints Value of White Line Sensor3
 }
 
 void show_color()
@@ -84,30 +84,37 @@ www Death
 void Delay(int tim)
 {
 	int i;
-	for(i=0;i<tim;i++)
+	for(i=0;i<tim && Center_white_line<40;i++)
 	{
+		Center_white_line = ADC_Conversion(2);	//Getting data of Center WL Sensor
+		//set_color();
 		_delay_ms(1);
 	}
 }
 
 void correct()
 {
+	unsigned int d=20;
 	unsigned int i=0;
 	Degrees=5;
 	lcd("cor");
+	stop();
 	while(Center_white_line<=40)
 	{
+		
 		right();
-		Delay(100+i);
+		Delay(d);
 		stop();
 		set_color();
 		if(Center_white_line>40)
 			break;
 		left();
-		Delay(2*(100+i));
+		Delay(2*d);
 		stop();
+		d*=2;
 		set_color();
 		i+=10;
+		d+=i;
 	}
 	lcd("-");
 	stop();
@@ -118,7 +125,7 @@ void noNatak()
 	int flag=0;
 	//buzzer_on();
 	//lcd_print(2,1,7,1);
-	velocity(100,100);
+	velocity(200,200);
 	if(Center_white_line<40)
 	{
 		if(Left_white_line>40 && Right_white_line<40) //bww

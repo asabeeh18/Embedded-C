@@ -183,7 +183,7 @@ int main(void)
 	unsigned char i = 0;
 	init_devices();
 	servo_3(40);
-	
+	servo_2(30);
 	
 	buzzer_on();
 	_delay_ms(100);
@@ -192,9 +192,14 @@ int main(void)
 	while(1)
 	{
 		_delay_ms(1000);
+		
+		servo_2(65);
+		_delay_ms(500);
 		servo_3(0);
 		_delay_ms(1000);
-		servo_3(40);
+		servo_3(45);
+		_delay_ms(1000);
+		servo_2(30);
 	}
 	 return 0;
 }
