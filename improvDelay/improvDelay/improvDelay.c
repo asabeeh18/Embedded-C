@@ -87,16 +87,49 @@ void node()
 	_delay_ms(100);
 	buzzer_off();
 }
-void Delay(int tim)
+char Delay(int tim)
 {
 	int i;
-	for(i=0;i<tim && ADC_Conversion(2)<40;i++)
+	for(i=0;i<tim && ADC_Conversion(2)<=40;i++)
 	{
 		//set_color();
 		_delay_ms(1);
 	}
+	stop();
+	if(i<tim)
+		return 1;
+	else return 0;
 }
 
+void semiCorrect()
+{
+	if(Center_white_line<40)
+	{
+		if(Left_white_line>40 && Right_white_line<40) //bww
+		{
+			lcd("bww");
+			
+			while(Center_white_line<40 && Left_white_line>40 && Right_white_line<40)
+			{
+				left();
+				set_color();
+			}
+			lcd("-");
+		}
+		else if(Right_white_line>40 && Left_white_line<40)	//wwb
+		{
+			
+			lcd("wwb");
+			while(Center_white_line<40 && Left_white_line<40 && Right_white_line>40)
+			{
+				right();
+				set_color();
+			}
+			lcd("-");
+			
+		}
+	}
+}
 void correct()
 {
 	unsigned int d=2;
@@ -104,28 +137,44 @@ void correct()
 	Degrees=5;
 	lcd("cor");
 	stop();
-	while(ADC_Conversion(2)<40)
+	while(1)
 	{
 		
 		right();
 		if(d==2)
-			Delay(i);
+		{
+			if(Delay(i))
+				return;
+		}
 		else
-			Delay(2*i+d);
+		{
+			if(Delay(2*i+d))
+				return;
+		}
 		stop();
+		semiCorrect();
 		//set_color();
 		if(ADC_Conversion(2)>40)
 			break;
 		left();
 		if(d==2)
-			Delay(2*i);
+		{
+			if(Delay(2*i))
+				return;
+		}
 		else
-			Delay(2*i+d);
+		{
+			if(Delay(2*i+d))
+				return;
+		}
 		stop();
+		if(ADC_Conversion(2)<40)
+			break;
+		semiCorrect();
 		//d*=2;
 		//set_color();
 		//i+=2;
-		d+=10;
+		d=d+20;
 	}
 	lcd("-");
 	stop();
@@ -218,6 +267,7 @@ void forwardJaa()
 	do
 	{
 		forward();
+		//_delay_ms(200);
 		set_color();
 		if(Center_white_line>40 && (Left_white_line>40 || Right_white_line>40)) //2 bbw wbb
 		{
