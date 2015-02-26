@@ -210,7 +210,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0xa0a
+.text           0x00000000      0xab4
  *(.vectors)
  .vectors       0x00000000       0xe4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6/crtm2560.o
                 0x00000000                __vector_default
@@ -392,16 +392,16 @@ END GROUP
                 0x000006b6                read
  .text.init     0x00000704        0xa colorThreshold.o
                 0x00000704                init
- .text.main     0x0000070e      0x2da colorThreshold.o
+ .text.main     0x0000070e      0x384 colorThreshold.o
                 0x0000070e                main
  .text.libgcc.mul
-                0x000009e8       0x1e c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_umulhisi3.o)
-                0x000009e8                __umulhisi3
-                0x00000a06                . = ALIGN (0x2)
+                0x00000a92       0x1e c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_umulhisi3.o)
+                0x00000a92                __umulhisi3
+                0x00000ab0                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000a06        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
-                0x00000a06                _exit
-                0x00000a06                exit
+ .fini9         0x00000ab0        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
+                0x00000ab0                _exit
+                0x00000ab0                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -420,51 +420,51 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000a06        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
+ .fini0         0x00000ab0        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000a0a                _etext = .
+                0x00000ab4                _etext = .
 
-.data           0x00800200       0x34 load address 0x00000a0a
+.data           0x00800200       0x5c load address 0x00000ab4
                 0x00800200                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
  *(.rodata)
  *(.rodata*)
  .rodata.str1.1
-                0x00800200       0x33 colorThreshold.o
+                0x00800200       0x5b colorThreshold.o
  *(.gnu.linkonce.d*)
-                0x00800234                . = ALIGN (0x2)
- *fill*         0x00800233        0x1 
-                0x00800234                _edata = .
-                0x00800234                PROVIDE (__data_end, .)
+                0x0080025c                . = ALIGN (0x2)
+ *fill*         0x0080025b        0x1 
+                0x0080025c                _edata = .
+                0x0080025c                PROVIDE (__data_end, .)
 
-.bss            0x00800234       0x1c
-                0x00800234                PROVIDE (__bss_start, .)
+.bss            0x0080025c       0x1c
+                0x0080025c                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
- .bss.pulse     0x00800234        0x4 colorThreshold.o
-                0x00800234                pulse
+ .bss.pulse     0x0080025c        0x4 colorThreshold.o
+                0x0080025c                pulse
  *(COMMON)
- COMMON         0x00800238       0x18 colorThreshold.o
-                0x00800238                blue
-                0x0080023c                million
-                0x0080023e                temp
-                0x00800240                green
-                0x00800244                red
-                0x00800248                tens
-                0x0080024a                hundred
-                0x0080024c                unit
-                0x0080024e                thousand
-                0x00800250                PROVIDE (__bss_end, .)
-                0x00000a0a                __data_load_start = LOADADDR (.data)
-                0x00000a3e                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x00800260       0x18 colorThreshold.o
+                0x00800260                blue
+                0x00800264                million
+                0x00800266                temp
+                0x00800268                green
+                0x0080026c                red
+                0x00800270                tens
+                0x00800272                hundred
+                0x00800274                unit
+                0x00800276                thousand
+                0x00800278                PROVIDE (__bss_end, .)
+                0x00000ab4                __data_load_start = LOADADDR (.data)
+                0x00000b10                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800250        0x0
-                0x00800250                PROVIDE (__noinit_start, .)
+.noinit         0x00800278        0x0
+                0x00800278                PROVIDE (__noinit_start, .)
  *(.noinit*)
-                0x00800250                PROVIDE (__noinit_end, .)
-                0x00800250                _end = .
-                0x00800250                PROVIDE (__heap_start, .)
+                0x00800278                PROVIDE (__noinit_end, .)
+                0x00800278                _end = .
+                0x00800278                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
  *(.eeprom*)
@@ -531,30 +531,30 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000      0xdb7
+.debug_info     0x00000000     0x1037
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x00000000      0xdb7 colorThreshold.o
+ .debug_info    0x00000000     0x1037 colorThreshold.o
 
-.debug_abbrev   0x00000000      0x22e
+.debug_abbrev   0x00000000      0x23d
  *(.debug_abbrev)
- .debug_abbrev  0x00000000      0x22e colorThreshold.o
+ .debug_abbrev  0x00000000      0x23d colorThreshold.o
 
-.debug_line     0x00000000      0x851
+.debug_line     0x00000000      0x8eb
  *(.debug_line .debug_line.* .debug_line_end)
- .debug_line    0x00000000      0x851 colorThreshold.o
+ .debug_line    0x00000000      0x8eb colorThreshold.o
 
 .debug_frame    0x00000000      0x200
  *(.debug_frame)
  .debug_frame   0x00000000      0x200 colorThreshold.o
 
-.debug_str      0x00000000      0x302
+.debug_str      0x00000000      0x312
  *(.debug_str)
- .debug_str     0x00000000      0x302 colorThreshold.o
-                                0x350 (size before relaxing)
+ .debug_str     0x00000000      0x312 colorThreshold.o
+                                0x360 (size before relaxing)
 
-.debug_loc      0x00000000      0x535
+.debug_loc      0x00000000      0x562
  *(.debug_loc)
- .debug_loc     0x00000000      0x535 colorThreshold.o
+ .debug_loc     0x00000000      0x562 colorThreshold.o
 
 .debug_macinfo
  *(.debug_macinfo)

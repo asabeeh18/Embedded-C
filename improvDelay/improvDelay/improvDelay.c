@@ -35,7 +35,7 @@ unsigned char Left_white_line = 0;
 unsigned char Center_white_line = 0;
 unsigned char Right_white_line = 0;
 unsigned int v=100;
-
+unsigned char lf=0;
 void goForward();
 void lcd(char*);
 
@@ -137,45 +137,92 @@ void correct()
 	Degrees=5;
 	lcd("cor");
 	stop();
-	while(1)
+	if(lf==1)
 	{
+		lf=0;
+		while(1)
+		{
 		
-		right();
-		if(d==2)
-		{
-			if(Delay(i))
-				return;
-		}
-		else
-		{
-			if(Delay(2*i+d))
-				return;
-		}
-		stop();
+			right();
+			if(d==2)
+			{
+				if(Delay(i))
+					return;
+			}
+			else
+			{
+				if(Delay(2*i+d))
+					return;
+			}
+			stop();
 		
-		//set_color();
-		if(ADC_Conversion(2)>40)
-			break;
-		semiCorrect();
-		left();
-		if(d==2)
-		{
-			if(Delay(2*i))
-				return;
+			//set_color();
+			if(ADC_Conversion(2)>40)
+				break;
+			semiCorrect();
+			left();
+			if(d==2)
+			{
+				if(Delay(2*i))
+					return;
+			}
+			else
+			{
+				if(Delay(2*i+d))
+					return;
+			}
+			stop();
+			if(ADC_Conversion(2)<40)
+				break;
+			semiCorrect();
+			//d*=2;
+			//set_color();
+			//i+=2;
+			d=d+20;
 		}
-		else
+	}
+	else
+	{
+		lf=1;
+		while(1)
 		{
-			if(Delay(2*i+d))
+			left();
+			if(d==2)
+			{
+				if(Delay(i))
 				return;
-		}
-		stop();
-		if(ADC_Conversion(2)<40)
+			}
+			else
+			{
+				if(Delay(2*i+d))
+				return;
+			}
+			stop();
+			
+			//set_color();
+			if(ADC_Conversion(2)>40)
 			break;
-		semiCorrect();
-		//d*=2;
-		//set_color();
-		//i+=2;
-		d=d+20;
+			semiCorrect();
+			right();
+			if(d==2)
+			{
+				if(Delay(2*i))
+				return;
+			}
+			else
+			{
+				if(Delay(2*i+d))
+				return;
+			}
+			stop();
+			if(ADC_Conversion(2)<40)
+			break;
+			semiCorrect();
+			//d*=2;
+			//set_color();
+			//i+=2;
+			d=d+20;
+		}
 	}
 	lcd("-");
 	stop();

@@ -269,7 +269,7 @@ int calcThresh()
 /*******MOVEMENT**********/
 void front()
 {
-	goForward();
+	();
 	cost++;
 	//..printf("Front\n");
 }
@@ -598,7 +598,8 @@ void pickup()
 							else pickNode(a1, a2);
 						}
 					}
-					else {
+					else
+					{
 						if (sort[ct % 2] != color[ct] && sort[ct % 2] != color[adj])
 						{
 							if ((visited[adj] == 1 && ((term[adj][0] != color[ct]) && (term[adj][1] != color[ct]))))
@@ -607,12 +608,14 @@ void pickup()
 									pickNode(a1, a1);
 								else	if (term[ct][a2] != -1 && term[ct][a2] != color[ct])
 									pickNode(a1, a2);
+							}
 						}
 					}
 				}
 			}
 		}
-}
+	}
+}	
 
 void drop(int side)	//TODO delay
 {
@@ -751,7 +754,7 @@ void canDrop()
 				if (term[ct][0] == -1)
 					nodeDrop(arm0, 0);
 				else nodeDrop(arm0, 1);
-	
+			}
 			else if (arm[arm1] == color[ct])
 			{
 				if (term[ct][0] != -1)
@@ -872,11 +875,14 @@ void sortCheck()
 		{
 			if (armCount>0)
 			{
-				if (sort[ct % 2] != -1)
+				if
+				{
+					 (sort[ct % 2] != -1)
 					if (arm[arm0] == -1)
 						pickSort(arm0, ct % 2);
 					else if (arm[arm1] == -1)
 						pickSort(arm1, ct % 2);
+				}
 			}
 			traverseToSort(ct % 2 + 4, (ct + 1) % 2 + 4);
 			newSort();

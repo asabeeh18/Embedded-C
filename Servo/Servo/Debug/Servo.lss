@@ -338,7 +338,7 @@ void servo_3(unsigned char degrees)
  1e2:	f1 2c       	mov	r15, r1
  1e4:	f0 2d       	mov	r31, r0
  1e6:	43 e2       	ldi	r20, 0x23	; 35
- 1e8:	3b e3       	ldi	r19, 0x3B	; 59
+ 1e8:	38 e3       	ldi	r19, 0x38	; 56
 void servo_2(unsigned char degrees)
 {
  float PositionTiltServo = 0;

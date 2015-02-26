@@ -197,7 +197,7 @@ int main(void)
 		_delay_ms(500);
 		servo_3(0);
 		_delay_ms(1000);
-		servo_3(45);
+		servo_3(40);
 		_delay_ms(1000);
 		servo_2(30);
 	}
