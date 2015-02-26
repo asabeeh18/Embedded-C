@@ -92,11 +92,8 @@ void nodeRight()
 		print_sensor(2,6,11);
 		lcd_print(1,11,a,3);
 	}*/
-	_delay_ms(350);
+	_delay_ms(1200);
 	
-	while(ADC_Conversion(2)<40);
-	stop();
-	_delay_ms(1000);
 	
 	stop();
 }
@@ -110,11 +107,7 @@ void nodeLeft()
 		print_sensor(2,6,11);
 		lcd_print(1,11,a,3);
 	}*/
-	_delay_ms(350);
-	left();
-	while(ADC_Conversion(2)<40);
-	stop();
-	_delay_ms(1000);
+	_delay_ms(1200);
 	
 	stop();
 }
@@ -150,7 +143,7 @@ void node()
 		set_color();
 		
 	}
-	_delay_ms(470);
+	_delay_ms(600);
 	stop();	
 	nodeRight();
 	stop();

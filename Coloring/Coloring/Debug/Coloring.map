@@ -142,7 +142,7 @@ Discarded input sections
  .text.show_color
                 0x00000000       0x20 Coloring.o
  .text.nodeLeft
-                0x00000000       0x40 Coloring.o
+                0x00000000       0x1c Coloring.o
  .text.Uturn    0x00000000       0x3c Coloring.o
  .text.turnForBlack
                 0x00000000       0x10 Coloring.o
@@ -503,7 +503,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x66a
+.text           0x00000000      0x652
  *(.vectors)
  .vectors       0x00000000       0xe4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6/crtm2560.o
                 0x00000000                __vector_default
@@ -690,26 +690,26 @@ END GROUP
                 0x000003ea       0x1a Coloring.o
                 0x000003ea                set_color
  .text.nodeRight
-                0x00000404       0x34 Coloring.o
+                0x00000404       0x18 Coloring.o
                 0x00000404                nodeRight
- .text.node     0x00000438       0x46 Coloring.o
-                0x00000438                node
- .text.Delay    0x0000047e       0x4c Coloring.o
-                0x0000047e                Delay
- .text.correct  0x000004ca       0x7e Coloring.o
-                0x000004ca                correct
- .text.noNatak  0x00000548       0x94 Coloring.o
-                0x00000548                noNatak
+ .text.node     0x0000041c       0x4a Coloring.o
+                0x0000041c                node
+ .text.Delay    0x00000466       0x4c Coloring.o
+                0x00000466                Delay
+ .text.correct  0x000004b2       0x7e Coloring.o
+                0x000004b2                correct
+ .text.noNatak  0x00000530       0x94 Coloring.o
+                0x00000530                noNatak
  .text.forwardJaa
-                0x000005dc       0x66 Coloring.o
-                0x000005dc                forwardJaa
- .text.main     0x00000642       0x24 Coloring.o
-                0x00000642                main
-                0x00000666                . = ALIGN (0x2)
+                0x000005c4       0x66 Coloring.o
+                0x000005c4                forwardJaa
+ .text.main     0x0000062a       0x24 Coloring.o
+                0x0000062a                main
+                0x0000064e                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000666        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
-                0x00000666                _exit
-                0x00000666                exit
+ .fini9         0x0000064e        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
+                0x0000064e                _exit
+                0x0000064e                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -728,11 +728,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000666        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
+ .fini0         0x0000064e        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
  *(.fini0)
-                0x0000066a                _etext = .
+                0x00000652                _etext = .
 
-.data           0x00800200        0x0 load address 0x0000066a
+.data           0x00800200        0x0 load address 0x00000652
                 0x00800200                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -782,8 +782,8 @@ END GROUP
                 0x00800256                unit
                 0x00800258                thousand
                 0x0080025a                PROVIDE (__bss_end, .)
-                0x0000066a                __data_load_start = LOADADDR (.data)
-                0x0000066a                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00000652                __data_load_start = LOADADDR (.data)
+                0x00000652                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x0080025a        0x0
                 0x0080025a                PROVIDE (__noinit_start, .)
@@ -857,17 +857,17 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x3004
+.debug_info     0x00000000     0x2f4d
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x00000000     0x3004 Coloring.o
+ .debug_info    0x00000000     0x2f4d Coloring.o
 
 .debug_abbrev   0x00000000      0x500
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x500 Coloring.o
 
-.debug_line     0x00000000     0x2583
+.debug_line     0x00000000     0x2548
  *(.debug_line .debug_line.* .debug_line_end)
- .debug_line    0x00000000     0x2583 Coloring.o
+ .debug_line    0x00000000     0x2548 Coloring.o
 
 .debug_frame    0x00000000      0x908
  *(.debug_frame)

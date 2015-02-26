@@ -12,6 +12,7 @@ Sort0=4;//i.e. 0+4;
 Sort1=5;//i.e 1+4;
 */
 /*--Variables--*/
+#define F_CPU 14745600
 #include<stdio.h>
 #include "strong.c"
 int indicator[4];//indicator[0] contains the terminal no. associated vid red color;this vil be used in scan();
@@ -36,6 +37,7 @@ unsigned char Center_white_line = 0;
 unsigned char Right_white_line = 0;
 unsigned char lf=0;
 
+void node();
 void lcd(char *str);
 
 /**************************************************
@@ -317,6 +319,7 @@ void forwardJaa()
 		set_color();
 		if(Center_white_line>40 && (Left_white_line>40 || Right_white_line>40)) //2 bbw wbb
 		{
+			node();
 			return;
 		}
 		velocity(240,240);
@@ -331,6 +334,7 @@ void forwardJaa()
 
 void backJaa()
 {
+	unsigned char numberOfNodes=0;
 	do
 	{
 		back();
@@ -339,8 +343,11 @@ void backJaa()
 		if(Center_white_line>40 && (Left_white_line>40 || Right_white_line>40)) //2 bbw wbb
 		{
 			//_delay_ms(1000);
-			//node();
-			return;
+			back();
+			_delay_ms(500);
+			numberOfNodes++;
+			if(numberOfNodes==2)
+				return;
 		}
 	}while(1);
 }
@@ -415,6 +422,7 @@ int calcThresh()
 	return t;
 }
 
+
 /*******MOVEMENT**********/
 void node()
 {
@@ -425,7 +433,7 @@ void node()
 		set_color();
 		
 	}
-	_delay_ms(470);
+	_delay_ms(600);
 	stop();	
 }
 void nodeLeft()
@@ -433,17 +441,31 @@ void nodeLeft()
 	node();
 	unsigned int a=0;
 	left();
-	_delay_ms(350);
-	while(ADC_Conversion(2)<40);
+	_delay_ms(900);
 	stop();
+	
 }
 void nodeRight()
 {
 	node();
 	unsigned int a=0;
 	right();
-	_delay_ms(350);
-	while(ADC_Conversion(2)<40);
+	_delay_ms(900);
+	stop();
+}
+
+void Uturn()
+{
+	unsigned int a=0;
+	
+/*	while(ADC_Conversion(11)<65)
+	{
+		a++;
+		print_sensor(2,6,11);
+		lcd_print(1,11,a,3);
+	}*/
+	left();
+	_delay_ms(2000);
 	stop();
 }
 void front()
@@ -466,11 +488,13 @@ void turnRight()	//turns the robo right
 }
 void turnLeft()	//turns the robo left
 {
+	nodeLeft();
 	dir = (dir + 3) % 4;
 	//..printf("Turn Left\n");
 }
 void turn()	//turn robo by 180 degree
 {
+	Uturn();
 	dir = (dir + 2) % 4;
 	//..//..printf("Turn\n");
 }
@@ -491,8 +515,8 @@ void traverseToSort(int a, int b)
 	}
 	else{
 		if ((a <= 1 && dir == 0) || (a >= 2 && dir == 2))
-			backward();
-		else front();
+			turn();
+		front();
 		ot = ct % 2 + 4;
 	}
 }
@@ -545,23 +569,24 @@ void terminalCheck1()
 	{
 		if (dir == 1 || dir == 3)
 		{
-			if (ct == 3 || ct == 0)
-				turnRight();
+			if (ot == 3 || ot == 0)
+			turnRight();
 			else turnLeft();
-			front();
 		}
 		if (((ct == 0 || ct == 1) && dir == 2) || ((ct == 2 || ct == 3) && dir == 0))
-			backward();
+			turn();
+		front();
 		ot = ct;
 	}
 	if (((ct == 0 || ct == 1) && dir == 0) || ((ct == 2 || ct == 3) && dir == 2))
-		turnRight();
+	turnRight();
 	else turnLeft();
-	//..printf("Enter term[%d][%d]\n", ct, 0);
-	//..scanf("%d", &term[ct][0]);
+	//printf("Enter term[%d][%d]\n", ct, 0);
+	//scanf("%d", &term[ct][0]);
 	term[ct][0]=scan();
+	lcd((char*)term[ct][0]);
 	if (term[ct][0] == -1 || term[ct][0] == color[ct])
-		total--;
+	total--;
 }
 void terminalCheck2()
 {
@@ -573,6 +598,7 @@ void terminalCheck2()
 	//..printf("Enter term[%d][%d]\n", ct, 1);
 	//..scanf("%d", &term[ct][1]);
 	term[ct][1]=scan();
+	lcd((char*)term[ct][1]);
 	if (term[ct][1] == -1 || term[ct][1] == color[ct])
 		total--;
 	visited[ct] = 1;
@@ -601,6 +627,10 @@ void close(unsigned char side)
 }
 void pick(int side)	//TODO delay
 {
+	if(side==0)
+		lcd("pickRight");
+	else
+		lcd("pickLeft");
 	elevate(0, side);//lower
 	open(side);
 	close(side);
@@ -608,42 +638,46 @@ void pick(int side)	//TODO delay
 	armCount--;
 }
 
-void pickNode(int armNo, int side)
+void position(int armNo,int side)
 {
-	lcd(pickNode);
-	arm[armNo] = term[ct][side];
 	if (ct == ot)
 	{
 		if (((ct == 0 || ct == 1) && dir == 0) || ((ct == 2 || ct == 3) && dir == 2))
 		{
 			if (armNo != side)
-				turn();
+			turn();
 		}
 		else	if (((ct == 0 || ct == 1) && dir == 2) || ((ct == 2 || ct == 3) && dir == 0))
 		{
 			if (armNo == side)
-				turn();
+			turn();
 		}
 		else if (((ct == 0 || ct == 1) && dir == 1) || ((ct == 2 || ct == 3) && dir == 3))
 		{
 			if (armNo != side)
-				turnRight();
+			turnRight();
+			else turnLeft();
 		}
 		else	if (((ct == 0 || ct == 1) && dir == 3) || ((ct == 2 || ct == 3) && dir == 1))
-			if (armNo == side)
-				turnRight();
-		pick(armNo);
-		term[ct][side] = -1;
+		if (armNo == side)
+		turnRight();
+		else turnLeft();
 	}
 	else
 	{
-		ot = ct;
 		if (dir == 0 || dir == 2)
 		{
 			if ((dir == 0 && (ct == 0 || ct == 1)) || (dir == 2 && (ct == 2 || ct == 3)))
 			{
-				if (armNo == side)
+				if (ot != 4 && ot != 5)
+				{
+					turnLeft();
 					front();
+				}
+				if (armNo == side)
+				{
+					front();
+				}
 				else
 				{
 					front();
@@ -654,12 +688,22 @@ void pickNode(int armNo, int side)
 			{
 				if (armNo == side)
 				{
-					turn();
+					if (ot != 4 && ot != 5)
+					{
+						turnLeft();
+						front();
+					}
+					else turn();
 					front();
 				}
 				else
 				{
-					backward();
+					if (ot != 4 && ot != 5)
+					{
+						turnLeft();
+						front();
+					}
+					front();
 				}
 			}
 		}
@@ -668,21 +712,27 @@ void pickNode(int armNo, int side)
 			if (armNo == side)
 			{
 				if (ct == 0 || ct == 3)
-					turnRight();
+				turnRight();
 				else turnLeft();
 				front();
 			}
 			else
 			{
 				if (ct == 0 || ct == 3)
-					turnLeft();
-				else turnRight();
-				backward();
+				turnRight();
+				else turnLeft();
+				front();
 			}
 		}
-		pick(armNo);
-		term[ct][side] = -1;
+		ot = ct;
 	}
+}
+void pickNode(int armNo, int side)
+{
+	arm[armNo] = term[ct][side];
+	position(armNo,side);
+	pick(armNo);
+	term[ct][side] = -1;
 	//..printf("Arm %d picked %d from term[%d][%d]\n", armNo, arm[armNo], ct, side);
 }
 
@@ -799,7 +849,10 @@ void pickup()
 
 void drop(int side)	//TODO delay
 {
-	lcd("drop");
+	if(side==0)
+		lcd("dropRight");
+	else
+		lcd("dropLeft");
 	elevate(0, side);//lower
 	open(side);
 	elevate(45, side);//mid
@@ -808,79 +861,11 @@ void drop(int side)	//TODO delay
 }
 void nodeDrop(int armNo, int side)
 {
-	lcd("nodeDrop");
 	term[ct][side] = arm[armNo];
-	if (ct == ot)
-	{
-		if (((ct == 0 || ct == 1) && dir == 0) || ((ct == 2 || ct == 3) && dir == 2))
-		{
-			if (armNo != side)
-				turn();
-		}
-		else	if (((ct == 0 || ct == 1) && dir == 2) || ((ct == 2 || ct == 3) && dir == 0))
-		{
-			if (armNo == side)
-				turn();
-		}
-		else if (((ct == 0 || ct == 1) && dir == 1) || ((ct == 2 || ct == 3) && dir == 3))
-		{
-			if (armNo != side)
-				turnRight();
-		}
-		else	if (((ct == 0 || ct == 1) && dir == 3) || ((ct == 2 || ct == 3) && dir == 1))
-			if (armNo == side)
-				turnRight();
-		drop(armNo);
-		arm[armNo] = -1;
-	}
-	else
-	{
-		ot = ct;
-		if (dir == 0 || dir == 2)
-
-			if ((dir == 0 && (ct == 0 || ct == 2)) || (dir == 2 && (ct == 1 || ct == 3)))
-				if (armNo == side)
-					front();
-				else
-				{
-					front();
-					turn();
-				}
-			else
-			{
-				if (armNo == side)
-				{
-					turn();
-					front();
-				}
-				else
-				{
-					backward();
-				}
-			}
-		else
-		{
-			if (armNo == side)
-			{
-				if (ct == 0 || ct == 3)
-					turnRight();
-				else turnLeft();
-				front();
-			}
-			else
-			{
-				if (ct == 0 || ct == 3)
-					turnLeft();
-				else turnRight();
-				backward();
-			}
-		}
-		drop(armNo);
-		arm[armNo] = -1;
-	}
-
-	ot = ct;
-	//..printf("Arm %d dropped %d on term[%d][%d]\n", armNo, term[ct][side], ct, side);
+	position(armNo,side);
+	drop(armNo);
+	arm[armNo] = -1;
+	//printf("Arm %d dropped %d on term[%d][%d]\n", armNo, term[ct][side], ct, side);
 	sorted++;
 }
 void sortDrop(int armNo, int sortNo)
