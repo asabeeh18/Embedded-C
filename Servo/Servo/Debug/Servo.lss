@@ -3,25 +3,25 @@ Servo.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         00000252  00000000  00000000  00000054  2**1
+  0 .text         00000236  00000000  00000000  00000054  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .comment      00000030  00000000  00000000  000002a6  2**0
+  1 .comment      00000030  00000000  00000000  0000028a  2**0
                   CONTENTS, READONLY
-  2 .debug_aranges 00000100  00000000  00000000  000002d6  2**0
+  2 .debug_aranges 00000100  00000000  00000000  000002ba  2**0
                   CONTENTS, READONLY, DEBUGGING
-  3 .debug_info   00000e65  00000000  00000000  000003d6  2**0
+  3 .debug_info   00000e3c  00000000  00000000  000003ba  2**0
                   CONTENTS, READONLY, DEBUGGING
-  4 .debug_abbrev 0000024a  00000000  00000000  0000123b  2**0
+  4 .debug_abbrev 00000253  00000000  00000000  000011f6  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_line   000008bd  00000000  00000000  00001485  2**0
+  5 .debug_line   00000894  00000000  00000000  00001449  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_frame  00000214  00000000  00000000  00001d44  2**2
+  6 .debug_frame  00000214  00000000  00000000  00001ce0  2**2
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_str    00000339  00000000  00000000  00001f58  2**0
+  7 .debug_str    00000339  00000000  00000000  00001ef4  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_loc    000007f3  00000000  00000000  00002291  2**0
+  8 .debug_loc    000007f3  00000000  00000000  0000222d  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_ranges 00000150  00000000  00000000  00002a84  2**0
+  9 .debug_ranges 00000138  00000000  00000000  00002a20  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -156,7 +156,7 @@ Disassembly of section .text:
   f4:	12 e0       	ldi	r17, 0x02	; 2
   f6:	a0 e0       	ldi	r26, 0x00	; 0
   f8:	b2 e0       	ldi	r27, 0x02	; 2
-  fa:	e2 e5       	ldi	r30, 0x52	; 82
+  fa:	e6 e3       	ldi	r30, 0x36	; 54
   fc:	f2 e0       	ldi	r31, 0x02	; 2
   fe:	00 e0       	ldi	r16, 0x00	; 0
  100:	0b bf       	out	0x3b, r16	; 59
@@ -181,7 +181,7 @@ Disassembly of section .text:
  11a:	b2 07       	cpc	r27, r18
  11c:	e1 f7       	brne	.-8      	; 0x116 <.do_clear_bss_loop>
  11e:	41 d0       	rcall	.+130    	; 0x1a2 <main>
- 120:	96 c0       	rjmp	.+300    	; 0x24e <_exit>
+ 120:	88 c0       	rjmp	.+272    	; 0x232 <_exit>
 
 00000122 <__bad_interrupt>:
  122:	6e cf       	rjmp	.-292    	; 0x0 <__vectors>
@@ -274,7 +274,7 @@ void servo_3(unsigned char degrees)
  OCR1CH = 0x00;
  1a4:	10 92 8d 00 	sts	0x008D, r1
  OCR1CL = (unsigned char) PositionServo;
- 1a8:	88 e3       	ldi	r24, 0x38	; 56
+ 1a8:	83 e2       	ldi	r24, 0x23	; 35
  1aa:	80 93 8c 00 	sts	0x008C, r24
 //Function to rotate Servo 2 by a specified angle in the multiples of 1.86 degrees
 void servo_2(unsigned char degrees)
@@ -284,12 +284,12 @@ void servo_2(unsigned char degrees)
  OCR1BH = 0x00;
  1ae:	10 92 8b 00 	sts	0x008B, r1
  OCR1BL = (unsigned char) PositionTiltServo;
- 1b2:	83 e3       	ldi	r24, 0x33	; 51
+ 1b2:	83 e5       	ldi	r24, 0x53	; 83
  1b4:	80 93 8a 00 	sts	0x008A, r24
 	unsigned char i = 0;
 	init_devices();
-	servo_3(40);
-	servo_2(30);
+	servo_3(0);
+	servo_2(90);
 	
 	buzzer_on();
  1b8:	ec df       	rcall	.-40     	; 0x192 <buzzer_on>
@@ -299,12 +299,12 @@ void servo_2(unsigned char degrees)
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
- 1ba:	1f ef       	ldi	r17, 0xFF	; 255
- 1bc:	2f e7       	ldi	r18, 0x7F	; 127
- 1be:	64 e0       	ldi	r22, 0x04	; 4
- 1c0:	11 50       	subi	r17, 0x01	; 1
- 1c2:	20 40       	sbci	r18, 0x00	; 0
- 1c4:	60 40       	sbci	r22, 0x00	; 0
+ 1ba:	2f ef       	ldi	r18, 0xFF	; 255
+ 1bc:	3f e7       	ldi	r19, 0x7F	; 127
+ 1be:	44 e0       	ldi	r20, 0x04	; 4
+ 1c0:	21 50       	subi	r18, 0x01	; 1
+ 1c2:	30 40       	sbci	r19, 0x00	; 0
+ 1c4:	40 40       	sbci	r20, 0x00	; 0
  1c6:	e1 f7       	brne	.-8      	; 0x1c0 <main+0x1e>
  1c8:	00 c0       	rjmp	.+0      	; 0x1ca <main+0x28>
  1ca:	00 00       	nop
@@ -317,115 +317,81 @@ void servo_2(unsigned char degrees)
  float PositionTiltServo = 0;
  PositionTiltServo = ((float)degrees / 1.86) + 35.0;
  OCR1BH = 0x00;
- 1ce:	8b e8       	ldi	r24, 0x8B	; 139
- 1d0:	90 e0       	ldi	r25, 0x00	; 0
+ 1ce:	ab e8       	ldi	r26, 0x8B	; 139
+ 1d0:	b0 e0       	ldi	r27, 0x00	; 0
  OCR1BL = (unsigned char) PositionTiltServo;
- 1d2:	ca e8       	ldi	r28, 0x8A	; 138
- 1d4:	d0 e0       	ldi	r29, 0x00	; 0
- 1d6:	55 e4       	ldi	r21, 0x45	; 69
-//Function to rotate Servo 3 by a specified angle in the multiples of 1.86 degrees
-void servo_3(unsigned char degrees)
-{
- float PositionServo = 0;
- PositionServo = ((float)degrees / 1.86) + 35.0;
- OCR1CH = 0x00;
- 1d8:	ad e8       	ldi	r26, 0x8D	; 141
- 1da:	b0 e0       	ldi	r27, 0x00	; 0
- OCR1CL = (unsigned char) PositionServo;
- 1dc:	0f 2e       	mov	r0, r31
- 1de:	fc e8       	ldi	r31, 0x8C	; 140
- 1e0:	ef 2e       	mov	r14, r31
- 1e2:	f1 2c       	mov	r15, r1
- 1e4:	f0 2d       	mov	r31, r0
- 1e6:	43 e2       	ldi	r20, 0x23	; 35
- 1e8:	38 e3       	ldi	r19, 0x38	; 56
-void servo_2(unsigned char degrees)
-{
- float PositionTiltServo = 0;
- PositionTiltServo = ((float)degrees / 1.86) + 35.0;
- OCR1BH = 0x00;
- OCR1BL = (unsigned char) PositionTiltServo;
- 1ea:	23 e3       	ldi	r18, 0x33	; 51
- 1ec:	7f ef       	ldi	r23, 0xFF	; 255
- 1ee:	ef ef       	ldi	r30, 0xFF	; 255
- 1f0:	fc e2       	ldi	r31, 0x2C	; 44
- 1f2:	71 50       	subi	r23, 0x01	; 1
- 1f4:	e0 40       	sbci	r30, 0x00	; 0
- 1f6:	f0 40       	sbci	r31, 0x00	; 0
- 1f8:	e1 f7       	brne	.-8      	; 0x1f2 <main+0x50>
- 1fa:	00 c0       	rjmp	.+0      	; 0x1fc <main+0x5a>
- 1fc:	00 00       	nop
+ 1d2:	ea e8       	ldi	r30, 0x8A	; 138
+ 1d4:	f0 e0       	ldi	r31, 0x00	; 0
+ 1d6:	23 e2       	ldi	r18, 0x23	; 35
+ 1d8:	93 e5       	ldi	r25, 0x53	; 83
+ 1da:	83 e8       	ldi	r24, 0x83	; 131
+ 1dc:	5f ef       	ldi	r21, 0xFF	; 255
+ 1de:	3f ef       	ldi	r19, 0xFF	; 255
+ 1e0:	49 e5       	ldi	r20, 0x59	; 89
+ 1e2:	51 50       	subi	r21, 0x01	; 1
+ 1e4:	30 40       	sbci	r19, 0x00	; 0
+ 1e6:	40 40       	sbci	r20, 0x00	; 0
+ 1e8:	e1 f7       	brne	.-8      	; 0x1e2 <main+0x40>
+ 1ea:	00 c0       	rjmp	.+0      	; 0x1ec <main+0x4a>
+ 1ec:	00 00       	nop
 //Function to rotate Servo 2 by a specified angle in the multiples of 1.86 degrees
 void servo_2(unsigned char degrees)
 {
  float PositionTiltServo = 0;
  PositionTiltServo = ((float)degrees / 1.86) + 35.0;
  OCR1BH = 0x00;
- 1fe:	fc 01       	movw	r30, r24
- 200:	10 82       	st	Z, r1
+ 1ee:	1c 92       	st	X, r1
  OCR1BL = (unsigned char) PositionTiltServo;
- 202:	58 83       	st	Y, r21
- 204:	ff ef       	ldi	r31, 0xFF	; 255
- 206:	1f e7       	ldi	r17, 0x7F	; 127
- 208:	66 e1       	ldi	r22, 0x16	; 22
- 20a:	f1 50       	subi	r31, 0x01	; 1
- 20c:	10 40       	sbci	r17, 0x00	; 0
- 20e:	60 40       	sbci	r22, 0x00	; 0
- 210:	e1 f7       	brne	.-8      	; 0x20a <main+0x68>
- 212:	00 c0       	rjmp	.+0      	; 0x214 <main+0x72>
- 214:	00 00       	nop
-//Function to rotate Servo 3 by a specified angle in the multiples of 1.86 degrees
-void servo_3(unsigned char degrees)
-{
- float PositionServo = 0;
- PositionServo = ((float)degrees / 1.86) + 35.0;
- OCR1CH = 0x00;
- 216:	1c 92       	st	X, r1
- OCR1CL = (unsigned char) PositionServo;
- 218:	f7 01       	movw	r30, r14
- 21a:	40 83       	st	Z, r20
- 21c:	ff ef       	ldi	r31, 0xFF	; 255
- 21e:	1f ef       	ldi	r17, 0xFF	; 255
- 220:	6c e2       	ldi	r22, 0x2C	; 44
- 222:	f1 50       	subi	r31, 0x01	; 1
- 224:	10 40       	sbci	r17, 0x00	; 0
- 226:	60 40       	sbci	r22, 0x00	; 0
- 228:	e1 f7       	brne	.-8      	; 0x222 <main+0x80>
- 22a:	00 c0       	rjmp	.+0      	; 0x22c <main+0x8a>
- 22c:	00 00       	nop
-//Function to rotate Servo 3 by a specified angle in the multiples of 1.86 degrees
-void servo_3(unsigned char degrees)
-{
- float PositionServo = 0;
- PositionServo = ((float)degrees / 1.86) + 35.0;
- OCR1CH = 0x00;
- 22e:	1c 92       	st	X, r1
- OCR1CL = (unsigned char) PositionServo;
- 230:	f7 01       	movw	r30, r14
- 232:	30 83       	st	Z, r19
- 234:	ff ef       	ldi	r31, 0xFF	; 255
- 236:	1f ef       	ldi	r17, 0xFF	; 255
- 238:	6c e2       	ldi	r22, 0x2C	; 44
- 23a:	f1 50       	subi	r31, 0x01	; 1
- 23c:	10 40       	sbci	r17, 0x00	; 0
- 23e:	60 40       	sbci	r22, 0x00	; 0
- 240:	e1 f7       	brne	.-8      	; 0x23a <main+0x98>
- 242:	00 c0       	rjmp	.+0      	; 0x244 <main+0xa2>
- 244:	00 00       	nop
+ 1f0:	20 83       	st	Z, r18
+ 1f2:	5f ef       	ldi	r21, 0xFF	; 255
+ 1f4:	3f ef       	ldi	r19, 0xFF	; 255
+ 1f6:	49 e5       	ldi	r20, 0x59	; 89
+ 1f8:	51 50       	subi	r21, 0x01	; 1
+ 1fa:	30 40       	sbci	r19, 0x00	; 0
+ 1fc:	40 40       	sbci	r20, 0x00	; 0
+ 1fe:	e1 f7       	brne	.-8      	; 0x1f8 <main+0x56>
+ 200:	00 c0       	rjmp	.+0      	; 0x202 <main+0x60>
+ 202:	00 00       	nop
 //Function to rotate Servo 2 by a specified angle in the multiples of 1.86 degrees
 void servo_2(unsigned char degrees)
 {
  float PositionTiltServo = 0;
  PositionTiltServo = ((float)degrees / 1.86) + 35.0;
  OCR1BH = 0x00;
- 246:	fc 01       	movw	r30, r24
- 248:	10 82       	st	Z, r1
+ 204:	1c 92       	st	X, r1
  OCR1BL = (unsigned char) PositionTiltServo;
- 24a:	28 83       	st	Y, r18
- 24c:	cf cf       	rjmp	.-98     	; 0x1ec <main+0x4a>
+ 206:	90 83       	st	Z, r25
+ 208:	5f ef       	ldi	r21, 0xFF	; 255
+ 20a:	3f ef       	ldi	r19, 0xFF	; 255
+ 20c:	49 e5       	ldi	r20, 0x59	; 89
+ 20e:	51 50       	subi	r21, 0x01	; 1
+ 210:	30 40       	sbci	r19, 0x00	; 0
+ 212:	40 40       	sbci	r20, 0x00	; 0
+ 214:	e1 f7       	brne	.-8      	; 0x20e <main+0x6c>
+ 216:	00 c0       	rjmp	.+0      	; 0x218 <main+0x76>
+ 218:	00 00       	nop
+//Function to rotate Servo 2 by a specified angle in the multiples of 1.86 degrees
+void servo_2(unsigned char degrees)
+{
+ float PositionTiltServo = 0;
+ PositionTiltServo = ((float)degrees / 1.86) + 35.0;
+ OCR1BH = 0x00;
+ 21a:	1c 92       	st	X, r1
+ OCR1BL = (unsigned char) PositionTiltServo;
+ 21c:	80 83       	st	Z, r24
+ 21e:	5f ef       	ldi	r21, 0xFF	; 255
+ 220:	3f ef       	ldi	r19, 0xFF	; 255
+ 222:	49 e5       	ldi	r20, 0x59	; 89
+ 224:	51 50       	subi	r21, 0x01	; 1
+ 226:	30 40       	sbci	r19, 0x00	; 0
+ 228:	40 40       	sbci	r20, 0x00	; 0
+ 22a:	e1 f7       	brne	.-8      	; 0x224 <main+0x82>
+ 22c:	00 c0       	rjmp	.+0      	; 0x22e <main+0x8c>
+ 22e:	00 00       	nop
+ 230:	d5 cf       	rjmp	.-86     	; 0x1dc <main+0x3a>
 
-0000024e <_exit>:
- 24e:	f8 94       	cli
+00000232 <_exit>:
+ 232:	f8 94       	cli
 
-00000250 <__stop_program>:
- 250:	ff cf       	rjmp	.-2      	; 0x250 <__stop_program>
+00000234 <__stop_program>:
+ 234:	ff cf       	rjmp	.-2      	; 0x234 <__stop_program>

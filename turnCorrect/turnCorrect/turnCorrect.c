@@ -28,6 +28,7 @@ int total = 8;
 int sorted = 0;
 int count = 0;
 int cost;
+int flag=0;
 int visitedCount = 0;
 int ot = 0, dir = 0;
 const int RED=0,GREEN=1,BLUE=2,BLACK=3,EMPTY=-1;
@@ -111,25 +112,46 @@ void backward()	//TODO
 }
 void turnRight()	//turns the robo right
 {
-	velocity(turn_v,turn_v);
+	if((dir==3 && (ot==0 || ot==1)) || (dir==1 && (ot==2 || ot==3)))
+	{
+		velocity(turn_v,turn_v);
+		right_degrees(90);
+	}
+	else
+	{
+		right_degrees(30);
+		velocity(200,200);
+		while(ADC_Conversion(2)<40)
+		right();
+		stop();
+	}
 	
-	forward_mm(85);
-	right_degrees(90);
 	dir = (dir + 1) % 4;
 	//..printf("Turn Right \n");
 }
 void turnLeft()	//turns the robo left
 {
-	velocity(turn_v,turn_v);
-
-	forward_mm(85);
-	right_degrees(90);
+	if((dir==1 && (ot==0 || ot==1)) || (dir==3 && (ot==2 || ot==3)))
+	{
+		velocity(turn_v,turn_v);
+		left_degrees(90);
+	}
+	else
+	{
+		left_degrees(30);
+		velocity(200,200);
+		while(ADC_Conversion(2)<40)
+		left();
+		stop();
+	}
+	
 	dir = (dir + 3) % 4;
 	//..printf("Turn Left\n");
 }
 void turn()	//turn robo by 180 degree
 {
-	Uturn();
+	velocity(turn_v,turn_v);
+	left_degrees(180);
 	dir = (dir + 2) % 4;
 	//..//..printf("Turn\n");
 }
@@ -552,6 +574,11 @@ void pick(int side)	//TODO delay
 }
 void pickNode(int armNo, int side)
 {
+	if(flag==1 && (dir==0 || dir==1))
+	{
+			back_mm(30);
+			flag==0;
+	}
 	arm[armNo] = term[ct][side];
 	position(armNo,side);
 	pick(armNo);
@@ -695,6 +722,12 @@ void drop(int side)	//TODO delay
 }
 void nodeDrop(int armNo, int side)
 {
+	
+	if(flag==1 && (dir==0 || dir==1))
+	{
+		back_mm(30);
+		flag==0;
+	}
 	term[ct][side] = arm[armNo];
 	position(armNo,side);
 	drop(armNo);
@@ -801,6 +834,8 @@ void canDrop()
 
 void traverseToSort(int a, int b)
 {
+	if(flag==1)
+		flag=0;
 	if (a == 4 || a == 5)
 	{
 		if ((a == 4 && dir == 0) || (a == 5 && dir == 2))
@@ -826,6 +861,8 @@ void traverseToSort(int a, int b)
 }
 void terminalCheck1()
 {
+	forward_mm(30);
+	flag=1;
 	if (ct != ot)
 	{
 
@@ -856,7 +893,18 @@ void terminalCheck1()
 }
 void terminalCheck2()
 {
-	
+	if(flag==0)
+	{
+		if(dir==0)
+			if(ot==0 || ot==1)
+				forward_mm(30);
+			else back_mm(30);
+		else if(ot==0 || ot==1)
+				back_mm(30);
+			else forward_mm(30);
+		flag=0;
+	}
+			
 	if (((ct == 0 || ct == 1) && dir == 0) || ((ct == 2 || ct == 3) && dir == 2))
 		turnLeft();
 	else if (((ct == 0 || ct == 1) && dir == 2) || ((ct == 2 || ct == 3) && dir == 0))
@@ -896,14 +944,29 @@ void position(int armNo,int side)
 		}
 		else if (((ct == 0 || ct == 1) && dir == 1) || ((ct == 2 || ct == 3) && dir == 3))
 		{
+			
+			if(flag==1 && (dir==0 || dir==1))
+			{
+				back_mm(30);
+				flag==0;
+			}
 			if (armNo != side)
 			turnRight();
 			else turnLeft();
 		}
 		else	if (((ct == 0 || ct == 1) && dir == 3) || ((ct == 2 || ct == 3) && dir == 1))
-		if (armNo == side)
-		turnRight();
-		else turnLeft();
+		{
+			
+			if(flag==1 && (dir==0 || dir==1))
+			{
+				back_mm(30);
+				flag==0;
+			}
+			if (armNo == side)
+			turnRight();
+			else turnLeft();
+		}
+		
 	}
 	else
 	{
@@ -1125,6 +1188,7 @@ int main()
 	lcd_set_4bit();
 	lcd_init();
 	color_sensor_scaling();
+	
 	/*
 	//variable 'i' scales at 13,14 for sharp sensor for velocitty 240 240
 	//u turn 1600ms at 200,200 velocity
