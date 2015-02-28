@@ -24,3 +24,28 @@ void buzzer_off (void)
  port_restore = port_restore & 0xF7;
  PORTC = port_restore;
 }
+
+
+
+
+
+
+
+
+
+PF0/ADC0 ADC input for Battery Voltage Monitoring
+96 PF1/ADC1 ADC input for White Line Sensor 3(Right)
+95 PF2/ADC2 ADC input for White Line Sensor 2(Center)
+94 PF3/ADC3 ADC input for White Line Sensor 1(Left)
+93 PF4/ADC4 ADC input for IR proximity analog sensor 1
+92 PF5/ADC5 ADC input for IR proximity analog sensor 2
+91 PF6/ADC6 ADC input for IR proximity analog sensor 3
+90 PF7/ADC7 ADC input for IR proximity analog sensor 4
+89 PK0/ADC8 ADC input for IR proximity analog sensor 5
+88 PK1/ADC9 ADC input for Sharp IR range sensor 1
+87 PK2/ADC10 ADC input for Sharp IR range sensor 2
+86 PK3/ADC11 ADC input for Sharp IR range sensor 3
+85 PK4/ADC12 ADC input for Sharp IR range sensor 4
+84 PK5/ADC13 ADC input for Sharp IR range sensor 5
+83 PK6/ADC14 ADC input for Servo Pod 1
+82 PK7/ADC15 ADC input for Servo Pod 2

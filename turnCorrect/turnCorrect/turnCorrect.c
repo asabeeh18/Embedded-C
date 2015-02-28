@@ -32,7 +32,7 @@ int flag=0,angle;
 int visitedCount = 0;
 int ot = 0, dir = 0;
 const int RED=0,GREEN=1,BLUE=2,BLACK=3,EMPTY=-1;
-const int turn_v=255,line_v=240,correct_v=200;
+const int turn_v=150,line_v=240,correct_v=200;
 
 
 int threshold;
@@ -102,15 +102,7 @@ void backward()	//TODO
 **************************************************/
 void node()
 {
-	velocity(correct_v,correct_v);
-	while(Center_white_line>40 && (Left_white_line>40 || Right_white_line>40))
-	{
-		forward();
-		set_color();
-		
-	}
-	_delay_ms(600);
-	stop();
+	forward_mm(60);
 }
 /*************************GULLA CODE**Blackline Forward***********/
 char Delay(int tim)
@@ -286,6 +278,7 @@ void noNatak()
 		if(Left_white_line>40 && Right_white_line<40)	//bbw
 		{
 			flag=1;
+			node();
 			return;
 			/*lcd("bbw");
 			
@@ -299,6 +292,7 @@ void noNatak()
 		else if(Left_white_line<40 && Right_white_line>40)	//wbb
 		{
 			flag=1;
+			node();
 			return;
 			
 			/*flag=1;
@@ -516,10 +510,10 @@ void turnRight()	//turns the robo right
 	else
 	{
 		right_degrees(30);
-		velocity(170, 170);
-		while (ADC_Conversion(2)<40)
+		velocity(turn_v, turn_v);
+		while (ADC_Conversion(2)<70)
 			right();
-		_delay_ms(100);
+	//	_delay_ms(100);
 		stop();	
 	}
 	lcd("Right turn");
@@ -538,10 +532,10 @@ void turnLeft()	//turns the robo left
 	else
 	{
 		left_degrees(30);
-		velocity(170, 170);
+		velocity(turn_v,turn_v);
 		while (ADC_Conversion(2)<70)
 			left();
-		_delay_ms(100);
+	//	_delay_ms(100);
 		stop();
 	}
 	lcd("Left turn");
@@ -566,7 +560,7 @@ void turn()	//turn robo by 180 degree
 	{
 		velocity(turn_v, turn_v);
 		left_degrees(150);
-		while (ADC_Conversion(2)<40)
+		while (ADC_Conversion(2)<70)
 			left();
 		stop();
 	}
@@ -614,7 +608,8 @@ int scan()//return the color no.
 	red_read();
 	blue_read();
 	green_read();
-	if(!(ADC_Conversion(11)>80 && ADC_Conversion(11)<100))
+	_delay_ms(100);
+	if(!(ADC_Conversion(11)>55 && ADC_Conversion(11)<100))
 		return EMPTY;
 	
 	if (red<threshold && green < threshold && blue < threshold)
@@ -1184,6 +1179,7 @@ int main()
 	ct = 0; adj = 2;
 	//lcd("Begin");
 	forwardJaa();
+	stop();
 	while (sorted<total)
 	{
 		canDrop();
