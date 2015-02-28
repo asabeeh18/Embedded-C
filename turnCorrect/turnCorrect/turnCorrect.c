@@ -31,6 +31,7 @@ int cost;
 int flag=0,angle;
 int visitedCount = 0;
 int ot = 0, dir = 0;
+int i=0
 const int RED=0,GREEN=1,BLUE=2,BLACK=3,EMPTY=-1;
 const int turn_v=150,line_v=240,correct_v=200;
 
@@ -448,31 +449,49 @@ int calcThresh()
 
 /**************************************************
 ******************SERVO****************************
-**************************************************/
-void lower(unsigned char side)
+**************************************************/void lower(unsigned char side)
 {
-	if (side == 0)
-		servo_2(45);
-	else if (side == 1)
-		servo_2(135);
+if (side == 1)
+for(i=90;i>=60;i--)
+{
+servo_2(i);
+_delay_ms(10);
+}
+else if (side == 0)
+for(i=90;i<=120;i++)
+{
+servo_2(i);
+_delay_ms(10);
+}
+_delay_ms(700);
 }
 void elevate()
 {
-	servo_2(90);
+servo_2(90);
+_delay_ms(700);
 }
 void open(unsigned char side)
 {
-	if (side == 0)
-		servo_3(45);
-	else if (side == 1)
-		servo_1(45);
-}	
+if (side == 0)
+servo_3(0);
+
+else if (side == 1)
+servo_1(0);
+_delay_ms(700);
+}
 void close(unsigned char side)
 {
-	if (side == 0)
-		servo_2(45);
-	else if (side == 1)
-		servo_2(135);
+if (side == 0)
+for(i=0;i<50;i++)
+{			servo_3(i);
+_delay_ms(5);
+}
+else if (side == 1)
+for(i=0;i<50;i++)
+{	servo_1(i);
+_delay_ms(5);
+}
+_delay_ms(700);
 }
 void buzzer()
 {
@@ -750,6 +769,8 @@ void terminalCheck2()
 
 void pick(int side)
 {
+	
+	
 	lower(side);//lower
 	open(side);
 	close(side);
@@ -948,7 +969,7 @@ void drop(int side)
 	lower(side);//lower
 	open(side);
 	elevate();//mid
-	close(side);
+	
 	armCount++;
 	if(side==0)
 	lcd("dropRight");

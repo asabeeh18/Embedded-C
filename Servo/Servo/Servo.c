@@ -8,6 +8,17 @@ void servo1_pin_config (void)
  DDRB  = DDRB | 0x20;  //making PORTB 5 pin output
  PORTB = PORTB | 0x20; //setting PORTB 5 pin to logic 1
 }
+void servo1_off()
+{
+	DDRB = DDRB | 0x00;
+	PORTB = PORTB | 0x00; //setting PORTB 5 pin to logic 1
+}
+//Configure PORTB 7 pin for servo motor 3 operation
+void servo3_off (void)
+{
+	DDRB  = DDRB | 0x00;  //making PORTB 7 pin output
+	PORTB = PORTB | 0x00; //setting PORTB 7 pin to logic 1
+}
 
 //Configure PORTB 6 pin for servo motor 2 operation
 void servo2_pin_config (void)
@@ -121,9 +132,17 @@ void servo_3_free (void) //makes servo 3 free rotating
 void lower(unsigned char side)
 {
 	if (side == 1)
-	servo_2(60);
+		for(i=90;i>=60;i--)
+		{
+			servo_2(i);
+			_delay_ms(10);
+		}
 	else if (side == 0)
-	servo_2(120);
+		for(i=90;i<=120;i++)
+		{
+				servo_2(i);
+				_delay_ms(10);
+		}
 	_delay_ms(700);
 }
 void elevate()
@@ -135,6 +154,7 @@ void open(unsigned char side)
 {
 	if (side == 0)
 		servo_3(0);
+		
 	else if (side == 1)
 		servo_1(0);
 	_delay_ms(700);
@@ -142,13 +162,23 @@ void open(unsigned char side)
 void close(unsigned char side)
 {
 	if (side == 0)
-		servo_3(45);
+		for(i=0;i<50;i++)
+{			servo_3(i);
+				_delay_ms(5);
+			}
 	else if (side == 1)
-		servo_1(45);
+		for(i=0;i<50;i++)
+		{	servo_1(i);
+				_delay_ms(5);
+			}
 	_delay_ms(700);
 }
 void pick(int side)
 {
+	if(side==0)
+		servo3_pin_config();
+	else
+		servo1_pin_config();
 	lower(side);//lower
 	open(side);
 	close(side);
@@ -177,6 +207,10 @@ void drop(int side)
 	lower(side);//lower
 	open(side);
 	elevate();//mid
+	if(side==1)
+		servo3_off();
+	else
+		servo1_off();
 }
 //Main function
 int main(void)
