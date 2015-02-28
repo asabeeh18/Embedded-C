@@ -71,8 +71,6 @@ int main()
 	//buzzer();
 	while(1)
 	{
-		
-		print_sensor(2,1,4);
-		print_sensor(2,6,8);
+		print_sensor(1,1,11);
 	}
 }

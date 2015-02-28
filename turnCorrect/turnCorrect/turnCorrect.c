@@ -56,19 +56,7 @@ void lcd(char *str);
 ******************MOVEMENT*************************
 **************************************************/
 
-/*******MOVEMENT**********/
-void node()
-{
-	velocity(correct_v,correct_v);
-	while(Center_white_line>40 && (Left_white_line>40 || Right_white_line>40))
-	{
-		forward();
-		set_color();
-		
-	}
-	_delay_ms(600);
-	stop();	
-}
+/*******MOVEMENT
 void nodeLeft()
 {
 	node();
@@ -107,12 +95,23 @@ void backward()	//TODO
 
 
 
-/*********END MOVEMENT***********/
+********END MOVEMENT**********
 
-/**************************************************
+*************************************************
 ******************BLACK*LINE***********************
 **************************************************/
-
+void node()
+{
+	velocity(correct_v,correct_v);
+	while(Center_white_line>40 && (Left_white_line>40 || Right_white_line>40))
+	{
+		forward();
+		set_color();
+		
+	}
+	_delay_ms(600);
+	stop();
+}
 /*************************GULLA CODE**Blackline Forward***********/
 char Delay(int tim)
 {
@@ -370,6 +369,9 @@ void backJaa()
 }
 /*************************END GULLA CODE*************/
 /**************************************************
+
+************************END GULLA CODE*************/
+/**************************************************
 ******************COLOR****************************
 **************************************************/
 
@@ -515,10 +517,10 @@ void turnRight()	//turns the robo right
 	{
 		right_degrees(30);
 		velocity(170, 170);
-		while (ADC_Conversion(2)<70)
+		while (ADC_Conversion(2)<40)
 			right();
-		stop();
 		_delay_ms(100);
+		stop();	
 	}
 	lcd("Right turn");
 	//_delay_ms(2000);
@@ -539,6 +541,7 @@ void turnLeft()	//turns the robo left
 		velocity(170, 170);
 		while (ADC_Conversion(2)<70)
 			left();
+		_delay_ms(100);
 		stop();
 	}
 	lcd("Left turn");
@@ -608,12 +611,16 @@ void traverseToSort(int a, int b)
 }
 int scan()//return the color no.
 {
-
 	red_read();
 	blue_read();
 	green_read();
+	if(!(ADC_Conversion(11)>80 && ADC_Conversion(11)<100))
+		return EMPTY;
+	
 	if (red<threshold && green < threshold && blue < threshold)
-		return BLACK;
+	{
+			return BLACK;
+	}
 	else
 	{
 		if (red > blue)
@@ -670,7 +677,11 @@ void terminalCheck1()
 		turnRight();
 	else turnLeft();
 	term[ct][0] = scan();
-	lcd_print(1, 1, 1111, 4);
+	if(term[ct][0]==-1)
+		lcd_print(2,11,9, 1);
+	else
+		lcd_print(2,11, term[ct][0], 1);
+	_delay_ms(1000);
 	//printf("Enter term[%d][%d]\n", ct, 0);
 	//scanf("%d", &term[ct][0]);
 
@@ -702,8 +713,11 @@ void terminalCheck2()
 	//printf("Enter term[%d][%d]\n", ct, 1);
 	//scanf("%d", &term[ct][1]);
 	term[ct][1] = scan();
-
-
+	if(term[ct][1]==-1)
+		lcd_print(2,11,9, 1);
+	else
+		lcd_print(2,11, term[ct][1], 1);
+	_delay_ms(1000);
 	if (term[ct][1] == -1 || term[ct][1] == color[ct])
 		total--;
 	visited[ct] = 1;
@@ -1016,12 +1030,17 @@ void newSort()
 	if (arm[0] != -1 || arm[1] != -1)
 	{
 		ct = a1;
-		if (arm[0] != -1 && (term[a1][0] == -1 || term[a1][1] == -1))
+		if(arm[0]==arm[1] && (visited[a1]==0 ||(term[a1][0] != -1 && term[a1][1] != -1)))
+		{
+			if(a1== 0 || a1==3)
+				sortDrop(1,t1);
+		}
+		else if (arm[0] != -1 && (term[a1][0] == -1 || term[a1][1] == -1))
 		{
 			if (arm[1] == -1)
 			{
 				if (sort[t1] == color[t1] || sort[t1] == color[t2])
-					pickSort(1, a1);
+					pickSort(1, t1);
 			}
 		}
 		else if (arm[1] != -1 && (term[a2][0] == -1 || term[a2][1] == -1))
@@ -1160,9 +1179,11 @@ int main()
 	while(1);
 	*/
 	setIndicatorAndColor();
+	
 	threshold=6000;
 	ct = 0; adj = 2;
 	//lcd("Begin");
+	forwardJaa();
 	while (sorted<total)
 	{
 		canDrop();

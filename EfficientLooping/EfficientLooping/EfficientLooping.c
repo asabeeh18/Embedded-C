@@ -143,7 +143,7 @@ void correct()
 	Degrees=5;
 	lcd("cor");
 	stop();
-//	if(lf==1)
+	if(lf==1)
 	{
 		lf=0;
 		while(1)
@@ -172,37 +172,36 @@ void correct()
 			i+=20;
 		}
 	}
-/*	else
+	else
 	{
 		lf=1;
 		while(1)
 		{
 			left();
-			if(Delay(i+2))
-			return;
+			if(Delay(i))
+				return;
 			stop();
-			lcd_print(1,1,3,1);
+			lcd_print(1,1,1,1);
 			//set_color();
 			semiCorrect();
-			if(ADC_Conversion(2)>40 && ADC_Conversion(1)<40 && ADC_Conversion(3)<40)
+			if(ADC_Conversion(2)>40)// && ADC_Conversion(1)<40 && ADC_Conversion(3)<40)
 				break;
-			
+			i+=20;
 			right();
 			if(Delay(i))
 				return;
 			stop();
-			lcd_print(1,1,4,1);
+			lcd_print(1,1,2,1);
 			semiCorrect();
-			if(ADC_Conversion(2)>40 && ADC_Conversion(1)<40 && ADC_Conversion(3)<40)
+			if(ADC_Conversion(2)>40)// && ADC_Conversion(1)<40 && ADC_Conversion(3)<40)
 				break;
-			
 			//d*=2;
 			//set_color();
 			//i+=2;
 			i+=20;
 		}
 	}
-*/	lcd("-");
+	lcd("-");
 	stop();
 	return;
 }
@@ -262,7 +261,6 @@ void noNatak()
 		{
 			flag=1;
 			node();
-			
 			/*flag=1;
 			lcd("wbb");
 			while(Center_white_line>40 && Left_white_line<40 && Right_white_line>40)
@@ -286,7 +284,6 @@ void noNatak()
 	//buzzer_off();
 	return;
 }
-
 void forwardJaa()
 {
 	unsigned int vi=0;
