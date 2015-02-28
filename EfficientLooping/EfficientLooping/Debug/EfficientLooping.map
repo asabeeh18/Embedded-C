@@ -1,17 +1,17 @@
 Archive member included because of file (symbol)
 
 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(addsf3.o)
-                              turnCorrect.o (__addsf3)
+                              EfficientLooping.o (__addsf3)
 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(addsf3x.o)
                               c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(addsf3.o) (__addsf3x)
 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(divsf3.o)
-                              turnCorrect.o (__divsf3)
+                              EfficientLooping.o (__divsf3)
 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(divsf3x.o)
                               c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(divsf3.o) (__divsf3x)
 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fixunssfsi.o)
-                              turnCorrect.o (__fixunssfsi)
+                              EfficientLooping.o (__fixunssfsi)
 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(floatsisf.o)
-                              turnCorrect.o (__floatunsisf)
+                              EfficientLooping.o (__floatunsisf)
 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_inf.o)
                               c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(addsf3x.o) (__fp_inf)
 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_nan.o)
@@ -27,148 +27,248 @@ c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-t
 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_zero.o)
                               c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(addsf3x.o) (__fp_zero)
 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_divmodhi4.o)
-                              turnCorrect.o (__divmodhi4)
+                              EfficientLooping.o (__divmodhi4)
 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
                               c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6/crtm2560.o (exit)
 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_copy_data.o)
-                              turnCorrect.o (__do_copy_data)
+                              EfficientLooping.o (__do_copy_data)
 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_clear_bss.o)
-                              turnCorrect.o (__do_clear_bss)
+                              EfficientLooping.o (__do_clear_bss)
 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_umulhisi3.o)
-                              turnCorrect.o (__umulhisi3)
+                              EfficientLooping.o (__umulhisi3)
 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_udivmodhi4.o)
                               c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_divmodhi4.o) (__udivmodhi4)
 
 Allocating common symbols
 Common symbol       size              file
 
-visited             0x8               turnCorrect.o
-threshold           0x2               turnCorrect.o
-blue                0x4               turnCorrect.o
-Degrees             0x2               turnCorrect.o
-million             0x2               turnCorrect.o
-cost                0x2               turnCorrect.o
-temp                0x2               turnCorrect.o
-green               0x4               turnCorrect.o
-red                 0x4               turnCorrect.o
-ADC_Value           0x1               turnCorrect.o
-sort                0x4               turnCorrect.o
-ct                  0x2               turnCorrect.o
-tens                0x2               turnCorrect.o
-term                0x10              turnCorrect.o
-color               0x8               turnCorrect.o
-indicator           0x8               turnCorrect.o
-adj                 0x2               turnCorrect.o
-hundred             0x2               turnCorrect.o
-arm                 0x4               turnCorrect.o
-nt                  0x2               turnCorrect.o
-unit                0x2               turnCorrect.o
-thousand            0x2               turnCorrect.o
+visited             0x8               EfficientLooping.o
+threshold           0x2               EfficientLooping.o
+blue                0x4               EfficientLooping.o
+Degrees             0x2               EfficientLooping.o
+million             0x2               EfficientLooping.o
+cost                0x2               EfficientLooping.o
+temp                0x2               EfficientLooping.o
+green               0x4               EfficientLooping.o
+red                 0x4               EfficientLooping.o
+ADC_Value           0x1               EfficientLooping.o
+sort                0x4               EfficientLooping.o
+ct                  0x2               EfficientLooping.o
+tens                0x2               EfficientLooping.o
+term                0x10              EfficientLooping.o
+color               0x8               EfficientLooping.o
+indicator           0x8               EfficientLooping.o
+adj                 0x2               EfficientLooping.o
+hundred             0x2               EfficientLooping.o
+arm                 0x4               EfficientLooping.o
+nt                  0x2               EfficientLooping.o
+unit                0x2               EfficientLooping.o
+thousand            0x2               EfficientLooping.o
 
 Discarded input sections
 
  .data          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6/crtm2560.o
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6/crtm2560.o
- .text          0x00000000        0x0 turnCorrect.o
- .data          0x00000000        0x0 turnCorrect.o
- .bss           0x00000000        0x0 turnCorrect.o
+ .text          0x00000000        0x0 EfficientLooping.o
+ .data          0x00000000        0x0 EfficientLooping.o
+ .bss           0x00000000        0x0 EfficientLooping.o
+ .text.lcd_string
+                0x00000000       0x1e EfficientLooping.o
  .text.velocity
-                0x00000000        0xa turnCorrect.o
+                0x00000000        0xa EfficientLooping.o
+ .text.back     0x00000000        0x8 EfficientLooping.o
  .text.soft_left
-                0x00000000        0x8 turnCorrect.o
+                0x00000000        0x8 EfficientLooping.o
  .text.soft_right
-                0x00000000        0x8 turnCorrect.o
+                0x00000000        0x8 EfficientLooping.o
  .text.soft_left_2
-                0x00000000        0x8 turnCorrect.o
+                0x00000000        0x8 EfficientLooping.o
  .text.soft_right_2
-                0x00000000        0x8 turnCorrect.o
- .text.print_sensor
-                0x00000000       0x28 turnCorrect.o
- .text.servo_2  0x00000000       0x32 turnCorrect.o
- .text.servo_3  0x00000000       0x32 turnCorrect.o
- .text.filter_clear
-                0x00000000        0x6 turnCorrect.o
+                0x00000000        0x8 EfficientLooping.o
+ .text.left_encoder_pin_config
+                0x00000000        0x6 EfficientLooping.o
+ .text.right_encoder_pin_config
+                0x00000000        0x6 EfficientLooping.o
+ .text.angle_rotate
+                0x00000000       0xac EfficientLooping.o
+ .text.linear_distance_mm
+                0x00000000       0x12 EfficientLooping.o
+ .text.forward_mm
+                0x00000000       0x16 EfficientLooping.o
+ .text.back_mm  0x00000000       0x16 EfficientLooping.o
+ .text.left_degrees
+                0x00000000       0x16 EfficientLooping.o
+ .text.right_degrees
+                0x00000000       0x16 EfficientLooping.o
  .text.soft_left_degrees
-                0x00000000       0x1a turnCorrect.o
+                0x00000000       0x1a EfficientLooping.o
  .text.soft_right_degrees
-                0x00000000       0x1a turnCorrect.o
- .text.soft_left_2_degrees
-                0x00000000       0x1a turnCorrect.o
- .text.soft_right_2_degrees
-                0x00000000       0x1a turnCorrect.o
- .text.kkkk     0x00000000       0xee turnCorrect.o
- .text.Uturn    0x00000000       0x14 turnCorrect.o
- .text.nodeLeft
-                0x00000000       0x32 turnCorrect.o
- .text.nodeRight
-                0x00000000       0x32 turnCorrect.o
- .text.backJaa  0x00000000       0x44 turnCorrect.o
- .text.backward
-                0x00000000       0x18 turnCorrect.o
+                0x00000000       0x1a EfficientLooping.o
+ .text.print_sensor
+                0x00000000       0x28 EfficientLooping.o
+ .text.left_position_encoder_interrupt_init
+                0x00000000       0x12 EfficientLooping.o
+ .text.right_position_encoder_interrupt_init
+                0x00000000       0x12 EfficientLooping.o
+ .text.servo_1  0x00000000       0x32 EfficientLooping.o
+ .text.servo_2  0x00000000       0x32 EfficientLooping.o
+ .text.servo_3  0x00000000       0x32 EfficientLooping.o
+ .text.filter_red
+                0x00000000        0x6 EfficientLooping.o
+ .text.filter_green
+                0x00000000        0x6 EfficientLooping.o
+ .text.filter_blue
+                0x00000000        0x6 EfficientLooping.o
+ .text.filter_clear
+                0x00000000        0x6 EfficientLooping.o
+ .text.red_read
+                0x00000000       0x5a EfficientLooping.o
+ .text.green_read
+                0x00000000       0x48 EfficientLooping.o
+ .text.blue_read
+                0x00000000       0x48 EfficientLooping.o
+ .text.kkkk     0x00000000       0xee EfficientLooping.o
  .text.show_color
-                0x00000000       0x20 turnCorrect.o
- .text.adjCount
-                0x00000000       0x14 turnCorrect.o
+                0x00000000       0x20 EfficientLooping.o
+ .text.lcd      0x00000000        0x2 EfficientLooping.o
+ .rodata.str1.1
+                0x00000000        0xa EfficientLooping.o
  .text.calcThresh
-                0x00000000      0x2fe turnCorrect.o
- .rodata.correct_v
-                0x00000000        0x2 turnCorrect.o
- .rodata.line_v
-                0x00000000        0x2 turnCorrect.o
- .rodata.turn_v
-                0x00000000        0x2 turnCorrect.o
- .rodata.EMPTY  0x00000000        0x2 turnCorrect.o
- .rodata.BLACK  0x00000000        0x2 turnCorrect.o
- .rodata.BLUE   0x00000000        0x2 turnCorrect.o
- .rodata.GREEN  0x00000000        0x2 turnCorrect.o
- .rodata.RED    0x00000000        0x2 turnCorrect.o
- .bss.count     0x00000000        0x2 turnCorrect.o
+                0x00000000      0x2ee EfficientLooping.o
+ .text.front    0x00000000       0x18 EfficientLooping.o
+ .text.backward
+                0x00000000       0x14 EfficientLooping.o
+ .text.turnRight
+                0x00000000       0x24 EfficientLooping.o
+ .text.turnLeft
+                0x00000000       0x24 EfficientLooping.o
+ .text.turn     0x00000000       0x24 EfficientLooping.o
+ .text.traverseToSort
+                0x00000000       0xc6 EfficientLooping.o
+ .text.scan     0x00000000      0x10c EfficientLooping.o
+ .text.setIndicatorAndColor
+                0x00000000       0xb8 EfficientLooping.o
+ .text.adjCount
+                0x00000000       0x14 EfficientLooping.o
+ .text.terminalCheck1
+                0x00000000      0x124 EfficientLooping.o
+ .text.terminalCheck2
+                0x00000000       0xfa EfficientLooping.o
+ .text.elevate  0x00000000       0x1e EfficientLooping.o
+ .text.open     0x00000000       0x20 EfficientLooping.o
+ .text.close    0x00000000       0x20 EfficientLooping.o
+ .text.pick     0x00000000       0x36 EfficientLooping.o
+ .text.pickNode
+                0x00000000      0x200 EfficientLooping.o
+ .text.pickSort
+                0x00000000       0x8c EfficientLooping.o
+ .text.pickup   0x00000000      0x4e8 EfficientLooping.o
+ .text.drop     0x00000000       0x36 EfficientLooping.o
+ .text.nodeDrop
+                0x00000000      0x1f6 EfficientLooping.o
+ .text.sortDrop
+                0x00000000       0x80 EfficientLooping.o
+ .text.dropPickup
+                0x00000000       0xb6 EfficientLooping.o
+ .text.canDrop  0x00000000      0x2da EfficientLooping.o
+ .text.newSort  0x00000000      0x368 EfficientLooping.o
+ .text.sortCheck
+                0x00000000      0x476 EfficientLooping.o
+ .text.predict  0x00000000       0xd8 EfficientLooping.o
+ .data.v        0x00000000        0x2 EfficientLooping.o
+ .bss.i         0x00000000        0x2 EfficientLooping.o
+ .rodata.EMPTY  0x00000000        0x2 EfficientLooping.o
+ .rodata.BLACK  0x00000000        0x2 EfficientLooping.o
+ .rodata.BLUE   0x00000000        0x2 EfficientLooping.o
+ .rodata.GREEN  0x00000000        0x2 EfficientLooping.o
+ .rodata.RED    0x00000000        0x2 EfficientLooping.o
+ .bss.dir       0x00000000        0x2 EfficientLooping.o
+ .bss.ot        0x00000000        0x2 EfficientLooping.o
+ .bss.visitedCount
+                0x00000000        0x2 EfficientLooping.o
+ .bss.count     0x00000000        0x2 EfficientLooping.o
+ .bss.sorted    0x00000000        0x2 EfficientLooping.o
+ .data.total    0x00000000        0x2 EfficientLooping.o
  .data.sortCount
-                0x00000000        0x2 turnCorrect.o
+                0x00000000        0x2 EfficientLooping.o
+ .data.armCount
+                0x00000000        0x2 EfficientLooping.o
+ .bss.ShaftCountRight
+                0x00000000        0x4 EfficientLooping.o
+ .bss.ShaftCountLeft
+                0x00000000        0x4 EfficientLooping.o
  .text          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(addsf3.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(addsf3.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(addsf3.o)
+ .text.avr-libc.fplib
+                0x00000000        0xa c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(addsf3.o)
  .text          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(addsf3x.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(addsf3x.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(addsf3x.o)
+ .text.avr-libc.fplib
+                0x00000000       0xc0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(addsf3x.o)
  .text          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(divsf3.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(divsf3.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(divsf3.o)
+ .text.avr-libc.fplib
+                0x00000000        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(divsf3.o)
  .text          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(divsf3x.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(divsf3x.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(divsf3x.o)
+ .text.avr-libc.fplib
+                0x00000000       0xcc c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(divsf3x.o)
  .text          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fixunssfsi.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fixunssfsi.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fixunssfsi.o)
+ .text.avr-libc.fplib
+                0x00000000       0x58 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fixunssfsi.o)
  .text          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(floatsisf.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(floatsisf.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(floatsisf.o)
+ .text.avr-libc.fplib
+                0x00000000       0x7a c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(floatsisf.o)
  .text          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_inf.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_inf.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_inf.o)
+ .text.avr-libc.fplib
+                0x00000000        0xc c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_inf.o)
  .text          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_nan.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_nan.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_nan.o)
+ .text.avr-libc.fplib
+                0x00000000        0x6 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_nan.o)
  .text          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_pscA.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_pscA.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_pscA.o)
+ .text.avr-libc.fplib
+                0x00000000        0xe c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_pscA.o)
  .text          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_pscB.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_pscB.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_pscB.o)
+ .text.avr-libc.fplib
+                0x00000000        0xe c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_pscB.o)
  .text          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_round.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_round.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_round.o)
+ .text.avr-libc.fplib
+                0x00000000       0x22 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_round.o)
  .text          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_split3.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_split3.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_split3.o)
+ .text.avr-libc.fplib
+                0x00000000       0x44 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_split3.o)
  .text          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_zero.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_zero.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_zero.o)
+ .text.avr-libc.fplib
+                0x00000000        0xe c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_zero.o)
  .text          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_divmodhi4.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_divmodhi4.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_divmodhi4.o)
  .text.libgcc.mul
                 0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_divmodhi4.o)
+ .text.libgcc.div
+                0x00000000       0x28 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_divmodhi4.o)
  .text.libgcc   0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_divmodhi4.o)
  .text.libgcc.prologue
                 0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_divmodhi4.o)
@@ -245,6 +345,8 @@ Discarded input sections
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_udivmodhi4.o)
  .text.libgcc.mul
                 0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_udivmodhi4.o)
+ .text.libgcc.div
+                0x00000000       0x28 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_udivmodhi4.o)
  .text.libgcc   0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_udivmodhi4.o)
  .text.libgcc.prologue
                 0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_udivmodhi4.o)
@@ -271,7 +373,7 @@ Linker script and memory map
 
 Address of section .data set to 0x800200
 LOAD c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6/crtm2560.o
-LOAD turnCorrect.o
+LOAD EfficientLooping.o
 START GROUP
 LOAD c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a
 END GROUP
@@ -371,7 +473,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x2e2e
+.text           0x00000000      0x9fc
  *(.vectors)
  .vectors       0x00000000       0xe4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6/crtm2560.o
                 0x00000000                __vector_default
@@ -424,360 +526,181 @@ END GROUP
  *(.init8)
  *(.init8)
  *(.init9)
- .init9         0x0000011e        0x8 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6/crtm2560.o
+ .init9         0x0000011e        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6/crtm2560.o
  *(.init9)
  *(.text)
- .text          0x00000126        0x2 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6/crtm2560.o
-                0x00000126                __vector_38
-                0x00000126                __vector_22
-                0x00000126                __vector_28
-                0x00000126                __vector_32
-                0x00000126                __vector_34
-                0x00000126                __vector_24
-                0x00000126                __vector_12
-                0x00000126                __vector_55
-                0x00000126                __vector_46
-                0x00000126                __bad_interrupt
-                0x00000126                __vector_31
-                0x00000126                __vector_35
-                0x00000126                __vector_39
-                0x00000126                __vector_3
-                0x00000126                __vector_23
-                0x00000126                __vector_30
-                0x00000126                __vector_45
-                0x00000126                __vector_25
-                0x00000126                __vector_11
-                0x00000126                __vector_54
-                0x00000126                __vector_13
-                0x00000126                __vector_17
-                0x00000126                __vector_19
-                0x00000126                __vector_56
-                0x00000126                __vector_7
-                0x00000126                __vector_49
-                0x00000126                __vector_41
-                0x00000126                __vector_43
-                0x00000126                __vector_27
-                0x00000126                __vector_33
-                0x00000126                __vector_47
-                0x00000126                __vector_52
-                0x00000126                __vector_37
-                0x00000126                __vector_4
-                0x00000126                __vector_44
-                0x00000126                __vector_51
-                0x00000126                __vector_9
-                0x00000126                __vector_2
-                0x00000126                __vector_21
-                0x00000126                __vector_15
-                0x00000126                __vector_36
-                0x00000126                __vector_29
-                0x00000126                __vector_40
-                0x00000126                __vector_8
-                0x00000126                __vector_26
-                0x00000126                __vector_48
-                0x00000126                __vector_14
-                0x00000126                __vector_53
-                0x00000126                __vector_10
-                0x00000126                __vector_50
-                0x00000126                __vector_16
-                0x00000126                __vector_18
-                0x00000126                __vector_20
-                0x00000126                __vector_42
-                0x00000128                . = ALIGN (0x2)
+ .text          0x00000122        0x2 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6/crtm2560.o
+                0x00000122                __vector_38
+                0x00000122                __vector_22
+                0x00000122                __vector_28
+                0x00000122                __vector_32
+                0x00000122                __vector_34
+                0x00000122                __vector_24
+                0x00000122                __vector_12
+                0x00000122                __vector_55
+                0x00000122                __vector_46
+                0x00000122                __bad_interrupt
+                0x00000122                __vector_6
+                0x00000122                __vector_31
+                0x00000122                __vector_35
+                0x00000122                __vector_39
+                0x00000122                __vector_3
+                0x00000122                __vector_23
+                0x00000122                __vector_30
+                0x00000122                __vector_45
+                0x00000122                __vector_25
+                0x00000122                __vector_11
+                0x00000122                __vector_54
+                0x00000122                __vector_13
+                0x00000122                __vector_17
+                0x00000122                __vector_19
+                0x00000122                __vector_56
+                0x00000122                __vector_7
+                0x00000122                __vector_49
+                0x00000122                __vector_41
+                0x00000122                __vector_43
+                0x00000122                __vector_27
+                0x00000122                __vector_5
+                0x00000122                __vector_33
+                0x00000122                __vector_47
+                0x00000122                __vector_52
+                0x00000122                __vector_37
+                0x00000122                __vector_4
+                0x00000122                __vector_44
+                0x00000122                __vector_51
+                0x00000122                __vector_9
+                0x00000122                __vector_2
+                0x00000122                __vector_21
+                0x00000122                __vector_15
+                0x00000122                __vector_36
+                0x00000122                __vector_29
+                0x00000122                __vector_40
+                0x00000122                __vector_8
+                0x00000122                __vector_26
+                0x00000122                __vector_48
+                0x00000122                __vector_14
+                0x00000122                __vector_53
+                0x00000122                __vector_10
+                0x00000122                __vector_50
+                0x00000122                __vector_16
+                0x00000122                __vector_18
+                0x00000122                __vector_20
+                0x00000122                __vector_42
+                0x00000124                . = ALIGN (0x2)
  *(.text.*)
  .text.lcd_set_4bit
-                0x00000128       0x8a turnCorrect.o
-                0x00000128                lcd_set_4bit
+                0x00000124       0x8a EfficientLooping.o
+                0x00000124                lcd_set_4bit
  .text.lcd_wr_command
-                0x000001b2       0x4a turnCorrect.o
-                0x000001b2                lcd_wr_command
+                0x000001ae       0x4a EfficientLooping.o
+                0x000001ae                lcd_wr_command
  .text.lcd_init
-                0x000001fc       0x22 turnCorrect.o
-                0x000001fc                lcd_init
+                0x000001f8       0x22 EfficientLooping.o
+                0x000001f8                lcd_init
  .text.lcd_wr_char
-                0x0000021e       0x4a turnCorrect.o
-                0x0000021e                lcd_wr_char
+                0x0000021a       0x4a EfficientLooping.o
+                0x0000021a                lcd_wr_char
  .text.lcd_home
-                0x00000268        0x6 turnCorrect.o
-                0x00000268                lcd_home
- .text.lcd_string
-                0x0000026e       0x1c turnCorrect.o
-                0x0000026e                lcd_string
+                0x00000264        0x6 EfficientLooping.o
+                0x00000264                lcd_home
  .text.lcd_cursor
-                0x0000028a       0x36 turnCorrect.o
-                0x0000028a                lcd_cursor
+                0x0000026a       0x36 EfficientLooping.o
+                0x0000026a                lcd_cursor
  .text.lcd_print
-                0x000002c0      0x1e8 turnCorrect.o
-                0x000002c0                lcd_print
+                0x000002a0      0x1d8 EfficientLooping.o
+                0x000002a0                lcd_print
  .text.timer5_init
-                0x000004a8       0x36 turnCorrect.o
-                0x000004a8                timer5_init
+                0x00000478       0x36 EfficientLooping.o
+                0x00000478                timer5_init
  .text.motion_pin_config
-                0x000004de       0x22 turnCorrect.o
-                0x000004de                motion_pin_config
+                0x000004ae       0x22 EfficientLooping.o
+                0x000004ae                motion_pin_config
  .text.motion_set
-                0x00000500        0xc turnCorrect.o
-                0x00000500                motion_set
- .text.forward  0x0000050c        0x6 turnCorrect.o
-                0x0000050c                forward
- .text.back     0x00000512        0x6 turnCorrect.o
-                0x00000512                back
- .text.left     0x00000518        0x6 turnCorrect.o
-                0x00000518                left
- .text.right    0x0000051e        0x6 turnCorrect.o
-                0x0000051e                right
- .text.stop     0x00000524        0x6 turnCorrect.o
-                0x00000524                stop
+                0x000004d0        0xc EfficientLooping.o
+                0x000004d0                motion_set
+ .text.forward  0x000004dc        0x6 EfficientLooping.o
+                0x000004dc                forward
+ .text.left     0x000004e2        0x6 EfficientLooping.o
+                0x000004e2                left
+ .text.right    0x000004e8        0x6 EfficientLooping.o
+                0x000004e8                right
+ .text.stop     0x000004ee        0x6 EfficientLooping.o
+                0x000004ee                stop
  .text.lcd_port_config
-                0x0000052a        0xe turnCorrect.o
-                0x0000052a                lcd_port_config
+                0x000004f4        0xe EfficientLooping.o
+                0x000004f4                lcd_port_config
  .text.color_sensor_pin_config
-                0x00000538        0xa turnCorrect.o
-                0x00000538                color_sensor_pin_config
+                0x00000502        0xa EfficientLooping.o
+                0x00000502                color_sensor_pin_config
  .text.adc_pin_config
-                0x00000542        0xe turnCorrect.o
-                0x00000542                adc_pin_config
+                0x0000050c        0xe EfficientLooping.o
+                0x0000050c                adc_pin_config
  .text.servo1_pin_config
-                0x00000550        0x6 turnCorrect.o
-                0x00000550                servo1_pin_config
+                0x0000051a        0x6 EfficientLooping.o
+                0x0000051a                servo1_pin_config
  .text.servo2_pin_config
-                0x00000556        0x6 turnCorrect.o
-                0x00000556                servo2_pin_config
+                0x00000520        0x6 EfficientLooping.o
+                0x00000520                servo2_pin_config
  .text.servo3_pin_config
-                0x0000055c        0x6 turnCorrect.o
-                0x0000055c                servo3_pin_config
+                0x00000526        0x6 EfficientLooping.o
+                0x00000526                servo3_pin_config
  .text.timer1_init
-                0x00000562       0x46 turnCorrect.o
-                0x00000562                timer1_init
+                0x0000052c       0x46 EfficientLooping.o
+                0x0000052c                timer1_init
  .text.port_init
-                0x000005a8       0x12 turnCorrect.o
-                0x000005a8                port_init
+                0x00000572       0x12 EfficientLooping.o
+                0x00000572                port_init
  .text.buzzer_on
-                0x000005ba        0x8 turnCorrect.o
-                0x000005ba                buzzer_on
+                0x00000584        0x8 EfficientLooping.o
+                0x00000584                buzzer_on
  .text.buzzer_off
-                0x000005c2        0x8 turnCorrect.o
-                0x000005c2                buzzer_off
+                0x0000058c        0x8 EfficientLooping.o
+                0x0000058c                buzzer_off
  .text.ADC_Conversion
-                0x000005ca       0x36 turnCorrect.o
-                0x000005ca                ADC_Conversion
+                0x00000594       0x36 EfficientLooping.o
+                0x00000594                ADC_Conversion
  .text.color_sensor_pin_interrupt_init
-                0x00000600       0x12 turnCorrect.o
-                0x00000600                color_sensor_pin_interrupt_init
+                0x000005ca       0x12 EfficientLooping.o
+                0x000005ca                color_sensor_pin_interrupt_init
  .text.__vector_1
-                0x00000612       0x4a turnCorrect.o
-                0x00000612                __vector_1
+                0x000005dc       0x4a EfficientLooping.o
+                0x000005dc                __vector_1
  .text.adc_init
-                0x0000065c       0x1a turnCorrect.o
-                0x0000065c                adc_init
- .text.servo_1  0x00000676       0x32 turnCorrect.o
-                0x00000676                servo_1
- .text.filter_red
-                0x000006a8        0x6 turnCorrect.o
-                0x000006a8                filter_red
- .text.filter_green
-                0x000006ae        0x6 turnCorrect.o
-                0x000006ae                filter_green
- .text.filter_blue
-                0x000006b4        0x6 turnCorrect.o
-                0x000006b4                filter_blue
- .text.color_sensor_scaling
-                0x000006ba        0x6 turnCorrect.o
-                0x000006ba                color_sensor_scaling
- .text.red_read
-                0x000006c0       0x58 turnCorrect.o
-                0x000006c0                red_read
- .text.green_read
-                0x00000718       0x46 turnCorrect.o
-                0x00000718                green_read
- .text.blue_read
-                0x0000075e       0x46 turnCorrect.o
-                0x0000075e                blue_read
- .text.left_encoder_pin_config
-                0x000007a4        0x6 turnCorrect.o
-                0x000007a4                left_encoder_pin_config
- .text.right_encoder_pin_config
-                0x000007aa        0x6 turnCorrect.o
-                0x000007aa                right_encoder_pin_config
- .text.port_init_poz
-                0x000007b0        0x8 turnCorrect.o
-                0x000007b0                port_init_poz
- .text.left_position_encoder_interrupt_init
-                0x000007b8       0x12 turnCorrect.o
-                0x000007b8                left_position_encoder_interrupt_init
- .text.right_position_encoder_interrupt_init
-                0x000007ca       0x12 turnCorrect.o
-                0x000007ca                right_position_encoder_interrupt_init
- .text.__vector_6
-                0x000007dc       0x4a turnCorrect.o
-                0x000007dc                __vector_6
- .text.__vector_5
-                0x00000826       0x4a turnCorrect.o
-                0x00000826                __vector_5
- .text.angle_rotate
-                0x00000870       0xa4 turnCorrect.o
-                0x00000870                angle_rotate
- .text.linear_distance_mm
-                0x00000914       0x50 turnCorrect.o
-                0x00000914                linear_distance_mm
- .text.forward_mm
-                0x00000964       0x12 turnCorrect.o
-                0x00000964                forward_mm
- .text.back_mm  0x00000976       0x12 turnCorrect.o
-                0x00000976                back_mm
- .text.left_degrees
-                0x00000988       0x12 turnCorrect.o
-                0x00000988                left_degrees
- .text.right_degrees
-                0x0000099a       0x12 turnCorrect.o
-                0x0000099a                right_degrees
+                0x00000626       0x1a EfficientLooping.o
+                0x00000626                adc_init
  .text.init_devices
-                0x000009ac       0x18 turnCorrect.o
-                0x000009ac                init_devices
- .text.Delay    0x000009c4       0x4c turnCorrect.o
-                0x000009c4                Delay
- .text.scan     0x00000a10      0x106 turnCorrect.o
-                0x00000a10                scan
- .text.setIndicatorAndColor
-                0x00000b16       0xb8 turnCorrect.o
-                0x00000b16                setIndicatorAndColor
+                0x00000640       0x12 EfficientLooping.o
+                0x00000640                init_devices
+ .text.color_sensor_scaling
+                0x00000652        0x6 EfficientLooping.o
+                0x00000652                color_sensor_scaling
  .text.set_color
-                0x00000bce       0x1a turnCorrect.o
-                0x00000bce                set_color
- .text.node     0x00000be8       0x46 turnCorrect.o
-                0x00000be8                node
+                0x00000658       0x1a EfficientLooping.o
+                0x00000658                set_color
+ .text.node     0x00000672       0x18 EfficientLooping.o
+                0x00000672                node
+ .text.Delay    0x0000068a       0x4c EfficientLooping.o
+                0x0000068a                Delay
  .text.semiCorrect
-                0x00000c2e       0x60 turnCorrect.o
-                0x00000c2e                semiCorrect
- .text.correct  0x00000c8e       0xfa turnCorrect.o
-                0x00000c8e                correct
- .text.noNatak  0x00000d88       0x90 turnCorrect.o
-                0x00000d88                noNatak
+                0x000006d6       0x80 EfficientLooping.o
+                0x000006d6                semiCorrect
+ .text.correct  0x00000756      0x172 EfficientLooping.o
+                0x00000756                correct
+ .text.noNatak  0x000008c8       0x9c EfficientLooping.o
+                0x000008c8                noNatak
  .text.forwardJaa
-                0x00000e18       0x68 turnCorrect.o
-                0x00000e18                forwardJaa
- .text.front    0x00000e80       0x16 turnCorrect.o
-                0x00000e80                front
- .text.elevate  0x00000e96       0x1a turnCorrect.o
-                0x00000e96                elevate
- .text.open     0x00000eb0       0x20 turnCorrect.o
-                0x00000eb0                open
- .text.close    0x00000ed0       0x20 turnCorrect.o
-                0x00000ed0                close
- .text.buzzer   0x00000ef0       0x18 turnCorrect.o
-                0x00000ef0                buzzer
- .text.predict  0x00000f08       0xd8 turnCorrect.o
-                0x00000f08                predict
- .text.lcd      0x00000fe0       0x2e turnCorrect.o
-                0x00000fe0                lcd
- .text.turnRight
-                0x0000100e       0x9a turnCorrect.o
-                0x0000100e                turnRight
- .text.turnLeft
-                0x000010a8       0x9a turnCorrect.o
-                0x000010a8                turnLeft
- .text.turn     0x00001142       0x78 turnCorrect.o
-                0x00001142                turn
- .text.traverseToSort
-                0x000011ba       0xde turnCorrect.o
-                0x000011ba                traverseToSort
- .text.terminalCheck2
-                0x00001298      0x14c turnCorrect.o
-                0x00001298                terminalCheck2
- .text.pick     0x000013e4       0x44 turnCorrect.o
-                0x000013e4                pick
- .text.pickSort
-                0x00001428       0xba turnCorrect.o
-                0x00001428                pickSort
- .text.drop     0x000014e2       0x44 turnCorrect.o
-                0x000014e2                drop
- .text.sortDrop
-                0x00001526       0x78 turnCorrect.o
-                0x00001526                sortDrop
- .text.newSort  0x0000159e      0x35e turnCorrect.o
-                0x0000159e                newSort
- .text.sortCheck
-                0x000018fc      0x45c turnCorrect.o
-                0x000018fc                sortCheck
- .text.terminalCheck1
-                0x00001d58      0x156 turnCorrect.o
-                0x00001d58                terminalCheck1
- .text.position
-                0x00001eae      0x1be turnCorrect.o
-                0x00001eae                position
- .text.pickNode
-                0x0000206c       0x8c turnCorrect.o
-                0x0000206c                pickNode
- .text.pickup   0x000020f8      0x4ca turnCorrect.o
-                0x000020f8                pickup
- .text.dropPickup
-                0x000025c2       0xb2 turnCorrect.o
-                0x000025c2                dropPickup
- .text.nodeDrop
-                0x00002674       0x94 turnCorrect.o
-                0x00002674                nodeDrop
- .text.canDrop  0x00002708      0x2ee turnCorrect.o
-                0x00002708                canDrop
- .text.main     0x000029f6       0xba turnCorrect.o
-                0x000029f6                main
- .text.avr-libc.fplib
-                0x00002ab0        0xa c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(addsf3.o)
-                0x00002ab0                __subsf3
-                0x00002ab2                __addsf3
- .text.avr-libc.fplib
-                0x00002aba       0xc0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(addsf3x.o)
-                0x00002ad4                __addsf3x
- .text.avr-libc.fplib
-                0x00002b7a        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(divsf3.o)
-                0x00002b7a                __divsf3
- .text.avr-libc.fplib
-                0x00002b7e       0xcc c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(divsf3x.o)
-                0x00002b94                __divsf3x
-                0x00002b98                __divsf3_pse
- .text.avr-libc.fplib
-                0x00002c4a       0x58 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fixunssfsi.o)
-                0x00002c4a                __fixunssfsi
- .text.avr-libc.fplib
-                0x00002ca2       0x7a c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(floatsisf.o)
-                0x00002ca2                __floatunsisf
-                0x00002ca6                __floatsisf
- .text.avr-libc.fplib
-                0x00002d1c        0xc c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_inf.o)
-                0x00002d1c                __fp_inf
- .text.avr-libc.fplib
-                0x00002d28        0x6 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_nan.o)
-                0x00002d28                __fp_nan
- .text.avr-libc.fplib
-                0x00002d2e        0xe c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_pscA.o)
-                0x00002d2e                __fp_pscA
- .text.avr-libc.fplib
-                0x00002d3c        0xe c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_pscB.o)
-                0x00002d3c                __fp_pscB
- .text.avr-libc.fplib
-                0x00002d4a       0x22 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_round.o)
-                0x00002d4a                __fp_round
- .text.avr-libc.fplib
-                0x00002d6c       0x44 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_split3.o)
-                0x00002d6c                __fp_split3
-                0x00002d7c                __fp_splitA
- .text.avr-libc.fplib
-                0x00002db0        0xe c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_zero.o)
-                0x00002db0                __fp_zero
-                0x00002db2                __fp_szero
- .text.libgcc.div
-                0x00002dbe       0x26 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_divmodhi4.o)
-                0x00002dbe                _div
-                0x00002dbe                __divmodhi4
+                0x00000964       0x66 EfficientLooping.o
+                0x00000964                forwardJaa
+ .text.main     0x000009ca       0x10 EfficientLooping.o
+                0x000009ca                main
  .text.libgcc.mul
-                0x00002de4       0x1e c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_umulhisi3.o)
-                0x00002de4                __umulhisi3
- .text.libgcc.div
-                0x00002e02       0x28 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_udivmodhi4.o)
-                0x00002e02                __udivmodhi4
-                0x00002e2a                . = ALIGN (0x2)
+                0x000009da       0x1e c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_umulhisi3.o)
+                0x000009da                __umulhisi3
+                0x000009f8                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00002e2a        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
-                0x00002e2a                _exit
-                0x00002e2a                exit
+ .fini9         0x000009f8        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
+                0x000009f8                _exit
+                0x000009f8                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -796,97 +719,72 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00002e2a        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
+ .fini0         0x000009f8        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
  *(.fini0)
-                0x00002e2e                _etext = .
+                0x000009fc                _etext = .
 
-.data           0x00800200       0x5e load address 0x00002e2e
+.data           0x00800200        0x0 load address 0x000009fc
                 0x00800200                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
- .data.total    0x00800200        0x2 turnCorrect.o
-                0x00800200                total
- .data.armCount
-                0x00800202        0x2 turnCorrect.o
-                0x00800202                armCount
  *(.rodata)
  *(.rodata*)
- .rodata.str1.1
-                0x00800204       0x5a turnCorrect.o
-                                 0x5f (size before relaxing)
  *(.gnu.linkonce.d*)
-                0x0080025e                . = ALIGN (0x2)
-                0x0080025e                _edata = .
-                0x0080025e                PROVIDE (__data_end, .)
+                0x00800200                . = ALIGN (0x2)
+                0x00800200                _edata = .
+                0x00800200                PROVIDE (__data_end, .)
 
-.bss            0x0080025e       0x6f
-                0x0080025e                PROVIDE (__bss_start, .)
+.bss            0x00800200       0x5d
+                0x00800200                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
- .bss.lf        0x0080025e        0x1 turnCorrect.o
-                0x0080025e                lf
+ .bss.lf        0x00800200        0x1 EfficientLooping.o
+                0x00800200                lf
  .bss.Right_white_line
-                0x0080025f        0x1 turnCorrect.o
-                0x0080025f                Right_white_line
+                0x00800201        0x1 EfficientLooping.o
+                0x00800201                Right_white_line
  .bss.Center_white_line
-                0x00800260        0x1 turnCorrect.o
-                0x00800260                Center_white_line
+                0x00800202        0x1 EfficientLooping.o
+                0x00800202                Center_white_line
  .bss.Left_white_line
-                0x00800261        0x1 turnCorrect.o
-                0x00800261                Left_white_line
- .bss.dir       0x00800262        0x2 turnCorrect.o
-                0x00800262                dir
- .bss.ot        0x00800264        0x2 turnCorrect.o
-                0x00800264                ot
- .bss.visitedCount
-                0x00800266        0x2 turnCorrect.o
-                0x00800266                visitedCount
- .bss.flag      0x00800268        0x2 turnCorrect.o
-                0x00800268                flag
- .bss.sorted    0x0080026a        0x2 turnCorrect.o
-                0x0080026a                sorted
- .bss.pulse     0x0080026c        0x4 turnCorrect.o
-                0x0080026c                pulse
- .bss.ShaftCountRight
-                0x00800270        0x4 turnCorrect.o
-                0x00800270                ShaftCountRight
- .bss.ShaftCountLeft
-                0x00800274        0x4 turnCorrect.o
-                0x00800274                ShaftCountLeft
+                0x00800203        0x1 EfficientLooping.o
+                0x00800203                Left_white_line
+ .bss.pulse     0x00800204        0x4 EfficientLooping.o
+                0x00800204                pulse
  *(COMMON)
- COMMON         0x00800278       0x55 turnCorrect.o
-                0x00800278                visited
-                0x00800280                threshold
-                0x00800282                blue
-                0x00800286                Degrees
-                0x00800288                million
-                0x0080028a                cost
-                0x0080028c                temp
-                0x0080028e                green
-                0x00800292                red
-                0x00800296                ADC_Value
-                0x00800297                sort
-                0x0080029b                ct
-                0x0080029d                tens
-                0x0080029f                term
-                0x008002af                color
-                0x008002b7                indicator
-                0x008002bf                adj
-                0x008002c1                hundred
-                0x008002c3                arm
-                0x008002c7                nt
-                0x008002c9                unit
-                0x008002cb                thousand
-                0x008002cd                PROVIDE (__bss_end, .)
-                0x00002e2e                __data_load_start = LOADADDR (.data)
-                0x00002e8c                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x00800208       0x55 EfficientLooping.o
+                0x00800208                visited
+                0x00800210                threshold
+                0x00800212                blue
+                0x00800216                Degrees
+                0x00800218                million
+                0x0080021a                cost
+                0x0080021c                temp
+                0x0080021e                green
+                0x00800222                red
+                0x00800226                ADC_Value
+                0x00800227                sort
+                0x0080022b                ct
+                0x0080022d                tens
+                0x0080022f                term
+                0x0080023f                color
+                0x00800247                indicator
+                0x0080024f                adj
+                0x00800251                hundred
+                0x00800253                arm
+                0x00800257                nt
+                0x00800259                unit
+                0x0080025b                thousand
+                0x0080025d                PROVIDE (__bss_end, .)
+                0x000009fc                __data_load_start = LOADADDR (.data)
+                0x000009fc                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x008002cd        0x0
-                0x008002cd                PROVIDE (__noinit_start, .)
+.noinit         0x0080025d        0x0
+                0x0080025d                PROVIDE (__noinit_start, .)
  *(.noinit*)
-                0x008002cd                PROVIDE (__noinit_end, .)
-                0x008002cd                _end = .
-                0x008002cd                PROVIDE (__heap_start, .)
+                0x0080025d                PROVIDE (__noinit_end, .)
+                0x0080025d                _end = .
+                0x0080025d                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
  *(.eeprom*)
@@ -927,7 +825,7 @@ END GROUP
 
 .comment        0x00000000       0x30
  *(.comment)
- .comment       0x00000000       0x30 turnCorrect.o
+ .comment       0x00000000       0x30 EfficientLooping.o
                                  0x31 (size before relaxing)
 
 .note.gnu.build-id
@@ -945,38 +843,38 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x380
+.debug_aranges  0x00000000      0x328
  *(.debug_aranges)
  .debug_aranges
-                0x00000000      0x380 turnCorrect.o
+                0x00000000      0x328 EfficientLooping.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x34d4
+.debug_info     0x00000000     0x2d05
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x00000000     0x34d4 turnCorrect.o
+ .debug_info    0x00000000     0x2d05 EfficientLooping.o
 
-.debug_abbrev   0x00000000      0x4da
+.debug_abbrev   0x00000000      0x500
  *(.debug_abbrev)
- .debug_abbrev  0x00000000      0x4da turnCorrect.o
+ .debug_abbrev  0x00000000      0x500 EfficientLooping.o
 
-.debug_line     0x00000000     0x25ef
+.debug_line     0x00000000     0x22e8
  *(.debug_line .debug_line.* .debug_line_end)
- .debug_line    0x00000000     0x25ef turnCorrect.o
+ .debug_line    0x00000000     0x22e8 EfficientLooping.o
 
-.debug_frame    0x00000000      0xa04
+.debug_frame    0x00000000      0x874
  *(.debug_frame)
- .debug_frame   0x00000000      0xa04 turnCorrect.o
+ .debug_frame   0x00000000      0x874 EfficientLooping.o
 
-.debug_str      0x00000000      0x867
+.debug_str      0x00000000      0x7e1
  *(.debug_str)
- .debug_str     0x00000000      0x867 turnCorrect.o
-                                0x8e4 (size before relaxing)
+ .debug_str     0x00000000      0x7e1 EfficientLooping.o
+                                0x859 (size before relaxing)
 
-.debug_loc      0x00000000     0x2201
+.debug_loc      0x00000000     0x1de0
  *(.debug_loc)
- .debug_loc     0x00000000     0x2201 turnCorrect.o
+ .debug_loc     0x00000000     0x1de0 EfficientLooping.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -996,11 +894,11 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000      0x3d0
+.debug_ranges   0x00000000      0x378
  *(.debug_ranges)
- .debug_ranges  0x00000000      0x3d0 turnCorrect.o
+ .debug_ranges  0x00000000      0x378 EfficientLooping.o
 
 .debug_macro
  *(.debug_macro)
-OUTPUT(turnCorrect.elf elf32-avr)
+OUTPUT(EfficientLooping.elf elf32-avr)
 LOAD linker stubs
