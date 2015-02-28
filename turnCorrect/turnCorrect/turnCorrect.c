@@ -449,26 +449,30 @@ int calcThresh()
 /**************************************************
 ******************SERVO****************************
 **************************************************/
-void elevate(unsigned char angle, unsigned char side)
+void lower(unsigned char side)
 {
 	if (side == 0)
-	servo_1(angle);
+		servo_2(45);
 	else if (side == 1)
-	servo_1((angle == 45) ? 0 : 45);
+		servo_2(135);
+}
+void elevate()
+{
+	servo_2(90);
 }
 void open(unsigned char side)
 {
 	if (side == 0)
-	servo_2(180);
+		servo_3(45);
 	else if (side == 1)
-	servo_3(180);
-}
+		servo_1(45);
+}	
 void close(unsigned char side)
 {
 	if (side == 0)
-	servo_2(0);
+		servo_2(45);
 	else if (side == 1)
-	servo_3(0);
+		servo_2(135);
 }
 void buzzer()
 {
@@ -668,9 +672,12 @@ void terminalCheck1()
 		front();
 		ot = ct;
 	}
-	if (((ct == 0 || ct == 1) && dir == 0) || ((ct == 2 || ct == 3) && dir == 2))
-		turnRight();
-	else turnLeft();
+	right_degrees(50);
+	velocity(turn_v, turn_v);
+	while (ADC_Conversion(1)<70)
+		right();
+	//	_delay_ms(100);
+	stop();
 	term[ct][0] = scan();
 	if(term[ct][0]==-1)
 		lcd_print(2,11,9, 1);
@@ -701,10 +708,32 @@ void terminalCheck2()
 	}
 
 	if (((ct == 0 || ct == 1) && dir == 0) || ((ct == 2 || ct == 3) && dir == 2))
-		turnLeft();
+	{
+		left_degrees(30);
+		velocity(turn_v, turn_v);
+		while (ADC_Conversion(1)<70)
+		left();
+		//	_delay_ms(100);
+		stop();
+	}
 	else if (((ct == 0 || ct == 1) && dir == 2) || ((ct == 2 || ct == 3) && dir == 0))
-		turnRight();
-	else turn();
+		{
+			right_degrees(30);
+			velocity(turn_v, turn_v);
+			while (ADC_Conversion(1)<70)
+				right();
+			//	_delay_ms(100);
+			stop();	
+		}
+	else {
+		left_degrees(150);
+		velocity(turn_v, turn_v);
+		while (ADC_Conversion(1)<70)
+		left();
+		//	_delay_ms(100);
+		stop();
+		
+			}
 	//printf("Enter term[%d][%d]\n", ct, 1);
 	//scanf("%d", &term[ct][1]);
 	term[ct][1] = scan();
@@ -721,10 +750,10 @@ void terminalCheck2()
 
 void pick(int side)
 {
-	elevate(0, side);//lower
+	lower(side);//lower
 	open(side);
 	close(side);
-	elevate(45, side);//mid
+	elevate();//mid
 	armCount--;
 	if (side == 0)
 		lcd("pickRight");
@@ -916,9 +945,9 @@ void pickup()
 
 void drop(int side)
 {
-	elevate(0, side);//lower
+	lower(side);//lower
 	open(side);
-	elevate(45, side);//mid
+	elevate();//mid
 	close(side);
 	armCount++;
 	if(side==0)
@@ -1180,6 +1209,9 @@ int main()
 	//lcd("Begin");
 	forwardJaa();
 	stop();
+	servo_1(0);
+	servo_2(90);
+	servo_3(0);
 	while (sorted<total)
 	{
 		canDrop();

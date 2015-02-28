@@ -3,25 +3,25 @@ Servo.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         00000236  00000000  00000000  00000054  2**1
+  0 .text         00000296  00000000  00000000  00000054  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .comment      00000030  00000000  00000000  0000028a  2**0
+  1 .comment      00000030  00000000  00000000  000002ea  2**0
                   CONTENTS, READONLY
-  2 .debug_aranges 00000100  00000000  00000000  000002ba  2**0
+  2 .debug_aranges 00000108  00000000  00000000  0000031a  2**0
                   CONTENTS, READONLY, DEBUGGING
-  3 .debug_info   00000e3c  00000000  00000000  000003ba  2**0
+  3 .debug_info   00000ded  00000000  00000000  00000422  2**0
                   CONTENTS, READONLY, DEBUGGING
-  4 .debug_abbrev 00000253  00000000  00000000  000011f6  2**0
+  4 .debug_abbrev 00000218  00000000  00000000  0000120f  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_line   00000894  00000000  00000000  00001449  2**0
+  5 .debug_line   00000847  00000000  00000000  00001427  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_frame  00000214  00000000  00000000  00001ce0  2**2
+  6 .debug_frame  00000224  00000000  00000000  00001c70  2**2
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_str    00000339  00000000  00000000  00001ef4  2**0
+  7 .debug_str    00000339  00000000  00000000  00001e94  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_loc    000007f3  00000000  00000000  0000222d  2**0
+  8 .debug_loc    000007fa  00000000  00000000  000021cd  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_ranges 00000138  00000000  00000000  00002a20  2**0
+  9 .debug_ranges 000000f8  00000000  00000000  000029c7  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -29,117 +29,117 @@ Disassembly of section .text:
 00000000 <__vectors>:
    0:	71 c0       	rjmp	.+226    	; 0xe4 <__ctors_end>
    2:	00 00       	nop
-   4:	8e c0       	rjmp	.+284    	; 0x122 <__bad_interrupt>
+   4:	81 c0       	rjmp	.+258    	; 0x108 <__bad_interrupt>
    6:	00 00       	nop
-   8:	8c c0       	rjmp	.+280    	; 0x122 <__bad_interrupt>
+   8:	7f c0       	rjmp	.+254    	; 0x108 <__bad_interrupt>
    a:	00 00       	nop
-   c:	8a c0       	rjmp	.+276    	; 0x122 <__bad_interrupt>
+   c:	7d c0       	rjmp	.+250    	; 0x108 <__bad_interrupt>
    e:	00 00       	nop
-  10:	88 c0       	rjmp	.+272    	; 0x122 <__bad_interrupt>
+  10:	7b c0       	rjmp	.+246    	; 0x108 <__bad_interrupt>
   12:	00 00       	nop
-  14:	86 c0       	rjmp	.+268    	; 0x122 <__bad_interrupt>
+  14:	79 c0       	rjmp	.+242    	; 0x108 <__bad_interrupt>
   16:	00 00       	nop
-  18:	84 c0       	rjmp	.+264    	; 0x122 <__bad_interrupt>
+  18:	77 c0       	rjmp	.+238    	; 0x108 <__bad_interrupt>
   1a:	00 00       	nop
-  1c:	82 c0       	rjmp	.+260    	; 0x122 <__bad_interrupt>
+  1c:	75 c0       	rjmp	.+234    	; 0x108 <__bad_interrupt>
   1e:	00 00       	nop
-  20:	80 c0       	rjmp	.+256    	; 0x122 <__bad_interrupt>
+  20:	73 c0       	rjmp	.+230    	; 0x108 <__bad_interrupt>
   22:	00 00       	nop
-  24:	7e c0       	rjmp	.+252    	; 0x122 <__bad_interrupt>
+  24:	71 c0       	rjmp	.+226    	; 0x108 <__bad_interrupt>
   26:	00 00       	nop
-  28:	7c c0       	rjmp	.+248    	; 0x122 <__bad_interrupt>
+  28:	6f c0       	rjmp	.+222    	; 0x108 <__bad_interrupt>
   2a:	00 00       	nop
-  2c:	7a c0       	rjmp	.+244    	; 0x122 <__bad_interrupt>
+  2c:	6d c0       	rjmp	.+218    	; 0x108 <__bad_interrupt>
   2e:	00 00       	nop
-  30:	78 c0       	rjmp	.+240    	; 0x122 <__bad_interrupt>
+  30:	6b c0       	rjmp	.+214    	; 0x108 <__bad_interrupt>
   32:	00 00       	nop
-  34:	76 c0       	rjmp	.+236    	; 0x122 <__bad_interrupt>
+  34:	69 c0       	rjmp	.+210    	; 0x108 <__bad_interrupt>
   36:	00 00       	nop
-  38:	74 c0       	rjmp	.+232    	; 0x122 <__bad_interrupt>
+  38:	67 c0       	rjmp	.+206    	; 0x108 <__bad_interrupt>
   3a:	00 00       	nop
-  3c:	72 c0       	rjmp	.+228    	; 0x122 <__bad_interrupt>
+  3c:	65 c0       	rjmp	.+202    	; 0x108 <__bad_interrupt>
   3e:	00 00       	nop
-  40:	70 c0       	rjmp	.+224    	; 0x122 <__bad_interrupt>
+  40:	63 c0       	rjmp	.+198    	; 0x108 <__bad_interrupt>
   42:	00 00       	nop
-  44:	6e c0       	rjmp	.+220    	; 0x122 <__bad_interrupt>
+  44:	61 c0       	rjmp	.+194    	; 0x108 <__bad_interrupt>
   46:	00 00       	nop
-  48:	6c c0       	rjmp	.+216    	; 0x122 <__bad_interrupt>
+  48:	5f c0       	rjmp	.+190    	; 0x108 <__bad_interrupt>
   4a:	00 00       	nop
-  4c:	6a c0       	rjmp	.+212    	; 0x122 <__bad_interrupt>
+  4c:	5d c0       	rjmp	.+186    	; 0x108 <__bad_interrupt>
   4e:	00 00       	nop
-  50:	68 c0       	rjmp	.+208    	; 0x122 <__bad_interrupt>
+  50:	5b c0       	rjmp	.+182    	; 0x108 <__bad_interrupt>
   52:	00 00       	nop
-  54:	66 c0       	rjmp	.+204    	; 0x122 <__bad_interrupt>
+  54:	59 c0       	rjmp	.+178    	; 0x108 <__bad_interrupt>
   56:	00 00       	nop
-  58:	64 c0       	rjmp	.+200    	; 0x122 <__bad_interrupt>
+  58:	57 c0       	rjmp	.+174    	; 0x108 <__bad_interrupt>
   5a:	00 00       	nop
-  5c:	62 c0       	rjmp	.+196    	; 0x122 <__bad_interrupt>
+  5c:	55 c0       	rjmp	.+170    	; 0x108 <__bad_interrupt>
   5e:	00 00       	nop
-  60:	60 c0       	rjmp	.+192    	; 0x122 <__bad_interrupt>
+  60:	53 c0       	rjmp	.+166    	; 0x108 <__bad_interrupt>
   62:	00 00       	nop
-  64:	5e c0       	rjmp	.+188    	; 0x122 <__bad_interrupt>
+  64:	51 c0       	rjmp	.+162    	; 0x108 <__bad_interrupt>
   66:	00 00       	nop
-  68:	5c c0       	rjmp	.+184    	; 0x122 <__bad_interrupt>
+  68:	4f c0       	rjmp	.+158    	; 0x108 <__bad_interrupt>
   6a:	00 00       	nop
-  6c:	5a c0       	rjmp	.+180    	; 0x122 <__bad_interrupt>
+  6c:	4d c0       	rjmp	.+154    	; 0x108 <__bad_interrupt>
   6e:	00 00       	nop
-  70:	58 c0       	rjmp	.+176    	; 0x122 <__bad_interrupt>
+  70:	4b c0       	rjmp	.+150    	; 0x108 <__bad_interrupt>
   72:	00 00       	nop
-  74:	56 c0       	rjmp	.+172    	; 0x122 <__bad_interrupt>
+  74:	49 c0       	rjmp	.+146    	; 0x108 <__bad_interrupt>
   76:	00 00       	nop
-  78:	54 c0       	rjmp	.+168    	; 0x122 <__bad_interrupt>
+  78:	47 c0       	rjmp	.+142    	; 0x108 <__bad_interrupt>
   7a:	00 00       	nop
-  7c:	52 c0       	rjmp	.+164    	; 0x122 <__bad_interrupt>
+  7c:	45 c0       	rjmp	.+138    	; 0x108 <__bad_interrupt>
   7e:	00 00       	nop
-  80:	50 c0       	rjmp	.+160    	; 0x122 <__bad_interrupt>
+  80:	43 c0       	rjmp	.+134    	; 0x108 <__bad_interrupt>
   82:	00 00       	nop
-  84:	4e c0       	rjmp	.+156    	; 0x122 <__bad_interrupt>
+  84:	41 c0       	rjmp	.+130    	; 0x108 <__bad_interrupt>
   86:	00 00       	nop
-  88:	4c c0       	rjmp	.+152    	; 0x122 <__bad_interrupt>
+  88:	3f c0       	rjmp	.+126    	; 0x108 <__bad_interrupt>
   8a:	00 00       	nop
-  8c:	4a c0       	rjmp	.+148    	; 0x122 <__bad_interrupt>
+  8c:	3d c0       	rjmp	.+122    	; 0x108 <__bad_interrupt>
   8e:	00 00       	nop
-  90:	48 c0       	rjmp	.+144    	; 0x122 <__bad_interrupt>
+  90:	3b c0       	rjmp	.+118    	; 0x108 <__bad_interrupt>
   92:	00 00       	nop
-  94:	46 c0       	rjmp	.+140    	; 0x122 <__bad_interrupt>
+  94:	39 c0       	rjmp	.+114    	; 0x108 <__bad_interrupt>
   96:	00 00       	nop
-  98:	44 c0       	rjmp	.+136    	; 0x122 <__bad_interrupt>
+  98:	37 c0       	rjmp	.+110    	; 0x108 <__bad_interrupt>
   9a:	00 00       	nop
-  9c:	42 c0       	rjmp	.+132    	; 0x122 <__bad_interrupt>
+  9c:	35 c0       	rjmp	.+106    	; 0x108 <__bad_interrupt>
   9e:	00 00       	nop
-  a0:	40 c0       	rjmp	.+128    	; 0x122 <__bad_interrupt>
+  a0:	33 c0       	rjmp	.+102    	; 0x108 <__bad_interrupt>
   a2:	00 00       	nop
-  a4:	3e c0       	rjmp	.+124    	; 0x122 <__bad_interrupt>
+  a4:	31 c0       	rjmp	.+98     	; 0x108 <__bad_interrupt>
   a6:	00 00       	nop
-  a8:	3c c0       	rjmp	.+120    	; 0x122 <__bad_interrupt>
+  a8:	2f c0       	rjmp	.+94     	; 0x108 <__bad_interrupt>
   aa:	00 00       	nop
-  ac:	3a c0       	rjmp	.+116    	; 0x122 <__bad_interrupt>
+  ac:	2d c0       	rjmp	.+90     	; 0x108 <__bad_interrupt>
   ae:	00 00       	nop
-  b0:	38 c0       	rjmp	.+112    	; 0x122 <__bad_interrupt>
+  b0:	2b c0       	rjmp	.+86     	; 0x108 <__bad_interrupt>
   b2:	00 00       	nop
-  b4:	36 c0       	rjmp	.+108    	; 0x122 <__bad_interrupt>
+  b4:	29 c0       	rjmp	.+82     	; 0x108 <__bad_interrupt>
   b6:	00 00       	nop
-  b8:	34 c0       	rjmp	.+104    	; 0x122 <__bad_interrupt>
+  b8:	27 c0       	rjmp	.+78     	; 0x108 <__bad_interrupt>
   ba:	00 00       	nop
-  bc:	32 c0       	rjmp	.+100    	; 0x122 <__bad_interrupt>
+  bc:	25 c0       	rjmp	.+74     	; 0x108 <__bad_interrupt>
   be:	00 00       	nop
-  c0:	30 c0       	rjmp	.+96     	; 0x122 <__bad_interrupt>
+  c0:	23 c0       	rjmp	.+70     	; 0x108 <__bad_interrupt>
   c2:	00 00       	nop
-  c4:	2e c0       	rjmp	.+92     	; 0x122 <__bad_interrupt>
+  c4:	21 c0       	rjmp	.+66     	; 0x108 <__bad_interrupt>
   c6:	00 00       	nop
-  c8:	2c c0       	rjmp	.+88     	; 0x122 <__bad_interrupt>
+  c8:	1f c0       	rjmp	.+62     	; 0x108 <__bad_interrupt>
   ca:	00 00       	nop
-  cc:	2a c0       	rjmp	.+84     	; 0x122 <__bad_interrupt>
+  cc:	1d c0       	rjmp	.+58     	; 0x108 <__bad_interrupt>
   ce:	00 00       	nop
-  d0:	28 c0       	rjmp	.+80     	; 0x122 <__bad_interrupt>
+  d0:	1b c0       	rjmp	.+54     	; 0x108 <__bad_interrupt>
   d2:	00 00       	nop
-  d4:	26 c0       	rjmp	.+76     	; 0x122 <__bad_interrupt>
+  d4:	19 c0       	rjmp	.+50     	; 0x108 <__bad_interrupt>
   d6:	00 00       	nop
-  d8:	24 c0       	rjmp	.+72     	; 0x122 <__bad_interrupt>
+  d8:	17 c0       	rjmp	.+46     	; 0x108 <__bad_interrupt>
   da:	00 00       	nop
-  dc:	22 c0       	rjmp	.+68     	; 0x122 <__bad_interrupt>
+  dc:	15 c0       	rjmp	.+42     	; 0x108 <__bad_interrupt>
   de:	00 00       	nop
-  e0:	20 c0       	rjmp	.+64     	; 0x122 <__bad_interrupt>
+  e0:	13 c0       	rjmp	.+38     	; 0x108 <__bad_interrupt>
 	...
 
 000000e4 <__ctors_end>:
@@ -152,246 +152,275 @@ Disassembly of section .text:
   f0:	00 e0       	ldi	r16, 0x00	; 0
   f2:	0c bf       	out	0x3c, r16	; 60
 
-000000f4 <__do_copy_data>:
-  f4:	12 e0       	ldi	r17, 0x02	; 2
+000000f4 <__do_clear_bss>:
+  f4:	22 e0       	ldi	r18, 0x02	; 2
   f6:	a0 e0       	ldi	r26, 0x00	; 0
   f8:	b2 e0       	ldi	r27, 0x02	; 2
-  fa:	e6 e3       	ldi	r30, 0x36	; 54
-  fc:	f2 e0       	ldi	r31, 0x02	; 2
-  fe:	00 e0       	ldi	r16, 0x00	; 0
- 100:	0b bf       	out	0x3b, r16	; 59
- 102:	02 c0       	rjmp	.+4      	; 0x108 <__do_copy_data+0x14>
- 104:	07 90       	elpm	r0, Z+
- 106:	0d 92       	st	X+, r0
- 108:	a0 30       	cpi	r26, 0x00	; 0
- 10a:	b1 07       	cpc	r27, r17
- 10c:	d9 f7       	brne	.-10     	; 0x104 <__do_copy_data+0x10>
+  fa:	01 c0       	rjmp	.+2      	; 0xfe <.do_clear_bss_start>
 
-0000010e <__do_clear_bss>:
- 10e:	22 e0       	ldi	r18, 0x02	; 2
- 110:	a0 e0       	ldi	r26, 0x00	; 0
- 112:	b2 e0       	ldi	r27, 0x02	; 2
- 114:	01 c0       	rjmp	.+2      	; 0x118 <.do_clear_bss_start>
+000000fc <.do_clear_bss_loop>:
+  fc:	1d 92       	st	X+, r1
 
-00000116 <.do_clear_bss_loop>:
- 116:	1d 92       	st	X+, r1
+000000fe <.do_clear_bss_start>:
+  fe:	a0 30       	cpi	r26, 0x00	; 0
+ 100:	b2 07       	cpc	r27, r18
+ 102:	e1 f7       	brne	.-8      	; 0xfc <.do_clear_bss_loop>
+ 104:	a5 d0       	rcall	.+330    	; 0x250 <main>
+ 106:	c5 c0       	rjmp	.+394    	; 0x292 <_exit>
 
-00000118 <.do_clear_bss_start>:
- 118:	a0 30       	cpi	r26, 0x00	; 0
- 11a:	b2 07       	cpc	r27, r18
- 11c:	e1 f7       	brne	.-8      	; 0x116 <.do_clear_bss_loop>
- 11e:	41 d0       	rcall	.+130    	; 0x1a2 <main>
- 120:	88 c0       	rjmp	.+272    	; 0x232 <_exit>
+00000108 <__bad_interrupt>:
+ 108:	7b cf       	rjmp	.-266    	; 0x0 <__vectors>
 
-00000122 <__bad_interrupt>:
- 122:	6e cf       	rjmp	.-292    	; 0x0 <__vectors>
+0000010a <servo1_pin_config>:
+void buzzer_off (void)
+{
+	unsigned char port_restore = 0;
+	port_restore = PINC;
+	port_restore = port_restore & 0xF7;
+	PORTC = port_restore;
+ 10a:	25 9a       	sbi	0x04, 5	; 4
+ 10c:	2d 9a       	sbi	0x05, 5	; 5
+ 10e:	08 95       	ret
 
-00000124 <servo1_pin_config>:
-//	armCount++;
-	elevate(0, side);//lower
-	open(side);
-	elevate(90, side);//mid
-	close(side);
+00000110 <servo2_pin_config>:
+ 110:	26 9a       	sbi	0x04, 6	; 4
+ 112:	2e 9a       	sbi	0x05, 6	; 5
+ 114:	08 95       	ret
+
+00000116 <servo3_pin_config>:
+ 116:	27 9a       	sbi	0x04, 7	; 4
+ 118:	2f 9a       	sbi	0x05, 7	; 5
+ 11a:	08 95       	ret
+
+0000011c <port_init>:
+ 11c:	f6 df       	rcall	.-20     	; 0x10a <servo1_pin_config>
+ 11e:	f8 df       	rcall	.-16     	; 0x110 <servo2_pin_config>
+ 120:	fa cf       	rjmp	.-12     	; 0x116 <servo3_pin_config>
+ 122:	08 95       	ret
+
+00000124 <timer1_init>:
+ 124:	e1 e8       	ldi	r30, 0x81	; 129
+ 126:	f0 e0       	ldi	r31, 0x00	; 0
+ 128:	10 82       	st	Z, r1
+ 12a:	8c ef       	ldi	r24, 0xFC	; 252
+ 12c:	80 93 85 00 	sts	0x0085, r24
+ 130:	81 e0       	ldi	r24, 0x01	; 1
+ 132:	80 93 84 00 	sts	0x0084, r24
+ 136:	93 e0       	ldi	r25, 0x03	; 3
+ 138:	90 93 89 00 	sts	0x0089, r25
+ 13c:	8f ef       	ldi	r24, 0xFF	; 255
+ 13e:	80 93 88 00 	sts	0x0088, r24
+ 142:	90 93 8b 00 	sts	0x008B, r25
+ 146:	80 93 8a 00 	sts	0x008A, r24
+ 14a:	90 93 8d 00 	sts	0x008D, r25
+ 14e:	80 93 8c 00 	sts	0x008C, r24
+ 152:	90 93 87 00 	sts	0x0087, r25
+ 156:	80 93 86 00 	sts	0x0086, r24
+ 15a:	8b ea       	ldi	r24, 0xAB	; 171
+ 15c:	80 93 80 00 	sts	0x0080, r24
+ 160:	10 92 82 00 	sts	0x0082, r1
+ 164:	8c e0       	ldi	r24, 0x0C	; 12
+ 166:	80 83       	st	Z, r24
+ 168:	08 95       	ret
+
+0000016a <init_devices>:
+ 16a:	f8 94       	cli
+ 16c:	3b 9a       	sbi	0x07, 3	; 7
+ 16e:	43 98       	cbi	0x08, 3	; 8
+ 170:	d5 df       	rcall	.-86     	; 0x11c <port_init>
+ 172:	d8 df       	rcall	.-80     	; 0x124 <timer1_init>
+ 174:	78 94       	sei
+ 176:	08 95       	ret
+
+00000178 <lower>:
+ 178:	81 30       	cpi	r24, 0x01	; 1
+ 17a:	31 f4       	brne	.+12     	; 0x188 <lower+0x10>
+ 17c:	10 92 8b 00 	sts	0x008B, r1
+ 180:	83 e4       	ldi	r24, 0x43	; 67
+ 182:	80 93 8a 00 	sts	0x008A, r24
+ 186:	07 c0       	rjmp	.+14     	; 0x196 <lower+0x1e>
+ 188:	81 11       	cpse	r24, r1
+ 18a:	05 c0       	rjmp	.+10     	; 0x196 <lower+0x1e>
+ 18c:	10 92 8b 00 	sts	0x008B, r1
+ 190:	83 e6       	ldi	r24, 0x63	; 99
+ 192:	80 93 8a 00 	sts	0x008A, r24
+ 196:	2f ef       	ldi	r18, 0xFF	; 255
+ 198:	8f e7       	ldi	r24, 0x7F	; 127
+ 19a:	9f e1       	ldi	r25, 0x1F	; 31
+ 19c:	21 50       	subi	r18, 0x01	; 1
+ 19e:	80 40       	sbci	r24, 0x00	; 0
+ 1a0:	90 40       	sbci	r25, 0x00	; 0
+ 1a2:	e1 f7       	brne	.-8      	; 0x19c <lower+0x24>
+ 1a4:	00 c0       	rjmp	.+0      	; 0x1a6 <lower+0x2e>
+ 1a6:	00 00       	nop
+ 1a8:	08 95       	ret
+
+000001aa <elevate>:
+ 1aa:	10 92 8b 00 	sts	0x008B, r1
+ 1ae:	83 e5       	ldi	r24, 0x53	; 83
+ 1b0:	80 93 8a 00 	sts	0x008A, r24
+ 1b4:	2f ef       	ldi	r18, 0xFF	; 255
+ 1b6:	8f e7       	ldi	r24, 0x7F	; 127
+ 1b8:	9f e1       	ldi	r25, 0x1F	; 31
+ 1ba:	21 50       	subi	r18, 0x01	; 1
+ 1bc:	80 40       	sbci	r24, 0x00	; 0
+ 1be:	90 40       	sbci	r25, 0x00	; 0
+ 1c0:	e1 f7       	brne	.-8      	; 0x1ba <elevate+0x10>
+ 1c2:	00 c0       	rjmp	.+0      	; 0x1c4 <elevate+0x1a>
+ 1c4:	00 00       	nop
+ 1c6:	08 95       	ret
+
+000001c8 <open>:
+ 1c8:	81 11       	cpse	r24, r1
+ 1ca:	06 c0       	rjmp	.+12     	; 0x1d8 <open+0x10>
+ 1cc:	10 92 8d 00 	sts	0x008D, r1
+ 1d0:	83 e2       	ldi	r24, 0x23	; 35
+ 1d2:	80 93 8c 00 	sts	0x008C, r24
+ 1d6:	07 c0       	rjmp	.+14     	; 0x1e6 <open+0x1e>
+ 1d8:	81 30       	cpi	r24, 0x01	; 1
+ 1da:	29 f4       	brne	.+10     	; 0x1e6 <open+0x1e>
+ 1dc:	10 92 89 00 	sts	0x0089, r1
+ 1e0:	83 e2       	ldi	r24, 0x23	; 35
+ 1e2:	80 93 88 00 	sts	0x0088, r24
+ 1e6:	2f ef       	ldi	r18, 0xFF	; 255
+ 1e8:	8f e7       	ldi	r24, 0x7F	; 127
+ 1ea:	9f e1       	ldi	r25, 0x1F	; 31
+ 1ec:	21 50       	subi	r18, 0x01	; 1
+ 1ee:	80 40       	sbci	r24, 0x00	; 0
+ 1f0:	90 40       	sbci	r25, 0x00	; 0
+ 1f2:	e1 f7       	brne	.-8      	; 0x1ec <open+0x24>
+ 1f4:	00 c0       	rjmp	.+0      	; 0x1f6 <open+0x2e>
+ 1f6:	00 00       	nop
+ 1f8:	08 95       	ret
+
+000001fa <close>:
+ 1fa:	81 11       	cpse	r24, r1
+ 1fc:	06 c0       	rjmp	.+12     	; 0x20a <close+0x10>
+ 1fe:	10 92 8d 00 	sts	0x008D, r1
+ 202:	8b e3       	ldi	r24, 0x3B	; 59
+ 204:	80 93 8c 00 	sts	0x008C, r24
+ 208:	07 c0       	rjmp	.+14     	; 0x218 <close+0x1e>
+ 20a:	81 30       	cpi	r24, 0x01	; 1
+ 20c:	29 f4       	brne	.+10     	; 0x218 <close+0x1e>
+ 20e:	10 92 89 00 	sts	0x0089, r1
+ 212:	8b e3       	ldi	r24, 0x3B	; 59
+ 214:	80 93 88 00 	sts	0x0088, r24
+ 218:	2f ef       	ldi	r18, 0xFF	; 255
+ 21a:	8f e7       	ldi	r24, 0x7F	; 127
+ 21c:	9f e1       	ldi	r25, 0x1F	; 31
+ 21e:	21 50       	subi	r18, 0x01	; 1
+ 220:	80 40       	sbci	r24, 0x00	; 0
+ 222:	90 40       	sbci	r25, 0x00	; 0
+ 224:	e1 f7       	brne	.-8      	; 0x21e <close+0x24>
+ 226:	00 c0       	rjmp	.+0      	; 0x228 <close+0x2e>
+ 228:	00 00       	nop
+ 22a:	08 95       	ret
+
+0000022c <pick>:
+ 22c:	cf 93       	push	r28
+ 22e:	c8 2f       	mov	r28, r24
+ 230:	a3 df       	rcall	.-186    	; 0x178 <lower>
+ 232:	8c 2f       	mov	r24, r28
+ 234:	c9 df       	rcall	.-110    	; 0x1c8 <open>
+ 236:	8c 2f       	mov	r24, r28
+ 238:	e0 df       	rcall	.-64     	; 0x1fa <close>
+ 23a:	b7 df       	rcall	.-146    	; 0x1aa <elevate>
+ 23c:	cf 91       	pop	r28
+ 23e:	08 95       	ret
+
+00000240 <drop>:
 }
- 124:	25 9a       	sbi	0x04, 5	; 4
- 126:	2d 9a       	sbi	0x05, 5	; 5
- 128:	08 95       	ret
 
-0000012a <servo2_pin_config>:
- 12a:	26 9a       	sbi	0x04, 6	; 4
- 12c:	2e 9a       	sbi	0x05, 6	; 5
- 12e:	08 95       	ret
+void drop(int side)
+{
+ 240:	cf 93       	push	r28
+ 242:	c8 2f       	mov	r28, r24
+//	armCount++;
+	lower(side);//lower
+ 244:	99 df       	rcall	.-206    	; 0x178 <lower>
+	open(side);
+ 246:	8c 2f       	mov	r24, r28
+ 248:	bf df       	rcall	.-130    	; 0x1c8 <open>
+	elevate();//mid
+ 24a:	af df       	rcall	.-162    	; 0x1aa <elevate>
+}
+ 24c:	cf 91       	pop	r28
+ 24e:	08 95       	ret
 
-00000130 <servo3_pin_config>:
- 130:	27 9a       	sbi	0x04, 7	; 4
- 132:	2f 9a       	sbi	0x05, 7	; 5
- 134:	08 95       	ret
-
-00000136 <port_init>:
- 136:	f6 df       	rcall	.-20     	; 0x124 <servo1_pin_config>
- 138:	f8 df       	rcall	.-16     	; 0x12a <servo2_pin_config>
- 13a:	fa cf       	rjmp	.-12     	; 0x130 <servo3_pin_config>
- 13c:	08 95       	ret
-
-0000013e <timer1_init>:
- 13e:	e1 e8       	ldi	r30, 0x81	; 129
- 140:	f0 e0       	ldi	r31, 0x00	; 0
- 142:	10 82       	st	Z, r1
- 144:	8c ef       	ldi	r24, 0xFC	; 252
- 146:	80 93 85 00 	sts	0x0085, r24
- 14a:	81 e0       	ldi	r24, 0x01	; 1
- 14c:	80 93 84 00 	sts	0x0084, r24
- 150:	93 e0       	ldi	r25, 0x03	; 3
- 152:	90 93 89 00 	sts	0x0089, r25
- 156:	8f ef       	ldi	r24, 0xFF	; 255
- 158:	80 93 88 00 	sts	0x0088, r24
- 15c:	90 93 8b 00 	sts	0x008B, r25
- 160:	80 93 8a 00 	sts	0x008A, r24
- 164:	90 93 8d 00 	sts	0x008D, r25
- 168:	80 93 8c 00 	sts	0x008C, r24
- 16c:	90 93 87 00 	sts	0x0087, r25
- 170:	80 93 86 00 	sts	0x0086, r24
- 174:	8b ea       	ldi	r24, 0xAB	; 171
- 176:	80 93 80 00 	sts	0x0080, r24
- 17a:	10 92 82 00 	sts	0x0082, r1
- 17e:	8c e0       	ldi	r24, 0x0C	; 12
- 180:	80 83       	st	Z, r24
- 182:	08 95       	ret
-
-00000184 <init_devices>:
- 184:	f8 94       	cli
- 186:	3b 9a       	sbi	0x07, 3	; 7
- 188:	43 98       	cbi	0x08, 3	; 8
- 18a:	d5 df       	rcall	.-86     	; 0x136 <port_init>
- 18c:	d8 df       	rcall	.-80     	; 0x13e <timer1_init>
- 18e:	78 94       	sei
- 190:	08 95       	ret
-
-00000192 <buzzer_on>:
- 192:	86 b1       	in	r24, 0x06	; 6
- 194:	88 60       	ori	r24, 0x08	; 8
- 196:	88 b9       	out	0x08, r24	; 8
- 198:	08 95       	ret
-
-0000019a <buzzer_off>:
- 19a:	86 b1       	in	r24, 0x06	; 6
- 19c:	87 7f       	andi	r24, 0xF7	; 247
- 19e:	88 b9       	out	0x08, r24	; 8
- 1a0:	08 95       	ret
-
-000001a2 <main>:
+00000250 <main>:
 //Main function
 int main(void)
 {
 	unsigned char i = 0;
 	init_devices();
- 1a2:	f0 df       	rcall	.-32     	; 0x184 <init_devices>
+ 250:	8c df       	rcall	.-232    	; 0x16a <init_devices>
 //Function to rotate Servo 3 by a specified angle in the multiples of 1.86 degrees
 void servo_3(unsigned char degrees)
 {
  float PositionServo = 0;
  PositionServo = ((float)degrees / 1.86) + 35.0;
  OCR1CH = 0x00;
- 1a4:	10 92 8d 00 	sts	0x008D, r1
+ 252:	10 92 8d 00 	sts	0x008D, r1
  OCR1CL = (unsigned char) PositionServo;
- 1a8:	83 e2       	ldi	r24, 0x23	; 35
- 1aa:	80 93 8c 00 	sts	0x008C, r24
+ 256:	83 e2       	ldi	r24, 0x23	; 35
+ 258:	80 93 8c 00 	sts	0x008C, r24
 //Function to rotate Servo 2 by a specified angle in the multiples of 1.86 degrees
 void servo_2(unsigned char degrees)
 {
  float PositionTiltServo = 0;
  PositionTiltServo = ((float)degrees / 1.86) + 35.0;
  OCR1BH = 0x00;
- 1ae:	10 92 8b 00 	sts	0x008B, r1
+ 25c:	10 92 8b 00 	sts	0x008B, r1
  OCR1BL = (unsigned char) PositionTiltServo;
- 1b2:	83 e5       	ldi	r24, 0x53	; 83
- 1b4:	80 93 8a 00 	sts	0x008A, r24
-	unsigned char i = 0;
-	init_devices();
-	servo_3(0);
-	servo_2(90);
-	
-	buzzer_on();
- 1b8:	ec df       	rcall	.-40     	; 0x192 <buzzer_on>
+ 260:	93 e5       	ldi	r25, 0x53	; 83
+ 262:	90 93 8a 00 	sts	0x008A, r25
+//Function to rotate Servo 1 by a specified angle in the multiples of 1.86 degrees
+void servo_1(unsigned char degrees)  
+{
+ float PositionPanServo = 0;
+  PositionPanServo = ((float)degrees / 1.86) + 35.0;
+ OCR1AH = 0x00;
+ 266:	10 92 89 00 	sts	0x0089, r1
+ OCR1AL = (unsigned char) PositionPanServo;
+ 26a:	80 93 88 00 	sts	0x0088, r24
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
- 1ba:	2f ef       	ldi	r18, 0xFF	; 255
- 1bc:	3f e7       	ldi	r19, 0x7F	; 127
- 1be:	44 e0       	ldi	r20, 0x04	; 4
- 1c0:	21 50       	subi	r18, 0x01	; 1
- 1c2:	30 40       	sbci	r19, 0x00	; 0
- 1c4:	40 40       	sbci	r20, 0x00	; 0
- 1c6:	e1 f7       	brne	.-8      	; 0x1c0 <main+0x1e>
- 1c8:	00 c0       	rjmp	.+0      	; 0x1ca <main+0x28>
- 1ca:	00 00       	nop
-	_delay_ms(100);
-	buzzer_off();
- 1cc:	e6 df       	rcall	.-52     	; 0x19a <buzzer_off>
-//Function to rotate Servo 2 by a specified angle in the multiples of 1.86 degrees
-void servo_2(unsigned char degrees)
-{
- float PositionTiltServo = 0;
- PositionTiltServo = ((float)degrees / 1.86) + 35.0;
- OCR1BH = 0x00;
- 1ce:	ab e8       	ldi	r26, 0x8B	; 139
- 1d0:	b0 e0       	ldi	r27, 0x00	; 0
- OCR1BL = (unsigned char) PositionTiltServo;
- 1d2:	ea e8       	ldi	r30, 0x8A	; 138
- 1d4:	f0 e0       	ldi	r31, 0x00	; 0
- 1d6:	23 e2       	ldi	r18, 0x23	; 35
- 1d8:	93 e5       	ldi	r25, 0x53	; 83
- 1da:	83 e8       	ldi	r24, 0x83	; 131
- 1dc:	5f ef       	ldi	r21, 0xFF	; 255
- 1de:	3f ef       	ldi	r19, 0xFF	; 255
- 1e0:	49 e5       	ldi	r20, 0x59	; 89
- 1e2:	51 50       	subi	r21, 0x01	; 1
- 1e4:	30 40       	sbci	r19, 0x00	; 0
- 1e6:	40 40       	sbci	r20, 0x00	; 0
- 1e8:	e1 f7       	brne	.-8      	; 0x1e2 <main+0x40>
- 1ea:	00 c0       	rjmp	.+0      	; 0x1ec <main+0x4a>
- 1ec:	00 00       	nop
-//Function to rotate Servo 2 by a specified angle in the multiples of 1.86 degrees
-void servo_2(unsigned char degrees)
-{
- float PositionTiltServo = 0;
- PositionTiltServo = ((float)degrees / 1.86) + 35.0;
- OCR1BH = 0x00;
- 1ee:	1c 92       	st	X, r1
- OCR1BL = (unsigned char) PositionTiltServo;
- 1f0:	20 83       	st	Z, r18
- 1f2:	5f ef       	ldi	r21, 0xFF	; 255
- 1f4:	3f ef       	ldi	r19, 0xFF	; 255
- 1f6:	49 e5       	ldi	r20, 0x59	; 89
- 1f8:	51 50       	subi	r21, 0x01	; 1
- 1fa:	30 40       	sbci	r19, 0x00	; 0
- 1fc:	40 40       	sbci	r20, 0x00	; 0
- 1fe:	e1 f7       	brne	.-8      	; 0x1f8 <main+0x56>
- 200:	00 c0       	rjmp	.+0      	; 0x202 <main+0x60>
- 202:	00 00       	nop
-//Function to rotate Servo 2 by a specified angle in the multiples of 1.86 degrees
-void servo_2(unsigned char degrees)
-{
- float PositionTiltServo = 0;
- PositionTiltServo = ((float)degrees / 1.86) + 35.0;
- OCR1BH = 0x00;
- 204:	1c 92       	st	X, r1
- OCR1BL = (unsigned char) PositionTiltServo;
- 206:	90 83       	st	Z, r25
- 208:	5f ef       	ldi	r21, 0xFF	; 255
- 20a:	3f ef       	ldi	r19, 0xFF	; 255
- 20c:	49 e5       	ldi	r20, 0x59	; 89
- 20e:	51 50       	subi	r21, 0x01	; 1
- 210:	30 40       	sbci	r19, 0x00	; 0
- 212:	40 40       	sbci	r20, 0x00	; 0
- 214:	e1 f7       	brne	.-8      	; 0x20e <main+0x6c>
- 216:	00 c0       	rjmp	.+0      	; 0x218 <main+0x76>
- 218:	00 00       	nop
-//Function to rotate Servo 2 by a specified angle in the multiples of 1.86 degrees
-void servo_2(unsigned char degrees)
-{
- float PositionTiltServo = 0;
- PositionTiltServo = ((float)degrees / 1.86) + 35.0;
- OCR1BH = 0x00;
- 21a:	1c 92       	st	X, r1
- OCR1BL = (unsigned char) PositionTiltServo;
- 21c:	80 83       	st	Z, r24
- 21e:	5f ef       	ldi	r21, 0xFF	; 255
- 220:	3f ef       	ldi	r19, 0xFF	; 255
- 222:	49 e5       	ldi	r20, 0x59	; 89
- 224:	51 50       	subi	r21, 0x01	; 1
- 226:	30 40       	sbci	r19, 0x00	; 0
- 228:	40 40       	sbci	r20, 0x00	; 0
- 22a:	e1 f7       	brne	.-8      	; 0x224 <main+0x82>
- 22c:	00 c0       	rjmp	.+0      	; 0x22e <main+0x8c>
- 22e:	00 00       	nop
- 230:	d5 cf       	rjmp	.-86     	; 0x1dc <main+0x3a>
+ 26e:	2f ef       	ldi	r18, 0xFF	; 255
+ 270:	8f ef       	ldi	r24, 0xFF	; 255
+ 272:	99 e5       	ldi	r25, 0x59	; 89
+ 274:	21 50       	subi	r18, 0x01	; 1
+ 276:	80 40       	sbci	r24, 0x00	; 0
+ 278:	90 40       	sbci	r25, 0x00	; 0
+ 27a:	e1 f7       	brne	.-8      	; 0x274 <main+0x24>
+ 27c:	00 c0       	rjmp	.+0      	; 0x27e <main+0x2e>
+ 27e:	00 00       	nop
+	_delay_ms(2000);
+		
+	//servo_3(45);
+	//_delay_ms(2000);
+	//servo_3(0);
+	pick(0);
+ 280:	80 e0       	ldi	r24, 0x00	; 0
+ 282:	90 e0       	ldi	r25, 0x00	; 0
+ 284:	d3 df       	rcall	.-90     	; 0x22c <pick>
+	//pick(1);
+	//drop(1);
+	drop(0);
+ 286:	80 e0       	ldi	r24, 0x00	; 0
+ 288:	90 e0       	ldi	r25, 0x00	; 0
+ 28a:	da df       	rcall	.-76     	; 0x240 <drop>
+	 return 0;
+}
+ 28c:	80 e0       	ldi	r24, 0x00	; 0
+ 28e:	90 e0       	ldi	r25, 0x00	; 0
+ 290:	08 95       	ret
 
-00000232 <_exit>:
- 232:	f8 94       	cli
+00000292 <_exit>:
+ 292:	f8 94       	cli
 
-00000234 <__stop_program>:
- 234:	ff cf       	rjmp	.-2      	; 0x234 <__stop_program>
+00000294 <__stop_program>:
+ 294:	ff cf       	rjmp	.-2      	; 0x294 <__stop_program>

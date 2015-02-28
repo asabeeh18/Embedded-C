@@ -118,37 +118,41 @@ void servo_3_free (void) //makes servo 3 free rotating
  OCR1CL = 0xFF; //Servo 3 off
 } 
 
-void elevate(unsigned char angle, unsigned char side)
+void lower(unsigned char side)
 {
-	
-	if (side == 0)
-	servo_1(angle);
-	else if (side == 1)
-	servo_1((angle == 45) ? 0 : 45);
+	if (side == 1)
+	servo_2(60);
+	else if (side == 0)
+	servo_2(120);
+	_delay_ms(700);
+}
+void elevate()
+{
+	servo_2(90);
+	_delay_ms(700);
 }
 void open(unsigned char side)
 {
 	if (side == 0)
-	servo_2(180);
+		servo_3(0);
 	else if (side == 1)
-	servo_3(180);
+		servo_1(0);
+	_delay_ms(700);
 }
 void close(unsigned char side)
 {
 	if (side == 0)
-	servo_2(0);
+		servo_3(45);
 	else if (side == 1)
-	servo_3(0);
+		servo_1(45);
+	_delay_ms(700);
 }
 void pick(int side)
 {
-	lcd_cursor(2,1);
-	lcd_string("In pick");
-	//armCount--;
-	elevate(0, side);//lower
+	lower(side);//lower
 	open(side);
 	close(side);
-	elevate(90, side);//mid
+	elevate();//mid
 }
 
 void buzzer_on (void)
@@ -169,13 +173,10 @@ void buzzer_off (void)
 
 void drop(int side)
 {
-	lcd_cursor(2,1);
-	lcd_string("In drop");
 //	armCount++;
-	elevate(0, side);//lower
+	lower(side);//lower
 	open(side);
-	elevate(90, side);//mid
-	close(side);
+	elevate();//mid
 }
 //Main function
 int main(void)
@@ -184,25 +185,15 @@ int main(void)
 	init_devices();
 	servo_3(0);
 	servo_2(90);
-	
-	buzzer_on();
-	_delay_ms(100);
-	buzzer_off();
-	
-	while(1)
-	{
-		_delay_ms(2000);
+	servo_1(0);
+	_delay_ms(2000);
 		
-		//servo_3(45);
-		//_delay_ms(2000);
-		//servo_3(0);
-		servo_2(0);
-		_delay_ms(2000);
-		servo_2(90);
-		_delay_ms(2000);
-		servo_2(180);
-		_delay_ms(2000);
-		
-	}
+	//servo_3(45);
+	//_delay_ms(2000);
+	//servo_3(0);
+	pick(0);
+	//pick(1);
+	//drop(1);
+	drop(0);
 	 return 0;
 }

@@ -28,8 +28,6 @@ c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-t
                               c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(addsf3x.o) (__fp_zero)
 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
                               c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6/crtm2560.o (exit)
-c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_copy_data.o)
-                              Servo.o (__do_copy_data)
 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_clear_bss.o)
                               Servo.o (__do_clear_bss)
 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_umulhisi3.o)
@@ -80,13 +78,10 @@ Discarded input sections
                 0x00000000        0xe Servo.o
  .text.servo_3_free
                 0x00000000        0xe Servo.o
- .text.elevate  0x00000000       0x1e Servo.o
- .text.open     0x00000000       0x20 Servo.o
- .text.close    0x00000000       0x20 Servo.o
- .rodata.str1.1
-                0x00000000       0x10 Servo.o
- .text.pick     0x00000000       0x34 Servo.o
- .text.drop     0x00000000       0x34 Servo.o
+ .text.buzzer_on
+                0x00000000        0x8 Servo.o
+ .text.buzzer_off
+                0x00000000        0x8 Servo.o
  COMMON         0x00000000        0xe Servo.o
  .text          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(addsf3.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(addsf3.o)
@@ -169,22 +164,6 @@ Discarded input sections
                 0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
  .text.libgcc.fixed
                 0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
- .text          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_copy_data.o)
- .data          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_copy_data.o)
- .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_copy_data.o)
- .text.libgcc.mul
-                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_copy_data.o)
- .text.libgcc.div
-                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_copy_data.o)
- .text.libgcc   0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_copy_data.o)
- .text.libgcc.prologue
-                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_copy_data.o)
- .text.libgcc.builtins
-                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_copy_data.o)
- .text.libgcc.fmul
-                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_copy_data.o)
- .text.libgcc.fixed
-                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_copy_data.o)
  .text          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_clear_bss.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_clear_bss.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_clear_bss.o)
@@ -334,7 +313,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x236
+.text           0x00000000      0x296
  *(.vectors)
  .vectors       0x00000000       0xe4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6/crtm2560.o
                 0x00000000                __vector_default
@@ -373,10 +352,8 @@ END GROUP
  *(.init3)
  *(.init3)
  *(.init4)
- .init4         0x000000f4       0x1a c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_copy_data.o)
-                0x000000f4                __do_copy_data
- .init4         0x0000010e       0x10 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_clear_bss.o)
-                0x0000010e                __do_clear_bss
+ .init4         0x000000f4       0x10 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_clear_bss.o)
+                0x000000f4                __do_clear_bss
  *(.init4)
  *(.init5)
  *(.init5)
@@ -387,100 +364,106 @@ END GROUP
  *(.init8)
  *(.init8)
  *(.init9)
- .init9         0x0000011e        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6/crtm2560.o
+ .init9         0x00000104        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6/crtm2560.o
  *(.init9)
  *(.text)
- .text          0x00000122        0x2 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6/crtm2560.o
-                0x00000122                __vector_38
-                0x00000122                __vector_22
-                0x00000122                __vector_28
-                0x00000122                __vector_1
-                0x00000122                __vector_32
-                0x00000122                __vector_34
-                0x00000122                __vector_24
-                0x00000122                __vector_12
-                0x00000122                __vector_55
-                0x00000122                __vector_46
-                0x00000122                __bad_interrupt
-                0x00000122                __vector_6
-                0x00000122                __vector_31
-                0x00000122                __vector_35
-                0x00000122                __vector_39
-                0x00000122                __vector_3
-                0x00000122                __vector_23
-                0x00000122                __vector_30
-                0x00000122                __vector_45
-                0x00000122                __vector_25
-                0x00000122                __vector_11
-                0x00000122                __vector_54
-                0x00000122                __vector_13
-                0x00000122                __vector_17
-                0x00000122                __vector_19
-                0x00000122                __vector_56
-                0x00000122                __vector_7
-                0x00000122                __vector_49
-                0x00000122                __vector_41
-                0x00000122                __vector_43
-                0x00000122                __vector_27
-                0x00000122                __vector_5
-                0x00000122                __vector_33
-                0x00000122                __vector_47
-                0x00000122                __vector_52
-                0x00000122                __vector_37
-                0x00000122                __vector_4
-                0x00000122                __vector_44
-                0x00000122                __vector_51
-                0x00000122                __vector_9
-                0x00000122                __vector_2
-                0x00000122                __vector_21
-                0x00000122                __vector_15
-                0x00000122                __vector_36
-                0x00000122                __vector_29
-                0x00000122                __vector_40
-                0x00000122                __vector_8
-                0x00000122                __vector_26
-                0x00000122                __vector_48
-                0x00000122                __vector_14
-                0x00000122                __vector_53
-                0x00000122                __vector_10
-                0x00000122                __vector_50
-                0x00000122                __vector_16
-                0x00000122                __vector_18
-                0x00000122                __vector_20
-                0x00000122                __vector_42
-                0x00000124                . = ALIGN (0x2)
+ .text          0x00000108        0x2 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6/crtm2560.o
+                0x00000108                __vector_38
+                0x00000108                __vector_22
+                0x00000108                __vector_28
+                0x00000108                __vector_1
+                0x00000108                __vector_32
+                0x00000108                __vector_34
+                0x00000108                __vector_24
+                0x00000108                __vector_12
+                0x00000108                __vector_55
+                0x00000108                __vector_46
+                0x00000108                __bad_interrupt
+                0x00000108                __vector_6
+                0x00000108                __vector_31
+                0x00000108                __vector_35
+                0x00000108                __vector_39
+                0x00000108                __vector_3
+                0x00000108                __vector_23
+                0x00000108                __vector_30
+                0x00000108                __vector_45
+                0x00000108                __vector_25
+                0x00000108                __vector_11
+                0x00000108                __vector_54
+                0x00000108                __vector_13
+                0x00000108                __vector_17
+                0x00000108                __vector_19
+                0x00000108                __vector_56
+                0x00000108                __vector_7
+                0x00000108                __vector_49
+                0x00000108                __vector_41
+                0x00000108                __vector_43
+                0x00000108                __vector_27
+                0x00000108                __vector_5
+                0x00000108                __vector_33
+                0x00000108                __vector_47
+                0x00000108                __vector_52
+                0x00000108                __vector_37
+                0x00000108                __vector_4
+                0x00000108                __vector_44
+                0x00000108                __vector_51
+                0x00000108                __vector_9
+                0x00000108                __vector_2
+                0x00000108                __vector_21
+                0x00000108                __vector_15
+                0x00000108                __vector_36
+                0x00000108                __vector_29
+                0x00000108                __vector_40
+                0x00000108                __vector_8
+                0x00000108                __vector_26
+                0x00000108                __vector_48
+                0x00000108                __vector_14
+                0x00000108                __vector_53
+                0x00000108                __vector_10
+                0x00000108                __vector_50
+                0x00000108                __vector_16
+                0x00000108                __vector_18
+                0x00000108                __vector_20
+                0x00000108                __vector_42
+                0x0000010a                . = ALIGN (0x2)
  *(.text.*)
  .text.servo1_pin_config
-                0x00000124        0x6 Servo.o
-                0x00000124                servo1_pin_config
+                0x0000010a        0x6 Servo.o
+                0x0000010a                servo1_pin_config
  .text.servo2_pin_config
-                0x0000012a        0x6 Servo.o
-                0x0000012a                servo2_pin_config
+                0x00000110        0x6 Servo.o
+                0x00000110                servo2_pin_config
  .text.servo3_pin_config
-                0x00000130        0x6 Servo.o
-                0x00000130                servo3_pin_config
+                0x00000116        0x6 Servo.o
+                0x00000116                servo3_pin_config
  .text.port_init
-                0x00000136        0x8 Servo.o
-                0x00000136                port_init
+                0x0000011c        0x8 Servo.o
+                0x0000011c                port_init
  .text.timer1_init
-                0x0000013e       0x46 Servo.o
-                0x0000013e                timer1_init
+                0x00000124       0x46 Servo.o
+                0x00000124                timer1_init
  .text.init_devices
-                0x00000184        0xe Servo.o
-                0x00000184                init_devices
- .text.buzzer_on
-                0x00000192        0x8 Servo.o
-                0x00000192                buzzer_on
- .text.buzzer_off
-                0x0000019a        0x8 Servo.o
-                0x0000019a                buzzer_off
- .text.main     0x000001a2       0x90 Servo.o
-                0x000001a2                main
-                0x00000232                . = ALIGN (0x2)
+                0x0000016a        0xe Servo.o
+                0x0000016a                init_devices
+ .text.lower    0x00000178       0x32 Servo.o
+                0x00000178                lower
+ .text.elevate  0x000001aa       0x1e Servo.o
+                0x000001aa                elevate
+ .text.open     0x000001c8       0x32 Servo.o
+                0x000001c8                open
+ .text.close    0x000001fa       0x32 Servo.o
+                0x000001fa                close
+ .text.pick     0x0000022c       0x14 Servo.o
+                0x0000022c                pick
+ .text.drop     0x00000240       0x10 Servo.o
+                0x00000240                drop
+ .text.main     0x00000250       0x42 Servo.o
+                0x00000250                main
+                0x00000292                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000232        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
-                0x00000232                _exit
-                0x00000232                exit
+ .fini9         0x00000292        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
+                0x00000292                _exit
+                0x00000292                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -499,11 +482,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000232        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
+ .fini0         0x00000292        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000236                _etext = .
+                0x00000296                _etext = .
 
-.data           0x00800200        0x0 load address 0x00000236
+.data           0x00800200        0x0 load address 0x00000296
                 0x00800200                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -520,8 +503,8 @@ END GROUP
  *(.bss*)
  *(COMMON)
                 0x00800200                PROVIDE (__bss_end, .)
-                0x00000236                __data_load_start = LOADADDR (.data)
-                0x00000236                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00000296                __data_load_start = LOADADDR (.data)
+                0x00000296                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x00800200        0x0
                 0x00800200                PROVIDE (__noinit_start, .)
@@ -587,38 +570,38 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x100
+.debug_aranges  0x00000000      0x108
  *(.debug_aranges)
  .debug_aranges
-                0x00000000      0x100 Servo.o
+                0x00000000      0x108 Servo.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000      0xe3c
+.debug_info     0x00000000      0xded
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x00000000      0xe3c Servo.o
+ .debug_info    0x00000000      0xded Servo.o
 
-.debug_abbrev   0x00000000      0x253
+.debug_abbrev   0x00000000      0x218
  *(.debug_abbrev)
- .debug_abbrev  0x00000000      0x253 Servo.o
+ .debug_abbrev  0x00000000      0x218 Servo.o
 
-.debug_line     0x00000000      0x894
+.debug_line     0x00000000      0x847
  *(.debug_line .debug_line.* .debug_line_end)
- .debug_line    0x00000000      0x894 Servo.o
+ .debug_line    0x00000000      0x847 Servo.o
 
-.debug_frame    0x00000000      0x214
+.debug_frame    0x00000000      0x224
  *(.debug_frame)
- .debug_frame   0x00000000      0x214 Servo.o
+ .debug_frame   0x00000000      0x224 Servo.o
 
 .debug_str      0x00000000      0x339
  *(.debug_str)
  .debug_str     0x00000000      0x339 Servo.o
                                 0x372 (size before relaxing)
 
-.debug_loc      0x00000000      0x7f3
+.debug_loc      0x00000000      0x7fa
  *(.debug_loc)
- .debug_loc     0x00000000      0x7f3 Servo.o
+ .debug_loc     0x00000000      0x7fa Servo.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -638,9 +621,9 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000      0x138
+.debug_ranges   0x00000000       0xf8
  *(.debug_ranges)
- .debug_ranges  0x00000000      0x138 Servo.o
+ .debug_ranges  0x00000000       0xf8 Servo.o
 
 .debug_macro
  *(.debug_macro)
