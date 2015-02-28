@@ -90,7 +90,7 @@ void node()
 char Delay(int tim)
 {
 	int i;
-	for(i=0;i<tim && ADC_Conversion(2)<=40;i++)
+	for(i=0;i<tim && ADC_Conversion(2)<0x28;i++)// && ADC_Conversion(1)<40 && ADC_Conversion(3)<40));i++)
 	{
 		//set_color();
 		_delay_ms(1);
@@ -103,14 +103,15 @@ char Delay(int tim)
 
 void semiCorrect()
 {
-	/*lcd_print(1,2,1,1);
+	
+	lcd_print(1,2,1,1);
 	if(Center_white_line<40)
 	{
 		if(Left_white_line>40 && Right_white_line<40) //bww
 		{
 			lcd("bww");
 			
-			while(!(Center_white_line>0x28 && Left_white_line<40 && Right_white_line<40))
+			while((Center_white_line<0x28))// && Left_white_line<40 && Right_white_line<40))
 			{
 				//lcd_print(1,2,1,1);
 				left();
@@ -122,7 +123,7 @@ void semiCorrect()
 		{
 			
 			lcd("wwb");
-			while(!(Center_white_line>0x28 && Left_white_line<40 && Right_white_line<40))
+			while((Center_white_line<0x28))// && Left_white_line<40 && Right_white_line<40))
 			{
 				//lcd_print(1,2,2,1);
 				right();
@@ -132,76 +133,53 @@ void semiCorrect()
 			
 		}
 	}
-	lcd_print(1,2,0,1);*/
+	lcd_print(1,2,0,1);
+	
 }
 void correct()
 {
 	unsigned int d=2;
-	unsigned int i=30;
+	unsigned int i=20;
 	Degrees=5;
 	lcd("cor");
 	stop();
-	if(lf==1)
+//	if(lf==1)
 	{
 		lf=0;
 		while(1)
 		{
-		
 			right();
-			if(d==2)
-			{
-				if(Delay(i))
+			if(Delay(i))
 					return;
-			}
-			else
-			{
-				if(Delay(2*i+d))
-					return;
-			}
 			stop();
 			lcd_print(1,1,1,1);
 			//set_color();
 			semiCorrect();
-			if(ADC_Conversion(2)>40 && ADC_Conversion(1)<40 && ADC_Conversion(3)<40)
+			if(ADC_Conversion(2)>40)// && ADC_Conversion(1)<40 && ADC_Conversion(3)<40)
 				break;
+			i+=20;
 			left();
-			if(d==2)
-			{
-				if(Delay(2*i))
-					return;
-			}
-			else
-			{
-				if(Delay(2*i+d))
-					return;
-			}
+			if(Delay(i))
+				return;
 			stop();
 			lcd_print(1,1,2,1);
 			semiCorrect();
-			if(ADC_Conversion(2)>40 && ADC_Conversion(1)<40 && ADC_Conversion(3)<40)
+			if(ADC_Conversion(2)>40)// && ADC_Conversion(1)<40 && ADC_Conversion(3)<40)
 				break;
 			//d*=2;
 			//set_color();
 			//i+=2;
-			d=d+20;
+			i+=20;
 		}
 	}
-	else
+/*	else
 	{
 		lf=1;
 		while(1)
 		{
 			left();
-			if(d==2)
-			{
-				if(Delay(i))
-				return;
-			}
-			else
-			{
-				if(Delay(2*i+d))
-				return;
-			}
+			if(Delay(i+2))
+			return;
 			stop();
 			lcd_print(1,1,3,1);
 			//set_color();
@@ -210,16 +188,8 @@ void correct()
 				break;
 			
 			right();
-			if(d==2)
-			{
-				if(Delay(2*i))
+			if(Delay(i))
 				return;
-			}
-			else
-			{
-				if(Delay(2*i+d))
-				return;
-			}
 			stop();
 			lcd_print(1,1,4,1);
 			semiCorrect();
@@ -229,10 +199,10 @@ void correct()
 			//d*=2;
 			//set_color();
 			//i+=2;
-			d=d+20;
+			i+=20;
 		}
 	}
-	lcd("-");
+*/	lcd("-");
 	stop();
 	return;
 }
@@ -1063,7 +1033,7 @@ int main()
 	//..printf("Cost=%d\nSORTED!!!!!\n", cost + 7);
 	//getch();
 	*/
-	
+	lcd_wr_command(0x01);
 	forwardJaa();
 	return 1;
 }

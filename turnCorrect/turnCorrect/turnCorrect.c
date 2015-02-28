@@ -28,7 +28,7 @@ int total = 8;
 int sorted = 0;
 int count = 0;
 int cost;
-int flag=0;
+int flag=0,angle;
 int visitedCount = 0;
 int ot = 0, dir = 0;
 const int RED=0,GREEN=1,BLUE=2,BLACK=3,EMPTY=-1;
@@ -98,71 +98,13 @@ void Uturn()
 	velocity(turn_v,turn_v);
 	left_degrees(180);
 }
-void front()
-{
-	forwardJaa();
-	cost++;
-	//..printf("Front\n");
-}
 void backward()	//TODO
 {
 	backJaa();
 	cost++;
 	//..printf("Back\n");
 }
-void turnRight()	//turns the robo right
-{
-	if((dir==3 && (ot==0 || ot==1)) || (dir==1 && (ot==2 || ot==3)))
-	{
-		velocity(turn_v,turn_v);
-		right_degrees(90);
-	}
-	else
-	{
-		right_degrees(30);
-		velocity(170,170);
-		while(ADC_Conversion(2)<40)
-		right();
-		stop();
-	}
-	lcd("Right turn");
-	_delay_ms(2000);
-	dir = (dir + 1) % 4;
-	//..printf("Turn Right \n");
-}
-void turnLeft()	//turns the robo left
-{
-	if((dir==1 && (ot==0 || ot==1)) || (dir==3 && (ot==2 || ot==3)))
-	{
-		velocity(turn_v,turn_v);
-		left_degrees(90);
-	}
-	else
-	{
-		left_degrees(30);
-		velocity(170,170);
-		while(ADC_Conversion(2)<40)
-		left();
-		stop();
-	}
-	lcd("Left turn");
-	_delay_ms(2000);
-	dir = (dir + 3) % 4;
-	//..printf("Turn Left\n");
-}
-void turn()	//turn robo by 180 degree
-{
-	velocity(turn_v,turn_v);
-	left_degrees(150);
-	velocity(170,170);
-	while(ADC_Conversion(2)<40)
-		left();
-	stop();
-	lcd("turn");
-	_delay_ms(2000);
-	dir = (dir + 2) % 4;
-	//..//..printf("Turn\n");
-}
+
 
 
 /*********END MOVEMENT***********/
@@ -431,42 +373,6 @@ void backJaa()
 ******************COLOR****************************
 **************************************************/
 
-int scan()//return the color no.
-{
-	red_read();
-	blue_read();
-	green_read();
-	if (red<threshold && green < threshold && blue < threshold)
-		return BLACK;
-	else
-	{
-		if (red > blue)
-		{
-			if (red > green)
-			return RED;
-			else
-			return GREEN;
-		}
-		else if (blue > green)
-		return BLUE;
-		else return GREEN;
-	}
-}
-void setIndicatorAndColor()
-{
-	int i;
-	for (i = 0; i<4; i++)
-	{
-		color[i] = i;
-		term[i][0] = term[i][1] = -2;
-		visited[i] = 0;
-	}
-	for (i = 0; i<4; i++)
-	indicator[color[i]] = i;
-	sort[0] = sort[1] = -1;
-	arm[0] = arm[1] = -1;
-}
-
 void set_color()
 {
 	Left_white_line = ADC_Conversion(3);	//Getting data of Left WL Sensor
@@ -568,36 +474,6 @@ void close(unsigned char side)
 	else if (side == 1)
 	servo_3(0);
 }
-void pick(int side)	//TODO delay
-{
-	
-	elevate(0, side);//lower
-	open(side);
-	close(side);
-	elevate(45, side);//mid
-	armCount--;
-	if(side==0)
-	lcd("pickRight");
-	else
-	lcd("pickLeft");
-}
-void pickNode(int armNo, int side)
-{
-	if(flag==1)
-	{
-		if(dir==0 || dir==2)
-		{
-			back_mm(30);
-			flag==0;	
-		}
-	}
-	
-	arm[armNo] = term[ct][side];
-	position(armNo,side);
-	pick(armNo);
-	term[ct][side] = -1;
-	//..printf("Arm %d picked %d from term[%d][%d]\n", armNo, arm[armNo], ct, side);
-}
 void buzzer()
 {
 	buzzer_on();
@@ -606,280 +482,177 @@ void buzzer()
 }
 
 
-void pickSort(int armNo, int sortNo)
+/**************************************************
+******************SORT*****************************
+**************************************************/
+//whenever v find a blank space or box belonging to dat space total dec by 1;and whenever v place box in terminal sort++;
+/*--functions--*/
+
+
+void lcd(char *str)
 {
-	lcd_print(2,10,armNo,1);
-	lcd_print(2,12,sortNo,1);
+	
+	lcd_wr_command(0x01);
+	lcd_cursor(1,1);
+	lcd_string(str);
 	buzzer();
 	_delay_ms(1000);
-	arm[armNo] = sort[sortNo];
-	if (((armNo == sortNo) && dir == 0) || ((armNo != sortNo) && dir == 2))
-	turn();
+}
+void front()
+{
+	forwardJaa();
+	cost++;
+	//printf("Front\n");
+}
+void turnRight()	//turns the robo right
+{
+	if ((dir == 3 && (ot == 0 || ot == 1)) || (dir == 1 && (ot == 2 || ot == 3)))
+	{
+		velocity(turn_v, turn_v);
+		right_degrees(90);
+	}
 	else
 	{
-		if (dir == 1 || dir == 3)
-		{
-			if (armNo == 0)
-			turnLeft();
-			else turnRight();
-		}
+		right_degrees(30);
+		velocity(170, 170);
+		while (ADC_Conversion(2)<70)
+			right();
+		stop();
+		_delay_ms(100);
 	}
-	pick(armNo);
-	sort[sortNo] = -1;
-	//..printf("Arm %d picked %d from sort[%d]\n", armNo, arm[armNo], sortNo);
-	lcd("exit picksort");
+	lcd("Right turn");
+	//_delay_ms(2000);
+	dir = (dir + 1) % 4;
+	//printf("Turn Right \n");
+	angle += 90;
 }
-void pickup()
+void turnLeft()	//turns the robo left
 {
-	
-	int arm0 = 0, arm1 = 1;
-	if (((ct == 0 || ct == 1) && dir == 2) || ((ct == 2 || ct == 3) && dir == 0))
+	if ((dir == 1 && (ot == 0 || ot == 1)) || (dir == 3 && (ot == 2 || ot == 3)))
 	{
-		arm0 = 1;
-		arm1 = 0;
+		velocity(turn_v, turn_v);
+		left_degrees(90);
 	}
-	if (visited[ct] == 0)
-	{
-		if (term[ct][0] == -2)
-		{
-			terminalCheck1();
-			terminalCheck2();
-		}
-		else
-		terminalCheck2();
-		if ((term[ct][0] != color[ct] && term[ct][0] != -1) || (term[ct][1] != color[ct] && term[ct][1] != -1))
-		{
-			if (armCount == 2)
-			{
-				if (term[ct][0] == color[adj] || term[ct][1] == color[adj])
-				{
-					if (term[ct][0] == color[adj])
-					pickNode(arm0, 0);
-					else	pickNode(arm1, 1);
-				}
-				else	if ((term[ct][1] != color[ct]) && term[ct][1] != -1)
-				{
-					if (term[ct][0] != color[ct] && term[ct][0] != -1)
-					{
-						pickNode(arm1, 1);
-						pickNode(arm0, 0);
-					}
-					else if (sort[ct % 2] == -1 || ((term[adj][0] == color[adj] || term[adj][0] == -1) || (term[adj][1] == color[adj] || term[adj][1] == -1)) || (term[ct][0] == color[ct] || term[ct][1] == color[ct]))
-					pickNode(arm1, 1);
-				}
-				else	if (term[ct][0] != color[ct] && term[ct][0] != -1)
-				{
-					if (sort[ct % 2] == -1 || ((term[adj][0] == color[adj] || term[adj][0] == -1) || (term[adj][1] == color[adj] || term[adj][1] == -1)))
-					pickNode(arm0, 0);
-				}
-				else	if (term[ct][0] != color[ct] && term[ct][0] != -1)
-				pickNode(arm0, 0);
-
-			}
-			if (armCount == 1)
-			{
-				int a1, a2;
-				if (arm[arm0] == -1)
-				a1 = arm0;
-				else a1 = arm1;
-				a2 = (a1 + 1) % 2;
-
-				if (sort[ct % 2] == -1)
-				{
-					if (term[ct][a1] != -1 && term[ct][a1] != color[ct])
-					pickNode(a1, a1);
-					else if (term[ct][a2] != -1 && term[ct][a2] != color[ct])
-					pickNode(a1, a2);
-				}
-				else
-				{
-					if (term[ct][0] == color[adj] || term[ct][1] == color[adj])
-					{
-						if ((visited[adj] == 1 && (term[adj][0] == -1 || term[adj][1] == -1)))
-						{
-							if (term[ct][a1] == color[adj])
-							pickNode(a1, a1);
-							else pickNode(a1, a2);
-						}
-					}
-					else
-					{
-						if (sort[ct % 2] != color[ct] && sort[ct % 2] != color[adj])
-						{
-							if ((visited[adj] == 1 && ((term[adj][0] != color[ct]) && (term[adj][1] != color[ct]))))
-							{
-								if (term[ct][a1] != -1 && term[ct][a1] != color[ct])
-								pickNode(a1, a1);
-								else	if (term[ct][a2] != -1 && term[ct][a2] != color[ct])
-								pickNode(a1, a2);
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-}
-
-void drop(int side)	//TODO delay
-{
-	
-	elevate(0, side);//lower
-	open(side);
-	elevate(45, side);//mid
-	close(side);
-	armCount++;
-	if(side==0)
-	lcd("dropRight");
-	else
-	lcd("dropLeft");
-}
-void nodeDrop(int armNo, int side)
-{
-	
-	if(flag==1)
-	{
-		if(dir==0 || dir==2)
-		{
-			back_mm(30);
-			flag==0;
-		}
-	}
-	term[ct][side] = arm[armNo];
-	position(armNo,side);
-	drop(armNo);
-	arm[armNo] = -1;
-	//printf("Arm %d dropped %d on term[%d][%d]\n", armNo, term[ct][side], ct, side);
-	sorted++;
-}
-void sortDrop(int armNo, int sortNo)
-{
-	sort[sortNo] = arm[armNo];
-	if (((armNo == sortNo) && dir == 0) || ((armNo != sortNo) && dir == 2))
-	turn();
 	else
 	{
-		if (dir == 1 || dir == 3)
-		{
-			if (armNo == 0)
-			turnLeft();
-			else turnRight();
-		}
+		left_degrees(30);
+		velocity(170, 170);
+		while (ADC_Conversion(2)<70)
+			left();
+		stop();
 	}
-	drop(armNo);
-	arm[armNo] = -1;
-	//..printf("Arm %d dropped %d on sort[%d]\n", armNo, sort[sortNo], sortNo);
+	lcd("Left turn");
+	//_delay_ms(2000);
+	dir = (dir + 3) % 4;
+	//printf("Turn Left\n");
+	angle += 90;
 }
-
-void dropPickup(int a1)
+void turn()	//turn robo by 180 degree
 {
-	int a2 = (a1 + 1) % 2;
-	if ((term[ct][a2] == color[ct] || term[ct][a2] != color[adj]) && (term[ct][a1] != color[ct] && term[ct][a1] != -1))
-	pickNode(a2, a1);
-	else		if (term[ct][a2] != color[ct] && term[ct][a2] != -1)
-	pickNode(a2, a2);
-}
-
-void canDrop()
-{
-	int arm0 = 0, arm1 = 1;
-
-	if (((ct == 0 || ct == 1) && dir == 2) || ((ct == 2 || ct == 3) && dir == 0))
+	if (dir == 0 && (ot == 2 || ot == 3))
 	{
-		arm0 = 1;
-		arm1 = 0;
+		velocity(turn_v, turn_v);
+		left_degrees(180);
 	}
-
-	if (armCount == 2 || (arm[0] != color[ct] && arm[1] != color[ct]))
-		return;
+	else if (dir == 2 && (ot == 0 || ot == 1))
+	{
+		velocity(turn_v, turn_v);
+		left_degrees(180);
+	}
 	else
 	{
-		if (visited[ct] == 0)
-
-			terminalCheck1();
-
-
-		if (armCount == 0)
-		{
-			if (arm[arm0] == color[ct])
-
-				if (term[ct][0] == -1)
-
-					nodeDrop(arm0, 0);
-				else nodeDrop(arm0, 1);
-
-			else if (arm[arm1] == color[ct])
-
-				if (term[ct][0] != -1)
-
-					nodeDrop(arm1, 1);
-				else nodeDrop(arm1, 0);
-
-		}
-		if (arm[0] == color[ct] || arm[1] == color[ct])
-		{
-			if (term[ct][0] != -1 && term[ct][1] != -1)
-				if (visited[ct] == 0)
-					terminalCheck2();
-			if (term[ct][0] != -1 && term[ct][1] != -1)
-			{
-				if (arm[arm0] == color[ct])
-					dropPickup(arm0);
-				else dropPickup(arm1);
-			}
-
-			if (arm[arm0] == color[ct] && term[ct][0] == -1)
-
-				nodeDrop(arm0, 0);
-			else if (arm[arm0] == color[ct] && term[ct][1] == -1)
-				nodeDrop(arm0, 1);
-			else if (arm[arm1] == color[ct] && term[ct][0] == -1)
-				nodeDrop(arm1, 0);
-			else if (arm[arm1] == color[ct] && term[ct][1] == -1)
-
-				nodeDrop(arm1, 1);
-
-		}
+		velocity(turn_v, turn_v);
+		left_degrees(150);
+		while (ADC_Conversion(2)<40)
+			left();
+		stop();
 	}
+	lcd("turn");
+	//_delay_ms(2000);
+	dir = (dir + 2) % 4;
+	//printf("Turn\n");
+	angle += 180;
 }
-
-
-
-
-
-
 
 void traverseToSort(int a, int b)
 {
-	if(flag==1)
-		flag=0;
+
+	if (flag == 1)
+		flag = 0;
 	if (a == 4 || a == 5)
 	{
 		if ((a == 4 && dir == 0) || (a == 5 && dir == 2))
-		turnRight();
+			turnRight();
 		else turnLeft();
 		front();
 		front();
 		if (a == 4)
-		ot = 5;
+			ot = 5;
 		else ot = 4;
 		cost = cost + 2;
 	}
 	else{
-		if(dir==1 || dir==3)
+		if ((dir == 1 && (ot == 0 || ot == 1)) || (dir == 3 && (ot == 2 || ot == 2)))
+		{
+			turnRight();
+		}
+		else if ((dir == 3 && (ot == 0 || ot == 1)) || (dir == 1 && (ot == 2 || ot == 2)))
 		{
 			turnLeft();
 		}
 		if ((a <= 1 && dir == 0) || (a >= 2 && dir == 2))
-		turn();
+			turn();
 		front();
 		ot = ct % 2 + 4;
 	}
 }
+int scan()//return the color no.
+{
+
+	red_read();
+	blue_read();
+	green_read();
+	if (red<threshold && green < threshold && blue < threshold)
+		return BLACK;
+	else
+	{
+		if (red > blue)
+		{
+			if (red > green)
+				return RED;
+			else
+				return GREEN;
+		}
+		else if (blue > green)
+			return BLUE;
+		else return GREEN;
+	}
+
+}
+
+void setIndicatorAndColor()
+{
+	int i;
+	for (i = 0; i<4; i++)
+	{
+		color[i] = i;
+		term[i][0] = term[i][1] = -2;
+		visited[i] = 0;
+	}
+	for (i = 0; i<4; i++)
+		indicator[color[i]] = i;
+	sort[0] = sort[1] = -1;
+	arm[0] = arm[1] = -1;
+}
+
+int adjCount(ct)
+{
+	return (ct + 2) % 4;
+}
 void terminalCheck1()
 {
 	forward_mm(30);
-	flag=1;
+	flag = 1;
 	if (ct != ot)
 	{
 		if (dir == 1 || dir == 3)
@@ -894,33 +667,33 @@ void terminalCheck1()
 		ot = ct;
 	}
 	if (((ct == 0 || ct == 1) && dir == 0) || ((ct == 2 || ct == 3) && dir == 2))
-	turnRight();
+		turnRight();
 	else turnLeft();
-	term[ct][0]=scan();
-	lcd_print(1,1,1111,4);
+	term[ct][0] = scan();
+	lcd_print(1, 1, 1111, 4);
 	//printf("Enter term[%d][%d]\n", ct, 0);
 	//scanf("%d", &term[ct][0]);
 
 
-	
+
 	lcd((char*)term[ct][0]);
 	if (term[ct][0] == -1 || term[ct][0] == color[ct])
-	total--;
+		total--;
 }
 void terminalCheck2()
 {
-	if(flag==0)
+	if (flag == 0)
 	{
-		if(dir==0)
-			if(ot==0 || ot==1)
+		if (dir == 0)
+			if (ot == 0 || ot == 1)
 				forward_mm(30);
 			else back_mm(30);
-		else if(ot==0 || ot==1)
-				back_mm(30);
-			else forward_mm(30);
-		flag=1;
+		else if (ot == 0 || ot == 1)
+			back_mm(30);
+		else forward_mm(30);
+		flag = 1;
 	}
-			
+
 	if (((ct == 0 || ct == 1) && dir == 0) || ((ct == 2 || ct == 3) && dir == 2))
 		turnLeft();
 	else if (((ct == 0 || ct == 1) && dir == 2) || ((ct == 2 || ct == 3) && dir == 0))
@@ -928,7 +701,7 @@ void terminalCheck2()
 	else turn();
 	//printf("Enter term[%d][%d]\n", ct, 1);
 	//scanf("%d", &term[ct][1]);
-	term[ct][1]=scan();
+	term[ct][1] = scan();
 
 
 	if (term[ct][1] == -1 || term[ct][1] == color[ct])
@@ -937,59 +710,64 @@ void terminalCheck2()
 	visitedCount++;
 }
 
-/**************************************************
-******************SORT*****************************
-**************************************************/
-int adjCount(int ct)
+void pick(int side)
 {
-	return (ct + 2) % 4;
+	elevate(0, side);//lower
+	open(side);
+	close(side);
+	elevate(45, side);//mid
+	armCount--;
+	if (side == 0)
+		lcd("pickRight");
+	else
+		lcd("pickLeft");
 }
-void position(int armNo,int side)
+
+void position(int armNo, int side)
 {
 	if (ct == ot)
 	{
 		if (((ct == 0 || ct == 1) && dir == 0) || ((ct == 2 || ct == 3) && dir == 2))
 		{
 			if (armNo != side)
-			turn();
+				turn();
 		}
 		else	if (((ct == 0 || ct == 1) && dir == 2) || ((ct == 2 || ct == 3) && dir == 0))
 		{
 			if (armNo == side)
-			turn();
+				turn();
 		}
 		else if (((ct == 0 || ct == 1) && dir == 1) || ((ct == 2 || ct == 3) && dir == 3))
 		{
-			
-			if(flag==1 && (dir==0 || dir==1))
-			{
-				back_mm(30);
-				flag==0;
-			}
 			if (armNo != side)
-			turnRight();
+				turnRight();
 			else turnLeft();
 		}
 		else	if (((ct == 0 || ct == 1) && dir == 3) || ((ct == 2 || ct == 3) && dir == 1))
-		{
-			
-			if(flag==1 && (dir==0 || dir==1))
-			{
-				back_mm(30);
-				flag==0;
-			}
 			if (armNo == side)
-			turnRight();
+				turnRight();
 			else turnLeft();
+		if (flag == 1 && (dir == 0 || dir == 2))
+		{
+			back_mm(30);
+			flag = 0;
 		}
-		
 	}
 	else
 	{
+		if (dir == 1 || dir == 3)
+			if (ct == 0 || ct == 3)
+				turnRight();
+			else turnLeft();
 		if (dir == 0 || dir == 2)
 		{
 			if ((dir == 0 && (ct == 0 || ct == 1)) || (dir == 2 && (ct == 2 || ct == 3)))
 			{
+				if (ot != 4 && ot != 5)
+				{
+					turnLeft();
+					front();
+				}
 				if (armNo == side)
 				{
 					front();
@@ -1002,9 +780,11 @@ void position(int armNo,int side)
 			}
 			else
 			{
-				lcd("M here");
-				_delay_ms(2000);
-
+				if (ot != 4 && ot != 5)
+				{
+					turnLeft();
+					front();
+				}
 				if (armNo == side)
 				{
 					turn();
@@ -1018,34 +798,218 @@ void position(int armNo,int side)
 				}
 			}
 		}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 		ot = ct;
+	}
+}
+void pickNode(int armNo, int side)
+{
+	arm[armNo] = term[ct][side];
+	position(armNo, side);
+	pick(armNo);
+	term[ct][side] = -1;
+	//printf("Arm %d picked %d from term[%d][%d]\n", armNo, arm[armNo], ct, side);
+}
+
+void pickSort(int armNo, int sortNo)
+{
+	arm[armNo] = sort[sortNo];
+	if (((armNo == sortNo) && dir == 0) || ((armNo != sortNo) && dir == 2))
+		turn();
+	else
+	{
+		if (dir == 1 || dir == 3)
+			if (armNo == 0)
+				turnLeft();
+			else turnRight();
+	}
+	pick(armNo);
+	sort[sortNo] = -1;
+	//printf("Arm %d picked %d from sort[%d]\n", armNo, arm[armNo], sortNo);
+}
+void pickup()
+{
+	int arm0 = 0, arm1 = 1;
+	if (((ct == 0 || ct == 1) && dir == 2) || ((ct == 2 || ct == 3) && dir == 0))
+	{
+		arm0 = 1;
+		arm1 = 0;
+	}
+	if (visited[ct] == 0)
+		if (term[ct][0] == -2)
+		{
+		terminalCheck1();
+		terminalCheck2();
+		}
+		else	terminalCheck2();
+		if ((term[ct][0] != color[ct] && term[ct][0] != -1) || (term[ct][1] != color[ct] && term[ct][1] != -1))
+		{
+			if (armCount == 2)
+			{
+				if (term[ct][0] == color[adj] || term[ct][1] == color[adj])
+					if (term[ct][0] == color[adj])
+						pickNode(arm0, 0);
+					else	pickNode(arm1, 1);
+				else	if ((term[ct][1] != color[ct]) && term[ct][1] != -1)
+				{
+					if (term[ct][0] != color[ct] && term[ct][0] != -1)
+					{
+						pickNode(arm1, 1);
+						pickNode(arm0, 0);
+					}
+					else if (sort[ct % 2] == -1 || ((term[adj][0] == color[adj] || term[adj][0] == -1) || (term[adj][1] == color[adj] || term[adj][1] == -1)) || (term[ct][0] == color[ct] || term[ct][1] == color[ct]))
+						pickNode(arm1, 1);
+				}
+				else	if (term[ct][0] != color[ct] && term[ct][0] != -1)
+				{
+					if (sort[ct % 2] == -1 || ((term[adj][0] == color[adj] || term[adj][0] == -1) || (term[adj][1] == color[adj] || term[adj][1] == -1)))
+						pickNode(arm0, 0);
+				}
+				else	if (term[ct][0] != color[ct] && term[ct][0] != -1)
+					pickNode(arm0, 0);
+
+			}
+			if (armCount == 1)
+			{
+				int a1, a2;
+				if (arm[arm0] == -1)
+					a1 = arm0;
+				else a1 = arm1;
+				a2 = (a1 + 1) % 2;
+
+				if (sort[ct % 2] == -1)
+				{
+					if (term[ct][a1] != -1 && term[ct][a1] != color[ct])
+						pickNode(a1, a1);
+					else if (term[ct][a2] != -1 && term[ct][a2] != color[ct])
+						pickNode(a1, a2);
+				}
+				else
+				{
+					if (term[ct][0] == color[adj] || term[ct][1] == color[adj])
+					{
+						if ((visited[adj] == 1 && (term[adj][0] == -1 || term[adj][1] == -1)))
+							if (term[ct][a1] == color[adj])
+								pickNode(a1, a1);
+							else pickNode(a1, a2);
+					}
+					else {
+						if (sort[ct % 2] != color[ct] && sort[ct % 2] != color[adj])
+							if ((visited[adj] == 1 && ((term[adj][0] != color[ct]) && (term[adj][1] != color[ct]))))
+								if (term[ct][a1] != -1 && term[ct][a1] != color[ct])
+									pickNode(a1, a1);
+								else	if (term[ct][a2] != -1 && term[ct][a2] != color[ct])
+									pickNode(a1, a2);
+					}
+				}
+			}
+		}
+}
+
+void drop(int side)
+{
+	elevate(0, side);//lower
+	open(side);
+	elevate(45, side);//mid
+	close(side);
+	armCount++;
+	if(side==0)
+	lcd("dropRight");
+	else
+	lcd("dropLeft");
+}
+void nodeDrop(int armNo, int side)
+{
+	term[ct][side] = arm[armNo];
+	position(armNo, side);
+	drop(armNo);
+	arm[armNo] = -1;
+	//printf("Arm %d dropped %d on term[%d][%d]\n", armNo, term[ct][side], ct, side);
+	sorted++;
+}
+void sortDrop(int armNo, int sortNo)
+{
+	sort[sortNo] = arm[armNo];
+	if (((armNo == sortNo) && dir == 0) || ((armNo != sortNo) && dir == 2))
+		turn();
+	else
+	{
+		if (dir == 1 || dir == 3)
+			if (armNo == 0)
+				turnLeft();
+			else turnRight();
+	}
+	drop(armNo);
+	arm[armNo] = -1;
+	//printf("Arm %d dropped %d on sort[%d]\n", armNo, sort[sortNo], sortNo);
+}
+
+void dropPickup(int a1)
+{
+	int a2 = (a1 + 1) % 2;
+	if ((term[ct][a2] == color[ct] || term[ct][a2] != color[adj]) && (term[ct][a1] != color[ct] && term[ct][a1] != -1))
+		pickNode(a2, a1);
+	else		if (term[ct][a2] != color[ct] && term[ct][a2] != -1)
+		pickNode(a2, a2);
+}
+
+void canDrop()
+{
+	int arm0 = 0, arm1 = 1;
+	if (((ct == 0 || ct == 1) && dir == 2) || ((ct == 2 || ct == 3) && dir == 0))
+	{
+		arm0 = 1;
+		arm1 = 0;
+	}
+
+	if (armCount == 2 || (arm[0] != color[ct] && arm[1] != color[ct]))
+		return;
+	else
+	{
+		if (visited[ct] == 0)
+			terminalCheck1();
+		if (armCount == 0)
+		{
+			if (arm[arm0] == color[ct])
+				if (term[ct][0] == -1)
+					nodeDrop(arm0, 0);
+				else nodeDrop(arm0, 1);
+			else if (arm[arm1] == color[ct])
+				if (term[ct][0] != -1)
+					nodeDrop(arm1, 1);
+				else nodeDrop(arm1, 0);
+		}
+		if (arm[0] == color[ct] || arm[1] == color[ct])
+		{
+			if (term[ct][0] != -1 && term[ct][1] != -1)
+				if (visited[ct] == 0)
+					terminalCheck2();
+			if (term[ct][0] != -1 && term[ct][1] != -1)
+			{
+				if (arm[arm0] == color[ct])
+					dropPickup(arm0);
+				else dropPickup(arm1);
+			}
+
+			if (arm[arm0] == color[ct] && term[ct][0] == -1)
+				nodeDrop(arm0, 0);
+			else if (arm[arm0] == color[ct] && term[ct][1] == -1)
+				nodeDrop(arm0, 1);
+			else if (arm[arm1] == color[ct] && term[ct][0] == -1)
+				nodeDrop(arm1, 0);
+			else if (arm[arm1] == color[ct] && term[ct][1] == -1)
+				nodeDrop(arm1, 1);
+
+		}
 	}
 }
 
 void newSort()
 {
-	int t1, t2, a1, a2;
+	int t1, t2, a1=-2, a2=-2;
 	if (arm[0] != -1)
-	a1 = indicator[arm[0]];
+		a1 = indicator[arm[0]];
 	if (arm[1] != -1)
-	a2 = indicator[arm[1]];
+		a2 = indicator[arm[1]];
 
 	t1 = (ct + 1) % 2;
 	t2 = t1 + 2;
@@ -1057,7 +1021,7 @@ void newSort()
 			if (arm[1] == -1)
 			{
 				if (sort[t1] == color[t1] || sort[t1] == color[t2])
-				pickSort(1, a1);
+					pickSort(1, a1);
 			}
 		}
 		else if (arm[1] != -1 && (term[a2][0] == -1 || term[a2][1] == -1))
@@ -1068,35 +1032,34 @@ void newSort()
 				if (arm[0] == -1)
 				{
 					if (sort[t1] == color[t1] && sort[t1] == color[t2])
-					pickSort(1, t1);
+						pickSort(1, t1);
 				}
 			}
 			else	if (sort[t1] == -1 && arm[0] != -1)
-			sortDrop(1, t1);
+				sortDrop(1, t1);
 		}
 		else	if (arm[0] != -1 && (sort[t1] == -1 && arm[1] != -1))
-		sortDrop(1, t1);
+			sortDrop(1, t1);
 		else if (arm[0] != -1)
-		ct = arm[0];
+			ct = arm[0];
 		else ct = arm[1];
 	}
 	else
 	{
 		if ((sort[t1] == color[t1] || sort[t1] == color[t2]) && sort[t1] != -1)
-		ct = indicator[sort[t1]];
+			ct = indicator[sort[t1]];
 		else if (sort[t1] != -1)
 		{
 			pickSort(0, t1);
 			ct = (t1 + 1) % 2 + 4;
 		}
 		else if (visited[t1] == 1 && (term[t1][0] == color[t1] || term[t1][0] == -1) && (term[t1][1] == color[t1] || term[t1][1] == -1))
-		ct = t2;
+			ct = t2;
 		else ct = t1;
 
 	}
 	adj = adjCount(ct);
 }
-
 void sortCheck()
 {
 	int a1, a2;
@@ -1112,15 +1075,15 @@ void sortCheck()
 		{
 			ct = indicator[sort[ct % 2]];
 			if (arm[arm0] == -1)
-			pickSort(arm0, ct % 2);
+				pickSort(arm0, ct % 2);
 			else if (arm[arm1] == -1)
-			pickSort(arm1, ct % 2);
+				pickSort(arm1, ct % 2);
 			if (armCount != 1 && term[ct][0] != -1 && term[ct][1] != -1 && sort[ct % 2] == -1)
 			{
 				if (arm[arm0] == color[ct])
-				sortDrop(arm1, ct % 2);
+					sortDrop(arm1, ct % 2);
 				else if (arm[arm1] == color[ct])
-				sortDrop(arm0, ct % 2);
+					sortDrop(arm0, ct % 2);
 			}
 		}
 		else ct = adj;
@@ -1132,15 +1095,15 @@ void sortCheck()
 			if (armCount>0)
 			{
 				if (sort[ct % 2] != -1)
-				if (arm[arm0] == -1)
-				pickSort(arm0, ct % 2);
-				else if (arm[arm1] == -1)
-				pickSort(arm1, ct % 2);
+					if (arm[arm0] == -1)
+						pickSort(arm0, ct % 2);
+					else if (arm[arm1] == -1)
+						pickSort(arm1, ct % 2);
 			}
 			traverseToSort(ct % 2 + 4, (ct + 1) % 2 + 4);
 			newSort();
 			if (ct == 4 || ct == 5)
-			newSort();
+				newSort();
 			return;
 		}
 		else ct = adj;
@@ -1148,39 +1111,23 @@ void sortCheck()
 	else
 	{
 		if (armCount == 0 && ((visited[adj] == 1 && (term[adj][0] != -1 && term[adj][1] != -1)) || visited[adj] == 0) && sort[ct % 2] == -1)
-		if (arm[arm0] == color[adj])
-		sortDrop(arm1, ct % 2);
-		else sortDrop(arm0, ct % 2);
+			if (arm[arm0] == color[adj])
+				sortDrop(arm1, ct % 2);
+			else sortDrop(arm0, ct % 2);
 		else if (armCount == 1 && (term[adj][0] == -1 || term[adj][1] == -1) && sort[ct % 2] != -1)
-		if (arm[arm0] == -1)
-		pickSort(arm0, ct % 2);
-		else	pickSort(arm1, ct % 2);
-		ct = adj;
+			if (arm[arm0] == -1)
+				pickSort(arm0, ct % 2);
+			else	pickSort(arm1, ct % 2);
+			ct = adj;
 	}
 	adj = adjCount(ct);
 }
 
-
 void predict()
 {
 	if (term[0][0] == color[0] && term[0][1] == color[0] && term[1][0] == color[1] && term[1][1] == color[1] && term[ct][0] == color[ct] && term[ct][1] == color[ct] && sort[0] == -1 && sort[1] == -1 && arm[0] == -1 && arm[1] == -1)
-	sorted = total;
+		sorted = total;
 
-}
-
-
-//whenever v find a blank space or box belonging to dat space total dec by 1;and whenever v place box in terminal sort++;
-/*--functions--*/
-
-
-void lcd(char *str)
-{
-	
-	lcd_wr_command(0x01);
-	lcd_cursor(1,1);
-	lcd_string(str);
-	buzzer();
-	_delay_ms(1000);
 }
 int main()
 {
