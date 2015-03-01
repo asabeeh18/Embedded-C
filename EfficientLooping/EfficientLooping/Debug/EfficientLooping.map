@@ -473,7 +473,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x8da
+.text           0x00000000      0x93c
  *(.vectors)
  .vectors       0x00000000       0xe4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6/crtm2560.o
                 0x00000000                __vector_default
@@ -684,23 +684,23 @@ END GROUP
  .text.semiCorrect
                 0x000006d6       0x5c EfficientLooping.o
                 0x000006d6                semiCorrect
- .text.correct  0x00000732       0x70 EfficientLooping.o
+ .text.correct  0x00000732       0xd2 EfficientLooping.o
                 0x00000732                correct
- .text.noNatak  0x000007a2       0x9c EfficientLooping.o
-                0x000007a2                noNatak
+ .text.noNatak  0x00000804       0x9c EfficientLooping.o
+                0x00000804                noNatak
  .text.forwardJaa
-                0x0000083e       0x66 EfficientLooping.o
-                0x0000083e                forwardJaa
- .text.main     0x000008a4       0x14 EfficientLooping.o
-                0x000008a4                main
+                0x000008a0       0x66 EfficientLooping.o
+                0x000008a0                forwardJaa
+ .text.main     0x00000906       0x14 EfficientLooping.o
+                0x00000906                main
  .text.libgcc.mul
-                0x000008b8       0x1e c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_umulhisi3.o)
-                0x000008b8                __umulhisi3
-                0x000008d6                . = ALIGN (0x2)
+                0x0000091a       0x1e c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_umulhisi3.o)
+                0x0000091a                __umulhisi3
+                0x00000938                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x000008d6        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
-                0x000008d6                _exit
-                0x000008d6                exit
+ .fini9         0x00000938        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
+                0x00000938                _exit
+                0x00000938                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -719,11 +719,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x000008d6        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
+ .fini0         0x00000938        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
  *(.fini0)
-                0x000008da                _etext = .
+                0x0000093c                _etext = .
 
-.data           0x00800200        0x0 load address 0x000008da
+.data           0x00800200        0x0 load address 0x0000093c
                 0x00800200                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -776,8 +776,8 @@ END GROUP
                 0x00800259                unit
                 0x0080025b                thousand
                 0x0080025d                PROVIDE (__bss_end, .)
-                0x000008da                __data_load_start = LOADADDR (.data)
-                0x000008da                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x0000093c                __data_load_start = LOADADDR (.data)
+                0x0000093c                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x0080025d        0x0
                 0x0080025d                PROVIDE (__noinit_start, .)
@@ -851,17 +851,17 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x2b38
+.debug_info     0x00000000     0x2c1e
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x00000000     0x2b38 EfficientLooping.o
+ .debug_info    0x00000000     0x2c1e EfficientLooping.o
 
 .debug_abbrev   0x00000000      0x500
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x500 EfficientLooping.o
 
-.debug_line     0x00000000     0x21f4
+.debug_line     0x00000000     0x2266
  *(.debug_line .debug_line.* .debug_line_end)
- .debug_line    0x00000000     0x21f4 EfficientLooping.o
+ .debug_line    0x00000000     0x2266 EfficientLooping.o
 
 .debug_frame    0x00000000      0x86c
  *(.debug_frame)
@@ -872,9 +872,9 @@ END GROUP
  .debug_str     0x00000000      0x7e1 EfficientLooping.o
                                 0x859 (size before relaxing)
 
-.debug_loc      0x00000000     0x1d8c
+.debug_loc      0x00000000     0x1de2
  *(.debug_loc)
- .debug_loc     0x00000000     0x1d8c EfficientLooping.o
+ .debug_loc     0x00000000     0x1de2 EfficientLooping.o
 
 .debug_macinfo
  *(.debug_macinfo)

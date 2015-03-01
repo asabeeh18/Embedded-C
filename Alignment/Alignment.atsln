@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Atmel Studio Solution File, Format Version 11.00
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "Alignment", "Alignment\Alignment.cproj", "{8F39FE9E-57D3-451E-A99E-DBCD61C9DDAE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8F39FE9E-57D3-451E-A99E-DBCD61C9DDAE}.Debug|AVR.ActiveCfg = Debug|AVR
+		{8F39FE9E-57D3-451E-A99E-DBCD61C9DDAE}.Debug|AVR.Build.0 = Debug|AVR
+		{8F39FE9E-57D3-451E-A99E-DBCD61C9DDAE}.Release|AVR.ActiveCfg = Release|AVR
+		{8F39FE9E-57D3-451E-A99E-DBCD61C9DDAE}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

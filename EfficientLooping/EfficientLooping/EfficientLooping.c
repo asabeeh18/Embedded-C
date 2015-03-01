@@ -248,6 +248,7 @@ void noNatak()
 		{
 			flag=1;
 			node();
+			return;
 			/*lcd("bbw");
 			
 			while(Center_white_line>40 && Left_white_line>40 && Right_white_line<40)
@@ -261,6 +262,7 @@ void noNatak()
 		{
 			flag=1;
 			node();
+			return;
 			/*flag=1;
 			lcd("wbb");
 			while(Center_white_line>40 && Left_white_line<40 && Right_white_line>40)

@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Atmel Studio Solution File, Format Version 11.00
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "ServoBlacklineTurnSharp", "ServoBlacklineTurnSharp\ServoBlacklineTurnSharp.cproj", "{E2D8EA65-58D4-4D34-884A-2D8A85F54E63}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E2D8EA65-58D4-4D34-884A-2D8A85F54E63}.Debug|AVR.ActiveCfg = Debug|AVR
+		{E2D8EA65-58D4-4D34-884A-2D8A85F54E63}.Debug|AVR.Build.0 = Debug|AVR
+		{E2D8EA65-58D4-4D34-884A-2D8A85F54E63}.Release|AVR.ActiveCfg = Release|AVR
+		{E2D8EA65-58D4-4D34-884A-2D8A85F54E63}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

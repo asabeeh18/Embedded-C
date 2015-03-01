@@ -31,7 +31,8 @@ int cost;
 int flag=0,angle;
 int visitedCount = 0;
 int ot = 0, dir = 0;
-int i=0
+int i=0;
+unsigned char cur_angle=90;
 const int RED=0,GREEN=1,BLUE=2,BLACK=3,EMPTY=-1;
 const int turn_v=150,line_v=240,correct_v=200;
 
@@ -449,55 +450,80 @@ int calcThresh()
 
 /**************************************************
 ******************SERVO****************************
-**************************************************/void lower(unsigned char side)
+**************************************************/
+
+
+void lower(unsigned char side)
 {
-if (side == 1)
-for(i=90;i>=60;i--)
-{
-servo_2(i);
-_delay_ms(10);
-}
-else if (side == 0)
-for(i=90;i<=120;i++)
-{
-servo_2(i);
-_delay_ms(10);
-}
-_delay_ms(700);
+	if (side == 1)
+	{
+		for(i=90;i>=60;i--)
+		{
+			servo_2(i);
+			_delay_ms(10);
+		}
+		cur_angle=60;
+	}
+	else
+	{
+		for(i=90;i<=120;i++)
+		{
+			servo_2(i);
+			_delay_ms(10);
+		}
+		cur_angle=120;
+	}
 }
 void elevate()
 {
-servo_2(90);
-_delay_ms(700);
+	if(cur_angle==60)
+	{
+		for(i=60;i<=90;i++)
+		{
+			servo_2(i);
+			_delay_ms(10);
+		}
+	}
+	else
+	{
+		for(i=120;i>=90;i--)
+		{
+			servo_2(i);
+			_delay_ms(10);
+		}
+	}
+	cur_angle=90;
 }
 void open(unsigned char side)
 {
-if (side == 0)
-servo_3(0);
-
-else if (side == 1)
-servo_1(0);
-_delay_ms(700);
+	if (side == 0)
+	for(i=55;i>0;i--)
+	{
+		servo_3(i);
+		_delay_ms(10);
+	}
+	
+	else if (side == 1)
+	for(i=55;i>0;i--)
+	{
+		servo_1(i);
+		_delay_ms(10);
+	}
 }
 void close(unsigned char side)
 {
-if (side == 0)
-for(i=0;i<50;i++)
-{			servo_3(i);
-_delay_ms(5);
-}
-else if (side == 1)
-for(i=0;i<50;i++)
-{	servo_1(i);
-_delay_ms(5);
-}
-_delay_ms(700);
-}
-void buzzer()
-{
-	buzzer_on();
-	_delay_ms(100);
-	buzzer_off();	
+	if (side == 0)
+	for(i=0;i<55;i++)
+	{
+		servo_3(i);
+		_delay_ms(10);
+	}
+	else if (side == 1)
+	for(i=0;i<55;i++)
+	{
+		servo_1(i);
+		_delay_ms(10);
+	}
 }
 
 
@@ -508,6 +534,12 @@ void buzzer()
 /*--functions--*/
 
 
+void buzzer()
+{
+	buzzer_on();
+	_delay_ms(100);
+	buzzer_off();
+}
 void lcd(char *str)
 {
 	
@@ -525,6 +557,7 @@ void front()
 }
 void turnRight()	//turns the robo right
 {
+
 	if ((dir == 3 && (ot == 0 || ot == 1)) || (dir == 1 && (ot == 2 || ot == 3)))
 	{
 		velocity(turn_v, turn_v);
@@ -547,6 +580,7 @@ void turnRight()	//turns the robo right
 }
 void turnLeft()	//turns the robo left
 {
+
 	if ((dir == 1 && (ot == 0 || ot == 1)) || (dir == 3 && (ot == 2 || ot == 3)))
 	{
 		velocity(turn_v, turn_v);
@@ -569,6 +603,18 @@ void turnLeft()	//turns the robo left
 }
 void turn()	//turn robo by 180 degree
 {
+	/*
+	if ((dir == 0 && (ot == 2 || ot == 3))||(dir == 2 && (ot == 0 || ot == 1)))
+	{
+		velocity(turn_v, turn_v);
+		left_degrees(180);
+	}
+	else if 
+	{
+		velocity(turn_v, turn_v);
+		left_degrees(180);
+	}
+	*/
 	if (dir == 0 && (ot == 2 || ot == 3))
 	{
 		velocity(turn_v, turn_v);
@@ -676,6 +722,7 @@ int adjCount(ct)
 }
 void terminalCheck1()
 {
+	//????
 	forward_mm(30);
 	flag = 1;
 	if (ct != ot)
@@ -691,6 +738,7 @@ void terminalCheck1()
 		front();
 		ot = ct;
 	}
+	//????
 	right_degrees(50);
 	velocity(turn_v, turn_v);
 	while (ADC_Conversion(1)<70)
@@ -706,9 +754,6 @@ void terminalCheck1()
 	//printf("Enter term[%d][%d]\n", ct, 0);
 	//scanf("%d", &term[ct][0]);
 
-
-
-	lcd((char*)term[ct][0]);
 	if (term[ct][0] == -1 || term[ct][0] == color[ct])
 		total--;
 }
@@ -768,9 +813,7 @@ void terminalCheck2()
 }
 
 void pick(int side)
-{
-	
-	
+{	
 	lower(side);//lower
 	open(side);
 	close(side);
@@ -1226,6 +1269,13 @@ int main()
 	setIndicatorAndColor();
 	
 	threshold=6000;
+	term[ct][0] = scan();
+	if(term[ct][0]==-1)
+	lcd_print(2,11,9, 1);
+	else
+	lcd_print(2,11, term[ct][0], 1);
+	_delay_ms(1000);
+	while(1);
 	ct = 0; adj = 2;
 	//lcd("Begin");
 	forwardJaa();
