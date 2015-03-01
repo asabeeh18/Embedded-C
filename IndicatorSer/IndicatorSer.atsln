@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Atmel Studio Solution File, Format Version 11.00
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "IndicatorSer", "IndicatorSer\IndicatorSer.cproj", "{83916530-6E4A-4572-8471-7954822D6063}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{83916530-6E4A-4572-8471-7954822D6063}.Debug|AVR.ActiveCfg = Debug|AVR
+		{83916530-6E4A-4572-8471-7954822D6063}.Debug|AVR.Build.0 = Debug|AVR
+		{83916530-6E4A-4572-8471-7954822D6063}.Release|AVR.ActiveCfg = Release|AVR
+		{83916530-6E4A-4572-8471-7954822D6063}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
