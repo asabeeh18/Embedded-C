@@ -356,9 +356,9 @@ void terminalCheck1()
 	
 	dir=(dir+1)%4;
 	//lcd_print(1,1,dir,1);
-	while (ADC_Conversion(2)<40)
+	while (ADC_Conversion(3)<40)
 		right();
-	_delay_ms(120);
+	//_delay_ms(140);
 	stop();
 	//lcd_print(1,1,9,1);
 	
