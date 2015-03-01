@@ -745,6 +745,7 @@ void terminalCheck1()
 		right();
 	//	_delay_ms(100);
 	stop();
+	dir = (dir + 1) % 4;
 	term[ct][0] = scan();
 	if(term[ct][0]==-1)
 		lcd_print(2,11,9, 1);
@@ -796,7 +797,7 @@ void terminalCheck2()
 		left();
 		//	_delay_ms(100);
 		stop();
-		
+		dir = (dir + 3) % 4;
 			}
 	//printf("Enter term[%d][%d]\n", ct, 1);
 	//scanf("%d", &term[ct][1]);
@@ -1269,13 +1270,7 @@ int main()
 	setIndicatorAndColor();
 	
 	threshold=6000;
-	term[ct][0] = scan();
-	if(term[ct][0]==-1)
-	lcd_print(2,11,9, 1);
-	else
-	lcd_print(2,11, term[ct][0], 1);
-	_delay_ms(1000);
-	while(1);
+	
 	ct = 0; adj = 2;
 	//lcd("Begin");
 	forwardJaa();

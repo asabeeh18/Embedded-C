@@ -240,7 +240,7 @@ void lcd(char *str)
 	lcd_cursor(1,1);
 	lcd_string(str);
 	//buzzer();
-	//_delay_ms(1000);
+	_delay_ms(1000);
 }
 void front()
 {
@@ -431,6 +431,8 @@ void terminalCheck2()
 		total--;
 	visited[ct] = 1;
 	visitedCount++;
+	lcd_print(2,15,dir,1);
+	_delay_ms(1000);
 }
 
 void pick(int side)
@@ -444,6 +446,7 @@ void pick(int side)
 		lcd("pickRight");
 	else
 		lcd("pickLeft");
+	_delay_ms(1000);
 }
 
 void position(int armNo, int side)
@@ -453,35 +456,38 @@ void position(int armNo, int side)
 		if (((ct == 0 || ct == 1) && dir == 0) || ((ct == 2 || ct == 3) && dir == 2))
 		{
 			if (armNo != side)
-				turn();
+			turn();
 		}
 		else	if (((ct == 0 || ct == 1) && dir == 2) || ((ct == 2 || ct == 3) && dir == 0))
 		{
 			if (armNo == side)
-				turn();
+			turn();
 		}
 		else if (((ct == 0 || ct == 1) && dir == 1) || ((ct == 2 || ct == 3) && dir == 3))
 		{
 			if (armNo != side)
-				turnRight();
+			turnRight();
 			else turnLeft();
 		}
 		else	if (((ct == 0 || ct == 1) && dir == 3) || ((ct == 2 || ct == 3) && dir == 1))
-			if (armNo == side)
-				turnRight();
-			else turnLeft();
-		if (flag == 1 && (dir == 0 || dir == 2))
+					if (armNo == side)
+						turnRight();
+					else turnLeft();
+		if(flag==1)
 		{
-			back_mm(30);
-			flag = 0;
+			if(dir==0 || dir==1)
+			{
+				back_mm(20);
+				flag=0;
+			}
 		}
 	}
 	else
 	{
 		if (dir == 1 || dir == 3)
-			if (ct == 0 || ct == 3)
-				turnRight();
-			else turnLeft();
+		if (ct == 0 || ct == 3)
+		turnRight();
+		else turnLeft();
 		if (dir == 0 || dir == 2)
 		{
 			if ((dir == 0 && (ct == 0 || ct == 1)) || (dir == 2 && (ct == 2 || ct == 3)))
@@ -519,6 +525,23 @@ void position(int armNo, int side)
 					front();
 					turn();
 				}
+			}
+		}
+		else
+		{
+			if (armNo == side)
+			{
+				if (ct == 0 || ct == 3)
+				turnRight();
+				else turnLeft();
+				front();
+			}
+			else
+			{
+				if (ct == 0 || ct == 3)
+				turnRight();
+				else turnLeft();
+				front();
 			}
 		}
 		ot = ct;
@@ -560,8 +583,8 @@ void pickup()
 	if (visited[ct] == 0)
 		if (term[ct][0] == -2)
 		{
-		terminalCheck1();
-		terminalCheck2();
+			terminalCheck1();
+			terminalCheck2();
 		}
 		else	terminalCheck2();
 		if ((term[ct][0] != color[ct] && term[ct][0] != -1) || (term[ct][1] != color[ct] && term[ct][1] != -1))
@@ -570,25 +593,25 @@ void pickup()
 			{
 				if (term[ct][0] == color[adj] || term[ct][1] == color[adj])
 					if (term[ct][0] == color[adj])
-						pickNode(arm0, 0);
-					else	pickNode(arm1, 1);
+						pickNode(arm0, 1);
+					else	pickNode(arm1, 0);
 				else	if ((term[ct][1] != color[ct]) && term[ct][1] != -1)
 				{
 					if (term[ct][0] != color[ct] && term[ct][0] != -1)
 					{
-						pickNode(arm1, 1);
-						pickNode(arm0, 0);
+						pickNode(arm1, 0);
+						pickNode(arm0, 1);
 					}
 					else if (sort[ct % 2] == -1 || ((term[adj][0] == color[adj] || term[adj][0] == -1) || (term[adj][1] == color[adj] || term[adj][1] == -1)) || (term[ct][0] == color[ct] || term[ct][1] == color[ct]))
-						pickNode(arm1, 1);
+						pickNode(arm1, 0);
 				}
 				else	if (term[ct][0] != color[ct] && term[ct][0] != -1)
 				{
 					if (sort[ct % 2] == -1 || ((term[adj][0] == color[adj] || term[adj][0] == -1) || (term[adj][1] == color[adj] || term[adj][1] == -1)))
-						pickNode(arm0, 0);
+						pickNode(arm0, 1);
 				}
 				else	if (term[ct][0] != color[ct] && term[ct][0] != -1)
-					pickNode(arm0, 0);
+					pickNode(arm0, 1);
 
 			}
 			if (armCount == 1)
@@ -1153,8 +1176,6 @@ void forwardJaa()
 /*************************END GULLA CODE*************/
 void turnRight()	//turns the robo right
 {
-	dir=99;
-	ot=99;
 	if ((dir == 3 && (ot == 0 || ot == 1)) || (dir == 1 && (ot == 2 || ot == 3)))
 	{
 		velocity(turn_v, turn_v);
@@ -1191,7 +1212,7 @@ void turnLeft()	//turns the robo left
 		velocity(turn_v,turn_v);
 		while (ADC_Conversion(2)<50)
 			left();
-		//_delay_ms(100);
+		_delay_ms(100);
 		stop();
 	}
 	lcd("Left turn");
