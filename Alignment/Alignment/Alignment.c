@@ -236,12 +236,11 @@ void buzzer()
 }
 void lcd(char *str)
 {
-	
 	lcd_wr_command(0x01);
 	lcd_cursor(1,1);
 	lcd_string(str);
-	buzzer();
-	_delay_ms(1000);
+	//buzzer();
+	//_delay_ms(1000);
 }
 void front()
 {
@@ -333,8 +332,10 @@ int adjCount(ct)
 void terminalCheck1()
 {
 	//????
+	lcd_wr_command(0x01);
+	lcd_print(1,1,888,3);
 	velocity(turn_v,turn_v);
-	forward_mm(30);
+	//forward_mm(60);
 	flag = 1;
 	if (ct != ot)
 	{
@@ -354,12 +355,12 @@ void terminalCheck1()
 	velocity(turn_v, turn_v);
 	
 	dir=(dir+1)%4;
-	lcd_print(1,1,dir,1);
-	while (ADC_Conversion(1)<50)
+	//lcd_print(1,1,dir,1);
+	while (ADC_Conversion(2)<40)
 		right();
-	//	_delay_ms(100);
+	_delay_ms(120);
 	stop();
-	lcd_print(1,1,9,1);
+	//lcd_print(1,1,9,1);
 	
 	term[ct][0] = scan();
 	if(term[ct][0]==-1)
@@ -411,9 +412,9 @@ void terminalCheck2()
 	else {
 		left_degrees(150);
 		velocity(turn_v, turn_v);
-		while (ADC_Conversion(2)<50)
+		while (ADC_Conversion(2)<40)
 		left();
-		//	_delay_ms(100);
+	//	_delay_ms(50);
 		stop();
 		dir=(dir+2)%4;
 		lcd((char *)dir);
@@ -915,14 +916,16 @@ void backward()	//TODO
 **************************************************/
 void node()
 {
+	lcd_print(1,1,1,1);
 	velocity(turn_v,turn_v);
 	forward_mm(60);
 }
 /*************************GULLA CODE**Blackline Forward***********/
+
 char Delay(int tim)
 {
 	int i;
-	for(i=0;i<tim && ADC_Conversion(2)<=40;i++)
+	for(i=0;i<tim && ADC_Conversion(2)<0x28;i++)// && ADC_Conversion(1)<40 && ADC_Conversion(3)<40));i++)
 	{
 		//set_color();
 		_delay_ms(1);
@@ -935,119 +938,111 @@ char Delay(int tim)
 
 void semiCorrect()
 {
+	
+	//lcd_print(1,2,1,1);
+	if(Center_white_line>40 && (Left_white_line>40 || Right_white_line>40)) //2 bbw wbb
+	{
+		node();
+		return;
+	}
 	if(Center_white_line<40)
 	{
 		if(Left_white_line>40 && Right_white_line<40) //bww
-		{			
-			while(Center_white_line<40 && Left_white_line>40 && Right_white_line<40)
+		{
+	//		lcd("bww");
+			
+			while((Center_white_line<0x28))// && Left_white_line<40 && Right_white_line<40))
 			{
+				//lcd_print(1,2,1,1);
 				left();
 				set_color();
 			}
+		//	lcd("-");
 		}
 		else if(Right_white_line>40 && Left_white_line<40)	//wwb
 		{
-			while(Center_white_line<40 && Left_white_line<40 && Right_white_line>40)
+			
+			//lcd("wwb");
+			while((Center_white_line<0x28))// && Left_white_line<40 && Right_white_line<40))
 			{
+				//lcd_print(1,2,2,1);
 				right();
 				set_color();
 			}
+			//lcd("-");
 			
 		}
 	}
+	//lcd_print(1,2,0,1);
+	
 }
 void correct()
 {
 	unsigned int d=2;
-	unsigned int i=30;
-	Degrees=5;	stop();
-	if(lf==1)
+	unsigned int i=50;
+	Degrees=5;
+	stop();
+	//lcd("cor");
+	
+	/*if(lf==1)
 	{
 		lf=0;
 		while(1)
 		{
-		
 			right();
-			if(d==2)
-			{
-				if(Delay(i))
+			if(Delay(i))
 					return;
-			}
-			else
-			{
-				if(Delay(2*i+d))
-					return;
-			}
 			stop();
-		
+			lcd_print(1,1,1,1);
 			//set_color();
-			if(ADC_Conversion(2)>40)
-				break;
 			semiCorrect();
+			if(ADC_Conversion(2)>40)// && ADC_Conversion(1)<40 && ADC_Conversion(3)<40)
+				break;
+			i+=50;
 			left();
-			if(d==2)
-			{
-				if(Delay(2*i))
-					return;
-			}
-			else
-			{
-				if(Delay(2*i+d))
-					return;
-			}
+			if(Delay(i))
+				return;
 			stop();
-			if(ADC_Conversion(2)<40)
-				break;
+			lcd_print(1,1,2,1);
 			semiCorrect();
+			if(ADC_Conversion(2)>40)// && ADC_Conversion(1)<40 && ADC_Conversion(3)<40)
+				break;
 			//d*=2;
 			//set_color();
 			//i+=2;
-			d=d+20;
+			i+=50;
 		}
-	}
-	else
-	{
+	}*/
+	//else
+	
 		lf=1;
 		while(1)
 		{
 			left();
-			if(d==2)
-			{
-				if(Delay(i))
+			if(Delay(i))
 				return;
-			}
-			else
-			{
-				if(Delay(2*i+d))
-				return;
-			}
 			stop();
-			
+			lcd_print(1,1,1,1);
 			//set_color();
-			if(ADC_Conversion(2)>40)
-			break;
 			semiCorrect();
+			if(ADC_Conversion(2)>40)// && ADC_Conversion(1)<40 && ADC_Conversion(3)<40)
+				break;
+			i+=50;
 			right();
-			if(d==2)
-			{
-				if(Delay(2*i))
+			if(Delay(i))
 				return;
-			}
-			else
-			{
-				if(Delay(2*i+d))
-				return;
-			}
 			stop();
-			if(ADC_Conversion(2)<40)
-			break;
+			lcd_print(1,1,2,1);
 			semiCorrect();
+			if(ADC_Conversion(2)>40)// && ADC_Conversion(1)<40 && ADC_Conversion(3)<40)
+				break;
 			//d*=2;
 			//set_color();
 			//i+=2;
-			d=d+20;
-		}
+			i+=50;
+		
 	}
+	//lcd("-");
 	stop();
 	return;
 }
@@ -1056,29 +1051,31 @@ void noNatak()
 	int flag=0;
 	//buzzer_on();
 	//lcd_print(2,1,7,1);
-	velocity(150,150);
+	//lcd("no");
+	velocity(correct_v,correct_v);
 	if(Center_white_line<40)
 	{
 		if(Left_white_line>40 && Right_white_line<40) //bww
 		{
+		//	lcd("bww");
 			flag=1;
-			while(Center_white_line<40 && Left_white_line>40 && Right_white_line<40)
+			while(!(Center_white_line>0x28 && Left_white_line<40 && Right_white_line<40))
 			{
 				left();
 				set_color();
 			}
-
+		//	lcd("-");
 		}
 		else if(Right_white_line>40 && Left_white_line<40)	//wwb
 		{
 			flag=1;
-			
-			while(Center_white_line<40 && Left_white_line<40 && Right_white_line>40)
+			//lcd("wwb");
+			while(!(Center_white_line>0x28 && Left_white_line<40 && Right_white_line<40))
 			{
 				right();
 				set_color();
 			}
-			
+			//lcd("-");
 			
 		}
 		else
@@ -1108,7 +1105,6 @@ void noNatak()
 			flag=1;
 			node();
 			return;
-			
 			/*flag=1;
 			lcd("wbb");
 			while(Center_white_line>40 && Left_white_line<40 && Right_white_line>40)
@@ -1126,13 +1122,12 @@ void noNatak()
 	}
 	if(flag==0)	
 		correct();
-	
 	stop();
+	//lcd("--");
 	//lcd_print(2,1,6,1);
 	//buzzer_off();
 	return;
 }
-
 void forwardJaa()
 {
 	unsigned int vi=0;
@@ -1175,7 +1170,7 @@ void turnRight()	//turns the robo right
 		_delay_ms(80);
 		stop();	
 	}
-//	lcd("Right turn");
+	lcd("Right turn");
 	//_delay_ms(2000);
 	dir = (dir + 1) % 4;
 	//printf("Turn Right \n");
@@ -1262,7 +1257,7 @@ int main()
 	turnLeft();
 	*/
 	
-	
+	//right_degrees(45);
 	//while(1);
 	
 	//stop();

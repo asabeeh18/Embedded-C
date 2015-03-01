@@ -11,19 +11,19 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   3 .debug_aranges 00000328  00000000  00000000  00000994  2**0
                   CONTENTS, READONLY, DEBUGGING
-  4 .debug_info   00002b4d  00000000  00000000  00000cbc  2**0
+  4 .debug_info   00002b60  00000000  00000000  00000cbc  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_abbrev 00000500  00000000  00000000  00003809  2**0
+  5 .debug_abbrev 00000513  00000000  00000000  0000381c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_line   000021fa  00000000  00000000  00003d09  2**0
+  6 .debug_line   000021fa  00000000  00000000  00003d2f  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_frame  0000086c  00000000  00000000  00005f04  2**2
+  7 .debug_frame  0000086c  00000000  00000000  00005f2c  2**2
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_str    000007e1  00000000  00000000  00006770  2**0
+  8 .debug_str    000007e1  00000000  00000000  00006798  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_loc    00001d8d  00000000  00000000  00006f51  2**0
+  9 .debug_loc    00001d8d  00000000  00000000  00006f79  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_ranges 00000378  00000000  00000000  00008cde  2**0
+ 10 .debug_ranges 00000378  00000000  00000000  00008d06  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -1071,8 +1071,8 @@ void predict()
  802:	99 32       	cpi	r25, 0x29	; 41
  804:	90 f0       	brcs	.+36     	; 0x82a <noNatak+0x6e>
  806:	88 32       	cpi	r24, 0x28	; 40
- 808:	18 f0       	brcs	.+6      	; 0x810 <noNatak+0x54>
- 80a:	0f c0       	rjmp	.+30     	; 0x82a <noNatak+0x6e>
+ 808:	80 f4       	brcc	.+32     	; 0x82a <noNatak+0x6e>
+ 80a:	02 c0       	rjmp	.+4      	; 0x810 <noNatak+0x54>
  80c:	6d de       	rcall	.-806    	; 0x4e8 <right>
  80e:	2e df       	rcall	.-420    	; 0x66c <set_color>
  810:	80 91 02 02 	lds	r24, 0x0202

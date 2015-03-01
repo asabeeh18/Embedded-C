@@ -853,13 +853,13 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x2b4d
+.debug_info     0x00000000     0x2b60
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x00000000     0x2b4d EfficientLooping.o
+ .debug_info    0x00000000     0x2b60 EfficientLooping.o
 
-.debug_abbrev   0x00000000      0x500
+.debug_abbrev   0x00000000      0x513
  *(.debug_abbrev)
- .debug_abbrev  0x00000000      0x500 EfficientLooping.o
+ .debug_abbrev  0x00000000      0x513 EfficientLooping.o
 
 .debug_line     0x00000000     0x21fa
  *(.debug_line .debug_line.* .debug_line_end)

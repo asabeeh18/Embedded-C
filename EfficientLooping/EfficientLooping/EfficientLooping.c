@@ -87,6 +87,8 @@ void node()
 	_delay_ms(30);
 	buzzer_off();
 	forward_mm(60);
+	stop();
+	forwardJaa();
 }
 char Delay(int tim)
 {
