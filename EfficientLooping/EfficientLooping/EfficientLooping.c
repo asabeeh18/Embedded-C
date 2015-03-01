@@ -84,8 +84,9 @@ www Death
 void node()
 {
 	buzzer_on();
-	_delay_ms(100);
+	_delay_ms(30);
 	buzzer_off();
+	forward_mm(60);
 }
 char Delay(int tim)
 {
@@ -139,11 +140,12 @@ void semiCorrect()
 void correct()
 {
 	unsigned int d=2;
-	unsigned int i=20;
+	unsigned int i=50;
 	Degrees=5;
-	lcd("cor");
 	stop();
-	if(lf==1)
+	lcd("cor");
+	
+	/*if(lf==1)
 	{
 		lf=0;
 		while(1)
@@ -157,7 +159,7 @@ void correct()
 			semiCorrect();
 			if(ADC_Conversion(2)>40)// && ADC_Conversion(1)<40 && ADC_Conversion(3)<40)
 				break;
-			i+=20;
+			i+=50;
 			left();
 			if(Delay(i))
 				return;
@@ -169,10 +171,10 @@ void correct()
 			//d*=2;
 			//set_color();
 			//i+=2;
-			i+=20;
+			i+=50;
 		}
-	}
-	else
+	}*/
+	//else
 	{
 		lf=1;
 		while(1)
@@ -186,7 +188,7 @@ void correct()
 			semiCorrect();
 			if(ADC_Conversion(2)>40)// && ADC_Conversion(1)<40 && ADC_Conversion(3)<40)
 				break;
-			i+=20;
+			i+=50;
 			right();
 			if(Delay(i))
 				return;
@@ -198,7 +200,7 @@ void correct()
 			//d*=2;
 			//set_color();
 			//i+=2;
-			i+=20;
+			i+=50;
 		}
 	}
 	lcd("-");
@@ -210,7 +212,7 @@ void noNatak()
 	int flag=0;
 	//buzzer_on();
 	//lcd_print(2,1,7,1);
-	velocity(150,150);
+	velocity(130,130);
 	if(Center_white_line<40)
 	{
 		if(Left_white_line>40 && Right_white_line<40) //bww
