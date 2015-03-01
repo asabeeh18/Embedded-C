@@ -2,6 +2,7 @@
 #include <avr/interrupt.h>
 #include <util/delay.h>
 #include "lcd.c"
+int cur_angle=90;
 //Configure PORTB 5 pin for servo motor 1 operation
 void servo1_pin_config (void)
 {
@@ -131,74 +132,109 @@ void servo_3_free (void) //makes servo 3 free rotating
 
 void lower(unsigned char side)
 {
-	if (side == 1)
+	if(side==1)
 	{
-		for(i=90;i>=60;i--)
-		{
-			servo_2(i);
-			_delay_ms(10);
-		}
-		cur_angle=60;
+		servo_2(60);
 	}
-	else if (side == 0)
-	{
-		for(i=90;i<=120;i++)
-		{
-				servo_2(i);
-				_delay_ms(10);
-		}
-	}
+	else
+		servo_2(120);
+	return;
+// 	
+// 	if (side == 1)
+// 	{
+// 		for(i=90;i>=60;i--)
+// 		{
+// 			servo_2(i);
+// 			_delay_ms(10);
+// 		}
+// 		cur_angle=60;
+// 	}
+// 	else
+// 	{
+// 		for(i=90;i<=120;i++)
+// 		{
+// 			servo_2(i);
+// 			_delay_ms(10);
+// 		}
+// 		cur_angle=120;
+// 	}
 }
 void elevate()
 {
 	servo_2(90);
-	_delay_ms(700);
+	cur_angle=90;
+	//return;
+// 	if(cur_angle==60)
+// 	{
+// 		for(i=60;i<=90;i++)
+// 		{
+// 			servo_2(i);
+// 			_delay_ms(10);
+// 		}
+// 	}
+// 	else
+// 	{
+// 		for(i=120;i>=90;i--)
+// 		{
+// 			servo_2(i);
+// 			_delay_ms(10);
+// 		}
+// 	}
+// 	cur_angle=90;
 }
 void open(unsigned char side)
 {
 	if (side == 0)
-		for(i=55;i>0;i--)
-		{
-			servo_3(i);
-			_delay_ms(10);
-		}
-		
+	for(i=40;i>0;i--)
+	{
+		servo_3(i);
+		_delay_ms(10);
+	}
+	
 	else if (side == 1)
-		for(i=55;i>0;i--)
-		{
-			servo_1(i);
-			_delay_ms(10);
-		}
+	for(i=60;i>0;i--)
+	{
+		servo_1(i);
+		_delay_ms(10);
+	}
 }
 void close(unsigned char side)
 {
 	if (side == 0)
-		for(i=0;i<55;i++)
-		{			
-			servo_3(i);
-			_delay_ms(10);
-		}
+	for(i=0;i<=40;i++)
+	{
+		servo_3(i);
+		_delay_ms(10);
+	}
 	else if (side == 1)
-		for(i=0;i<55;i++)
-		{
-			servo_1(i);
-			_delay_ms(10);
-		}
+	for(i=0;i<=60;i++)
+	{
+		servo_1(i);
+		_delay_ms(10);
+	}
 }
 void pick(int side)
 {
 	lower(side);//lower
-	open(side);
+	//_delay_ms(1000);
+	//open(side);
+	_delay_ms(1000);
+	//while(1);
 	close(side);
+	_delay_ms(3000);
+//	while(1);
 	elevate();//mid
+	_delay_ms(1000);
 }
-
 void drop(int side)
 {
 	//	armCount++;
 	lower(side);//lower
+	_delay_ms(1000);
 	open(side);
+	_delay_ms(3000);
 	elevate();//mid
+	_delay_ms(1000);
 }
 void buzzer_on (void)
 {
@@ -219,19 +255,37 @@ void buzzer_off (void)
 //Main function
 int main(void)
 {
+	
+	//servo 1 & 3 0 open 40 close
+	//servo 1 60 close
 	unsigned char i = 0;
 	init_devices();
 	servo_3(0);
 	servo_2(90);
 	servo_1(0);
 	_delay_ms(2000);
-		
+//	servo_1(45);
+//	_delay_ms(2000);
+	//servo_1(60);
+	//while(1);
+	//while(1);
+// 	lower(1);
+ 	//_delay_ms(3000);
+// 	elevate();
+// 	while(1);
+	pick(1);
 	//servo_3(45);
-	//_delay_ms(2000);
+	_delay_ms(5000);
+	drop(1);
+	while(1);
 	//servo_3(0);
-	pick(0);
+	//pick(1);
+	pick(1);
+	
+	_delay_ms(4000);
 	//pick(1);
 	//drop(1);
-	drop(0);
+	drop(1);
+	while(1);
 	 return 0;
 }

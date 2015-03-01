@@ -1178,51 +1178,18 @@ void forwardJaa()
 /*************************END GULLA CODE*************/
 void turnRight()	//turns the robo right
 {
-	if ((dir == 3 && (ot == 0 || ot == 1)) || (dir == 1 && (ot == 2 || ot == 3)))
-	{
-		velocity(turn_v, turn_v);
-		right_degrees(90);
-	}
-	else
-	{
-		velocity(turn_v, turn_v);
-		right_degrees(30);
-		
-		while (ADC_Conversion(2)<50)
-			right();
-		_delay_ms(100);
-		stop();	
-	}
-	lcd("Right turn");
-	//_delay_ms(2000);
-	dir = (dir + 1) % 4;
-	//printf("Turn Right \n");
-	angle += 90;
-	buzzer();
+	forward_mm(60);
+	left();
+	while(ADC_Conversion(2)<40);
+	stop();
 }
 void turnLeft()	//turns the robo left
 {
 	
-	if ((dir == 1 && (ot == 0 || ot == 1)) || (dir == 3 && (ot == 2 || ot == 3)))
-	{
-		velocity(turn_v, turn_v);
-		left_degrees(90);
-	}
-	else
-	{
-		left_degrees(30);
-		velocity(turn_v,turn_v);
-		while (ADC_Conversion(2)<50)
-			left();
-		_delay_ms(100);
-		stop();
-	}
-	lcd("Left turn");
-	//_delay_ms(2000);
-	dir = (dir + 3) % 4;
-	//printf("Turn Left\n");
-	angle += 90;
-	buzzer();
+	forward_mm(60);
+	left();
+	while(ADC_Conversion(2)<40);
+	stop();
 }
 void turn()	//turn robo by 180 degree
 {
@@ -1278,7 +1245,7 @@ int main()
 {
 	int i=0;
 	__init__();
-	ct = 0; adj = 2;
+	ct = 2; adj = 0;
 	//lcd("Begin");
 	
 	
@@ -1305,11 +1272,17 @@ int main()
 	forward_mm(160);
 	//scan 4
 	soft_right_2();
-	_delay_ms(500);
+	_delay_ms(700);
 	while(ADC_Conversion(3)<40);
 	stop();
 	indicator[3]=scan();
-	
+	for(i=0;i<indicator[3];i++)
+	{
+		buzzer_on();
+		_delay_ms(100);
+		buzzer_off();
+		_delay_ms(500);
+	}
 	
 	//back to line
 	soft_left();
@@ -1323,7 +1296,13 @@ int main()
 	while(ADC_Conversion(2)<40);
 	stop();
 	indicator[2]=scan();
-	
+	for(i=0;i<indicator[2];i++)
+	{
+		buzzer_on();
+		_delay_ms(100);
+		buzzer_off();
+		_delay_ms(500);
+	}
 	//back to line
 	soft_right();
 	_delay_ms(500);
@@ -1342,7 +1321,13 @@ int main()
 	while(ADC_Conversion(3)<40);
 	stop();
 	indicator[1]=scan();
-	
+	for(i=0;i<indicator[1];i++)
+	{
+		buzzer_on();
+		_delay_ms(100);
+		buzzer_off();
+		_delay_ms(500);
+	}
 	
 	//back to line
 	soft_left();
@@ -1353,10 +1338,16 @@ int main()
 	//scan 3
 	soft_left_2();
 	_delay_ms(500);
-	while(ADC_Conversion(1)<40);
+	while(ADC_Conversion(2)<40);
 	stop();
 	indicator[0]=scan();
-	
+	for(i=0;i<indicator[0];i++)
+	{
+		buzzer_on();
+		_delay_ms(100);
+		buzzer_off();
+		_delay_ms(500);
+	}
 	//back to line
 	soft_right();
 	_delay_ms(500);
@@ -1370,7 +1361,13 @@ int main()
 	
 	forwardJaa();
 	turnLeft();
+	forward();
+	_delay_ms(500);
+	forwardJaa();
 	turnLeft();
+	forwardJaa();
+	buzzer_on();
+	while(1);
 	
 	for (i = 0; i<4; i++);
 		//..printf("%d %d\n", term[i][0], term[i][1]);

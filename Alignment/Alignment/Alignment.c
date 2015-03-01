@@ -1188,7 +1188,7 @@ void turnRight()	//turns the robo right
 		
 		while (ADC_Conversion(2)<50)
 			right();
-		_delay_ms(80);
+		_delay_ms(100);
 		stop();	
 	}
 	lcd("Right turn");
@@ -1264,7 +1264,7 @@ int main()
 {
 	int i=0;
 	__init__();
-	ct = 0; adj = 2;
+	ct = 2; adj = 0;
 	//lcd("Begin");
 	
 	
