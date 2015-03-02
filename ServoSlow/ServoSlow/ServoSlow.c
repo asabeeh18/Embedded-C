@@ -134,7 +134,7 @@ void lower(unsigned char side)
 {
 	if(side==1)
 	{
-		servo_2(60);
+		servo_2(50);
 	}
 	else
 		servo_2(120);
@@ -142,13 +142,23 @@ void lower(unsigned char side)
 void elevate()
 {
 	servo_2(90);
+	_delay_ms(600);
+	servo_2_free();
 }
 void open(unsigned char side)
 {
 	if (side == 0)
+	{
 		servo_3(0);
+		_delay_ms(500);
+		servo_3_free();
+	}
 	else
+	{
 		servo_1(0);
+		_delay_ms(500);
+		servo_1_free();
+	}
 }
 void close(unsigned char side)
 {
@@ -203,24 +213,17 @@ int main(void)
 	servo_3(0);
 	servo_2(90);
 	servo_1(0);
-	_delay_ms(2000);
-//	servo_1(45);
-//	_delay_ms(2000);
-	//servo_1(60);
-	//while(1);
-	//while(1);
-// 	lower(1);
- 	//_delay_ms(3000);
-// 	elevate();
-// 	while(1);
-	pick(1);
-	_delay_ms(2000);
-	drop(1);
-	_delay_ms(2000);
-	pick(0);
-	_delay_ms(2000);
-	drop(0);
-	while(1);
+	while(1)
+	{
+		_delay_ms(2000);
+		pick(1);
+		_delay_ms(2000);
+		drop(1);
+		_delay_ms(2000);
+		pick(0);
+		_delay_ms(2000);
+		drop(0);
+	}
 	//servo_3(0);
 	//pick(1);
 	
