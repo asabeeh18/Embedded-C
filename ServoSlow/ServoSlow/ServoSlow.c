@@ -138,97 +138,31 @@ void lower(unsigned char side)
 	}
 	else
 		servo_2(120);
-	return;
-// 	
-// 	if (side == 1)
-// 	{
-// 		for(i=90;i>=60;i--)
-// 		{
-// 			servo_2(i);
-// 			_delay_ms(10);
-// 		}
-// 		cur_angle=60;
-// 	}
-// 	else
-// 	{
-// 		for(i=90;i<=120;i++)
-// 		{
-// 			servo_2(i);
-// 			_delay_ms(10);
-// 		}
-// 		cur_angle=120;
-// 	}
 }
 void elevate()
 {
 	servo_2(90);
-	cur_angle=90;
-	_delay_ms(1000);
-	servo_2_free();
-	//return;
-// 	if(cur_angle==60)
-// 	{
-// 		for(i=60;i<=90;i++)
-// 		{
-// 			servo_2(i);
-// 			_delay_ms(10);
-// 		}
-// 	}
-// 	else
-// 	{
-// 		for(i=120;i>=90;i--)
-// 		{
-// 			servo_2(i);
-// 			_delay_ms(10);
-// 		}
-// 	}
-// 	cur_angle=90;
 }
 void open(unsigned char side)
 {
 	if (side == 0)
-	for(i=40;i>0;i--)
-	{
-		servo_3(i);
-		_delay_ms(10);
-	}
-	
-	else if (side == 1)
-	for(i=60;i>0;i--)
-	{
-		servo_1(i);
-		_delay_ms(10);
-	}
-	if(side==0)
-		servo_3_free();
+		servo_3(0);
 	else
-		servo_1_free();
+		servo_1(0);
 }
 void close(unsigned char side)
 {
 	if (side == 0)
-	for(i=0;i<=40;i++)
-	{
-		servo_3(i);
-		_delay_ms(10);
-	}
+		servo_3(40);
 	else if (side == 1)
-	for(i=0;i<=60;i++)
-	{
-		servo_1(i);
-		_delay_ms(10);
-	}
+		servo_1(60);
 }
 void pick(int side)
 {
-	lower(side);//lower
-	//_delay_ms(1000);
-	//open(side);
+	lower(side);
 	_delay_ms(1000);
-	//while(1);
 	close(side);
 	_delay_ms(3000);
-//	while(1);
 	elevate();//mid
 	_delay_ms(1000);
 }
@@ -279,17 +213,14 @@ int main(void)
  	//_delay_ms(3000);
 // 	elevate();
 // 	while(1);
-	pick(0);
-	_delay_ms(4000);
-	drop(0);
-	
-	
-	while(1);
-	_delay_ms(2000);
 	pick(1);
 	_delay_ms(2000);
 	drop(1);
-	
+	_delay_ms(2000);
+	pick(0);
+	_delay_ms(2000);
+	drop(0);
+	while(1);
 	//servo_3(0);
 	//pick(1);
 	

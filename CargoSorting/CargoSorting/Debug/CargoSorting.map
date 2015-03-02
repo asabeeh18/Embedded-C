@@ -1,17 +1,17 @@
 Archive member included because of file (symbol)
 
 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(addsf3.o)
-                              Servo.o (__addsf3)
+                              CargoSorting.o (__addsf3)
 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(addsf3x.o)
                               c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(addsf3.o) (__addsf3x)
 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(divsf3.o)
-                              Servo.o (__divsf3)
+                              CargoSorting.o (__divsf3)
 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(divsf3x.o)
                               c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(divsf3.o) (__divsf3x)
 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fixunssfsi.o)
-                              Servo.o (__fixunssfsi)
+                              CargoSorting.o (__fixunssfsi)
 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(floatsisf.o)
-                              Servo.o (__floatunsisf)
+                              CargoSorting.o (__floatunsisf)
 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_inf.o)
                               c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(addsf3x.o) (__fp_inf)
 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_nan.o)
@@ -29,63 +29,95 @@ c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-t
 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
                               c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6/crtm2560.o (exit)
 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_copy_data.o)
-                              Servo.o (__do_copy_data)
+                              CargoSorting.o (__do_copy_data)
 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_clear_bss.o)
-                              Servo.o (__do_clear_bss)
+                              CargoSorting.o (__do_clear_bss)
 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_umulhisi3.o)
-                              Servo.o (__umulhisi3)
+                              CargoSorting.o (__umulhisi3)
 
 Allocating common symbols
 Common symbol       size              file
 
-million             0x2               Servo.o
-temp                0x2               Servo.o
-i                   0x2               Servo.o
-tens                0x2               Servo.o
-hundred             0x2               Servo.o
-unit                0x2               Servo.o
-thousand            0x2               Servo.o
+threshold           0x2               CargoSorting.o
+blue                0x4               CargoSorting.o
+Degrees             0x2               CargoSorting.o
+million             0x2               CargoSorting.o
+temp                0x2               CargoSorting.o
+green               0x4               CargoSorting.o
+red                 0x4               CargoSorting.o
+ADC_Value           0x1               CargoSorting.o
+ct                  0x1               CargoSorting.o
+tens                0x2               CargoSorting.o
+indicator           0x8               CargoSorting.o
+adj                 0x1               CargoSorting.o
+hundred             0x2               CargoSorting.o
+unit                0x2               CargoSorting.o
+thousand            0x2               CargoSorting.o
 
 Discarded input sections
 
  .data          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6/crtm2560.o
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6/crtm2560.o
- .text          0x00000000        0x0 Servo.o
- .data          0x00000000        0x0 Servo.o
- .bss           0x00000000        0x0 Servo.o
- .text.lcd_set_4bit
-                0x00000000       0x8a Servo.o
- .text.lcd_wr_command
-                0x00000000       0x4a Servo.o
- .text.lcd_init
-                0x00000000       0x2a Servo.o
+ .text          0x00000000        0x0 CargoSorting.o
+ .data          0x00000000        0x0 CargoSorting.o
+ .bss           0x00000000        0x0 CargoSorting.o
  .text.lcd_wr_char
-                0x00000000       0x4a Servo.o
+                0x00000000       0x4a CargoSorting.o
  .text.lcd_home
-                0x00000000        0x8 Servo.o
+                0x00000000        0x8 CargoSorting.o
  .text.lcd_string
-                0x00000000       0x1e Servo.o
+                0x00000000       0x1e CargoSorting.o
  .text.lcd_cursor
-                0x00000000       0x3e Servo.o
+                0x00000000       0x3e CargoSorting.o
  .text.lcd_print
-                0x00000000      0x1f8 Servo.o
- .text.display_clear
-                0x00000000        0x8 Servo.o
- .text.servo1_off
-                0x00000000        0xa Servo.o
- .text.servo3_off
-                0x00000000        0xa Servo.o
- .text.servo_2  0x00000000       0x32 Servo.o
- .text.buzzer_on
-                0x00000000        0x8 Servo.o
- .text.buzzer_off
-                0x00000000        0x8 Servo.o
+                0x00000000      0x1f8 CargoSorting.o
+ .text.velocity
+                0x00000000        0xa CargoSorting.o
+ .text.back     0x00000000        0x8 CargoSorting.o
+ .text.print_sensor
+                0x00000000       0x28 CargoSorting.o
+ .text.servo_1  0x00000000       0x32 CargoSorting.o
+ .text.servo_2  0x00000000       0x32 CargoSorting.o
+ .text.servo_3  0x00000000       0x32 CargoSorting.o
+ .text.filter_clear
+                0x00000000        0x6 CargoSorting.o
+ .text.angle_rotate
+                0x00000000       0xa6 CargoSorting.o
+ .text.back_mm  0x00000000       0x16 CargoSorting.o
+ .text.left_degrees
+                0x00000000       0x16 CargoSorting.o
+ .text.right_degrees
+                0x00000000       0x16 CargoSorting.o
+ .text.soft_left_degrees
+                0x00000000       0x1a CargoSorting.o
+ .text.soft_right_degrees
+                0x00000000       0x1a CargoSorting.o
+ .text.soft_left_2_degrees
+                0x00000000       0x1a CargoSorting.o
+ .text.soft_right_2_degrees
+                0x00000000       0x1a CargoSorting.o
+ .text.kkkk     0x00000000      0x106 CargoSorting.o
+ .rodata.correct_v
+                0x00000000        0x2 CargoSorting.o
+ .rodata.line_v
+                0x00000000        0x2 CargoSorting.o
+ .rodata.turn_v
+                0x00000000        0x2 CargoSorting.o
+ .rodata.EMPTY  0x00000000        0x2 CargoSorting.o
+ .rodata.BLACK  0x00000000        0x2 CargoSorting.o
+ .rodata.BLUE   0x00000000        0x2 CargoSorting.o
+ .rodata.GREEN  0x00000000        0x2 CargoSorting.o
+ .rodata.RED    0x00000000        0x2 CargoSorting.o
  .text          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(addsf3.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(addsf3.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(addsf3.o)
+ .text.avr-libc.fplib
+                0x00000000        0xa c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(addsf3.o)
  .text          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(addsf3x.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(addsf3x.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(addsf3x.o)
+ .text.avr-libc.fplib
+                0x00000000       0xc0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(addsf3x.o)
  .text          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(divsf3.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(divsf3.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(divsf3.o)
@@ -200,7 +232,7 @@ Linker script and memory map
 
 Address of section .data set to 0x800200
 LOAD c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6/crtm2560.o
-LOAD Servo.o
+LOAD CargoSorting.o
 START GROUP
 LOAD c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a
 END GROUP
@@ -300,7 +332,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x71e
+.text           0x00000000      0xe4e
  *(.vectors)
  .vectors       0x00000000       0xe4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6/crtm2560.o
                 0x00000000                __vector_default
@@ -360,7 +392,6 @@ END GROUP
                 0x00000122                __vector_38
                 0x00000122                __vector_22
                 0x00000122                __vector_28
-                0x00000122                __vector_1
                 0x00000122                __vector_32
                 0x00000122                __vector_34
                 0x00000122                __vector_24
@@ -368,7 +399,6 @@ END GROUP
                 0x00000122                __vector_55
                 0x00000122                __vector_46
                 0x00000122                __bad_interrupt
-                0x00000122                __vector_6
                 0x00000122                __vector_31
                 0x00000122                __vector_35
                 0x00000122                __vector_39
@@ -388,7 +418,6 @@ END GROUP
                 0x00000122                __vector_41
                 0x00000122                __vector_43
                 0x00000122                __vector_27
-                0x00000122                __vector_5
                 0x00000122                __vector_33
                 0x00000122                __vector_47
                 0x00000122                __vector_52
@@ -416,100 +445,208 @@ END GROUP
                 0x00000122                __vector_42
                 0x00000124                . = ALIGN (0x2)
  *(.text.*)
+ .text.lcd_set_4bit
+                0x00000124       0x8a CargoSorting.o
+                0x00000124                lcd_set_4bit
+ .text.lcd_wr_command
+                0x000001ae       0x4a CargoSorting.o
+                0x000001ae                lcd_wr_command
+ .text.lcd_init
+                0x000001f8       0x22 CargoSorting.o
+                0x000001f8                lcd_init
+ .text.timer5_init
+                0x0000021a       0x36 CargoSorting.o
+                0x0000021a                timer5_init
+ .text.motion_pin_config
+                0x00000250       0x22 CargoSorting.o
+                0x00000250                motion_pin_config
+ .text.motion_set
+                0x00000272        0xc CargoSorting.o
+                0x00000272                motion_set
+ .text.forward  0x0000027e        0x6 CargoSorting.o
+                0x0000027e                forward
+ .text.left     0x00000284        0x6 CargoSorting.o
+                0x00000284                left
+ .text.right    0x0000028a        0x6 CargoSorting.o
+                0x0000028a                right
+ .text.soft_left
+                0x00000290        0x6 CargoSorting.o
+                0x00000290                soft_left
+ .text.soft_right
+                0x00000296        0x6 CargoSorting.o
+                0x00000296                soft_right
+ .text.soft_left_2
+                0x0000029c        0x6 CargoSorting.o
+                0x0000029c                soft_left_2
+ .text.soft_right_2
+                0x000002a2        0x6 CargoSorting.o
+                0x000002a2                soft_right_2
+ .text.stop     0x000002a8        0x6 CargoSorting.o
+                0x000002a8                stop
+ .text.lcd_port_config
+                0x000002ae        0xe CargoSorting.o
+                0x000002ae                lcd_port_config
+ .text.color_sensor_pin_config
+                0x000002bc        0xa CargoSorting.o
+                0x000002bc                color_sensor_pin_config
+ .text.adc_pin_config
+                0x000002c6        0xe CargoSorting.o
+                0x000002c6                adc_pin_config
  .text.servo1_pin_config
-                0x00000124        0x6 Servo.o
-                0x00000124                servo1_pin_config
+                0x000002d4        0x6 CargoSorting.o
+                0x000002d4                servo1_pin_config
  .text.servo2_pin_config
-                0x0000012a        0x6 Servo.o
-                0x0000012a                servo2_pin_config
+                0x000002da        0x6 CargoSorting.o
+                0x000002da                servo2_pin_config
  .text.servo3_pin_config
-                0x00000130        0x6 Servo.o
-                0x00000130                servo3_pin_config
- .text.port_init
-                0x00000136        0x8 Servo.o
-                0x00000136                port_init
+                0x000002e0        0x6 CargoSorting.o
+                0x000002e0                servo3_pin_config
  .text.timer1_init
-                0x0000013e       0x46 Servo.o
-                0x0000013e                timer1_init
+                0x000002e6       0x46 CargoSorting.o
+                0x000002e6                timer1_init
+ .text.port_init
+                0x0000032c       0x12 CargoSorting.o
+                0x0000032c                port_init
+ .text.buzzer_on
+                0x0000033e        0x8 CargoSorting.o
+                0x0000033e                buzzer_on
+ .text.buzzer_off
+                0x00000346        0x8 CargoSorting.o
+                0x00000346                buzzer_off
+ .text.ADC_Conversion
+                0x0000034e       0x36 CargoSorting.o
+                0x0000034e                ADC_Conversion
+ .text.color_sensor_pin_interrupt_init
+                0x00000384       0x12 CargoSorting.o
+                0x00000384                color_sensor_pin_interrupt_init
+ .text.__vector_1
+                0x00000396       0x4a CargoSorting.o
+                0x00000396                __vector_1
+ .text.adc_init
+                0x000003e0       0x1a CargoSorting.o
+                0x000003e0                adc_init
+ .text.filter_red
+                0x000003fa        0x6 CargoSorting.o
+                0x000003fa                filter_red
+ .text.filter_green
+                0x00000400        0x6 CargoSorting.o
+                0x00000400                filter_green
+ .text.filter_blue
+                0x00000406        0x6 CargoSorting.o
+                0x00000406                filter_blue
+ .text.color_sensor_scaling
+                0x0000040c        0x6 CargoSorting.o
+                0x0000040c                color_sensor_scaling
+ .text.red_read
+                0x00000412       0x58 CargoSorting.o
+                0x00000412                red_read
+ .text.green_read
+                0x0000046a       0x46 CargoSorting.o
+                0x0000046a                green_read
+ .text.blue_read
+                0x000004b0       0x46 CargoSorting.o
+                0x000004b0                blue_read
+ .text.left_encoder_pin_config
+                0x000004f6        0x6 CargoSorting.o
+                0x000004f6                left_encoder_pin_config
+ .text.right_encoder_pin_config
+                0x000004fc        0x6 CargoSorting.o
+                0x000004fc                right_encoder_pin_config
+ .text.port_init_poz
+                0x00000502        0x8 CargoSorting.o
+                0x00000502                port_init_poz
+ .text.left_position_encoder_interrupt_init
+                0x0000050a       0x12 CargoSorting.o
+                0x0000050a                left_position_encoder_interrupt_init
+ .text.right_position_encoder_interrupt_init
+                0x0000051c       0x12 CargoSorting.o
+                0x0000051c                right_position_encoder_interrupt_init
+ .text.__vector_6
+                0x0000052e       0x4a CargoSorting.o
+                0x0000052e                __vector_6
+ .text.__vector_5
+                0x00000578       0x4a CargoSorting.o
+                0x00000578                __vector_5
+ .text.linear_distance_mm
+                0x000005c2       0x4a CargoSorting.o
+                0x000005c2                linear_distance_mm
+ .text.forward_mm
+                0x0000060c       0x12 CargoSorting.o
+                0x0000060c                forward_mm
  .text.init_devices
-                0x00000184        0xe Servo.o
-                0x00000184                init_devices
- .text.servo_1  0x00000192       0x2a Servo.o
-                0x00000192                servo_1
- .text.servo_3  0x000001bc       0x2a Servo.o
-                0x000001bc                servo_3
- .text.servo_1_free
-                0x000001e6        0xe Servo.o
-                0x000001e6                servo_1_free
- .text.servo_2_free
-                0x000001f4        0xe Servo.o
-                0x000001f4                servo_2_free
- .text.servo_3_free
-                0x00000202        0xe Servo.o
-                0x00000202                servo_3_free
- .text.lower    0x00000210       0x1c Servo.o
-                0x00000210                lower
- .text.elevate  0x0000022c       0x2c Servo.o
-                0x0000022c                elevate
- .text.open     0x00000258       0x78 Servo.o
-                0x00000258                open
- .text.close    0x000002d0       0x6a Servo.o
-                0x000002d0                close
- .text.pick     0x0000033a       0x46 Servo.o
-                0x0000033a                pick
- .text.drop     0x00000380       0x46 Servo.o
-                0x00000380                drop
- .text.main     0x000003c6       0x46 Servo.o
-                0x000003c6                main
+                0x0000061e       0x18 CargoSorting.o
+                0x0000061e                init_devices
+ .text.set_color
+                0x00000636       0x1a CargoSorting.o
+                0x00000636                set_color
+ .text.turnLeft
+                0x00000650       0x14 CargoSorting.o
+                0x00000650                turnLeft
+ .text.Delay    0x00000664       0x4c CargoSorting.o
+                0x00000664                Delay
+ .text.semiCorrect_Indicator
+                0x000006b0       0x54 CargoSorting.o
+                0x000006b0                semiCorrect_Indicator
+ .text.correct  0x00000704       0x46 CargoSorting.o
+                0x00000704                correct
+ .text.initialCorrect_Indicator
+                0x0000074a       0x94 CargoSorting.o
+                0x0000074a                initialCorrect_Indicator
+ .text.followLine_Indicator
+                0x000007de       0x64 CargoSorting.o
+                0x000007de                followLine_Indicator
+ .text.scan     0x00000842      0x126 CargoSorting.o
+                0x00000842                scan
+ .text.setIndicator
+                0x00000968      0x264 CargoSorting.o
+                0x00000968                setIndicator
+ .text.__init__
+                0x00000bcc       0x34 CargoSorting.o
+                0x00000bcc                __init__
+ .text.main     0x00000c00        0x6 CargoSorting.o
+                0x00000c00                main
  .text.avr-libc.fplib
-                0x0000040c        0xa c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(addsf3.o)
-                0x0000040c                __subsf3
-                0x0000040e                __addsf3
+                0x00000c06        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(divsf3.o)
+                0x00000c06                __divsf3
  .text.avr-libc.fplib
-                0x00000416       0xc0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(addsf3x.o)
-                0x00000430                __addsf3x
+                0x00000c0a       0xcc c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(divsf3x.o)
+                0x00000c20                __divsf3x
+                0x00000c24                __divsf3_pse
  .text.avr-libc.fplib
-                0x000004d6        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(divsf3.o)
-                0x000004d6                __divsf3
+                0x00000cd6       0x58 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fixunssfsi.o)
+                0x00000cd6                __fixunssfsi
  .text.avr-libc.fplib
-                0x000004da       0xcc c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(divsf3x.o)
-                0x000004f0                __divsf3x
-                0x000004f4                __divsf3_pse
+                0x00000d2e       0x7a c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(floatsisf.o)
+                0x00000d2e                __floatunsisf
+                0x00000d32                __floatsisf
  .text.avr-libc.fplib
-                0x000005a6       0x58 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fixunssfsi.o)
-                0x000005a6                __fixunssfsi
+                0x00000da8        0xc c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_inf.o)
+                0x00000da8                __fp_inf
  .text.avr-libc.fplib
-                0x000005fe       0x7a c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(floatsisf.o)
-                0x000005fe                __floatunsisf
-                0x00000602                __floatsisf
+                0x00000db4        0x6 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_nan.o)
+                0x00000db4                __fp_nan
  .text.avr-libc.fplib
-                0x00000678        0xc c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_inf.o)
-                0x00000678                __fp_inf
+                0x00000dba        0xe c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_pscA.o)
+                0x00000dba                __fp_pscA
  .text.avr-libc.fplib
-                0x00000684        0x6 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_nan.o)
-                0x00000684                __fp_nan
+                0x00000dc8        0xe c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_pscB.o)
+                0x00000dc8                __fp_pscB
  .text.avr-libc.fplib
-                0x0000068a        0xe c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_pscA.o)
-                0x0000068a                __fp_pscA
+                0x00000dd6       0x22 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_round.o)
+                0x00000dd6                __fp_round
  .text.avr-libc.fplib
-                0x00000698        0xe c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_pscB.o)
-                0x00000698                __fp_pscB
+                0x00000df8       0x44 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_split3.o)
+                0x00000df8                __fp_split3
+                0x00000e08                __fp_splitA
  .text.avr-libc.fplib
-                0x000006a6       0x22 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_round.o)
-                0x000006a6                __fp_round
- .text.avr-libc.fplib
-                0x000006c8       0x44 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_split3.o)
-                0x000006c8                __fp_split3
-                0x000006d8                __fp_splitA
- .text.avr-libc.fplib
-                0x0000070c        0xe c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_zero.o)
-                0x0000070c                __fp_zero
-                0x0000070e                __fp_szero
-                0x0000071a                . = ALIGN (0x2)
+                0x00000e3c        0xe c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6\libm.a(fp_zero.o)
+                0x00000e3c                __fp_zero
+                0x00000e3e                __fp_szero
+                0x00000e4a                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x0000071a        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
-                0x0000071a                _exit
-                0x0000071a                exit
+ .fini9         0x00000e4a        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
+                0x00000e4a                _exit
+                0x00000e4a                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -528,47 +665,69 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x0000071a        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
+ .fini0         0x00000e4a        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
  *(.fini0)
-                0x0000071e                _etext = .
+                0x00000e4e                _etext = .
 
-.data           0x00800200        0x2 load address 0x0000071e
+.data           0x00800200        0x0 load address 0x00000e4e
                 0x00800200                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
- .data.cur_angle
-                0x00800200        0x2 Servo.o
-                0x00800200                cur_angle
  *(.rodata)
  *(.rodata*)
  *(.gnu.linkonce.d*)
-                0x00800202                . = ALIGN (0x2)
-                0x00800202                _edata = .
-                0x00800202                PROVIDE (__data_end, .)
+                0x00800200                . = ALIGN (0x2)
+                0x00800200                _edata = .
+                0x00800200                PROVIDE (__data_end, .)
 
-.bss            0x00800202        0xe
-                0x00800202                PROVIDE (__bss_start, .)
+.bss            0x00800200       0x36
+                0x00800200                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
+ .bss.Right_white_line
+                0x00800200        0x1 CargoSorting.o
+                0x00800200                Right_white_line
+ .bss.Center_white_line
+                0x00800201        0x1 CargoSorting.o
+                0x00800201                Center_white_line
+ .bss.Left_white_line
+                0x00800202        0x1 CargoSorting.o
+                0x00800202                Left_white_line
+ .bss.pulse     0x00800203        0x4 CargoSorting.o
+                0x00800203                pulse
+ .bss.ShaftCountRight
+                0x00800207        0x4 CargoSorting.o
+                0x00800207                ShaftCountRight
+ .bss.ShaftCountLeft
+                0x0080020b        0x4 CargoSorting.o
+                0x0080020b                ShaftCountLeft
  *(COMMON)
- COMMON         0x00800202        0xe Servo.o
-                0x00800202                million
-                0x00800204                temp
-                0x00800206                i
-                0x00800208                tens
-                0x0080020a                hundred
-                0x0080020c                unit
-                0x0080020e                thousand
-                0x00800210                PROVIDE (__bss_end, .)
-                0x0000071e                __data_load_start = LOADADDR (.data)
-                0x00000720                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x0080020f       0x27 CargoSorting.o
+                0x0080020f                threshold
+                0x00800211                blue
+                0x00800215                Degrees
+                0x00800217                million
+                0x00800219                temp
+                0x0080021b                green
+                0x0080021f                red
+                0x00800223                ADC_Value
+                0x00800224                ct
+                0x00800225                tens
+                0x00800227                indicator
+                0x0080022f                adj
+                0x00800230                hundred
+                0x00800232                unit
+                0x00800234                thousand
+                0x00800236                PROVIDE (__bss_end, .)
+                0x00000e4e                __data_load_start = LOADADDR (.data)
+                0x00000e4e                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800210        0x0
-                0x00800210                PROVIDE (__noinit_start, .)
+.noinit         0x00800236        0x0
+                0x00800236                PROVIDE (__noinit_start, .)
  *(.noinit*)
-                0x00800210                PROVIDE (__noinit_end, .)
-                0x00800210                _end = .
-                0x00800210                PROVIDE (__heap_start, .)
+                0x00800236                PROVIDE (__noinit_end, .)
+                0x00800236                _end = .
+                0x00800236                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
  *(.eeprom*)
@@ -609,7 +768,7 @@ END GROUP
 
 .comment        0x00000000       0x30
  *(.comment)
- .comment       0x00000000       0x30 Servo.o
+ .comment       0x00000000       0x30 CargoSorting.o
                                  0x31 (size before relaxing)
 
 .note.gnu.build-id
@@ -627,38 +786,38 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x118
+.debug_aranges  0x00000000      0x280
  *(.debug_aranges)
  .debug_aranges
-                0x00000000      0x118 Servo.o
+                0x00000000      0x280 CargoSorting.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000      0xf14
+.debug_info     0x00000000     0x21a2
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x00000000      0xf14 Servo.o
+ .debug_info    0x00000000     0x21a2 CargoSorting.o
 
-.debug_abbrev   0x00000000      0x259
+.debug_abbrev   0x00000000      0x438
  *(.debug_abbrev)
- .debug_abbrev  0x00000000      0x259 Servo.o
+ .debug_abbrev  0x00000000      0x438 CargoSorting.o
 
-.debug_line     0x00000000      0x92a
+.debug_line     0x00000000     0x152d
  *(.debug_line .debug_line.* .debug_line_end)
- .debug_line    0x00000000      0x92a Servo.o
+ .debug_line    0x00000000     0x152d CargoSorting.o
 
-.debug_frame    0x00000000      0x244
+.debug_frame    0x00000000      0x654
  *(.debug_frame)
- .debug_frame   0x00000000      0x244 Servo.o
+ .debug_frame   0x00000000      0x654 CargoSorting.o
 
-.debug_str      0x00000000      0x359
+.debug_str      0x00000000      0x71b
  *(.debug_str)
- .debug_str     0x00000000      0x359 Servo.o
-                                0x392 (size before relaxing)
+ .debug_str     0x00000000      0x71b CargoSorting.o
+                                0x78d (size before relaxing)
 
-.debug_loc      0x00000000      0x861
+.debug_loc      0x00000000     0x1319
  *(.debug_loc)
- .debug_loc     0x00000000      0x861 Servo.o
+ .debug_loc     0x00000000     0x1319 CargoSorting.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -678,11 +837,11 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000      0x108
+.debug_ranges   0x00000000      0x2e8
  *(.debug_ranges)
- .debug_ranges  0x00000000      0x108 Servo.o
+ .debug_ranges  0x00000000      0x2e8 CargoSorting.o
 
 .debug_macro
  *(.debug_macro)
-OUTPUT(Servo.elf elf32-avr)
+OUTPUT(CargoSorting.elf elf32-avr)
 LOAD linker stubs
