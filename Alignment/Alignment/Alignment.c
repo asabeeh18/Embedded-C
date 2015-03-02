@@ -149,7 +149,7 @@ void lower(unsigned char side)
 {
 if(side==1)
 {
-servo_2(40);
+servo_2(50);
 }
 else
 servo_2(120);
@@ -157,13 +157,23 @@ servo_2(120);
 void elevate()
 {
 servo_2(90);
+_delay_ms(600);
+servo_2_free();
 }
 void open(unsigned char side)
 {
 if (side == 0)
+{
 servo_3(0);
+_delay_ms(500);
+servo_3_free();
+}
 else
+{
 servo_1(0);
+_delay_ms(500);
+servo_1_free();
+}
 }
 void close(unsigned char side)
 {
@@ -179,13 +189,6 @@ servo_1(60);
 //whenever v find a blank space or box belonging to dat space total dec by 1;and whenever v place box in terminal sort++;
 /*--functions--*/
 
-
-void buzzer()
-{
-	buzzer_on();
-	_delay_ms(100);
-	buzzer_off();
-}
 void lcd(char *str)
 {
 	lcd_wr_command(0x01);
@@ -194,6 +197,14 @@ void lcd(char *str)
 	//buzzer();
 	_delay_ms(1000);
 }
+
+void buzzer()
+{
+	buzzer_on();
+	_delay_ms(100);
+	buzzer_off();
+}
+
 void front()
 {
 	forwardJaa();
@@ -431,7 +442,7 @@ void position(int armNo, int side)
 		{
 			if(dir==0 || dir==2)
 			{
-				back_mm(20);
+				back_mm(30);
 				flag=0;
 			}
 		}
@@ -1251,9 +1262,17 @@ int main()
 	servo_2(90);
 	servo_3(0);
 	forwardJaa();
-	pick(1);
-	_delay_ms(3000);
-	drop(0);
+	while(1)
+	{
+		
+		pick(1);
+		_delay_ms(1000);
+		drop(0);
+		_delay_ms(1000);
+		drop(1);
+		_delay_ms(1000);
+		pick(0);
+	}
 	while(1);
 	while (sorted<total)
 	{

@@ -163,6 +163,25 @@ void color_sensor_pin_config(void)
 	PORTD = PORTD | 0x01;//Enable internal pull-up for PORTD 0 pin
 }
 
+
+
+void servo_1_free (void) //makes servo 1 free rotating
+{
+	OCR1AH = 0x03;
+	OCR1AL = 0xFF; //Servo 1 off
+}
+
+void servo_2_free (void) //makes servo 2 free rotating
+{
+	OCR1BH = 0x03;
+	OCR1BL = 0xFF; //Servo 2 off
+}
+
+void servo_3_free (void) //makes servo 3 free rotating
+{
+	OCR1CH = 0x03;
+	OCR1CL = 0xFF; //Servo 3 off
+}
 //ADC pin configuration
 void adc_pin_config (void)
 {
