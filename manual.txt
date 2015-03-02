@@ -49,3 +49,8 @@ PF0/ADC0 ADC input for Battery Voltage Monitoring
 84 PK5/ADC13 ADC input for Sharp IR range sensor 5
 83 PK6/ADC14 ADC input for Servo Pod 1
 82 PK7/ADC15 ADC input for Servo Pod 2
+
+
+
+
+servo between 50~55 to 90~100

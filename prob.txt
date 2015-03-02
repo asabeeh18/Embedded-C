@@ -1,0 +1,26 @@
+position fixing for blackline
+	colorsense,turn,back
+		setup flags for prev turns
+			move in opp direction of last turn tAKEN(assuming turn talen is usually more than req)
+				till everythin is OK //before moving back;
+				OR
+				shrp sensor has a box in front...or centre white>40
+***Critical FIxing*****
+	goes to correct when 3 ocnditions not satisfied
+		correct returns on centrewhite>40
+			loop goes on
+
+			
+	
+	
+	
+TUrning Properly
+	on node with boxes
+		sharp sensor with variable
+	for swap
+		turn extra with variable then move back
+		
+	|||same logic|||
+			
+color sensing 
+	

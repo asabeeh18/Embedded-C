@@ -3,25 +3,25 @@ ServoSlow.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         0000036c  00000000  00000000  00000054  2**1
+  0 .text         00000364  00000000  00000000  00000054  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .comment      00000030  00000000  00000000  000003c0  2**0
+  1 .comment      00000030  00000000  00000000  000003b8  2**0
                   CONTENTS, READONLY
-  2 .debug_aranges 00000110  00000000  00000000  000003f0  2**0
+  2 .debug_aranges 00000110  00000000  00000000  000003e8  2**0
                   CONTENTS, READONLY, DEBUGGING
-  3 .debug_info   0000100b  00000000  00000000  00000500  2**0
+  3 .debug_info   00000fc5  00000000  00000000  000004f8  2**0
                   CONTENTS, READONLY, DEBUGGING
-  4 .debug_abbrev 0000021d  00000000  00000000  0000150b  2**0
+  4 .debug_abbrev 0000021d  00000000  00000000  000014bd  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_line   000008f4  00000000  00000000  00001728  2**0
+  5 .debug_line   000008e4  00000000  00000000  000016da  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_frame  00000234  00000000  00000000  0000201c  2**2
+  6 .debug_frame  00000234  00000000  00000000  00001fc0  2**2
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_str    00000357  00000000  00000000  00002250  2**0
+  7 .debug_str    00000357  00000000  00000000  000021f4  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_loc    000007e8  00000000  00000000  000025a7  2**0
+  8 .debug_loc    000007e8  00000000  00000000  0000254b  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_ranges 00000100  00000000  00000000  00002d8f  2**0
+  9 .debug_ranges 00000100  00000000  00000000  00002d33  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -156,7 +156,7 @@ Disassembly of section .text:
   f4:	12 e0       	ldi	r17, 0x02	; 2
   f6:	a0 e0       	ldi	r26, 0x00	; 0
   f8:	b2 e0       	ldi	r27, 0x02	; 2
-  fa:	ec e6       	ldi	r30, 0x6C	; 108
+  fa:	e4 e6       	ldi	r30, 0x64	; 100
   fc:	f3 e0       	ldi	r31, 0x03	; 3
   fe:	00 e0       	ldi	r16, 0x00	; 0
  100:	0b bf       	out	0x3b, r16	; 59
@@ -181,7 +181,7 @@ Disassembly of section .text:
  11a:	b2 07       	cpc	r27, r18
  11c:	e1 f7       	brne	.-8      	; 0x116 <.do_clear_bss_loop>
  11e:	e4 d0       	rcall	.+456    	; 0x2e8 <main>
- 120:	23 c1       	rjmp	.+582    	; 0x368 <_exit>
+ 120:	1f c1       	rjmp	.+574    	; 0x360 <_exit>
 
 00000122 <__bad_interrupt>:
  122:	6e cf       	rjmp	.-292    	; 0x0 <__vectors>
@@ -272,7 +272,7 @@ void buzzer_off (void)
  1bc:	81 30       	cpi	r24, 0x01	; 1
  1be:	31 f4       	brne	.+12     	; 0x1cc <lower+0x10>
  1c0:	10 92 8b 00 	sts	0x008B, r1
- 1c4:	8d e3       	ldi	r24, 0x3D	; 61
+ 1c4:	80 e4       	ldi	r24, 0x40	; 64
  1c6:	80 93 8a 00 	sts	0x008A, r24
  1ca:	08 95       	ret
  1cc:	10 92 8b 00 	sts	0x008B, r1
@@ -332,13 +332,13 @@ void buzzer_off (void)
  23c:	81 11       	cpse	r24, r1
  23e:	06 c0       	rjmp	.+12     	; 0x24c <close+0x10>
  240:	10 92 8d 00 	sts	0x008D, r1
- 244:	88 e3       	ldi	r24, 0x38	; 56
+ 244:	88 e4       	ldi	r24, 0x48	; 72
  246:	80 93 8c 00 	sts	0x008C, r24
  24a:	08 95       	ret
  24c:	81 30       	cpi	r24, 0x01	; 1
  24e:	29 f4       	brne	.+10     	; 0x25a <close+0x1e>
  250:	10 92 89 00 	sts	0x0089, r1
- 254:	83 e4       	ldi	r24, 0x43	; 67
+ 254:	88 e4       	ldi	r24, 0x48	; 72
  256:	80 93 88 00 	sts	0x0088, r24
  25a:	08 95       	ret
 
@@ -424,105 +424,92 @@ void buzzer_off (void)
 	unsigned char i = 0;
 	init_devices();
  2e8:	4d df       	rcall	.-358    	; 0x184 <init_devices>
-//Function to rotate Servo 3 by a specified angle in the multiples of 1.86 degrees
-void servo_3(unsigned char degrees)
-{
- float PositionServo = 0;
- PositionServo = ((float)degrees / 1.86) + 35.0;
- OCR1CH = 0x00;
- 2ea:	10 92 8d 00 	sts	0x008D, r1
- OCR1CL = (unsigned char) PositionServo;
- 2ee:	83 e2       	ldi	r24, 0x23	; 35
- 2f0:	80 93 8c 00 	sts	0x008C, r24
-//Function to rotate Servo 2 by a specified angle in the multiples of 1.86 degrees
-void servo_2(unsigned char degrees)
-{
- float PositionTiltServo = 0;
- PositionTiltServo = ((float)degrees / 1.86) + 35.0;
- OCR1BH = 0x00;
- 2f4:	10 92 8b 00 	sts	0x008B, r1
- OCR1BL = (unsigned char) PositionTiltServo;
- 2f8:	93 e5       	ldi	r25, 0x53	; 83
- 2fa:	90 93 8a 00 	sts	0x008A, r25
-//Function to rotate Servo 1 by a specified angle in the multiples of 1.86 degrees
-void servo_1(unsigned char degrees)  
-{
- float PositionPanServo = 0;
-  PositionPanServo = ((float)degrees / 1.86) + 35.0;
- OCR1AH = 0x00;
- 2fe:	10 92 89 00 	sts	0x0089, r1
- OCR1AL = (unsigned char) PositionPanServo;
- 302:	80 93 88 00 	sts	0x0088, r24
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
- 306:	2f ef       	ldi	r18, 0xFF	; 255
- 308:	8f ef       	ldi	r24, 0xFF	; 255
- 30a:	99 e5       	ldi	r25, 0x59	; 89
- 30c:	21 50       	subi	r18, 0x01	; 1
- 30e:	80 40       	sbci	r24, 0x00	; 0
- 310:	90 40       	sbci	r25, 0x00	; 0
- 312:	e1 f7       	brne	.-8      	; 0x30c <main+0x24>
- 314:	00 c0       	rjmp	.+0      	; 0x316 <main+0x2e>
- 316:	00 00       	nop
-	servo_2(90);
-	servo_1(0);
+ 2ea:	2f ef       	ldi	r18, 0xFF	; 255
+ 2ec:	8f ef       	ldi	r24, 0xFF	; 255
+ 2ee:	99 e5       	ldi	r25, 0x59	; 89
+ 2f0:	21 50       	subi	r18, 0x01	; 1
+ 2f2:	80 40       	sbci	r24, 0x00	; 0
+ 2f4:	90 40       	sbci	r25, 0x00	; 0
+ 2f6:	e1 f7       	brne	.-8      	; 0x2f0 <main+0x8>
+ 2f8:	00 c0       	rjmp	.+0      	; 0x2fa <main+0x12>
+ 2fa:	00 00       	nop
+	servo_3(70);
+
+	while(1);
+	*///servo_1(0);
+	_delay_ms(2000);
+	servo_2_free();
+ 2fc:	51 df       	rcall	.-350    	; 0x1a0 <servo_2_free>
+ 2fe:	2f ef       	ldi	r18, 0xFF	; 255
+ 300:	8f ef       	ldi	r24, 0xFF	; 255
+ 302:	99 e5       	ldi	r25, 0x59	; 89
+ 304:	21 50       	subi	r18, 0x01	; 1
+ 306:	80 40       	sbci	r24, 0x00	; 0
+ 308:	90 40       	sbci	r25, 0x00	; 0
+ 30a:	e1 f7       	brne	.-8      	; 0x304 <main+0x1c>
+ 30c:	00 c0       	rjmp	.+0      	; 0x30e <main+0x26>
+ 30e:	00 00       	nop
+	//servo_1(95);
+	
 	while(1)
 	{
 		_delay_ms(2000);
 		pick(1);
- 318:	81 e0       	ldi	r24, 0x01	; 1
- 31a:	90 e0       	ldi	r25, 0x00	; 0
- 31c:	9f df       	rcall	.-194    	; 0x25c <pick>
- 31e:	2f ef       	ldi	r18, 0xFF	; 255
- 320:	8f ef       	ldi	r24, 0xFF	; 255
- 322:	99 e5       	ldi	r25, 0x59	; 89
- 324:	21 50       	subi	r18, 0x01	; 1
- 326:	80 40       	sbci	r24, 0x00	; 0
- 328:	90 40       	sbci	r25, 0x00	; 0
- 32a:	e1 f7       	brne	.-8      	; 0x324 <main+0x3c>
- 32c:	00 c0       	rjmp	.+0      	; 0x32e <main+0x46>
- 32e:	00 00       	nop
+ 310:	81 e0       	ldi	r24, 0x01	; 1
+ 312:	90 e0       	ldi	r25, 0x00	; 0
+ 314:	a3 df       	rcall	.-186    	; 0x25c <pick>
+ 316:	2f ef       	ldi	r18, 0xFF	; 255
+ 318:	8f ef       	ldi	r24, 0xFF	; 255
+ 31a:	99 e5       	ldi	r25, 0x59	; 89
+ 31c:	21 50       	subi	r18, 0x01	; 1
+ 31e:	80 40       	sbci	r24, 0x00	; 0
+ 320:	90 40       	sbci	r25, 0x00	; 0
+ 322:	e1 f7       	brne	.-8      	; 0x31c <main+0x34>
+ 324:	00 c0       	rjmp	.+0      	; 0x326 <main+0x3e>
+ 326:	00 00       	nop
 		_delay_ms(2000);
 		drop(1);
- 330:	81 e0       	ldi	r24, 0x01	; 1
- 332:	90 e0       	ldi	r25, 0x00	; 0
- 334:	b6 df       	rcall	.-148    	; 0x2a2 <drop>
- 336:	2f ef       	ldi	r18, 0xFF	; 255
- 338:	8f ef       	ldi	r24, 0xFF	; 255
- 33a:	99 e5       	ldi	r25, 0x59	; 89
- 33c:	21 50       	subi	r18, 0x01	; 1
- 33e:	80 40       	sbci	r24, 0x00	; 0
- 340:	90 40       	sbci	r25, 0x00	; 0
- 342:	e1 f7       	brne	.-8      	; 0x33c <main+0x54>
- 344:	00 c0       	rjmp	.+0      	; 0x346 <main+0x5e>
- 346:	00 00       	nop
+ 328:	81 e0       	ldi	r24, 0x01	; 1
+ 32a:	90 e0       	ldi	r25, 0x00	; 0
+ 32c:	ba df       	rcall	.-140    	; 0x2a2 <drop>
+ 32e:	2f ef       	ldi	r18, 0xFF	; 255
+ 330:	8f ef       	ldi	r24, 0xFF	; 255
+ 332:	99 e5       	ldi	r25, 0x59	; 89
+ 334:	21 50       	subi	r18, 0x01	; 1
+ 336:	80 40       	sbci	r24, 0x00	; 0
+ 338:	90 40       	sbci	r25, 0x00	; 0
+ 33a:	e1 f7       	brne	.-8      	; 0x334 <main+0x4c>
+ 33c:	00 c0       	rjmp	.+0      	; 0x33e <main+0x56>
+ 33e:	00 00       	nop
 		_delay_ms(2000);
 		pick(0);
- 348:	80 e0       	ldi	r24, 0x00	; 0
- 34a:	90 e0       	ldi	r25, 0x00	; 0
- 34c:	87 df       	rcall	.-242    	; 0x25c <pick>
- 34e:	2f ef       	ldi	r18, 0xFF	; 255
- 350:	8f ef       	ldi	r24, 0xFF	; 255
- 352:	99 e5       	ldi	r25, 0x59	; 89
- 354:	21 50       	subi	r18, 0x01	; 1
- 356:	80 40       	sbci	r24, 0x00	; 0
- 358:	90 40       	sbci	r25, 0x00	; 0
- 35a:	e1 f7       	brne	.-8      	; 0x354 <main+0x6c>
- 35c:	00 c0       	rjmp	.+0      	; 0x35e <main+0x76>
- 35e:	00 00       	nop
+ 340:	80 e0       	ldi	r24, 0x00	; 0
+ 342:	90 e0       	ldi	r25, 0x00	; 0
+ 344:	8b df       	rcall	.-234    	; 0x25c <pick>
+ 346:	2f ef       	ldi	r18, 0xFF	; 255
+ 348:	8f ef       	ldi	r24, 0xFF	; 255
+ 34a:	99 e5       	ldi	r25, 0x59	; 89
+ 34c:	21 50       	subi	r18, 0x01	; 1
+ 34e:	80 40       	sbci	r24, 0x00	; 0
+ 350:	90 40       	sbci	r25, 0x00	; 0
+ 352:	e1 f7       	brne	.-8      	; 0x34c <main+0x64>
+ 354:	00 c0       	rjmp	.+0      	; 0x356 <main+0x6e>
+ 356:	00 00       	nop
 		_delay_ms(2000);
 		drop(0);
- 360:	80 e0       	ldi	r24, 0x00	; 0
- 362:	90 e0       	ldi	r25, 0x00	; 0
- 364:	9e df       	rcall	.-196    	; 0x2a2 <drop>
- 366:	cf cf       	rjmp	.-98     	; 0x306 <main+0x1e>
+ 358:	80 e0       	ldi	r24, 0x00	; 0
+ 35a:	90 e0       	ldi	r25, 0x00	; 0
+ 35c:	a2 df       	rcall	.-188    	; 0x2a2 <drop>
+ 35e:	cf cf       	rjmp	.-98     	; 0x2fe <main+0x16>
 
-00000368 <_exit>:
- 368:	f8 94       	cli
+00000360 <_exit>:
+ 360:	f8 94       	cli
 
-0000036a <__stop_program>:
- 36a:	ff cf       	rjmp	.-2      	; 0x36a <__stop_program>
+00000362 <__stop_program>:
+ 362:	ff cf       	rjmp	.-2      	; 0x362 <__stop_program>

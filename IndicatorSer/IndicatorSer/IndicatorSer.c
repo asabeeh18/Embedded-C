@@ -1274,8 +1274,8 @@ int main()
 	_delay_ms(700);
 	while(ADC_Conversion(3)<40);
 	stop();
-	indicator[3]=scan();
-	for(i=0;i<indicator[3];i++)
+	color[3]=scan();
+	for(i=0;i<color[3];i++)
 	{
 		buzzer_on();
 		_delay_ms(100);
@@ -1294,8 +1294,8 @@ int main()
 	_delay_ms(500);
 	while(ADC_Conversion(2)<40);
 	stop();
-	indicator[2]=scan();
-	for(i=0;i<indicator[2];i++)
+	color[2]=scan();
+	for(i=0;i<color[2];i++)
 	{
 		buzzer_on();
 		_delay_ms(100);
@@ -1319,8 +1319,8 @@ int main()
 	_delay_ms(500);
 	while(ADC_Conversion(3)<40);
 	stop();
-	indicator[1]=scan();
-	for(i=0;i<indicator[1];i++)
+	color[1]=scan();
+	for(i=0;i<color[1];i++)
 	{
 		buzzer_on();
 		_delay_ms(100);
@@ -1339,8 +1339,8 @@ int main()
 	_delay_ms(500);
 	while(ADC_Conversion(2)<40);
 	stop();
-	indicator[0]=scan();
-	for(i=0;i<indicator[0];i++)
+	color[0]=scan();
+	for(i=0;i<color[0];i++)
 	{
 		buzzer_on();
 		_delay_ms(100);
@@ -1353,10 +1353,10 @@ int main()
 	while(ADC_Conversion(2)<40);
 	stop();
 	
-	lcd_print(1,1,indicator[0],1);
-	lcd_print(1,3,indicator[1],1);
-	lcd_print(1,5,indicator[2],1);
-	lcd_print(1,7,indicator[3],1);
+	lcd_print(1,1,color[0],1);
+	lcd_print(1,3,color[1],1);
+	lcd_print(1,5,color[2],1);
+	lcd_print(1,7,color[3],1);
 	
 	forwardJaa();
 	turnLeft();

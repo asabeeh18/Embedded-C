@@ -1,0 +1,3 @@
+tighter gripper
+
+can afford less turns but not more(SHARP sensor will kill U)

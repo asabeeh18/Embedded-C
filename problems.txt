@@ -1,0 +1,42 @@
+
+use back wala left while fixing
+left motor PROBABLY faulty (or that maybe becaz of less charging)
+possible algos
+
+for left or rigth black 
+	simple move left or right //for some reason it doesnt work
+	
+for all white
+		at lower velocity
+	parse right  little 
+	OR then 
+		left 
+			while any is black
+				then give to fix
+				--x-faults...angular boosters which makes bot waay off track
+for all black
+	node detected
+for 2 black
+	move little towards little black indicaotr
+		if all black 
+			node found
+		else move
+		
+		
+solutions
+angular boosters whicih makes bot waay off track
+	before coming to real velocity 
+		fix till black>40 and left & right<40
+		
+
+for all white
+		at lower velocity
+	parse right  little 
+	OR then 
+		left 
+		
+	use variables,delays,angular shift(>.<)
+		
+	if one side fails do the other side for the same amount
+		keep increasing search radius in small increments
+		

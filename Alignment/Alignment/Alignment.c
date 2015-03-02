@@ -147,12 +147,12 @@ int calcThresh()
 **************************************************/
 void lower(unsigned char side)
 {
-if(side==1)
-{
-servo_2(50);
-}
-else
-servo_2(120);
+	if(side==1)
+	{
+	servo_2(60);
+	}
+	else
+	servo_2(120);
 }
 void elevate()
 {
@@ -177,10 +177,10 @@ servo_1_free();
 }
 void close(unsigned char side)
 {
-if (side == 0)
-servo_3(40);
-else if (side == 1)
-servo_1(60);
+	if (side == 0)
+		servo_3(50);
+	else if (side == 1)
+		servo_1(60);
 }
 
 /**************************************************
@@ -251,8 +251,10 @@ int scan()//return the color no.
 	green_read();
 	_delay_ms(100);
 	if(!(ADC_Conversion(11)>55 && ADC_Conversion(11)<100))
+	{
+		buzzer();
 		return EMPTY;
-	
+	}
 	if (red<threshold && green < threshold && blue < threshold)
 	{
 			return BLACK;
@@ -298,7 +300,7 @@ void terminalCheck1()
 	lcd_wr_command(0x01);
 	lcd_print(1,1,888,3);
 	velocity(turn_v,turn_v);
-	forward_mm(20);
+//	forward_mm(20);
 	flag = 1;
 	if (ct != ot)
 	{
@@ -319,7 +321,7 @@ void terminalCheck1()
 	
 	dir=(dir+1)%4;
 	//lcd_print(1,1,dir,1);
-	while (ADC_Conversion(2)<40)	//earlier 3
+	while (ADC_Conversion(3)<50)	//earlier 3
 		right();
 	//_delay_ms(140);
 	stop();
@@ -340,7 +342,7 @@ void terminalCheck1()
 void terminalCheck2()
 {
 	velocity(turn_v,turn_v);
-	if (flag == 0)
+	/*if (flag == 0)
 	{
 		if (dir == 0)
 			if (ot == 0 || ot == 1)
@@ -350,15 +352,15 @@ void terminalCheck2()
 			back_mm(30);
 		else forward_mm(30);
 		flag = 1;
-	}
+	}*/
 
 	if (((ct == 0 || ct == 1) && dir == 0) || ((ct == 2 || ct == 3) && dir == 2))
 	{
 		left_degrees(30);
 		velocity(turn_v, turn_v);
-		while (ADC_Conversion(2)<50)
+		while (ADC_Conversion(1)<50)
 		left();
-		//	_delay_ms(100);
+		//_delay_ms(100);
 		stop();
 		dir=(dir+3)%4;
 	}
@@ -366,18 +368,18 @@ void terminalCheck2()
 		{
 			right_degrees(30);
 			velocity(turn_v, turn_v);
-			while (ADC_Conversion(2)<50)
+			while (ADC_Conversion(1)<50)
 				right();
-			//	_delay_ms(100);
+			//_delay_ms(100);
 			stop();	
 			dir=(dir+1)%4;
 		}
 	else {
 		left_degrees(150);
 		velocity(turn_v, turn_v);
-		while (ADC_Conversion(2)<50)
+		while (ADC_Conversion(1)<50)
 		left();
-	//	_delay_ms(50);
+		//_delay_ms(50);
 		stop();
 		dir=(dir+2)%4;
 		lcd((char *)dir);
@@ -416,6 +418,7 @@ void pick(int side)
 
 void position(int armNo, int side)
 {
+	int a;
 	if (ct == ot)
 	{
 		if (((ct == 0 || ct == 1) && dir == 0) || ((ct == 2 || ct == 3) && dir == 2))
@@ -437,15 +440,12 @@ void position(int armNo, int side)
 		else	if (((ct == 0 || ct == 1) && dir == 3) || ((ct == 2 || ct == 3) && dir == 1))
 					if (armNo == side)
 						turnRight();
-					else turnLeft();
-		if(flag==1)
+	
+		if((dir==0 && (ct==2 || ct==3)) || (dir==2 && (ct==0 || ct==1)))
 		{
-			if(dir==0 || dir==2)
-			{
-				back_mm(30);
-				flag=0;
-			}
+			back_mm(75);
 		}
+		
 	}
 	else
 	{
@@ -678,7 +678,10 @@ void canDrop()
 	else
 	{
 		if (visited[ct] == 0)
+		{
 			terminalCheck1();
+			terminalCheck2();
+		}
 		if (armCount == 0)
 		{
 			if (arm[arm0] == color[ct])
@@ -908,7 +911,7 @@ void node()
 	//buzzer();
 	lcd_print(1,1,1,1);
 	velocity(turn_v,turn_v);
-	forward_mm(40);
+	forward_mm(50);
 	stop();
 }
 /*************************GULLA CODE**Blackline Forward***********/
@@ -1040,7 +1043,7 @@ char correct()
 	stop();
 	return 0;
 }
-char noNatak()
+int noNatak()
 {
 	int flag=0;
 	//buzzer_on();
@@ -1163,7 +1166,6 @@ void turnRight()	//turns the robo right
 		
 		while (ADC_Conversion(2)<50)
 			right();
-		_delay_ms(100);
 		stop();	
 	}
 	lcd("Right turn");
@@ -1187,7 +1189,6 @@ void turnLeft()	//turns the robo left
 		velocity(turn_v,turn_v);
 		while (ADC_Conversion(2)<50)
 			left();
-		_delay_ms(100);
 		stop();
 	}
 	lcd("Left turn");
@@ -1225,7 +1226,7 @@ void turn()	//turn robo by 180 degree
 	{
 		velocity(turn_v, turn_v);
 		left_degrees(150);
-		while (ADC_Conversion(2)<50)
+		while (ADC_Conversion(2)<60)
 			left();
 		stop();
 	}
@@ -1262,7 +1263,7 @@ int main()
 	servo_2(90);
 	servo_3(0);
 	forwardJaa();
-	while(1)
+	/*while(1)
 	{
 		
 		pick(1);
@@ -1273,7 +1274,7 @@ int main()
 		_delay_ms(1000);
 		pick(0);
 	}
-	while(1);
+	while(1);*/
 	while (sorted<total)
 	{
 		canDrop();

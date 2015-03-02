@@ -1,3 +1,4 @@
+#define F_CPU 14745600
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <util/delay.h>
@@ -134,7 +135,7 @@ void lower(unsigned char side)
 {
 	if(side==1)
 	{
-		servo_2(50);
+		servo_2(55);
 	}
 	else
 		servo_2(120);
@@ -163,9 +164,9 @@ void open(unsigned char side)
 void close(unsigned char side)
 {
 	if (side == 0)
-		servo_3(40);
+		servo_3(70);
 	else if (side == 1)
-		servo_1(60);
+		servo_1(70);
 }
 void pick(int side)
 {
@@ -210,9 +211,21 @@ int main(void)
 	//servo 1 60 close
 	unsigned char i = 0;
 	init_devices();
+	/*servo_1(0);
+	swrvo_2(90);
 	servo_3(0);
-	servo_2(90);
-	servo_1(0);
+
+	_delay_ms(1000);
+	servo_1(70);
+	servo_3(70);
+
+	while(1);
+	*///servo_1(0);
+	_delay_ms(2000);
+	servo_2_free();
+	//servo_1(95);
+	//servo_1(95);
+	
 	while(1)
 	{
 		_delay_ms(2000);
