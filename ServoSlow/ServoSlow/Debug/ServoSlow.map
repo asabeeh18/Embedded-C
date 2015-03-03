@@ -75,6 +75,12 @@ Discarded input sections
  .text.servo_1  0x00000000       0x32 ServoSlow.o
  .text.servo_2  0x00000000       0x32 ServoSlow.o
  .text.servo_3  0x00000000       0x32 ServoSlow.o
+ .text.servo_1_free
+                0x00000000        0xe ServoSlow.o
+ .text.servo_2_free
+                0x00000000        0xe ServoSlow.o
+ .text.servo_3_free
+                0x00000000        0xe ServoSlow.o
  .text.buzzer_on
                 0x00000000        0x8 ServoSlow.o
  .text.buzzer_off
@@ -328,7 +334,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x364
+.text           0x00000000      0x332
  *(.vectors)
  .vectors       0x00000000       0xe4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr6/crtm2560.o
                 0x00000000                __vector_default
@@ -462,34 +468,25 @@ END GROUP
  .text.init_devices
                 0x00000184        0xe ServoSlow.o
                 0x00000184                init_devices
- .text.servo_1_free
-                0x00000192        0xe ServoSlow.o
-                0x00000192                servo_1_free
- .text.servo_2_free
-                0x000001a0        0xe ServoSlow.o
-                0x000001a0                servo_2_free
- .text.servo_3_free
-                0x000001ae        0xe ServoSlow.o
-                0x000001ae                servo_3_free
- .text.lower    0x000001bc       0x1c ServoSlow.o
-                0x000001bc                lower
- .text.elevate  0x000001d8       0x20 ServoSlow.o
-                0x000001d8                elevate
- .text.open     0x000001f8       0x44 ServoSlow.o
-                0x000001f8                open
- .text.close    0x0000023c       0x20 ServoSlow.o
-                0x0000023c                close
- .text.pick     0x0000025c       0x46 ServoSlow.o
-                0x0000025c                pick
- .text.drop     0x000002a2       0x46 ServoSlow.o
-                0x000002a2                drop
- .text.main     0x000002e8       0x78 ServoSlow.o
-                0x000002e8                main
-                0x00000360                . = ALIGN (0x2)
+ .text.lower    0x00000192       0x2e ServoSlow.o
+                0x00000192                lower
+ .text.elevate  0x000001c0       0x1e ServoSlow.o
+                0x000001c0                elevate
+ .text.open     0x000001de       0x2e ServoSlow.o
+                0x000001de                open
+ .text.close    0x0000020c       0x32 ServoSlow.o
+                0x0000020c                close
+ .text.pick     0x0000023e       0x46 ServoSlow.o
+                0x0000023e                pick
+ .text.drop     0x00000284       0x46 ServoSlow.o
+                0x00000284                drop
+ .text.main     0x000002ca       0x64 ServoSlow.o
+                0x000002ca                main
+                0x0000032e                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000360        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
-                0x00000360                _exit
-                0x00000360                exit
+ .fini9         0x0000032e        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
+                0x0000032e                _exit
+                0x0000032e                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -508,11 +505,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000360        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
+ .fini0         0x0000032e        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr6\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000364                _etext = .
+                0x00000332                _etext = .
 
-.data           0x00800200        0x0 load address 0x00000364
+.data           0x00800200        0x0 load address 0x00000332
                 0x00800200                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -529,8 +526,8 @@ END GROUP
  *(.bss*)
  *(COMMON)
                 0x00800200                PROVIDE (__bss_end, .)
-                0x00000364                __data_load_start = LOADADDR (.data)
-                0x00000364                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00000332                __data_load_start = LOADADDR (.data)
+                0x00000332                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x00800200        0x0
                 0x00800200                PROVIDE (__noinit_start, .)
@@ -604,17 +601,17 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000      0xfc5
+.debug_info     0x00000000      0xf9f
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x00000000      0xfc5 ServoSlow.o
+ .debug_info    0x00000000      0xf9f ServoSlow.o
 
 .debug_abbrev   0x00000000      0x21d
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x21d ServoSlow.o
 
-.debug_line     0x00000000      0x8e4
+.debug_line     0x00000000      0x8c4
  *(.debug_line .debug_line.* .debug_line_end)
- .debug_line    0x00000000      0x8e4 ServoSlow.o
+ .debug_line    0x00000000      0x8c4 ServoSlow.o
 
 .debug_frame    0x00000000      0x234
  *(.debug_frame)
@@ -625,9 +622,9 @@ END GROUP
  .debug_str     0x00000000      0x357 ServoSlow.o
                                 0x390 (size before relaxing)
 
-.debug_loc      0x00000000      0x7e8
+.debug_loc      0x00000000      0x7fa
  *(.debug_loc)
- .debug_loc     0x00000000      0x7e8 ServoSlow.o
+ .debug_loc     0x00000000      0x7fa ServoSlow.o
 
 .debug_macinfo
  *(.debug_macinfo)

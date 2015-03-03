@@ -139,41 +139,44 @@ void lower(unsigned char side)
 	}
 	else
 		servo_2(120);
+	_delay_ms(500);
 }
 void elevate()
 {
 	servo_2(90);
 	_delay_ms(600);
-	servo_2_free();
+//	servo_2_free();
 }
 void open(unsigned char side)
 {
 	if (side == 0)
 	{
-		servo_3(0);
-		_delay_ms(500);
-		servo_3_free();
+		servo_3(90);
+		//_delay_ms(500);
+		//servo_3_free();
 	}
 	else
 	{
-		servo_1(0);
-		_delay_ms(500);
-		servo_1_free();
+		servo_1(90);
+		//_delay_ms(500);
+		//servo_1_free();
 	}
+	_delay_ms(500);
 }
 void close(unsigned char side)
 {
 	if (side == 0)
-		servo_3(70);
+		servo_3(0);
 	else if (side == 1)
-		servo_1(70);
+		servo_1(0);
+	_delay_ms(400);
 }
 void pick(int side)
 {
 	lower(side);
 	_delay_ms(1000);
 	close(side);
-	_delay_ms(3000);
+	_delay_ms(1000);
 	elevate();//mid
 	_delay_ms(1000);
 }
@@ -183,7 +186,7 @@ void drop(int side)
 	lower(side);//lower
 	_delay_ms(1000);
 	open(side);
-	_delay_ms(3000);
+	_delay_ms(1000);
 	elevate();//mid
 	_delay_ms(1000);
 }
@@ -221,13 +224,23 @@ int main(void)
 
 	while(1);
 	*///servo_1(0);
-	_delay_ms(2000);
-	servo_2_free();
+	//_delay_ms(2000);
 	//servo_1(95);
 	//servo_1(95);
-	
+// 	open(0);
+// 	open(1);
+// 	buzzer_on();
+// 	_delay_ms(2000);
+// 	buzzer_off();
+// 	close(0);
+// 	close(1);
 	while(1)
 	{
+// 		_delay_ms(1000);
+// 		servo_1(90);
+// 		_delay_ms(1000);
+// 		servo_1(0);
+		
 		_delay_ms(2000);
 		pick(1);
 		_delay_ms(2000);
