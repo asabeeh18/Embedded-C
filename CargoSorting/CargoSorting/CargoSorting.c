@@ -190,7 +190,7 @@ void turnLeft()	//turns the robo left
 		velocity(turn_v,turn_v);
 		while (ADC_Conversion(2)<50)
 			left();
-		_delay_ms(200);
+		//_delay_ms(200);
 		stop();
 	}
 	
@@ -679,7 +679,7 @@ void forwardJaa()
 	do
 	{
 		forward();
-		//_delay_ms(200);
+		_delay_ms(200);
 		set_color();
 		if(Center_white_line>40 && (Left_white_line>40 || Right_white_line>40)) //2 bbw wbb
 		{
@@ -716,7 +716,7 @@ void front()
 
 void traverseToSort(int a, int b)
 {
-	ff=0;
+	buzzer();
 	if (flag == 1)
 		flag = 0;
 	if (a == 4 || a == 5)
@@ -733,11 +733,11 @@ void traverseToSort(int a, int b)
 		cost = cost + 2;
 	}
 	else{
-		if ((dir == 1 && (ot == 0 || ot == 1)) || (dir == 3 && (ot == 2 || ot == 2)))
+		if ((dir == 1 && (ot == 0 || ot == 1)) || (dir == 3 && (ot == 2 || ot == 3)))
 		{
 			turnRight();
 		}
-		else if ((dir == 3 && (ot == 0 || ot == 1)) || (dir == 1 && (ot == 2 || ot == 2)))
+		else if ((dir == 3 && (ot == 0 || ot == 1)) || (dir == 1 && (ot == 2 || ot == 3)))
 		{
 			turnLeft();
 		}
@@ -781,7 +781,7 @@ void terminalCheck1()
 	//lcd_print(1,1,dir,1);
 	while (ADC_Conversion(2)<50)	//earlier 3
 		right();
-	_delay_ms(140);
+	//_delay_ms(140);
 	stop();
 	//lcd_print(1,1,9,1);
 	
@@ -924,7 +924,7 @@ void position(int armNo, int side)
 					else turnLeft();
 		if(flag==1 && (dir==0 || dir==2))
 		{
-			back_mm(60);
+			back_mm(50);
 			flag=0;
 		}	
 	}
@@ -1185,9 +1185,6 @@ void canDrop()
 		}
 		if (arm[0] == color[ct] || arm[1] == color[ct])
 		{
-			if (term[ct][0] != -1 && term[ct][1] != -1)
-				if (visited[ct] == 0)
-					terminalCheck2();
 			if (term[ct][0] != -1 && term[ct][1] != -1)
 			{
 				if (arm[arm0] == color[ct])
@@ -1510,24 +1507,25 @@ void __init__()
 	//servo_1(0);
 //	servo_3(0);
 	_delay_ms(200);
- 	servo_3_free();_delay_ms(500);
- 	servo_2_free();_delay_ms(500);
- 	servo_1_free();_delay_ms(500);
+ 	servo_3_free();
+ 	servo_2_free();
+ 	servo_1_free();
+	_delay_ms(200);
 	ct = 3;
 	adj = 1;
-	dir = 0;
+	dir = 2;
 	ot = 3;
 	//buzzer();
 }
 int main(void)
 {
 	__init__();
-	//buzzer();
- 	forward();
- 	_delay_ms(500);
- 	stop();
-// 	//buzzer();
- 	indicator_set();
+// 	buzzer();
+//  	 	forward();
+//  	 	_delay_ms(500);
+//  	 	stop();
+//  		//buzzer();
+//  	 	indicator_set();
 	setIndicatorAndColor();
 // 	servo_1(0); //Left
 // 	servo_3(90);
