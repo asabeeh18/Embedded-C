@@ -218,20 +218,21 @@ void turn()	//turn robo by 180 degree
 	if (dir == 0 && (ot == 2 || ot == 3))
 	{
 		velocity(turn_v, turn_v);
-		left_degrees(180);
+		left_degrees(200);
 	}
 	else if (dir == 2 && (ot == 0 || ot == 1))
 	{
 		//forward_mm(30);
 		velocity(turn_v, turn_v);
-		left_degrees(180);
+		left_degrees(200);
 	}
 	else
 	{
 		velocity(turn_v, turn_v);
 		left_degrees(180);
-		while (ADC_Conversion(2)<60)
+		while (ADC_Conversion(2)<47)
 			left();
+		//_delay_ms(50);
 		stop();
 	}
 	//lcd("turn");
@@ -239,6 +240,7 @@ void turn()	//turn robo by 180 degree
 	dir = (dir + 2) % 4;
 	//printf("Turn\n");
 	angle += 180;
+	flag1=0;
 }
 
 //**********END TURNS****************
@@ -719,6 +721,8 @@ void traverseToSort(int a, int b)
 	//buzzer();
 	if (flag == 1)
 		flag = 0;
+	if(flag1==0)
+		flag=1;
 	if (a == 4 || a == 5)
 	{
 		//buzzer();
@@ -803,7 +807,7 @@ void terminalCheck1()
 // 	if(term[ct][0]==-1)
 // 		buzzer();
 
-	_delay_ms(1000);
+	//_delay_ms(1000);
 	//printf("Enter term[%d][%d]\n", ct, 0);
 	//scanf("%d", &term[ct][0]);
 
@@ -855,7 +859,7 @@ void terminalCheck2()
 		dir=(dir+2)%4;
 		//lcd((char *)dir);
 		}
-	_delay_ms(400);
+	//_delay_ms(400);
 	//printf("Enter term[%d][%d]\n", ct, 1);
 	//scanf("%d", &term[ct][1]);
 // 	left();
@@ -941,7 +945,14 @@ void position(int armNo, int side)
 		{
 			back_mm(50);
 			flag=0;
+			flag1=1;
 		}	
+		if(flag1==0 && (dir==0 || dir==2))
+		{
+			back_mm(50);
+			flag=0;
+			flag1=1;
+		}
 	}
 	else
 	{
