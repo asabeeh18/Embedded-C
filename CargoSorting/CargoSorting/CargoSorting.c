@@ -679,7 +679,7 @@ void forwardJaa()
 	do
 	{
 		forward();
-		_delay_ms(200);
+		//_delay_ms(200);
 		set_color();
 		if(Center_white_line>40 && (Left_white_line>40 || Right_white_line>40)) //2 bbw wbb
 		{
@@ -716,7 +716,7 @@ void front()
 
 void traverseToSort(int a, int b)
 {
-	buzzer();
+	//buzzer();
 	if (flag == 1)
 		flag = 0;
 	if (a == 4 || a == 5)
@@ -786,12 +786,20 @@ void terminalCheck1()
 	//lcd_print(1,1,9,1);
 	
 	term[ct][0] = scan();
-	if(term[ct][0]==color[ct])
+	for(i=0;i<=term[ct][0];i++)
 	{
 		buzzer_on();
-		_delay_ms(500);
+		_delay_ms(100);
 		buzzer_off();
+		_delay_ms(500);
 	}
+
+// 	if(term[ct][0]==color[ct])
+// 	{
+// 		buzzer_on();
+// 		_delay_ms(500);
+// 		buzzer_off();
+// 	}
 // 	if(term[ct][0]==-1)
 // 		buzzer();
 
@@ -842,7 +850,7 @@ void terminalCheck2()
 		velocity(turn_v, turn_v);
 		while (ADC_Conversion(3)<50)
 		left();
-		//_delay_ms(50);
+		_delay_ms(100);
 		stop();
 		dir=(dir+2)%4;
 		//lcd((char *)dir);
@@ -854,6 +862,13 @@ void terminalCheck2()
 // 	_delay_ms(100);
 	stop();
 	term[ct][1] = scan();
+	for(i=0;i<=term[ct][1];i++)
+	{
+		buzzer_on();
+		_delay_ms(100);
+		buzzer_off();
+		_delay_ms(500);
+	}
 // 	if(term[ct][1]==color[ct])
 // 	{
 // 		buzzer_on();
@@ -1017,6 +1032,7 @@ void pickSort(int armNo, int sortNo)
 	}
 	back_mm(30);
 	pick(armNo);
+	forward_mm(30);
 	sort[sortNo] = -1;
 	//printf("Arm %d picked %d from sort[%d]\n", armNo, arm[armNo], sortNo);
 }
@@ -1138,9 +1154,7 @@ void sortDrop(int armNo, int sortNo)
 				turnLeft();
 			else turnRight();
 	}
-	forward_mm(25);
 	drop(armNo);
-	
 	arm[armNo] = -1;
 	//printf("Arm %d dropped %d on sort[%d]\n", armNo, sort[sortNo], sortNo);
 }
@@ -1500,7 +1514,7 @@ void __init__()
 	lcd_init();
 	color_sensor_scaling();
 	
-	threshold=6000;
+	threshold=8000;
 	servo_1(80);
 	servo_2(90);
 	servo_3(0);
@@ -1561,6 +1575,8 @@ int main(void)
 		if (sorted == total)
 			break;
 		pickup();
+		if (sorted == total)
+			break;
 		traverseToSort(ct, ct % 2 + 4);
 		sortCheck();
 	}
