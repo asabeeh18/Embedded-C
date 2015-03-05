@@ -40,15 +40,17 @@ unsigned char lf=0;
 
 //***UTILITY
 
-void buzzer()
-{
-	buzzer_on();
-	_delay_ms(100);
-	buzzer_off();
-}
 
 //******************COLOR****************************
-
+/*
+*
+* Function Name: 	set_color
+* Input: 			void 
+* Output: 			Take the values from  Left,Right  and Centre White Line Sensors and Store it in respective variables
+* Logic: 			Uses the ADC_Conversion function to convert the the channel 1,2,3 to digital values
+* Example Call:		set_color()
+*
+*/
 void set_color()
 {
 	Left_white_line = ADC_Conversion(3);	//Getting data of Left WL Sensor
@@ -90,7 +92,15 @@ int scan()//return the color no.
 //******************END COLOR****************************
 
 //******************SERVO****************************
-
+/*
+*
+* Function Name: 	lower
+* Input: 			unsigned char side 
+* Output: 			Lowers the arm to the specified side
+* Logic: 			Positions the angle of the servo to lower it down
+* Example Call:		lower(1)
+*
+*/
 void lower(unsigned char side)
 {
 // 	if(armCount==0)
@@ -108,28 +118,61 @@ void lower(unsigned char side)
 	servo_2(120);
 	_delay_ms(500);
 }
+
+/*
+*
+* Function Name: 	elevate
+* Input: 			void
+* Output: 			Positions the arm to its original position
+* Logic: 			Sets servo 2 at 90 degrees to position the arm back
+* Example Call:		elevate()
+*
+*/
 void elevate()
 {
 	servo_2(90);
 	_delay_ms(500);
-	servo_2_free();_delay_ms(500);
+	servo_2_free();
+	_delay_ms(500);
 }
+
+/*
+*
+* Function Name: 	open
+* Input: 			void
+* Output: 			Opens the gripper from the specified side
+* Logic: 			Opens the gripper by giving some angle to the servo 1 or 3 as needed
+* Example Call:		open()
+*
+*/
 void open(unsigned char side)
 {
 	if (side == 0)
 	{
 		servo_3(90);
 		_delay_ms(500);
-		servo_3_free();_delay_ms(500);
+		servo_3_free();
+		_delay_ms(500);
 	}
 	else
 	{
 		servo_1(0);
 		_delay_ms(500);
-		servo_1_free();_delay_ms(500);
+		servo_1_free();
+		_delay_ms(500);
 	}
 	//_delay_ms(500);
 }
+
+/*
+*
+* Function Name: 	close
+* Input: 			void
+* Output: 			Closes the gripper from the specified side
+* Logic: 			Closes the gripper by giving some angle to the servo 1 or 3 as needed
+* Example Call:		close()
+*
+*/
 void close(unsigned char side)
 {
 	if (side == 0)
@@ -153,6 +196,7 @@ void close(unsigned char side)
 
 
 //**************TURNS*******************
+
 
 void node()
 {
@@ -258,9 +302,22 @@ void turn()	//turn robo by 180 degree
 
 //**********BlackLine Follower **************
 
+/*
+*
+* Function Name: 	Delay
+* Input: 			int tim
+* Output: 			Gives a delay of tim milliseconds with 1 millisecond at a time.
+					Check if the Centre White Line Sensor has detected black
+* Logic: 			Run a loop tim times and give a delay of 1ms every time the loop runs
+					If Centre White Line detects  black return 1 else return 0.
+* Example Call:		flag=Delay(time_in_milliseconds)
+					
+*
+*/
 char Delay(int tim)
 {
 	int i;
+	//Loop tim times and also keep checking for Black under the White Line Sensor
 	for(i=0;i<tim && ADC_Conversion(2)<0x28;i++)// && ADC_Conversion(1)<40 && ADC_Conversion(3)<40));i++)
 	{
 		//set_color();
@@ -268,10 +325,23 @@ char Delay(int tim)
 	}
 	stop();
 	if(i<tim)
-	return 1;
+		return 1;
 	else return 0;
 }
 //*******************INDICATOR********************
+
+/*
+*
+* Function Name: 	semiCorrect_Indi
+* Input: 			void
+* Output: 			Properly positions the robot on the white line if Right or Left Line Sensors  detect black under them 
+* Logic: 			If left Sensor detects black then move the robot left till Center_white_line sensor 
+					detects black; and Right_white_line and Left_white_line detect white
+					Similarly move the robot right if the Right_white_line sensor detects Black
+* Example Call:		semiCorrect_Indi()
+					
+*
+*/
 void semiCorrect_Indi()
 {
 	
@@ -284,167 +354,148 @@ void semiCorrect_Indi()
 	{
 		if(Left_white_line>40 && Right_white_line<40) //bww
 		{
-			//		lcd("bww");
-			
+			//Keep moving left till Center_white_line sensor is not Black
 			while((Center_white_line<0x28))// && Left_white_line<40 && Right_white_line<40))
 			{
 				//lcd_print(1,2,1,1);
 				left();
 				set_color();
 			}
-			//	lcd("-");
 		}
 		else if(Right_white_line>40 && Left_white_line<40)	//wwb
 		{
 			
-			//lcd("wwb");
+			//Keep moving right till Center_white_line sensor is not Black
 			while((Center_white_line<0x28))// && Left_white_line<40 && Right_white_line<40))
 			{
-				//lcd_print(1,2,2,1);
 				right();
 				set_color();
 			}
-			//lcd("-");
 			
 		}
 	}
-	//lcd_print(1,2,0,1);
 	
 }
+
+/*
+*
+* Function Name: 	correct_Indi
+* Input: 			void
+* Output: 			Properly positions the robot on the white line if All white line sensors detect white
+* Logic: 			Sweep the robot left and right until black is detected under any sensor.
+					Increase the sweep area after each unsuccessful sweep
+* Example Call:		correct_Indi()
+					
+*
+*/
 void correct_Indi()
 {
+	/*
+	*
+	i: gives the number of milliseconds a sweep is to be done
+	possible values of i are n*50,Where n can be 1,2,3.... incrementing after each unsuccessful sweep
+	*
+	*/
 	unsigned int i=50;
-	Degrees=5;
 	stop();
 	//lcd("cor");
-	
-	/*if(lf==1)
+	while(1)
 	{
-		lf=0;
-		while(1)
-		{
-			right();
-			if(Delay(i))
-					return;
-			stop();
-			lcd_print(1,1,1,1);
-			//set_color();
-			semiCorrect();
-			if(ADC_Conversion(2)>40)// && ADC_Conversion(1)<40 && ADC_Conversion(3)<40)
-				break;
-			i+=50;
-			left();
-			if(Delay(i))
-				return;
-			stop();
-			lcd_print(1,1,2,1);
-			semiCorrect();
-			if(ADC_Conversion(2)>40)// && ADC_Conversion(1)<40 && ADC_Conversion(3)<40)
-				break;
-			//d*=2;
-			//set_color();
-			//i+=2;
-			i+=50;
-		}
-	}*/
-	//else
-	
-		lf=1;
-		while(1)
-		{
-			left();
-			if(Delay(i))
-				return;
-			stop();
-			lcd_print(1,1,1,1);
-			//set_color();
-			semiCorrect_Indi();
-			if(ADC_Conversion(2)>40)// && ADC_Conversion(1)<40 && ADC_Conversion(3)<40)
-				break;
-			i+=50;
-			right();
-			if(Delay(i))
-				return;
-			stop();
-			lcd_print(1,1,2,1);
-			semiCorrect_Indi();
-			if(ADC_Conversion(2)>40)// && ADC_Conversion(1)<40 && ADC_Conversion(3)<40)
-				break;
-			//d*=2;
-			//set_color();
-			//i+=2;
-			i+=50;
+		//After many tries it was observed that the robot has a natural tendency to get deviated to the right more than to the left
+		//And hence the sweep starts by first moving to the left and then the subsequent  actions are taken
+		left();
+		//sweep to left for 'i' ms return if Black is detected under Center_white_line sensor
+		if(Delay(i))
+			return;
+		stop();
+		//set_color();
+		//call set_color to correct the robot if left or right line sensor are detecting black
+		semiCorrect_Indi();
+		if(ADC_Conversion(2)>40)// && ADC_Conversion(1)<40 && ADC_Conversion(3)<40)
+			break;
+		i+=50;
+		//sweep to right and follow same logic as above
+		right();
+		if(Delay(i))
+			return;
+		stop();
+		semiCorrect_Indi();
+		if(ADC_Conversion(2)>40)// && ADC_Conversion(1)<40 && ADC_Conversion(3)<40)
+			break;
 		
+		//If black is not found by any of the sensors increment the sweep area by 50ms and restart
+		i+=50;
+	
 	}
 	//lcd("-");
 	stop();
 	return;
 }
-void noNatak_Indi()
+
+/*
+*
+* Function Name: 	lineFix_Indi
+* Input: 			void
+* Output: 			Properly positions the robot on the white line if Right or Left Line Sensors  detect black under them.
+					or calls correct_Indi if no condition satisfies or All sensors detect white under them
+* Logic: 			Move the robot Left or right with respect to whether 
+* Example Call:		lineFix_Indi()
+					
+*
+*/
+void lineFix_Indi()
 {
+	//flag: To check if the robot has been positioned properly or not ,possible values 0 or 1
 	int flag=0;
-	//buzzer_on();
-	//lcd_print(2,1,7,1);
-	//lcd("no");
+	//reduce the velocity to ease the correct positioning of the robot
 	velocity(correct_v,correct_v);
 	if(Center_white_line<40)
 	{
 		if(Left_white_line>40 && Right_white_line<40) //bww
 		{
-		//	lcd("bww");
 			flag=1;
+			//Keep moving left till Center_white_line sensor is not Black and Left_white_line and Right_white_line is not white
 			while(!(Center_white_line>0x28 && Left_white_line<40 && Right_white_line<40))
 			{
 				left();
 				set_color();
 			}
-		//	lcd("-");
 		}
 		else if(Right_white_line>40 && Left_white_line<40)	//wwb
 		{
 			flag=1;
-			//lcd("wwb");
+			//Keep moving right till Center_white_line sensor is not Black and Left_white_line and Right_white_line is not white
 			while(!(Center_white_line>0x28 && Left_white_line<40 && Right_white_line<40))
 			{
 				right();
 				set_color();
 			}
-			//lcd("-");
-			
 		}
 		else
 		{
+			//No condition was satisfied call correct_Indi in such a case
 			flag=1;
 			correct_Indi();
 		}
 	}
 	else
 	{
+		//If Center_white_line detects black and any of the either Right_white_line or Left_white_line also detect black then a node is found hence return
+		
 		if(Left_white_line>40 && Right_white_line<40)	//bbw
 		{
 			flag=1;
 			return;
-			/*lcd("bbw");
-			
-			while(Center_white_line>40 && Left_white_line>40 && Right_white_line<40)
-			{
-				soft_right_2();
-				set_color();
-			}
-			lcd("-");*/
 		}
 		else if(Left_white_line<40 && Right_white_line>40)	//wbb
 		{
 			flag=1;
 			return;
-			/*flag=1;
-			lcd("wbb");
-			while(Center_white_line>40 && Left_white_line<40 && Right_white_line>40)
-			{
-				soft_left_2();
-				set_color();
-			}
-			lcd("-");*/
+		}
+		else if(Left_white_line>40 && Right_white_line>40))
+		{
+			flag=1;
+			return;
 		}
 		else
 		{
@@ -455,13 +506,21 @@ void noNatak_Indi()
 	if(flag==0)	
 		correct_Indi();
 	stop();
-	//lcd("--");
-	//lcd_print(2,1,6,1);
-	//buzzer_off();
 	return;
 }
 
-void forwardJaa_Indi()
+/*
+*
+* Function Name: 	keepMoving_Indi
+* Input: 			void
+* Output: 			Move Forward if the robot moves out of line call lineFix_Indi to fix the position
+* Logic: 			To check if the robot has moved out of line this condition will return a false value
+					(Center_white_line>0x28 && Left_white_line<40 && Right_white_line<40)
+* Example Call:		keepMoving_Indi()
+					
+*
+*/
+void keepMoving_Indi()
 {
 	do
 	{
@@ -470,15 +529,16 @@ void forwardJaa_Indi()
 		set_color();
 		if(Center_white_line>40 && (Left_white_line>40 || Right_white_line>40)) //2 bbw wbb
 		{
+			//node detected ,return
 			return;
 		}
 		velocity(255,255);
 		//velocity(v+vi,v+vi);
 		//i+=20;
 	}while(Center_white_line>0x28 && Left_white_line<40 && Right_white_line<40);	//wbw
-	
-	noNatak_Indi();
-	forwardJaa_Indi();
+	//Robot deviated out of path call lineFix_Indi
+	lineFix_Indi();
+	keepMoving_Indi();
 	return;
 }
 //***********END INDICATOR****************
@@ -486,7 +546,19 @@ void forwardJaa_Indi()
 //**************SORT AREA*******************
 
 
-
+/*
+*
+* Function Name: 	semiCorrect
+* Input: 			void
+* Output: 			Properly positions the robot on the white line if Right or Left Line Sensors  detect black under them 
+					return 1 if a node is detected.
+* Logic: 			If left Sensor detects black then move the robot left till Center_white_line sensor 
+					detects black; and Right_white_line and Left_white_line detect white
+					Similarly move the robot right if the Right_white_line sensor detects Black
+* Example Call:		flag=semiCorrect()
+					
+*
+*/
 char semiCorrect()
 {
 	
@@ -528,6 +600,20 @@ char semiCorrect()
 	//lcd_print(1,2,0,1);
 	
 }
+
+/*
+*
+* Function Name: 	correct
+* Input: 			void
+* Output: 			Properly positions the robot on the white line if All white line sensors detect white
+					Return 1 if a node is detected
+* Logic: 			Sweep the robot left and right until black is detected under any sensor.
+					Increase the sweep area after each unsuccessful sweep
+					
+* Example Call:		flag=correct()
+					
+*
+*/
 char correct()
 {
 	unsigned int d=2;
@@ -600,12 +686,24 @@ char correct()
 	stop();
 	return 0;
 }
+
+/*
+*
+* Function Name: 	noNatak
+* Input: 			void
+* Output: 			Properly positions the robot on the white line if Right or Left Line Sensors  detect black under them.
+					or calls correct if no condition satisfies or All sensors detect white under them
+					Calls node() if a node is detected.
+* Logic: 			Move the robot Left or right with respect to whether 
+* Example Call:		flag=noNatak()
+					
+*
+*/
 int noNatak()
 {
+	//flag: To check if the robot has been positioned properly or not ,possible values 0 or 1
 	int flag=0;
-	//buzzer_on();
-	//lcd_print(2,1,7,1);
-	//lcd("no");
+	//reduce the velocity to ease the correct positioning of the robot
 	velocity(correct_v,correct_v);
 	if(Center_white_line<40)
 	{
@@ -613,6 +711,7 @@ int noNatak()
 		{
 		//	lcd("bww");
 			flag=1;
+			//Keep moving left till Center_white_line sensor is not Black and Left_white_line and Right_white_line is not white
 			while(!(Center_white_line>0x28 && Left_white_line<40 && Right_white_line<40))
 			{
 				left();
@@ -624,6 +723,7 @@ int noNatak()
 		{
 			flag=1;
 			//lcd("wwb");
+			//Keep moving right till Center_white_line sensor is not Black and Left_white_line and Right_white_line is not white
 			while(!(Center_white_line>0x28 && Left_white_line<40 && Right_white_line<40))
 			{
 				right();
@@ -634,6 +734,7 @@ int noNatak()
 		}
 		else
 		{
+			//No condition was satisfied call correct in such a case
 			flag=1;
 			if(correct())
 				return 1;
@@ -641,43 +742,33 @@ int noNatak()
 	}
 	else
 	{
+		/*
+		If Center_white_line detects black and any of the either Right_white_line or Left_white_line also detect black then a node is found
+		hence call node() and then return
+		*/
 		if(Left_white_line>40 && Right_white_line<40)	//bbw
 		{
 			flag=1;
 			node();
 			return 1;
-			/*lcd("bbw");
-			
-			while(Center_white_line>40 && Left_white_line>40 && Right_white_line<40)
-			{
-				soft_right_2();
-				set_color();
-			}
-			lcd("-");*/
+
 		}
 		else if(Left_white_line<40 && Right_white_line>40)	//wbb
 		{
 			flag=1;
 			node();
 			return 1;
-			/*flag=1;
-			lcd("wbb");
-			while(Center_white_line>40 && Left_white_line<40 && Right_white_line>40)
-			{
-				soft_left_2();
-				set_color();
-			}
-			lcd("-");*/
 		}
 		else
 		{
 			flag=1;
-			if(correct())
+			
+			if(correct())	//if 1 is return then that means a node is detected return 1 to signify that a node was detected
 			return 1;
 		}
 	}
 	if(flag==0)	
-		if(correct())
+		if(correct())	//if 1 is return then that means a node is detected return 1 to signify that a node was detected
 		return 1;
 	stop();
 	//lcd("--");
@@ -685,6 +776,18 @@ int noNatak()
 	//buzzer_off();
 	return 0;
 }
+
+/*
+*
+* Function Name: 	forwardJaa
+* Input: 			void
+* Output: 			Move Forward if the robot moves out of line call lineFix_Indi to fix the position
+* Logic: 			To check if the robot has moved out of line this condition will return a false value
+					(Center_white_line>0x28 && Left_white_line<40 && Right_white_line<40)
+* Example Call:		forwardJaa()
+					
+*
+*/
 void forwardJaa()
 {
 	//buzzer();
@@ -704,7 +807,7 @@ void forwardJaa()
 		//i+=20;
 	}while(Center_white_line>0x28 && Left_white_line<40 && Right_white_line<40);	//wbw
 	
-	if(noNatak())
+	if(noNatak())	//if 1 is return then that means a node is detected return to signify that a node was detected
 		return;
 	forwardJaa();
 	return;
@@ -945,7 +1048,6 @@ void pick(int side)
 
 void position(int armNo, int side)
 {
-	int a;
 	if (ct == ot)
 	{
 		if (((ct == 0 || ct == 1) && dir == 0) || ((ct == 2 || ct == 3) && dir == 2))
@@ -1159,16 +1261,6 @@ void drop(int side)
 	//_delay_ms(1000);
 	elevate();//mid
 	//_delay_ms(1000);
-
-// 	if(side==1)
-// 		servo_1_free();
-// 	else
-// 		servo_3_free();
-// 	lower(side);
-// 	if(armCount==0)
-// 	servo_2_free();
-// 	open(side);
-// 	elevate();
  	armCount++;
 }
 void nodeDrop(int armNo, int side)
@@ -1178,7 +1270,6 @@ void nodeDrop(int armNo, int side)
 	drop(armNo);
 	arm[armNo] = -1;
 	sorted++;
-	//printf("Arm %d dropped %d on term[%d][%d]\n", armNo, term[ct][side], ct, side);
 	
 }
 void sortDrop(int armNo, int sortNo)
@@ -1384,43 +1475,42 @@ void sortCheck()
 	adj = adjCount(ct);
 }
 
-void predict()
-{
-	if (term[0][0] == color[0] && term[0][1] == color[0] && term[1][0] == color[1] && term[1][1] == color[1] && term[ct][0] == color[ct] && term[ct][1] == color[ct] && sort[0] == -1 && sort[1] == -1 && arm[0] == -1 && arm[1] == -1)
-		sorted = total;
-
-}
-
-/*************************GULLA CODE**Blackline Forward***********/
-
-/*************************END GULLA CODE*************/
-
-/*
-	//variable 'i' scales at 13,14 for sharp sensor for velocitty 240 240
-	//u turn 1600ms at 200,200 velocity
-	velocity(200,200);
-	left();
-	_delay_ms(1600);
-	stop();
-	while(1);
-	
-	threshold=6000;
-	
-	right();
-	while(ADC_Conversion(11)<65)
-	{
-		i++;
-		lcd_print(1,11,i,3);
-	}
-	stop();
-	lcd_print(2,11,scan(),1);
-	stop();
-	while(1);
-	*/
 //**************END SORT LOGIC*******************
 
 //**************INITIALISATION*******************
 
+/*
+*
+* Function Name: 	forwardJaa
+* Input: 			void
+* Output: 			Move Forward if the robot moves out of line call lineFix_Indi to fix the position
+* Logic: 			To check if the robot has moved out of line this condition will return a false value
+					(Center_white_line>0x28 && Left_white_line<40 && Right_white_line<40)
+* Example Call:		forwardJaa()
+					
+*
+*/
+void __init__()
+{
+	init_devices();
+	color_sensor_scaling();
+	
+	threshold=7000;
+	//set servo at initial positions;Grippers Close and arm up
+	servo_1(80);
+	servo_2(90);
+	servo_3(0);
+	_delay_ms(200);
+	//Free Servo to save Battery Power
+ 	servo_3_free();
+ 	servo_2_free();
+ 	servo_1_free();
+	//Set the current terminal adjacent terminal direction and other terminal respectively
+	ct = 3;
+	adj = 1;
+	dir = 0;
+	ot = 3;
+}
 //**************END INITIALISATION*******************
 
 
@@ -1446,26 +1536,21 @@ void setIndicatorAndColor()
 
 void indicator_set()
 {
-	forwardJaa_Indi();
-	//buzzer();
+	keepMoving_Indi();
+
 	//turn efficiency
+	//move forward for a proper turn
 	velocity(op_v,op_v);
 	forward_mm(160);
-	//buzzer();
+	
 	//scan 4
+	//turn and scan the indicator block and store its value
 	velocity(op_v,op_v);
 	soft_right_2();
 	_delay_ms(700);
 	while(ADC_Conversion(2)<40);
 	stop();
 	color[3]=scan();
-// 	for(i=0;i<color[3];i++)
-// 	{
-// 		buzzer_on();
-// 		_delay_ms(100);
-// 		buzzer_off();
-// 		_delay_ms(500);
-// 	}
 	
 	//back to line
 	soft_left();
@@ -1474,18 +1559,13 @@ void indicator_set()
 	stop();
 	
 	//scan 3
+	//turn and scan the indicator block and store its value
 	soft_left_2();
 	_delay_ms(500);
 	while(ADC_Conversion(2)<40);
 		stop();
 	color[2]=scan();
-// 	for(i=0;i<color[2];i++)
-// 	{
-// 		buzzer_on();
-// 		_delay_ms(100);
-// 		buzzer_off();
-// 		_delay_ms(500);
-// 	}
+	
 	//back to line
 	soft_right();
 	_delay_ms(300);
@@ -1494,23 +1574,20 @@ void indicator_set()
 	
 	//=====
 	
-	forwardJaa_Indi();
+	keepMoving_Indi();
 	velocity(op_v,op_v);
 	//turn efficiency
+	//move forward for a proper turn
 	forward_mm(160);
-	//scan 4
+	
+	//scan 2
+	//turn and scan the indicator block and store its value
+	//turn and scan the indicator block and store its value
 	soft_right_2();
 	_delay_ms(700);
 	while(ADC_Conversion(3)<40);
 	stop();
 	color[1]=scan();
-// 	for(i=0;i<color[1];i++)
-// 	{
-// 		buzzer_on();
-// 		_delay_ms(100);
-// 		buzzer_off();
-// 		_delay_ms(500);
-// 	}
 	
 	//back to line
 	soft_left();
@@ -1518,30 +1595,21 @@ void indicator_set()
 	while(ADC_Conversion(2)<40);
 	stop();
 	
-	//scan 3
+	//scan 1
+	//turn and scan the indicator block and store its value
 	soft_left_2();
 	_delay_ms(500);
 	while(ADC_Conversion(2)<40);
 	stop();
 	color[0]=scan();
-// 	for(i=0;i<color[0];i++)
-// 	{
-// 		buzzer_on();
-// 		_delay_ms(100);
-// 		buzzer_off();
-// 		_delay_ms(500);
-// 	}
+	
 	//back to line
 	soft_right();
 	_delay_ms(500);
 	while(ADC_Conversion(2)<40);
 	stop();
 	
-	//lcd_print(1,1,color[0],1);
-	//lcd_print(1,3,color[1],1);
-	//lcd_print(1,5,color[2],1);
-	//lcd_print(1,7,color[3],1);
-	
+	//All indicaor blocks scanned go to initial terminal
 	forwardJaa();
 	forward();
 	_delay_ms(70);
@@ -1558,77 +1626,27 @@ void indicator_set()
 		right();
 	stop();
 	
-	//buzzer_on();	
+	
 }
 
-void __init__()
-{
-	init_devices();
-	lcd_set_4bit();
-	lcd_init();
-	color_sensor_scaling();
-	
-	threshold=7000;
-	servo_1(80);
-	servo_2(90);
-	servo_3(0);
-	//servo_1(0);
-//	servo_3(0);
-	_delay_ms(200);
- 	servo_3_free();
- 	servo_2_free();
- 	servo_1_free();
-	_delay_ms(200);
-	ct = 3;
-	adj = 1;
-	dir = 0;
-	ot = 3;
-	//buzzer();
-}
+
 int main(void)
 {
+	//intialise EVERYTHING
 	__init__();
-// 	buzzer();	
-// turnLeft();
-// while (1);
 	
+	//move forward a little to escape the big start box
 	forward();
 	_delay_ms(500);
-//  	 	stop();
-//  		//buzzer();
+	//call indicator_set to initialise indicator values and reach the intial terminal
 	indicator_set();
+	//initialise terminals 
 	setIndicatorAndColor();
-// 	servo_1(0); //Left
-// 	servo_3(90);
-// 	_delay_ms(2000);
-// 	servo_1(80);
-// 	servo_3(0);
-// 	while(1);
-// 	while(1)
-// 	{
-// 		// 		_delay_ms(1000);
-// 		// 		servo_1(90);
-// 		// 		_delay_ms(1000);
-// 		// 		servo_1(0);
-// 		
-// 	//	_delay_ms(500);
-// 		pick(1);ff
-// 	//	_delay_ms(500);
-// 		drop(1);
-// 	//	_delay_ms(500);
-// 		pick(0);
-// 	//	_delay_ms(500);
-// 		drop(0);
-// 	}
 	forwardJaa();
+	//reached the target terminal
 	while (sorted<total)
 	{
 		canDrop();
-		//buzzer_on();
-		//_delay_ms(500);
-		//buzzer_off();
-// 		if (visitedCount == 3)
-// 			predict();
 		if (sorted == total)
 		{
 			break;
@@ -1639,6 +1657,7 @@ int main(void)
 		traverseToSort(ct, ct % 2 + 4);
 		sortCheck();
 	}
+	//Task completed
 	buzzer_on();
 	_delay_ms(5000);
 	buzzer_off();
