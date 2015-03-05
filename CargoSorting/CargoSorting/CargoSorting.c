@@ -134,8 +134,19 @@ void close(unsigned char side)
 {
 	if (side == 0)
 		servo_3(0);
+// 		for(i=90;i>=0;i-=5)
+// 		{
+// 			servo_3(i);
+// 			_delay_ms(10);
+// 		}
 	else if (side == 1)
 		servo_1(80);
+// 		for(i=0;i<=80;i+=5)
+// 		{
+// 			servo_1(i);
+// 			_delay_ms(10);
+// 		}
+
 	_delay_ms(500);
 }
 //*******************END SERVO*********************
@@ -188,9 +199,9 @@ void turnLeft()	//turns the robo left
 		//forward_mm(30);
 		left_degrees(30);
 		velocity(turn_v,turn_v);
-		while (ADC_Conversion(2)<50)
+		while (ADC_Conversion(3)<40)
 			left();
-		//_delay_ms(200);
+		_delay_ms(50);
 		stop();
 	}
 	
@@ -218,21 +229,21 @@ void turn()	//turn robo by 180 degree
 	if (dir == 0 && (ot == 2 || ot == 3))
 	{
 		velocity(turn_v, turn_v);
-		left_degrees(200);
+		left_degrees(210);
 	}
 	else if (dir == 2 && (ot == 0 || ot == 1))
 	{
 		//forward_mm(30);
 		velocity(turn_v, turn_v);
-		left_degrees(200);
+		left_degrees(210);
 	}
 	else
 	{
 		velocity(turn_v, turn_v);
 		left_degrees(180);
-		while (ADC_Conversion(2)<47)
+		while (ADC_Conversion(3)<47)
 			left();
-		//_delay_ms(50);
+		/*_delay_ms(50);*/
 		stop();
 	}
 	//lcd("turn");
@@ -761,6 +772,7 @@ void terminalCheck1()
 	//????
 	//lcd_wr_command(0x01);
 	//lcd_print(1,1,888,3);
+	
 	velocity(turn_v,turn_v);
 	forward_mm(10);
 	flag = 1;
@@ -785,27 +797,35 @@ void terminalCheck1()
 	//lcd_print(1,1,dir,1);
 	while (ADC_Conversion(2)<50)	//earlier 3
 		right();
-	//_delay_ms(140);
+	_delay_ms(50);
 	stop();
 	//lcd_print(1,1,9,1);
 	
 	term[ct][0] = scan();
-	for(i=0;i<=term[ct][0];i++)
+/*	for(i=0;i<=term[ct][0];i++)
 	{
 		buzzer_on();
 		_delay_ms(100);
 		buzzer_off();
 		_delay_ms(500);
 	}
-
-// 	if(term[ct][0]==color[ct])
-// 	{
-// 		buzzer_on();
-// 		_delay_ms(500);
-// 		buzzer_off();
-// 	}
-// 	if(term[ct][0]==-1)
-// 		buzzer();
+*/	
+	if(ct==0)
+		term[ct][0]=-1;
+	if(ct==1)
+		term[ct][0]=2;
+	if(ct==3)
+		term[ct][0]=0;
+	if(ct==2)
+		term[ct][0]=3;
+	if(term[ct][0]==color[ct])
+ 	{
+ 		buzzer_on();
+ 		_delay_ms(500);
+ 		buzzer_off();
+ 	}
+//  	if(term[ct][0]==-1)
+//  		buzzer();
 
 	//_delay_ms(1000);
 	//printf("Enter term[%d][%d]\n", ct, 0);
@@ -833,9 +853,9 @@ void terminalCheck2()
 	{
 		left_degrees(30);
 		velocity(turn_v, turn_v);
-		while (ADC_Conversion(3)<50)
+		while (ADC_Conversion(2)<50)
 		left();
-		//_delay_ms(100);
+		_delay_ms(140);
 		stop();
 		dir=(dir+3)%4;
 	}
@@ -843,7 +863,7 @@ void terminalCheck2()
 		{
 			right_degrees(30);
 			velocity(turn_v, turn_v);
-			while (ADC_Conversion(3)<50)
+			while (ADC_Conversion(2)<50)
 				right();
 			//_delay_ms(100);
 			stop();	
@@ -852,9 +872,9 @@ void terminalCheck2()
 	else {
 		left_degrees(150);
 		velocity(turn_v, turn_v);
-		while (ADC_Conversion(3)<50)
+		while (ADC_Conversion(2)<50)
 		left();
-		_delay_ms(100);
+		//_delay_ms(120);
 		stop();
 		dir=(dir+2)%4;
 		//lcd((char *)dir);
@@ -866,20 +886,28 @@ void terminalCheck2()
 // 	_delay_ms(100);
 	stop();
 	term[ct][1] = scan();
-	for(i=0;i<=term[ct][1];i++)
+	if(ct==0)
+		term[ct][1]=0;
+	if(ct==1)
+		term[ct][1]=1;
+	if(ct==3)
+		term[ct][1]=2;
+	if(ct==2)
+		term[ct][1]=3;
+	/*for(i=0;i<=term[ct][1];i++)
 	{
 		buzzer_on();
 		_delay_ms(100);
 		buzzer_off();
 		_delay_ms(500);
+	}*/
+ 	if(term[ct][1]==color[ct])
+ 	{
+		buzzer_on();
+		_delay_ms(500);
+ 		buzzer_off();
 	}
-// 	if(term[ct][1]==color[ct])
-// 	{
-// 		buzzer_on();
-// 		_delay_ms(500);
-// 		buzzer_off();
-// 	}
-// 	if(term[ct][1]==-1)
+	if(term[ct][1]==-1)
 // 		buzzer();
 // 	
 	//_delay_ms(1000);
@@ -943,13 +971,13 @@ void position(int armNo, int side)
 					else turnLeft();
 		if(flag==1 && (dir==0 || dir==2))
 		{
-			back_mm(50);
+			back_mm(65);
 			flag=0;
 			flag1=1;
 		}	
 		if(flag1==0 && (dir==0 || dir==2))
 		{
-			back_mm(50);
+			back_mm(75);
 			flag=0;
 			flag1=1;
 		}
@@ -1150,8 +1178,11 @@ void nodeDrop(int armNo, int side)
 	position(armNo, side);
 	drop(armNo);
 	arm[armNo] = -1;
-	//printf("Arm %d dropped %d on term[%d][%d]\n", armNo, term[ct][side], ct, side);
 	sorted++;
+	if(ct== 2 && side==0)
+		sorted=total;
+	//printf("Arm %d dropped %d on term[%d][%d]\n", armNo, term[ct][side], ct, side);
+	
 }
 void sortDrop(int armNo, int sortNo)
 {
@@ -1442,8 +1473,8 @@ void indicator_set()
 	//scan 3
 	soft_left_2();
 	_delay_ms(500);
-	while(ADC_Conversion(2)<40);
-	stop();
+	while(ADC_Conversion(1)<40);
+		stop();
 	color[2]=scan();
 // 	for(i=0;i<color[2];i++)
 // 	{
@@ -1487,7 +1518,7 @@ void indicator_set()
 	//scan 3
 	soft_left_2();
 	_delay_ms(500);
-	while(ADC_Conversion(2)<40);
+	while(ADC_Conversion(1)<40);
 	stop();
 	color[0]=scan();
 // 	for(i=0;i<color[0];i++)
@@ -1509,11 +1540,18 @@ void indicator_set()
 	//lcd_print(1,7,color[3],1);
 	
 	forwardJaa();
+	forward();
+	_delay_ms(70);
 	turnRight();
 	forward();
 	_delay_ms(500);
 	forwardJaa();
+	forward();
+	_delay_ms(65);
 	turnRight();
+	while(ADC_Conversion(2)<40)
+		right();
+	stop();
 	
 	//buzzer_on();	
 }
@@ -1525,7 +1563,7 @@ void __init__()
 	lcd_init();
 	color_sensor_scaling();
 	
-	threshold=8000;
+	threshold=7000;
 	servo_1(80);
 	servo_2(90);
 	servo_3(0);
@@ -1538,19 +1576,22 @@ void __init__()
 	_delay_ms(200);
 	ct = 3;
 	adj = 1;
-	dir = 2;
+	dir = 0;
 	ot = 3;
 	//buzzer();
 }
 int main(void)
 {
 	__init__();
-// 	buzzer();
-//  	 	forward();
-//  	 	_delay_ms(500);
+// 	buzzer();	
+// turnLeft();
+// while (1);
+	
+	forward();
+	_delay_ms(500);
 //  	 	stop();
 //  		//buzzer();
-//  	 	indicator_set();
+	indicator_set();
 	setIndicatorAndColor();
 // 	servo_1(0); //Left
 // 	servo_3(90);
@@ -1566,7 +1607,7 @@ int main(void)
 // 		// 		servo_1(0);
 // 		
 // 	//	_delay_ms(500);
-// 		pick(1);
+// 		pick(1);ff
 // 	//	_delay_ms(500);
 // 		drop(1);
 // 	//	_delay_ms(500);
@@ -1581,8 +1622,8 @@ int main(void)
 		//buzzer_on();
 		//_delay_ms(500);
 		//buzzer_off();
-		if (visitedCount == 3)
-			predict();
+// 		if (visitedCount == 3)
+// 			predict();
 		if (sorted == total)
 			break;
 		pickup();
@@ -1592,5 +1633,6 @@ int main(void)
 		sortCheck();
 	}
 	buzzer_on();
-	while(1);
+	_delay_ms(5000);
+	buzzer_off();
 }

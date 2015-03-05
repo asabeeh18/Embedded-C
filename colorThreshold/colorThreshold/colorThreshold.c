@@ -9,16 +9,33 @@
 #include <avr/io.h>
 #include "Color_Sensor.c"
 
+void buzzer_on (void)
+{
+	unsigned char port_restore = 0;
+	port_restore = PINC;
+	port_restore = port_restore | 0x08;
+	PORTC = port_restore;
+}
+
+void buzzer_off (void)
+{
+	unsigned char port_restore = 0;
+	port_restore = PINC;
+	port_restore = port_restore & 0xF7;
+	PORTC = port_restore;
+}
 int main(void)
 {
-    int c[4],indicator[4],color[4],i,min;
+    int c[4],indicator[4],color[4],i,min,j,u;
 	init();
 	for(i=0;i<4;i++)
 		c[i]=0;
 	for(i=0;i<4;i++)
 	{
 		read();
-	
+		buzzer_on();
+		_delay_ms(1000);
+		buzzer_off();
 		if(red>green && red>blue)
 			if(c[0]>red)
 			{
@@ -76,7 +93,7 @@ int main(void)
 		else min=c[2];
 	else if(c[1]<c[2])
 			min=c[1];
-		else min=c[]
+		else min=c[2];
 	for(i=0;i<4;i++)
 		color[indicator[i]]=i;
 	int t=c[3];
@@ -84,6 +101,19 @@ int main(void)
 	
 	lcd_string("Threshold"); // Display "Blue Pulses" on LCD
 	t+=200;
+	while(t>0)
+	{
+		u=t%10;
+		for(j=0;j<u;j++)
+		{
+			buzzer_on();
+			_delay_ms(100);
+			buzzer_off();
+			_delay_ms(500);
+		}
+		_delay_ms(2000);
+		t=t/10;
+	}
 	lcd_print(2,1,t,5);
 	_delay_ms(2000);
 	lcd_wr_command(0x01); //Clear the LCD

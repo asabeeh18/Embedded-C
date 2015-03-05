@@ -87,6 +87,8 @@ ISR(INT0_vect)
 void init_devices(void)
 {
 	cli(); //Clears the global interrupt
+	DDRC = DDRC | 0x08;		//Setting PORTC 3 as output
+	PORTC = PORTC & 0xF7;
 	port_init();  //Initializes all the ports
 	color_sensor_pin_interrupt_init();
 	sei();   // Enables the global interrupt
