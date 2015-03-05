@@ -102,9 +102,9 @@ void timer5_init()
 	OCR5BL = 0xFF;	//Output compare register low value for Right Motor
 	OCR5CH = 0x00;	//Output compare register high value for Motor C1
 	OCR5CL = 0xFF;	//Output compare register low value for Motor C1
-	TCCR5A = 0xA9;	/*{COM5A1=1, COM5A0=0; COM5B1=1, COM5B0=0; COM5C1=1 COM5C0=0}
- 					  For Overriding normal port functionality to OCRnA outputs.
-				  	  {WGM51=0, WGM50=1} Along With WGM52 in TCCR5B for Selecting FAST PWM 8-bit Mode*/
+ 	TCCR5A = 0xA9;	//{COM5A1=1, COM5A0=0; COM5B1=1, COM5B0=0; COM5C1=1 COM5C0=0}
+	  				//  For Overriding normal port functionality to OCRnA outputs.
+ 				  	//{WGM51=0, WGM50=1} Along With WGM52 in TCCR5B for Selecting FAST PWM 8-bit Mode
 	
 	TCCR5B = 0x0B;	//WGM12=1; CS12=0, CS11=1, CS10=1 (Prescaler=64)
 }
@@ -136,11 +136,12 @@ void motion_pin_config (void)
 * Example Call:		velocity(0xFF,0xFF)
 *
 */
-// Function for robot velocity control
+
 void velocity (unsigned char left_motor, unsigned char right_motor)
 {
-	OCR5AL = (unsigned char)left_motor;
-	OCR5BL = (unsigned char)right_motor;
+	//Robot velocity control 
+	OCR5AL = (unsigned char)left_motor; //OCR5AL (PortL3) is connected to Left Motor
+	OCR5BL = (unsigned char)right_motor; //OCR5BL (PortL4) connected to Right Motor
 }
 
 /*
@@ -160,9 +161,10 @@ void velocity (unsigned char left_motor, unsigned char right_motor)
 * Example Call:		motion_set(0x06)
 *
 */
-//Function used for setting motor's direction
 void motion_set (unsigned char Direction)
 {
+	//Sett motor's direction
+	//PortARestore: Temporary variable to store PORTA's original status
 	unsigned char PortARestore = 0;
 
 	Direction &= 0x0F; 			// removing upper nibbel as it is not needed
@@ -310,6 +312,8 @@ void stop (void)
 	motion_set(0x00);
 }
 
+
+//KILL
 void lcd_port_config (void)
 {
 	DDRC = DDRC | 0xF7; //setting all the LCD pin's direction set as output
@@ -384,31 +388,12 @@ void timer1_init(void)
  OCR1CL = 0xFF;	//Output Compare Register low Value For servo 3
  ICR1H  = 0x03;	
  ICR1L  = 0xFF;
- TCCR1A = 0xAB; /*{COM1A1=1, COM1A0=0; COM1B1=1, COM1B0=0; COM1C1=1 COM1C0=0}
- 					For Overriding normal port functionality to OCRnA outputs.
-				  {WGM11=1, WGM10=1} Along With WGM12 in TCCR1B for Selecting FAST PWM Mode*/
+ TCCR1A = 0xAB;   //{COM1A1=1, COM1A0=0; COM1B1=1, COM1B0=0; COM1C1=1 COM1C0=0}
+ 				 //For Overriding normal port functionality to OCRnA outputs.
+				 //{WGM11=1, WGM10=1} Along With WGM12 in TCCR1B for Selecting FAST PWM Mode*/
  TCCR1C = 0x00;
  TCCR1B = 0x0C; //WGM12=1; CS12=1, CS11=0, CS10=0 (Prescaler=256)
 }
-
-
-
-void port_init(void)
-{
-	lcd_port_config();//lcd pin configuration
-	adc_pin_config();
-	//left_encoder_pin_config(); //left encoder pin config
-	//right_encoder_pin_config(); //right encoder pin config
- DDRC = DDRC | 0x08;		//Setting PORTC 3 as output
- PORTC = PORTC & 0xF7;		//Setting PORTC 3 logic low to turnoff buzzer
-
-	servo1_pin_config(); //Configure PORTB 5 pin for servo motor 1 operation
-	servo2_pin_config(); //Configure PORTB 6 pin for servo motor 2 operation
-	servo3_pin_config(); //Configure PORTB 7 pin for servo motor 3 operation
-
-	color_sensor_pin_config();//color sensor pin configuration
-}
-
 
 void buzzer_on (void)
 {
@@ -425,6 +410,28 @@ void buzzer_off (void)
 	port_restore = port_restore & 0xF7;
 	PORTC = port_restore;
 }
+
+void buzzer_init()
+{
+	DDRC = DDRC | 0x08;		//Setting PORTC 3 as output
+	PORTC = PORTC & 0xF7;		//Setting PORTC 3 logic low to turnoff buzzer
+}
+void port_init(void)
+{
+	//KILL
+	lcd_port_config();//lcd pin configuration
+	adc_pin_config();
+	//left_encoder_pin_config(); //left encoder pin config
+	//right_encoder_pin_config(); //right encoder pin config
+	buzzer_init();
+	servo1_pin_config(); //Configure PORTB 5 pin for servo motor 1 operation
+	servo2_pin_config(); //Configure PORTB 6 pin for servo motor 2 operation
+	servo3_pin_config(); //Configure PORTB 7 pin for servo motor 3 operation
+
+	color_sensor_pin_config();//color sensor pin configuration
+}
+
+
 
 
 //Function For ADC Conversion
@@ -445,6 +452,7 @@ unsigned char ADC_Conversion(unsigned char Ch)
 	return a;
 }
 
+//KILL
 //Function To Print Sesor Values At Desired Row And Coloumn Location on LCD
 void print_sensor(char row, char coloumn,unsigned char channel)
 {
@@ -611,11 +619,8 @@ void filter_clear(void)	//select no filter
 */
 void color_sensor_scaling()
 {
-	//Output Scaling 20% from datasheet
-	//PORTD = PORTD & 0xEF;
-	PORTD = PORTD | 0x10; //set S0 high
-	//PORTD = PORTD & 0xDF; //set S1 low
-	PORTD = PORTD | 0x20; //set S1 high
+	PORTD = PORTD | 0x10;	//set S0 high
+	PORTD = PORTD | 0x20;	//set S1 high
 }
 /*
 *
@@ -623,36 +628,49 @@ void color_sensor_scaling()
 * Input: 			void
 * Output: 			Capture Pulses for red filter and store the count in variable red
 * Logic: 			Filter  red colour and capture the pulses for 100ms 
-					PORTD4 & PORTD5 Control the S0 and S1 pins of the color sensor to choose a scaling factor
 * Example Call:		red_read()
 *
 */
 void red_read(void) // function to select red filter and display the count generated by the sensor on LCD. The count will be more if the color is red. The count will be very less if its blue or green.
 {
-	//Red
-	filter_red(); //select red filter
-	pulse=0; //reset the count to 0
-	_delay_ms(100); //capture the pulses for 100 ms or 0.1 second
-	red = pulse;  //store the count in variable called red
+	filter_red();	 //select red filter
+	pulse=0;	    //reset the count to 0
+	_delay_ms(100);//capture the pulses for 100 ms or 0.1 second
+	red = pulse;   //store the count in variable called red
 }
 
-void green_read(void) // function to select green filter and display the count generated by the sensor on LCD. The count will be more if the color is green. The count will be very less if its blue or red.
+/*
+*
+* Function Name: 	green_read
+* Input: 			void
+* Output: 			Capture Pulses for green filter and store the count in variable green
+* Logic: 			Filter  green colour and capture the pulses for 100ms 
+* Example Call:		green_read()
+*
+*/
+void green_read(void)
 {
-	//Green
 	filter_green(); //select green filter
-	pulse=0; //reset the count to 0
+	pulse=0;		//reset the count to 0
 	_delay_ms(100); //capture the pulses for 100 ms or 0.1 second
 	green = pulse;  //store the count in variable called green
 	
 }
-
-void blue_read(void) // function to select blue filter and display the count generated by the sensor on LCD. The count will be more if the color is blue. The count will be very less if its red or green.
+/*
+*
+* Function Name: 	blue_read
+* Input: 			void
+* Output: 			Capture Pulses for blue filter and store the count in variable blue
+* Logic: 			Filter  green colour and capture the pulses for 100ms
+* Example Call:		blue_read()
+*
+*/
+void blue_read(void)
 {
-	//Blue
-	filter_blue(); //select blue filter
-	pulse=0; //reset the count to 0
-	_delay_ms(100); //capture the pulses for 100 ms or 0.1 second
-	blue = pulse;  //store the count in variable called blue
+	filter_blue();	 //select blue filter
+	pulse=0;		 //reset the count to 0
+	_delay_ms(100);	 //capture the pulses for 100 ms or 0.1 second
+	blue = pulse;	 //store the count in variable called blue
 }
 
 //Function to configure INT4 (PORTE 4) pin as input for the left position encoder
