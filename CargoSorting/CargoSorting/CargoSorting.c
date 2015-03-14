@@ -1,18 +1,15 @@
-/*
- * CargoSorting.c
- *
- * Created: 3/2/2015 7:37:28 AM
- *  Author: Ahmed
- */ 
 
-/*--Variables--*/
+
+
 #define F_CPU 14745600
 #include "strong.c"
 int indicator[4];//indicator[0] contains the terminal no. associated vid red color;this vil be used in scan();
 int color[4];//color[0] contains the color no. associated vid terminal 0;
-int term[4][2];//initialise to -2;
+int term[4][2];//initialise to -2 COntians the colour values at the terminals
 int visited[4];//initialise to 0; when terminal visted make it 1;
 int sort[2];//initialise to -1;
+//ct:Current Terminal
+//adj:the adjacent terminal
 int ct, adj, nt;
 int armCount = 2; //indicates no. of free arms
 int sortCount = 2;//indicated no. of free sort;
@@ -28,14 +25,16 @@ int i=0;
 int sf=90;
 unsigned char cur_angle=90;
 const int RED=0,GREEN=1,BLUE=2,BLACK=3,EMPTY=-1;
+//Velocitues
 const int turn_v=200,line_v=255,correct_v=200,op_v=240;
-int ff=1;
 
+//threshold for black colour
 int threshold;
+
+//White line sensor values
 unsigned char Left_white_line = 0;
 unsigned char Center_white_line = 0;
 unsigned char Right_white_line = 0;
-unsigned char lf=0;
 
 
 //***UTILITY
@@ -57,21 +56,33 @@ void set_color()
 	Center_white_line = ADC_Conversion(2);	//Getting data of Center WL Sensor
 	Right_white_line = ADC_Conversion(1);	//Getting data of Right WL Sensor
 }
+
+/*
+*
+* Function Name: 	scan
+* Input: 			void
+* Output: 			Take the values from  Left,Right  and Centre White Line Sensors and Store it in respective variables
+* Logic: 			Uses the ADC_Conversion function to convert the the channel 1,2,3 to digital values
+* Example Call:		color_value=scan()
+*
+*/
 int scan()//return the color no.
 {
+	//read the red,green and blue pulses
 	red_read();
 	blue_read();
 	green_read();
-	//_delay_ms(100);
+	//If SHARP sensor detects no box
 	if(!(ADC_Conversion(11)>55 && ADC_Conversion(11)<100))
 	{
-		//buzzer();
 		return EMPTY;
 	}
+	//IF all the pulse cpunts are less than the threshold then that means it is black color
 	if (red<threshold && green < threshold && blue < threshold)
 	{
 		return BLACK;
 	}
+	//find the colour with max pulse value and return it
 	else
 	{
 		if (red > blue)
@@ -103,13 +114,6 @@ int scan()//return the color no.
 */
 void lower(unsigned char side)
 {
-// 	if(armCount==0)
-// 	{
-// 		if(side==1)
-// 			servo_1_free();
-// 		else
-// 			servo_3_free();_delay_ms(500);
-// 	}
 	if(side==1)
 	{
 		servo_2(55);
@@ -161,7 +165,6 @@ void open(unsigned char side)
 		servo_1_free();
 		_delay_ms(500);
 	}
-	//_delay_ms(500);
 }
 
 /*
@@ -177,19 +180,8 @@ void close(unsigned char side)
 {
 	if (side == 0)
 		servo_3(0);
-// 		for(i=90;i>=0;i-=5)
-// 		{
-// 			servo_3(i);
-// 			_delay_ms(10);
-// 		}
 	else if (side == 1)
 		servo_1(80);
-// 		for(i=0;i<=80;i+=5)
-// 		{
-// 			servo_1(i);
-// 			_delay_ms(10);
-// 		}
-
 	_delay_ms(500);
 }
 //*******************END SERVO*********************
@@ -197,25 +189,47 @@ void close(unsigned char side)
 
 //**************TURNS*******************
 
-
+/*
+*
+* Function Name: 	node
+* Input: 			void
+* Output: 			Moves the robot forward by 70mm
+* Logic: 			Move the robot forward to take proper turns
+* Example Call:		node()
+*
+*/
 void node()
 {
-	//buzzer();
-	//lcd_print(1,1,1,1);
 	velocity(turn_v,turn_v);
 	forward_mm(70);
 	stop();
 }
-void turnRight()	//turns the robo right
+
+/*
+*
+* Function Name: 	turnRight
+* Input: 			void
+* Output: 			Turns the robot right by 90 degrees
+* Logic: 			Turns the robot right 90 degrees by either calling right() and then waiting for a black line OR
+					by using the position encoder function right_degrees(Degrees)
+* Example Call:		turnRight()
+*
+*/
+
+void turnRight()	//turns the robot right
 {
 	if ((dir == 3 && (ot == 0 || ot == 1)) || (dir == 1 && (ot == 2 || ot == 3)))
 	{
+		/*
+		This block is used when the robot is at the node of the terminal and is facing either of the terminal boxes and it need to turn right
+		which will make it face outside the Flex Sheet where no black line exist to align the robot
+		*/
 		velocity(turn_v, turn_v);
 		right_degrees(90);
 	}
 	else
 	{
-		//forward_mm(30);
+		//Turn right till Centre WHite line sensor detects a black line
 		velocity(turn_v, turn_v);
 		right_degrees(30);
 		
@@ -223,53 +237,55 @@ void turnRight()	//turns the robo right
 			right();
 		stop();	
 	}
-	//lcd("Right turn");
-	//_delay_ms(2000);
 	dir = (dir + 1) % 4;
-	//printf("Turn Right \n");
-	angle += 90;
-	//buzzer();
 }
-void turnLeft()	//turns the robo left
+
+/*
+*
+* Function Name: 	turnLeft
+* Input: 			void
+* Output: 			Turns the robot left by 90 degrees
+* Logic: 			Turns the robot left 90 degrees by either calling left() and then waiting for a black line OR
+					by using the position encoder function left_degrees(Degrees)
+* Example Call:		turnLeft()
+*
+*/
+void turnLeft()	//turns the robot left
 {
 	
 	if ((dir == 1 && (ot == 0 || ot == 1)) || (dir == 3 && (ot == 2 || ot == 3)))
 	{
+		/*
+		This block is used when the robot is at the node of the terminal and is facing either of the terminal boxes and it need to turn left
+		which will make it face outside the Flex Sheet where no black line exist to align the robot
+		*/
 		velocity(turn_v, turn_v);
 		left_degrees(90);
 	}
 	else
 	{
-		//forward_mm(30);
+		//Turn left till Centre WHite line sensor detects a black line
 		left_degrees(30);
 		velocity(turn_v,turn_v);
 		while (ADC_Conversion(3)<40)
 			left();
-		//_delay_ms(50);
 		stop();
 	}
-	
-	//lcd("Left turn");
-	//_delay_ms(2000);
 	dir = (dir + 3) % 4;
-	//printf("Turn Left\n");
-	angle += 90;
-//	buzzer();
 }
+
+/*
+*
+* Function Name: 	turn
+* Input: 			void
+* Output: 			Turns the robot 180 degrees
+* Logic: 			Turns the robot 180 degrees by either calling left_degrees(160) and then left() and then waiting for a black line OR
+					by using the position encoder function left_degrees(Degrees)
+* Example Call:		turn()
+*
+*/
 void turn()	//turn robo by 180 degree
 {
-	/*
-	if ((dir == 0 && (ot == 2 || ot == 3))||(dir == 2 && (ot == 0 || ot == 1)))
-	{
-		velocity(turn_v, turn_v);
-		left_degrees(180);
-	}
-	else if 
-	{
-		velocity(turn_v, turn_v);
-		left_degrees(180);
-	}
-	*/
 	if (dir == 0 && (ot == 2 || ot == 3))
 	{
 		velocity(turn_v, turn_v);
@@ -277,7 +293,6 @@ void turn()	//turn robo by 180 degree
 	}
 	else if (dir == 2 && (ot == 0 || ot == 1))
 	{
-		//forward_mm(30);
 		velocity(turn_v, turn_v);
 		left_degrees(190);
 	}
@@ -290,11 +305,7 @@ void turn()	//turn robo by 180 degree
 		_delay_ms(50);
 		stop();
 	}
-	//lcd("turn");
-	//_delay_ms(2000);
 	dir = (dir + 2) % 4;
-	//printf("Turn\n");
-	angle += 180;
 	flag1=0;
 }
 
@@ -303,16 +314,14 @@ void turn()	//turn robo by 180 degree
 //**********BlackLine Follower **************
 
 /*
-*
 * Function Name: 	Delay
-* Input: 			int tim
-* Output: 			Gives a delay of tim milliseconds with 1 millisecond at a time.
-					Check if the Centre White Line Sensor has detected black
-* Logic: 			Run a loop tim times and give a delay of 1ms every time the loop runs
-					If Centre White Line detects  black return 1 else return 0.
-* Example Call:		flag=Delay(time_in_milliseconds)
-					
-*
+* Input:			tim -> provides total delay time in milliseconds
+* Output: 			1 -> If center white line sensor detects black before 'tim' delay is over
+*					0 -> If center white line sensor does not detect black before 'tim' delay is over
+* Logic:			The function provides delay of 'tim' milliseconds in steps of one.
+*					After each step, the function will check center white line input.
+*					If sensor detects black, exit from for loop & return 1; else 0.
+* Example Call:		char x = Delay(40);
 */
 char Delay(int tim)
 {
@@ -492,7 +501,7 @@ void lineFix_Indi()
 			flag=1;
 			return;
 		}
-		else if(Left_white_line>40 && Right_white_line>40))
+		else if(Left_white_line>40 && Right_white_line>40)
 		{
 			flag=1;
 			return;
@@ -616,50 +625,21 @@ char semiCorrect()
 */
 char correct()
 {
-	unsigned int d=2;
 	unsigned int i=50;
-	Degrees=5;
 	stop();
-	//lcd("cor");
 	
-	/*if(lf==1)
-	{
-		lf=0;
 		while(1)
 		{
-			right();
-			if(Delay(i))
-					return;
-			stop();
-			lcd_print(1,1,1,1);
-			//set_color();
-			semiCorrect();
-			if(ADC_Conversion(2)>40)// && ADC_Conversion(1)<40 && ADC_Conversion(3)<40)
-				break;
-			i+=50;
+			//After many tries it was observed that the robot has a natural tendency to get deviated to the right more than to the left
+			//And hence the sweep starts by first moving to the left and then the subsequent  actions are taken
+			
 			left();
-			if(Delay(i))
-				return;
-			stop();
-			lcd_print(1,1,2,1);
-			semiCorrect();
-			if(ADC_Conversion(2)>40)// && ADC_Conversion(1)<40 && ADC_Conversion(3)<40)
-				break;
-			//d*=2;
-			//set_color();
-			//i+=2;
-			i+=50;
-		}
-	}*/
-	//else
-	
-		lf=1;
-		while(1)
-		{
-			left();
+			//sweep to left for 'i' ms return if Black is detected under Center_white_line sensor
 			if(Delay(i))
 				return 0;
 			stop();
+			//set_color();
+			//call set_color to correct the robot if left or right line sensor are detecting black
 			
 			//set_color();
 			if(semiCorrect())
@@ -667,6 +647,7 @@ char correct()
 			if(ADC_Conversion(2)>40)// && ADC_Conversion(1)<40 && ADC_Conversion(3)<40)
 				break;
 			i+=50;
+			//sweep to right and follow same logic as above
 			right();
 			if(Delay(i))
 				return 0;
@@ -676,9 +657,7 @@ char correct()
 				return 1;
 			if(ADC_Conversion(2)>40)// && ADC_Conversion(1)<40 && ADC_Conversion(3)<40)
 				break;
-			//d*=2;
-			//set_color();
-			//i+=2;
+				//If black is not found by any of the sensors increment the sweep area by 50ms and restart
 			i+=50;
 		
 	}
@@ -689,17 +668,20 @@ char correct()
 
 /*
 *
-* Function Name: 	noNatak
+* Function Name: 	lineFix
 * Input: 			void
 * Output: 			Properly positions the robot on the white line if Right or Left Line Sensors  detect black under them.
 					or calls correct if no condition satisfies or All sensors detect white under them
 					Calls node() if a node is detected.
+					This situation arises for two possible scenarios:
+					*						1) Robot deviates from Black Line
+					*						2) Node / Intersection is Reached
 * Logic: 			Move the robot Left or right with respect to whether 
-* Example Call:		flag=noNatak()
+* Example Call:		flag=lineFix()
 					
 *
 */
-int noNatak()
+int lineFix()
 {
 	//flag: To check if the robot has been positioned properly or not ,possible values 0 or 1
 	int flag=0;
@@ -709,7 +691,6 @@ int noNatak()
 	{
 		if(Left_white_line>40 && Right_white_line<40) //bww
 		{
-		//	lcd("bww");
 			flag=1;
 			//Keep moving left till Center_white_line sensor is not Black and Left_white_line and Right_white_line is not white
 			while(!(Center_white_line>0x28 && Left_white_line<40 && Right_white_line<40))
@@ -779,16 +760,16 @@ int noNatak()
 
 /*
 *
-* Function Name: 	forwardJaa
+* Function Name: 	keepMoving
 * Input: 			void
 * Output: 			Move Forward if the robot moves out of line call lineFix_Indi to fix the position
 * Logic: 			To check if the robot has moved out of line this condition will return a false value
 					(Center_white_line>0x28 && Left_white_line<40 && Right_white_line<40)
-* Example Call:		forwardJaa()
+* Example Call:		keepMoving()
 					
 *
 */
-void forwardJaa()
+void keepMoving()
 {
 	//buzzer();
 	unsigned int vi=0;
@@ -807,14 +788,14 @@ void forwardJaa()
 		//i+=20;
 	}while(Center_white_line>0x28 && Left_white_line<40 && Right_white_line<40);	//wbw
 	
-	if(noNatak())	//if 1 is return then that means a node is detected return to signify that a node was detected
+	if(lineFix())	//if 1 is return then that means a node is detected return to signify that a node was detected
 		return;
-	forwardJaa();
+	keepMoving();
 	return;
 }
 void front()
 {
-	forwardJaa();
+	keepMoving();
 	cost++;
 	//printf("Front\n");
 }
@@ -1481,12 +1462,12 @@ void sortCheck()
 
 /*
 *
-* Function Name: 	forwardJaa
+* Function Name: 	keepMoving
 * Input: 			void
 * Output: 			Move Forward if the robot moves out of line call lineFix_Indi to fix the position
 * Logic: 			To check if the robot has moved out of line this condition will return a false value
 					(Center_white_line>0x28 && Left_white_line<40 && Right_white_line<40)
-* Example Call:		forwardJaa()
+* Example Call:		keepMoving()
 					
 *
 */
@@ -1534,6 +1515,16 @@ void setIndicatorAndColor()
 	arm[0] = arm[1] = -1;
 }
 
+/*
+*
+* Function Name: 	indicator_set
+* Input: 			void
+* Output: 			Store indicator values and move the robot to intial terminal
+* Logic: 			uses KeepMoving_Indi to move forward and scan function to store the colour values
+* Example Call:		indicator_set()
+					
+*
+*/
 void indicator_set()
 {
 	keepMoving_Indi();
@@ -1610,14 +1601,14 @@ void indicator_set()
 	stop();
 	
 	//All indicaor blocks scanned go to initial terminal
-	forwardJaa();
+	keepMoving();
 	forward();
 	_delay_ms(70);
 	velocity(op_v,op_v);
 	turnRight();
 	forward();
 	_delay_ms(200);
-	forwardJaa();
+	keepMoving();
 	velocity(op_v,op_v);
 	forward();
 	_delay_ms(50);
@@ -1642,7 +1633,7 @@ int main(void)
 	indicator_set();
 	//initialise terminals 
 	setIndicatorAndColor();
-	forwardJaa();
+	keepMoving();
 	//reached the target terminal
 	while (sorted<total)
 	{

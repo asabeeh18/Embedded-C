@@ -2,69 +2,71 @@
 /*
 *
 * Team Id: eYRC#2492-CS
-* Author List: Yash Joshi
+* Author List:  Yash Joshi (For Colour Sensor Functions Provided by e-yantra.org)
+				NEX Robotics for providing some of the necessary functions
+				Ahmed Sabeeh for compiling all the functions together and using the in initialisation functions of his own
 * Filename: strong.c
 * Theme: Cargo Sorting Robot
 * Functions: void timer5_init(),
-*         void motion_pin_config (void),
-*         void velocity (unsigned char , unsigned char),
-*         void motion_set (unsigned char Direction),
-*         void forward (void),
-*         void back (void),
-*         void left (void),
-*         void right (void),
-*         void soft_left (void),
-*         void soft_right (void),
-*         void soft_left_2 (void),
-*         void soft_right_2 (void),
-*         void stop (void),
-*         void lcd_port_config (void),
-*         void servo_1_free (void),
-*         void servo_2_free (void),
-*         void servo_3_free (void),
-*         void adc_pin_config (void,
-*         void servo1_pin_config (void),
-*         void servo2_pin_config (void),
-*         void servo3_pin_config (void),
-*         void timer1_init(void),
-*         void port_init(void),
-*         void buzzer_on (void),
-*         void buzzer_off (void),
-*         unsigned char ADC_Conversion(unsigned char Ch),
-*         void print_sensor(char row, char coloumn,unsigned char channel),
-*         ISR(INT0_vect),
-*         void adc_init(),
-*         void servo_1(unsigned char degrees),
-*         void servo_2(unsigned char degrees),
-*         void servo_3(unsigned char degrees),
-*         void color_sensor_pin_config(void),
-*         void color_sensor_pin_interrupt_init(void),
-*         void filter_red(void),
-*         void filter_green(void),
-*         void filter_blue(void),
-*         void filter_clear(void),
-*         void color_sensor_scaling(),
-*         void red_read(void),
-*         void green_read(void),
-*         void blue_read(void),
-*         void left_encoder_pin_config (void),
-*         void right_encoder_pin_config (void),
-*         void port_init_poz(),
-*         void left_position_encoder_interrupt_init (void),
-*         void right_position_encoder_interrupt_init (void),
-*         ISR(INT5_vect),
-*         ISR(INT4_vect),
-*         void angle_rotate(unsigned int Degrees),
-*         void linear_distance_mm(unsigned int DistanceInMM),
-*         void forward_mm(unsigned int DistanceInMM),
-*         void back_mm(unsigned int DistanceInMM),
-*         void left_degrees(unsigned int Degrees),
-*         void right_degrees(unsigned int Degrees),
-*         void soft_left_degrees(unsigned int Degrees),
-*         void soft_right_degrees(unsigned int Degrees),
-*         void soft_left_2_degrees(unsigned int Degrees),
-*         void soft_right_2_degrees(unsigned int Degrees),
-*         void init_devices(void)
+*            void motion_pin_config (void),
+*            void velocity (unsigned char , unsigned char),
+*            void motion_set (unsigned char Direction),
+*            void forward (void),
+*            void back (void),
+*            void left (void),
+*            void right (void),
+*            void soft_left (void),
+*            void soft_right (void),
+*            void soft_left_2 (void),
+*            void soft_right_2 (void),
+*            void stop (void),
+*            void lcd_port_config (void),
+*            void servo_1_free (void),
+*            void servo_2_free (void),
+*            void servo_3_free (void),
+*            void adc_pin_config (void,
+*            void servo1_pin_config (void),
+*            void servo2_pin_config (void),
+*            void servo3_pin_config (void),
+*            void timer1_init(void),
+*            void port_init(void),
+*            void buzzer_on (void),
+*            void buzzer_off (void),
+*            unsigned char ADC_Conversion(unsigned char Ch),
+*            void print_sensor(char row, char coloumn,unsigned char channel),
+*            ISR(INT0_vect),
+*            void adc_init(),
+*            void servo_1(unsigned char degrees),
+*            void servo_2(unsigned char degrees),
+*            void servo_3(unsigned char degrees),
+*            void color_sensor_pin_config(void),
+*            void color_sensor_pin_interrupt_init(void),
+*            void filter_red(void),
+*            void filter_green(void),
+*            void filter_blue(void),
+*            void filter_clear(void),
+*            void color_sensor_scaling(),
+*            void red_read(void),
+*            void green_read(void),
+*            void blue_read(void),
+*            void left_encoder_pin_config (void),
+*            void right_encoder_pin_config (void),
+*            void port_init_poz(),
+*            void left_position_encoder_interrupt_init (void),
+*            void right_position_encoder_interrupt_init (void),
+*            ISR(INT5_vect),
+*            ISR(INT4_vect),
+*            void angle_rotate(unsigned int Degrees),
+*            void linear_distance_mm(unsigned int DistanceInMM),
+*            void forward_mm(unsigned int DistanceInMM),
+*            void back_mm(unsigned int DistanceInMM),
+*            void left_degrees(unsigned int Degrees),
+*            void right_degrees(unsigned int Degrees),
+*            void soft_left_degrees(unsigned int Degrees),
+*            void soft_right_degrees(unsigned int Degrees),
+*            void soft_left_2_degrees(unsigned int Degrees),
+*            void soft_right_2_degrees(unsigned int Degrees),
+*            void init_devices(void)
 * Global Variables: 
 *        volatile unsigned long int ShaftCountLeft,
 *        volatile unsigned long int ShaftCountRight,
@@ -117,30 +119,34 @@
 
 ********************************************************************************/
 
-/*
-*
-* Function Name: 	<Function Name>
-* Input: 		<Inputs (or Parameters) list with description if any>
-* Output: 		<Return value with description if any>
-* Logic: 		<Description of the function performed and the logic used in the function>
-* Example Call:		<Example of how to call this function>
-*
-*/
 #define F_CPU 14745600
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <util/delay.h>
-#include <math.h> //included to support power function
-//#include "lcd.h"
 
-volatile unsigned long int ShaftCountLeft = 0; //to keep track of left position encoder
-volatile unsigned long int ShaftCountRight = 0; //to keep track of right position encoder
-volatile unsigned int Degrees; //to accept angle in degrees for turning
+//ShaftCountLeft: to keep track of left position encoder
+volatile unsigned long int ShaftCountLeft = 0; 
+
+//ShaftCountRight:to keep track of right position encoder
+volatile unsigned long int ShaftCountRight = 0; 
+
+//Degrees:to accept angle in degrees for turning
+volatile unsigned int Degrees;
+
+//ADC_Value: Used to convert Analog signal value ot digital in ADC_Conversion()
 unsigned char ADC_Value;
-volatile unsigned long int pulse = 0; //to keep the track of the number of pulses generated by the color sensor
-volatile unsigned long int red;       // variable to store the pulse count when read_red function is called
-volatile unsigned long int blue;      // variable to store the pulse count when read_blue function is called
-volatile unsigned long int green;     // variable to store the pulse count when read_green function is called
+
+//pulse:to keep the track of the number of pulses generated by the color sensor
+volatile unsigned long int pulse = 0;
+
+//red:variable to store the pulse count when read_red function is called
+volatile unsigned long int red;
+
+//blue:variable to store the pulse count when read_blue function is called
+volatile unsigned long int blue;
+
+//green:variable to store the pulse count when read_green function is called
+volatile unsigned long int green;
 
 
 /*
@@ -464,8 +470,17 @@ void servo_1(unsigned char degrees)
 	OCR1AL = (unsigned char) PositionPanServo;
 }
 
+/*
+*
+* Function Name: 	servo_2
+* Input: 			void
+* Output: 			Moves the servo motor to the specified angle
 
-
+* Logic: 			Divide the angle by 1.86 which is the angular resulution of the servo and then add 35.
+					The resultant value is the value to be given to ORC1Bl
+* Example Call:		servo_2()
+*
+*/
 void servo_2(unsigned char degrees)
 {
 	//Function to rotate Servo 2 by a specified angle in the multiples of 1.86 degrees
@@ -476,6 +491,17 @@ void servo_2(unsigned char degrees)
 	OCR1BL = (unsigned char) PositionTiltServo;
 }
 
+/*
+*
+* Function Name: 	servo_3
+* Input: 			void
+* Output: 			Moves the servo motor to the specified angle
+
+* Logic: 			Divide the angle by 1.86 which is the angular resulution of the servo and then add 35.
+					The resultant value is the value to be given to ORC1Cl
+* Example Call:		servo_3()
+*
+*/
 
 void servo_3(unsigned char degrees)
 {
@@ -487,30 +513,72 @@ void servo_3(unsigned char degrees)
 	OCR1CL = (unsigned char) PositionServo;
 }
 
-//Configure PORTB 5 pin for servo motor 1 operation
+
+
+/*
+*
+* Function Name: 	servo1_pin_config
+* Input: 		void
+* Output: 		Configuring PORTB  5 pin for servo motor 1 operation
+* Logic: 		making PORTB 5 pin output
+*				and setting PORTB 5 pin to logic 1
+* Example Call:		servo1_pin_config()
+*
+*/
+
 void servo1_pin_config (void)
 {
+	//Configure PORTB 5 pin for servo motor 1 operation
 	DDRB  = DDRB | 0x20;  //making PORTB 5 pin output
 	PORTB = PORTB | 0x20; //setting PORTB 5 pin to logic 1
 }
 
-//Configure PORTB 6 pin for servo motor 2 operation
+/*
+*
+* Function Name: 	servo2_pin_config
+* Input: 		void
+* Output: 		Configuring PORTB 6 pin for servo motor 2 operation
+* Logic: 		making PORTB 6 pin output
+*				and setting PORTB 6 pin to logic 1
+* Example Call:		servo2_pin_config()
+*
+*/
+
 void servo2_pin_config (void)
 {
+	//Configure PORTB 6 pin for servo motor 2 operation
 	DDRB  = DDRB | 0x40;  //making PORTB 6 pin output
 	PORTB = PORTB | 0x40; //setting PORTB 6 pin to logic 1
 }
 
-//Configure PORTB 7 pin for servo motor 3 operation
+/*
+*
+* Function Name: 	servo3_pin_config
+* Input: 		void
+* Output: 		Configuring PORTB 7 pin for servo motor 3 operation
+* Logic: 		making PORTB 7 pin output
+*				and setting PORTB 7 pin to logic 1
+* Example Call:		servo3_pin_config()
+*
+*/
+
 void servo3_pin_config (void)
 {
+	//Configure PORTB 7 pin for servo motor 3 operation
 	DDRB  = DDRB | 0x80;  //making PORTB 7 pin output
 	PORTB = PORTB | 0x80; //setting PORTB 7 pin to logic 1
 }
-//TIMER1 initialization in 10 bit fast PWM mode  
-//prescale:256
-// WGM: 7) PWM 10bit fast, TOP=0x03FF
-// actual value: 52.25Hz 
+
+
+/*
+*
+* Function Name: timer1_init
+* Input: 		void
+* Output: 		Initializing TIMER1in 10 bit fast PWM mode
+* Logic: 		Initialise the OCR1nH/OCR1nL registers for servo motors
+* Example Call:		timer1_init()
+*
+*/
 void timer1_init(void)
 {
  TCCR1B = 0x00; //stop
@@ -611,7 +679,7 @@ void buzzer_init()
 * Function Name: 	ADC_Conversion
 * Input: 			unsigned char channel_number
 * Output: 			Converts analog value to digital
-* Logic: 			
+* Logic: 			Convert the analog value received form the channel to digital by applying a set of functions on it
 * Example Call:		ADC_Conversion()
 *
 */
@@ -833,6 +901,18 @@ void blue_read(void)
 	blue = pulse;	 //store the count in variable called blue
 }
 
+
+
+/*
+*
+* Function Name: 	left_encoder_pin_config
+* Input: 			void
+* Output: 			Sets the direction of the PORTE 4 pin as input and Enable internal pull-up for PORTE 4 pin
+* Logic: 			Configuring INT4 (PORTE 4) pin as input for the left position encoder
+* Example Call:		left_encoder_pin_config()
+*
+*/
+
 //Function to configure INT4 (PORTE 4) pin as input for the left position encoder
 void left_encoder_pin_config (void)
 {
@@ -840,12 +920,35 @@ void left_encoder_pin_config (void)
 	PORTE = PORTE | 0x10; //Enable internal pull-up for PORTE 4 pin
 }
 
+
+/*
+*
+* Function Name: 	right_encoder_pin_config
+* Input: 			void
+* Output: 			Sets the direction of the PORTE 4 pin as input and Enable internal pull-up for PORTE 4 pin
+* Logic: 			Configuring INT5 (PORTE 5) pin as input for the right position encoder
+* Example Call:		right_encoder_pin_config()
+*
+*/
+
 //Function to configure INT5 (PORTE 5) pin as input for the right position encoder
 void right_encoder_pin_config (void)
 {
 	DDRE  = DDRE & 0xDF;  //Set the direction of the PORTE 4 pin as input
 	PORTE = PORTE | 0x20; //Enable internal pull-up for PORTE 4 pin
 }
+
+
+
+/*
+*
+* Function Name: 	port_init_poz
+* Input: 			void
+* Output: 			Initializes motion pin, left and right encoder pins 
+* Logic: 			Calling Initializing functions for robot motion pins configuration,left encoder pin configuration,and right encoder pin configuration
+* Example Call:		port_init_poz()
+*
+*/
 
 //Function to initialize ports
 void port_init_poz()
@@ -855,6 +958,17 @@ void port_init_poz()
 	right_encoder_pin_config(); //right encoder pin config
 }
 
+
+/*
+*
+* Function Name: 	left_position_encoder_interrupt_init
+* Input: 			void
+* Output: 			Enabling INT4 for left position encoder 
+* Logic: 			To enable Interrupt 4 for left position encoder
+* Example Call:		left_position_encoder_interrupt_init()
+*
+*/
+
 void left_position_encoder_interrupt_init (void) //Interrupt 4 enable
 {
 	cli(); //Clears the global interrupt
@@ -862,6 +976,17 @@ void left_position_encoder_interrupt_init (void) //Interrupt 4 enable
 	EIMSK = EIMSK | 0x10; // Enable Interrupt INT4 for left position encoder
 	sei();   // Enables the global interrupt
 }
+
+/*
+*
+* Function Name: 	right_position_encoder_interrupt_init
+* Input: 			void
+* Output: 			Enabling INT5 for right position encoder 
+* Logic: 			To enable Interrupt 5 for right position encoder
+* Example Call:		right_position_encoder_interrupt_init()
+*
+*/
+
 
 void right_position_encoder_interrupt_init (void) //Interrupt 5 enable
 {
@@ -871,12 +996,33 @@ void right_position_encoder_interrupt_init (void) //Interrupt 5 enable
 	sei();   // Enables the global interrupt
 }
 
+/*
+*
+* Function Name: 	ISR(INT5_vect)
+* Input: 			Interrupt 5 vector
+* Output: 			Incremented count of right shaft position
+* Logic: 			Incrementing right shaft position count by 1 by ISR with Interrupt 5
+					The function is automatically called whenever one shaft passes the position encoder
+* Example Call:		ISR(INT5_vect)
+*
+*/
+
 //ISR for right position encoder
 ISR(INT5_vect)
 {
 	ShaftCountRight++;  //increment right shaft position count
 }
 
+/*
+*
+* Function Name: 	ISR(INT4_vect)
+* Input: 			Interrupt 4 vector
+* Output: 			Incremented count of left shaft position
+* Logic: 			Incrementing left shaft position count by 1 by ISR with Interrupt 4.
+					The function is automatically called whenever one shaft passes the position encoder
+* Example Call:		ISR(INT4_vect)
+*
+*/
 
 //ISR for left position encoder
 ISR(INT4_vect)
@@ -884,6 +1030,18 @@ ISR(INT4_vect)
 	ShaftCountLeft++;  //increment left shaft position count
 }
 
+
+/*
+*
+* Function Name: 	angle_rotate
+* Input: 			unsigned integer Degrees
+* Output: 			rotating robot by specified angle given in Degrees
+* Logic: 			The values of incrementing shaft movement is counted with the help of position encoders
+*					When the total count*4.090(Resolution of shaft) is equal to the angle specified the robot has moved the 
+					specified angle
+* Example Call:		angle_rotate(30)
+*
+*/
 
 //Function used for turning robot by specified degrees
 void angle_rotate(unsigned int Degrees)
@@ -898,25 +1056,38 @@ void angle_rotate(unsigned int Degrees)
 
 	while (1)
 	{
+		//Wait for the Shaft Count to equal the required shaft count
 		if((ShaftCountRight >= ReqdShaftCountInt) | (ShaftCountLeft >= ReqdShaftCountInt))
 		break;
 	}
 	stop(); //Stop robot
 }
 
-//Function used for moving robot forward by specified distance
+
+/*
+*
+* Function Name: 	linear_distance_mm
+* Input: 			unsigned integer Distance_in_mm
+* Output: 			Move the robot forward by the specified distance
+* Logic: 			The values of incrementing shaft movement is counted with the help of position encoders
+*					When the total count*5.338(Resolution of shaft) is equal to the distance specified the robot has moved the 
+					specified distance
+* Example Call:		linear_distance_mm(100)
+*
+*/
 
 void linear_distance_mm(unsigned int DistanceInMM)
 {
 	float ReqdShaftCount = 0;
 	unsigned long int ReqdShaftCountInt = 0;
-
+	
 	ReqdShaftCount = DistanceInMM / 5.338; // division by resolution to get shaft count
 	ReqdShaftCountInt = (unsigned long int) ReqdShaftCount;
 	
 	ShaftCountRight = 0;
 	while(1)
 	{
+		//Wait for the Shaft Count to equal the required shaft count
 		if(ShaftCountRight > ReqdShaftCountInt)
 		{
 			break;
@@ -925,17 +1096,49 @@ void linear_distance_mm(unsigned int DistanceInMM)
 	stop(); //Stop robot
 }
 
+
+/*
+*
+* Function Name: 	forward_mm(unsigned int DistanceInMM)
+* Input: 			unsigned integer Distance in mm
+* Output: 			moving robot forward by specified distance
+* Logic: 			Calling foward() and linear_distance_mm() to move robot forward
+* Example Call:		forward_mm(100)
+*
+*/
+
 void forward_mm(unsigned int DistanceInMM)
 {
 	forward();
 	linear_distance_mm(DistanceInMM);
 }
 
+/*
+*
+* Function Name: 	back_mm(unsigned int DistanceInMM)
+* Input: 			unsigned integer Distance in mm
+* Output: 			moving robot backward by specified distance in mm
+* Logic: 			Calling back() and linear_distance_mm() to move robot back 
+* Example Call:		back_mm(100)
+*
+*/
+
 void back_mm(unsigned int DistanceInMM)
 {
 	back();
 	linear_distance_mm(DistanceInMM);
 }
+
+
+/*
+*
+* Function Name: 	left_degrees(unsigned int Degrees)
+* Input: 			unsigned integer Degrees
+* Output: 			turning robot left with specified Degrees
+* Logic: 			Calling left() and angle_rotate(Degrees) to move robot left
+* Example Call:		left_degrees(30)
+*
+*/
 
 void left_degrees(unsigned int Degrees)
 {
@@ -944,7 +1147,15 @@ void left_degrees(unsigned int Degrees)
 	angle_rotate(Degrees);
 }
 
-
+/*
+*
+* Function Name: 	right_degrees(unsigned int Degrees)
+* Input: 			unsigned integer Degrees
+* Output: 			turning robot right with specified Degrees
+* Logic: 			Calling right() and angle_rotate(Degrees) to turn robot right
+* Example Call:		right_degrees(30)
+*
+*/
 
 void right_degrees(unsigned int Degrees)
 {
@@ -953,6 +1164,16 @@ void right_degrees(unsigned int Degrees)
 	angle_rotate(Degrees);
 }
 
+/*
+*
+* Function Name: 	soft_left_degrees(unsigned int Degrees)
+* Input: 			unsigned integer Degrees
+* Output: 			turning robot left with specified Degrees
+* Logic: 			Calling soft_left() and angle_rotate(Degrees) to turn robot left
+*					with specified Degrees times 2 to cover original Degrees
+* Example Call:		soft_left_degrees(30)
+*
+*/
 
 void soft_left_degrees(unsigned int Degrees)
 {
@@ -962,6 +1183,17 @@ void soft_left_degrees(unsigned int Degrees)
 	angle_rotate(Degrees);
 }
 
+
+/*
+*
+* Function Name: 	soft_right_degrees(unsigned int Degrees)
+* Input: 			unsigned integer Degrees
+* Output: 			turning robot right with specified Degrees
+* Logic: 			Calling soft_right() and angle_rotate(Degrees) to turn robot right
+*					with specified Degrees times 2 to cover original Degrees
+* Example Call:		soft_right_degrees(30)
+*
+*/
 void soft_right_degrees(unsigned int Degrees)
 {
 	// 176 pulses for 360 degrees rotation 2.045 degrees per count
@@ -970,6 +1202,17 @@ void soft_right_degrees(unsigned int Degrees)
 	angle_rotate(Degrees);
 }
 
+/*
+*
+* Function Name: 	soft_left_2_degrees(unsigned int Degrees)
+* Input: 			unsigned integer Degrees
+* Output: 			turning robot left with specified Degrees in reverse fashion
+* Logic: 			Calling soft_left_2() and angle_rotate(Degrees) to turn robot left in reverse fashion
+*					with specified Degrees times 2 to cover original Degrees
+* Example Call:		soft_left_2_degrees(30)
+*
+*/
+
 void soft_left_2_degrees(unsigned int Degrees)
 {
 	// 176 pulses for 360 degrees rotation 2.045 degrees per count
@@ -977,6 +1220,17 @@ void soft_left_2_degrees(unsigned int Degrees)
 	Degrees=Degrees*2;
 	angle_rotate(Degrees);
 }
+
+/*
+*
+* Function Name: 	soft_right_2_degrees(unsigned int Degrees)
+* Input: 			unsigned integer Degrees
+* Output: 			turning robot right with specified Degrees in reverse fashion
+* Logic: 			Calling soft_right_2() and angle_rotate(Degrees) to turn robot right in reverse fashion
+*					with specified Degrees times 2 to cover original Degrees
+* Example Call:		soft_right_degrees(30)
+*
+*/
 
 void soft_right_2_degrees(unsigned int Degrees)
 {
