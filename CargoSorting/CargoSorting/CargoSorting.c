@@ -120,7 +120,7 @@ void lower(unsigned char side)
 	}
 	else
 	servo_2(120);
-	_delay_ms(500);
+	//_delay_ms(500);
 }
 
 /*
@@ -156,14 +156,14 @@ void open(unsigned char side)
 		servo_3(90);
 		_delay_ms(500);
 		servo_3_free();
-		_delay_ms(500);
+	//	_delay_ms(500);
 	}
 	else
 	{
 		servo_1(0);
 		_delay_ms(500);
 		servo_1_free();
-		_delay_ms(500);
+		//_delay_ms(500);
 	}
 }
 
@@ -182,7 +182,7 @@ void close(unsigned char side)
 		servo_3(0);
 	else if (side == 1)
 		servo_1(80);
-	_delay_ms(500);
+	//_delay_ms(500);
 }
 //*******************END SERVO*********************
 
@@ -1620,7 +1620,28 @@ void indicator_set()
 	
 }
 
-
+void Uturn()
+{
+	angle_rotate(180);
+}
+void dance()
+{
+	//critical:: delays removed for arm movements
+	//..Non Programatic stuff not my forte....
+	//add buzzers...forwardsJaaIndi or forward()...arm functions
+	lower(1);
+	left();
+	Uturn();
+	elevate();
+	right();
+	Uturn();
+	lower(0);
+	right();
+	Uturn();
+	lower(0);
+	//...
+	
+}
 int main(void)
 {
 	//intialise EVERYTHING

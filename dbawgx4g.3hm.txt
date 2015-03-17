@@ -1,0 +1,25 @@
+﻿New Amend Commit
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Changes to be committed:
+#	deleted:    CargoSorting/CFile1.c
+#	modified:   CargoSorting/CargoSorting.atsuo
+#	deleted:    CargoSorting/CargoSorting/CFile1.c
+#	modified:   CargoSorting/CargoSorting/CargoSorting.c
+#	modified:   CargoSorting/CargoSorting/Debug/CargoSorting.elf
+#	modified:   CargoSorting/CargoSorting/Debug/CargoSorting.hex
+#	modified:   CargoSorting/CargoSorting/Debug/CargoSorting.lss
+#	modified:   CargoSorting/CargoSorting/Debug/CargoSorting.map
+#	modified:   CargoSorting/CargoSorting/Debug/CargoSorting.o
+#	modified:   CargoSorting/CargoSorting/Debug/CargoSorting.srec
+#	deleted:    CargoSorting/CargoSorting/lcd.h
+#	modified:   CargoSorting/CargoSorting/strong.c
+#	new file:   EYRC-2492-CS CargoSorting.zip
+#
+# Changes not staged for commit:
+#	modified:   CargoSorting/CargoSorting.atsuo
+#	modified:   CargoSorting/CargoSorting/CargoSorting.c
+#
+
